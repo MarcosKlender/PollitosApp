@@ -1,4 +1,4 @@
-# Laravel SB Admin 2
+# [Español] Laravel 8.6.0 + SB Admin 2
 
 Laravel 8.6 + SB Admin 2.
 
@@ -9,7 +9,7 @@ Laravel 8.6 + SB Admin 2.
 | 6.0             | v6.0   |
 | 5.8             | v5.8   |
 
-## Requirements
+## Requerimientos
 
 - PHP >= 7.3.0
 - BCMath PHP Extension
@@ -21,50 +21,50 @@ Laravel 8.6 + SB Admin 2.
 - Tokenizer PHP Extension
 - XML PHP Extension
 
-## Installation
+## Instalación
 
-- Clone the repo and `cd` into it
-- Run `composer install`
-- Rename or copy `.env.example` file to `.env`
-- Run `php artisan key:generate`
-- Set your database credentials in your `.env` file
+- Descarga este repositorio con `git clone` e ingresa en el con `cd`
+- Ejecuta el comando `composer install`
+- Renombra el archivo `.env.example` como `.env`
+- Ejecuta el comando `php artisan key:generate`
+- Ingresa las credenciales de tu base de datos en el archivo `.env`
 
-## Note
+## Nota
 
-Recommend to install this preset on a project that you are starting from scratch, otherwise your project's design might break.
+Recomiento utilizar estos archivos para un proyecto completamente nuevo. De lo contrario, lo más probable es que tu proyecto deje de funcionar correctamente.
 
-## Credits
+## Créditos
 
-Laravel SB Admin 2 uses some open-source third-party libraries/packages, many thanks to the web community.
+Laravel SB Admin 2 usa librerías/paquetes de terceros, por lo que se agradece a toda la comunidad Open Source. ¡Que grandes!
 
-- Laravel - Open source framework.
-- LaravelEasyNav - Making managing navigation in Laravel easy.
-- SB Admin 2 - Thanks to Start Bootstrap.
+- Laravel - Framework open-source de PHP.
+- LaravelEasyNav - Hace que la navegación en Laravel sea más fácil.
+- SB Admin 2 - Gracias a Start Bootstrap.
 
-## Preview
+## Capturas de Pantalla
 
-`login`
+`LOGIN`
 
 <img src="https://imgur.com/YjGp6Sbl.png">
 
 ***
 
-`register`
+`REGISTRO`
 
 <img src="https://imgur.com/Wj09cu4l.png">
 
 ***
 
-`dashboard`
+`DASHBOARD`
 
 <img src="https://imgur.com/CrmOfT5l.png">
 
 ***
 
-`profile`
+`PERFIL DE USUARIO`
 
 <img src="https://imgur.com/5t4eS1rl.png">
 
-## License
+## Licencia
 
-Licensed under the MIT license.
+Este proyecto ha sido desarrollado bajo la licencia MIT.
