@@ -1,6 +1,6 @@
 # Laravel SB Admin 2
 
-SB Admin 2 for Laravel.
+Laravel 8.6 + SB Admin 2.
 
 | Laravel Version | Branch |
 |-----------------|--------|
@@ -64,12 +64,6 @@ Laravel SB Admin 2 uses some open-source third-party libraries/packages, many th
 `profile`
 
 <img src="https://imgur.com/5t4eS1rl.png">
-
-***
-
-`logout`
-
-<img src="https://imgur.com/d9JclOYl.png">
 
 ## License
 
