@@ -72,4 +72,10 @@ class RegisterController extends Controller
             'password' => $data['password'],
         ]);
     }
+
+    protected function redirectTo()
+    {
+        session()->flash('success', '¡Usuario creado exitosamente!');
+        return $this->redirectTo;
+    }
 }

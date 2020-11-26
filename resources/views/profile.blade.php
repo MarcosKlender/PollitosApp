@@ -113,8 +113,8 @@
                                 </div>
                                 <div class="col-lg-4">
                                     <div class="form-group focused">
-                                        <label class="form-control-label" for="confirm_password">Confirmar Contraseña</label>
-                                        <input type="password" id="confirm_password" class="form-control" name="password_confirmation" placeholder="Confirmar Contraseña">
+                                        <label class="form-control-label" for="password_confirmation">Confirmar Contraseña</label>
+                                        <input type="password" id="password_confirmation" class="form-control" name="password_confirmation" placeholder="Confirmar Contraseña">
                                     </div>
                                 </div>
                             </div>
