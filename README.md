@@ -1,7 +1,5 @@
 # [Español] Laravel 8.6.0 + SB Admin 2
 
-Laravel 8.6 + SB Admin 2.
-
 | Laravel Version | Branch |
 |-----------------|--------|
 | 8.0             | master |
@@ -29,13 +27,15 @@ Laravel 8.6 + SB Admin 2.
 - Ejecuta el comando `php artisan key:generate`
 - Ingresa las credenciales de tu base de datos en el archivo `.env`
 
-## Nota
-
 Recomiento utilizar estos archivos para un proyecto completamente nuevo. De lo contrario, lo más probable es que tu proyecto deje de funcionar correctamente.
+
+## Licencia
+
+Este proyecto ha sido desarrollado bajo la licencia MIT.
 
 ## Créditos
 
-Laravel SB Admin 2 usa librerías/paquetes de terceros, por lo que se agradece a toda la comunidad Open Source. ¡Que grandes!
+Laravel SB Admin 2 usa librerías/paquetes de terceros, por lo que se agradece a toda la comunidad Open Source.
 
 - Laravel - Framework open-source de PHP.
 - LaravelEasyNav - Hace que la navegación en Laravel sea más fácil.
@@ -64,7 +64,3 @@ Laravel SB Admin 2 usa librerías/paquetes de terceros, por lo que se agradece a
 `PERFIL DE USUARIO`
 
 <img src="https://imgur.com/5t4eS1rl.png">
-
-## Licencia
-
-Este proyecto ha sido desarrollado bajo la licencia MIT.
