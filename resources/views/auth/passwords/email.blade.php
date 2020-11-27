@@ -43,6 +43,14 @@
                                         </button>
                                     </div>
                                 </form>
+
+                                <hr>
+
+                                <div class="text-center">
+                                    <a class="small" href="{{ route('login') }}">
+                                        {{ __('Cancelar') }}
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </div>

@@ -9,7 +9,7 @@
             <div class="card shadow mb-4">
 
                 <div class="card-profile-image mt-4">
-                    <img src="{{ asset('img/favicon.png') }}" class="rounded-circle" alt="user-image">
+                    <img src="{{ asset('img/favicon.png') }}" class="rounded" alt="user-image" style="width: 64px; height: 64px;">
                 </div>
 
                 <div class="card-body">
