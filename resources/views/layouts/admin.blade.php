@@ -198,7 +198,7 @@
                                     <div class="status-indicator bg-success"></div>
                                 </div>
                                 <div class="font-weight-bold">
-                                    <div class="text-truncate">Hola. Me preguntaba si podrías ayudame con un problema que se me acaba de presentar.</div>
+                                    <div class="text-truncate">Hola. Me preguntaba si podrías ayudarme con un problema que se me acaba de presentar.</div>
                                     <div class="small text-gray-500">Emily Fowler · 58m</div>
                                 </div>
                             </a>
@@ -208,7 +208,7 @@
                                     <div class="status-indicator bg-warning"></div>
                                 </div>
                                 <div>
-                                    <div class="text-truncate">El reprte del último mes luce prometedor, estoy muy contento con tu trabajo. ¡Sigue así!</div>
+                                    <div class="text-truncate">El reporte del último mes luce prometedor, estoy muy contento con tu trabajo. ¡Sigue así!</div>
                                     <div class="small text-gray-500">Morgan Alvarez · 2d</div>
                                 </div>
                             </a>
