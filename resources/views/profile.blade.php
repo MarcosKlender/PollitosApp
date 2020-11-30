@@ -89,7 +89,7 @@
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="form-group focused">
-                                        <label class="form-control-label" for="last_name">Apellidos</label>
+                                        <label class="form-control-label" for="last_name">Apellidos</label><span class="small text-danger">*</span></label>
                                         <input type="text" id="last_name" class="form-control" name="last_name" placeholder="Apellidos" value="{{ old('last_name', Auth::user()->last_name) }}">
                                     </div>
                                 </div>

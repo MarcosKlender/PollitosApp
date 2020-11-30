@@ -48,7 +48,7 @@
 
                                 <div class="text-center">
                                     <a class="small" href="{{ route('login') }}">
-                                        {{ __('Cancelar') }}
+                                        {{ __('Volver al Login') }}
                                     </a>
                                 </div>
                             </div>
