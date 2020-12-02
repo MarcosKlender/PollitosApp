@@ -103,7 +103,11 @@
                                     </div>
                                 </div>
                             </div>
+                        </div>
 
+                        <h6 class="heading-small text-muted mt-2 mb-4">Cambio de Contraseña</h6>
+
+                        <div class="pl-lg-4">
                             <div class="row">
                                 <div class="col-lg-4">
                                     <div class="form-group focused">
@@ -125,6 +129,8 @@
                                 </div>
                             </div>
                         </div>
+
+                        <h6 class="text-danger mt-2 mb-4"><strong>* Para editar sólo la "Información de Usuario", deja en blanco el "Cambio de Contraseña"</strong></h6>
 
                         <!-- Button -->
                         <div class="pl-lg-4">
