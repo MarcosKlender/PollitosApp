@@ -1,4 +1,4 @@
-[![License](https://img.shields.io/badge/license-MIT-blue)](https://opensource.org/licenses/MIT)
+[![Platform](https://img.shields.io/badge/PLATFORM-Windows%20|%20Linux-important?style=for-the-badge)] [![Release](https://img.shields.io/badge/RELEASE-v1.0.0-informational?style=for-the-badge)] [![License](https://img.shields.io/badge/LICENSE-MIT-sucess?style=for-the-badge)]
 # [Español] Laravel 8.6.0 + SB Admin 2
 
 | Laravel | Branch  |
@@ -29,6 +29,7 @@
 - Ingresa las credenciales de tu base de datos en el archivo `.env`
 
 Recomiento utilizar estos archivos para un proyecto completamente nuevo.
+
 De lo contrario, lo más probable es que tu proyecto deje de funcionar correctamente.
 
 ## Capturas de Pantalla
