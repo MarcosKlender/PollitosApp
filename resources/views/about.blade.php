@@ -23,13 +23,13 @@
                     </div>
 
                     <div class="row mt-3">
-                        <div class="col-md-4 mb-1 text-center">
+                        <div class="col-4 col-md-4 mb-1 text-center">
                             <a href="https://github.com/marcosklender" target="_blank" class="btn btn-github btn-circle btn-lg"><i class="fab fa-github fa-fw"></i></a>
                         </div>
-                        <div class="col-md-4 mb-1 text-center">
+                        <div class="col-4 col-md-4 mb-1 text-center">
                             <a href="https://marcosklender.brizy.site" target="_blank" class="btn btn-primary btn-circle btn-lg"><i class="fas fa-link fa-fw"></i></a>
                         </div>
-                        <div class="col-md-4 mb-1 text-center">
+                        <div class="col-4 col-md-4 mb-1 text-center">
                             <a href="https://twitter.com/marcosklender" target="_blank" class="btn btn-twitter btn-circle btn-lg"><i class="fab fa-twitter fa-fw"></i></a>
                         </div>
                     </div>

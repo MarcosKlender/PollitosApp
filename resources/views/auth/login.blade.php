@@ -35,12 +35,12 @@
                                         <input type="password" class="form-control form-control-user" name="password" placeholder="{{ __('Contaseña') }}" required>
                                     </div>
 
-                                    <div class="form-group">
+                                    <!-- <div class="form-group">
                                         <div class="custom-control custom-checkbox small">
                                             <input type="checkbox" class="custom-control-input" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
                                             <label class="custom-control-label" for="remember">{{ __('Recuérdame') }}</label>
                                         </div>
-                                    </div>
+                                    </div> -->
 
                                     <div class="form-group">
                                         <button type="submit" class="btn btn-primary btn-user btn-block">
@@ -52,13 +52,19 @@
 
                                     <div class="form-group">
                                         <button type="button" class="btn btn-facebook btn-user btn-block">
-                                            <i class="fab fa-facebook-f fa-fw"></i> {{ __('Iniciar Sesión con Facebook') }}
+                                            <i class="fab fa-facebook-f fa-fw mr-1"></i> {{ __('Iniciar Sesión con Facebook') }}
                                         </button>
                                     </div>
 
                                     <div class="form-group">
                                         <button type="button" class="btn btn-twitter btn-user btn-block">
-                                            <i class="fab fa-twitter fa-fw"></i> {{ __('Iniciar Sesión con Twitter') }}
+                                            <i class="fab fa-twitter fa-fw mr-1"></i> {{ __('Iniciar Sesión con Twitter') }}
+                                        </button>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <button type="button" class="btn btn-google btn-user btn-block">
+                                            <i class="fab fa-google fa-fw mr-1"></i> {{ __('Iniciar Sesión con Gmail') }}
                                         </button>
                                     </div>
 
@@ -67,13 +73,13 @@
                                 <hr>
 
                                 @if (Route::has('password.request'))
-                                    <div class="text-center">
+                                    <div class="text-center mb-3">
                                         <a class="small" href="{{ route('password.request') }}">
                                             {{ __('Olvidé mi contraseña') }}
                                         </a>
                                     </div>
                                 @endif
-                                <br>
+                                
                                 @if (Route::has('register'))
                                     <div class="text-center">
                                         <a class="small" href="{{ route('register') }}">{{ __('¿No tienes una cuenta? ¡Regístrate!') }}</a>

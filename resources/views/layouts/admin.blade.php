@@ -231,7 +231,7 @@
                     <!-- Nav Item - User Information -->
                     <li class="nav-item dropdown no-arrow">
                         <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{ Auth::user()->fullName }}</span>
+                            <span class="mr-2 d-none d-lg-inline text-gray-600 small mr-4">{{ Auth::user()->fullName }}</span>
                             <figure class="img-profile rounded-circle avatar font-weight-bold" data-initial="{{ Auth::user()->name[0] }}"></figure>
                         </a>
                         <!-- Dropdown - User Information -->
