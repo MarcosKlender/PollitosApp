@@ -1,4 +1,4 @@
-[![Platform](https://img.shields.io/badge/PLATFORM-Windows%20|%20Linux-important?style=for-the-badge)] [![Release](https://img.shields.io/badge/RELEASE-v1.0.0-informational?style=for-the-badge)] [![License](https://img.shields.io/badge/LICENSE-MIT-sucess?style=for-the-badge)]
+![Platform](https://img.shields.io/badge/PLATFORM-Windows%20|%20Linux-important?style=for-the-badge) ![Release](https://img.shields.io/badge/RELEASE-v1.0.0-informational?style=for-the-badge) ![License](https://img.shields.io/badge/LICENSE-MIT-sucess?style=for-the-badge)
 # [Español] Laravel 8.6.0 + SB Admin 2
 
 | Laravel | Branch  |
