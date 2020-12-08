@@ -8,34 +8,7 @@
 
             <div class="card shadow mb-4">
 
-                <div class="card-profile-image mt-4">
-                    <img src="{{ asset('img/favicon.png') }}" class="rounded" alt="user-image" style="width: 64px; height: 64px;">
-                </div>
-
                 <div class="card-body">
-
-                    <div class="row">
-                        <div class="col-lg-12 mb-1">
-                            <div class="text-center">
-                                <h5 class="font-weight-bold">MarcosKlender</h5>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row mt-3">
-                        <div class="col-4 col-md-4 mb-1 text-center">
-                            <a href="https://github.com/marcosklender" target="_blank" class="btn btn-github btn-circle btn-lg"><i class="fab fa-github fa-fw"></i></a>
-                        </div>
-                        <div class="col-4 col-md-4 mb-1 text-center">
-                            <a href="https://marcosklender.brizy.site" target="_blank" class="btn btn-primary btn-circle btn-lg"><i class="fas fa-link fa-fw"></i></a>
-                        </div>
-                        <div class="col-4 col-md-4 mb-1 text-center">
-                            <a href="https://twitter.com/marcosklender" target="_blank" class="btn btn-twitter btn-circle btn-lg"><i class="fab fa-twitter fa-fw"></i></a>
-                        </div>
-                    </div>
-
-                    <hr>
-
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="text-center">
@@ -62,6 +35,7 @@
                     </div>
 
                 </div>
+                
             </div>
 
         </div>

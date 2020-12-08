@@ -7,9 +7,11 @@ use Faker\Generator;
 use Illuminate\Container\Container;
 use Illuminate\Database\Eloquent\Collection as EloquentCollection;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Application;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 use Illuminate\Support\Traits\ForwardsCalls;
+use Throwable;
 
 abstract class Factory
 {
@@ -177,7 +179,13 @@ abstract class Factory
      */
     public function raw($attributes = [], ?Model $parent = null)
     {
-        return $this->state($attributes)->getExpandedAttributes($parent);
+        if ($this->count === null) {
+            return $this->state($attributes)->getExpandedAttributes($parent);
+        }
+
+        return array_map(function () use ($attributes, $parent) {
+            return $this->state($attributes)->getExpandedAttributes($parent);
+        }, range(1, $this->count));
     }
 
     /**
@@ -232,6 +240,20 @@ abstract class Factory
         }
 
         return $results;
+    }
+
+    /**
+     * Create a callback that persists a model in the database when invoked.
+     *
+     * @param  array  $attributes
+     * @param  \Illuminate\Database\Eloquent\Model|null  $parent
+     * @return \Closure
+     */
+    public function lazy(array $attributes = [], ?Model $parent = null)
+    {
+        return function () use ($attributes, $parent) {
+            return $this->create($attributes, $parent);
+        };
     }
 
     /**
@@ -607,9 +629,11 @@ abstract class Factory
         $resolver = static::$modelNameResolver ?: function (self $factory) {
             $factoryBasename = Str::replaceLast('Factory', '', class_basename($factory));
 
-            return class_exists('App\\Models\\'.$factoryBasename)
-                        ? 'App\\Models\\'.$factoryBasename
-                        : 'App\\'.$factoryBasename;
+            $appNamespace = static::appNamespace();
+
+            return class_exists($appNamespace.'Models\\'.$factoryBasename)
+                        ? $appNamespace.'Models\\'.$factoryBasename
+                        : $appNamespace.$factoryBasename;
         };
 
         return $this->model ?: $resolver($this);
@@ -680,14 +704,32 @@ abstract class Factory
     public static function resolveFactoryName(string $modelName)
     {
         $resolver = static::$factoryNameResolver ?: function (string $modelName) {
-            $modelName = Str::startsWith($modelName, 'App\\Models\\')
-                ? Str::after($modelName, 'App\\Models\\')
-                : Str::after($modelName, 'App\\');
+            $appNamespace = static::appNamespace();
+
+            $modelName = Str::startsWith($modelName, $appNamespace.'Models\\')
+                ? Str::after($modelName, $appNamespace.'Models\\')
+                : Str::after($modelName, $appNamespace);
 
             return static::$namespace.$modelName.'Factory';
         };
 
         return $resolver($modelName);
+    }
+
+    /**
+     * Get the application namespace for the application.
+     *
+     * @return string
+     */
+    protected static function appNamespace()
+    {
+        try {
+            return Container::getInstance()
+                            ->make(Application::class)
+                            ->getNamespace();
+        } catch (Throwable $e) {
+            return 'App\\';
+        }
     }
 
     /**
@@ -705,9 +747,13 @@ abstract class Factory
 
         $relationship = Str::camel(Str::substr($method, 3));
 
-        $factory = static::factoryForModel(
-            get_class($this->newModel()->{$relationship}()->getRelated())
-        );
+        $relatedModel = get_class($this->newModel()->{$relationship}()->getRelated());
+
+        if (method_exists($relatedModel, 'newFactory')) {
+            $factory = $relatedModel::newFactory() ?: static::factoryForModel($relatedModel);
+        } else {
+            $factory = static::factoryForModel($relatedModel);
+        }
 
         if (Str::startsWith($method, 'for')) {
             return $this->for($factory->state($parameters[0] ?? []), $relationship);
