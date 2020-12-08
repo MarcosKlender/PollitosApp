@@ -38,12 +38,27 @@
         </a>
 
         <!-- Divider -->
-        <hr class="sidebar-divider my-0">
+        <hr class="sidebar-divider">
 
+        <!-- Heading -->
+        <div class="sidebar-heading">
+            {{ __('Páginas') }}
+        </div>
+
+        @if (Auth::user()->rol->key == 'admin')
+        <!-- Nav Item - Admin -->
+        <li class="nav-item {{ Nav::isRoute('admin') }}">
+            <a class="nav-link" href="{{ route('admin') }}">
+                <i class="fas fa-fw fa-crown"></i>
+                <span>{{ __('Administrador') }}</span>
+            </a>
+        </li>
+        @endif
+        
         <!-- Nav Item - Dashboard -->
         <li class="nav-item {{ Nav::isRoute('home') }}">
             <a class="nav-link" href="{{ route('home') }}">
-                <i class="fas fa-fw fa-tachometer-alt"></i>
+                <i class="far fa-fw fa-newspaper"></i>
                 <span>{{ __('Escritorio') }}</span></a>
         </li>
 
@@ -60,14 +75,6 @@
             <a class="nav-link" href="{{ route('profile') }}">
                 <i class="fas fa-fw fa-user"></i>
                 <span>{{ __('Perfil') }}</span>
-            </a>
-        </li>
-
-        <!-- Nav Item - About -->
-        <li class="nav-item {{ Nav::isRoute('about') }}">
-            <a class="nav-link" href="{{ route('about') }}">
-                <i class="fas fa-fw fa-hands-helping"></i>
-                <span>{{ __('Créditos') }}</span>
             </a>
         </li>
 

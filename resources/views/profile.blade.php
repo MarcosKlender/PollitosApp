@@ -32,31 +32,11 @@
                         <div class="col-lg-12">
                             <div class="text-center">
                                 <h5 class="font-weight-bold">{{  Auth::user()->fullName }}</h5>
-                                <p>Administrador</p>
+                                <p>{{ Auth::user()->rol->name }}</p>
                             </div>
                         </div>
                     </div>
 
-                    <div class="row">
-                        <div class="col-md-4">
-                            <div class="card-profile-stats">
-                                <span class="heading">22</span>
-                                <span class="description">Amigos</span>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="card-profile-stats">
-                                <span class="heading">10</span>
-                                <span class="description">Fotos</span>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="card-profile-stats">
-                                <span class="heading">89</span>
-                                <span class="description">Comentarios</span>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
 
