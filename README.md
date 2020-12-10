@@ -22,4 +22,5 @@ Sistema desarrollado en Laravel 8.
 - Renombra el archivo `.env.example` como `.env`
 - Ejecuta el comando `php artisan key:generate`
 - Ingresa las credenciales de tu base de datos en el archivo `.env`
-- Ejecuta el comando `php artisan migrate`
+- Ejecuta el comando `php artisan migrate` para crear las tablas necesarias
+- Ejecuta el comando `php artisan db:seed` para crear los roles de usuario
