@@ -53,4 +53,12 @@ class LoginController extends Controller
         $this->performLogout($request);
         return redirect()->route('login');
     }
+
+    protected function credentials(Request $request)
+    {
+        $credentials = $request->only($this->username(), 'password');
+        $credentials['active'] = 1;
+
+        return $credentials;
+    }
 }

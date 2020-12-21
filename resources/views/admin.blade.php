@@ -3,36 +3,82 @@
 @section('main-content')
     <!-- Page Heading -->
     <div class="row justify-content-center">
-
-        <div class="col-lg-8">
-
+        <div class="col-lg-10">
             <div class="card shadow mb-4">
+                <div class="card-header mt-2">
+                    <div class="text-center">
+                        <h4>Administración de Usuarios</h4>
+                    </div>
+                </div>
 
                 <div class="card-body">
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <div class="text-center">
-                                <h4 class="font-weight-bold">Página de Administrador</h4>
+                    <div class="row justify-content-around">
+                        <div class="mb-3">
+                            <a href="{{ route('admin.create') }}" class="btn btn-success">Crear Usuario</a>
+                        </div>
+                        <div class="input-group mb-3 col-lg-3">
+                            <input type="text" class="form-control border" placeholder="Número de Cédula">
+                            <div class="input-group-append">
+                                <button class="btn btn-outline-primary border" type="submit">Búsqueda</button>
                             </div>
                         </div>
                     </div>
-
-                    <div class="row mt-4">
-                        <div class="col-lg-12">
-                            <p>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. In eget hendrerit ligula, eu blandit ipsum. Interdum et malesuada fames ac ante ipsum primis in faucibus. Suspendisse eget vestibulum massa, id aliquet massa. Morbi ut ante sed risus tincidunt vehicula. Ut efficitur diam a ullamcorper egestas. Maecenas at euismod nisl. Vestibulum feugiat ullamcorper orci.
-                                Aenean blandit elit ut fermentum rhoncus. Aenean et luctus leo. Proin quis nisl in ante eleifend vestibulum a nec urna. In vitae urna tellus. Nulla porttitor blandit dictum. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Maecenas fermentum faucibus pharetra. Praesent iaculis sem ac posuere malesuada.
-                                Maecenas fringilla, urna vitae pretium pretium, turpis nibh pulvinar sapien, id pulvinar massa nisi nec odio. Praesent sit amet odio id ex pellentesque semper. Quisque cursus libero at odio condimentum interdum. Etiam pretium libero nec lacinia mollis. Vivamus hendrerit tortor sit amet ex tincidunt tempor. In hac habitasse platea dictumst. Duis egestas, ipsum et semper scelerisque, sapien ante tempor eros, nec dignissim felis nisi at justo. Cras imperdiet vel nisl a ultrices.
-                            </p>
+                    @if (session()->get('success'))
+                        <div class="alert alert-success">
+                            {{ session()->get('success') }}
                         </div>
+                    @endif
+                    <div class="table-responsive">
+                        <table class="table table-striped table-bordered">
+                            <thead>
+                                <tr>
+                                    <td>ID</td>
+                                    <td>Rol</td>
+                                    <td>Nombres</td>
+                                    <td>Apellidos</td>
+                                    <td>Email</td>
+                                    <td>Usuario Activo</td>
+                                    <td class="text-center">Acciones</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($users as $user)
+                                    <tr>
+                                        <td>{{ $user->id }}</td>
+                                        <td>{{ $user->rol->name }}</td>
+                                        <td>{{ $user->name }}</td>
+                                        <td>{{ $user->last_name }}</td>
+                                        <td>{{ $user->email }}</td>
+                                        @if ($user->active == 1)
+                                            <td>Sí</td>
+                                        @else
+                                            <td>No</td>
+                                        @endif
+                                        <td class="text-center">
+                                            <a href="{{ route('admin.edit', $user->id) }}"
+                                                class="btn btn-primary">Editar</a>
+                                            {{-- <form
+                                                action=" {{ route('admin.destroy', $user->id) }}" method="post"
+                                                style="display: inline-block">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button class="btn btn-danger" type="submit">Eliminar</button>
+                                            </form> --}}
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="row justify-content-around">
+                        {{ $users->links() }}
+                        {{-- <span>Total de Usuarios: <b>{{ $count }}</b></span> --}}
                     </div>
 
                 </div>
-                
             </div>
-
         </div>
-
     </div>
 
 @endsection
