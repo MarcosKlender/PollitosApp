@@ -16,11 +16,16 @@
                         <div class="mb-3">
                             <a href="{{ route('admin.create') }}" class="btn btn-success">Crear Usuario</a>
                         </div>
-                        <div class="input-group mb-3 col-lg-3">
-                            <input type="text" class="form-control border" placeholder="Número de Cédula">
-                            <div class="input-group-append">
-                                <button class="btn btn-outline-primary border" type="submit">Búsqueda</button>
-                            </div>
+                        <div class="mb-3 col-lg-3">
+                            <form action="{{ route('admin.search') }}" method="get">
+                                <div class="input-group ">
+                                    <input type="search" id="ci" name="ci" class="form-control border"
+                                        placeholder="Cédula de Identidad" maxlength="10" pattern="\d*" required>
+                                    <div class="input-group-append">
+                                        <button class="btn btn-outline-primary border" type="submit">Búsqueda</button>
+                                    </div>
+                                </div>
+                            </form>
                         </div>
                     </div>
                     @if (session()->get('success'))
@@ -34,6 +39,7 @@
                                 <tr>
                                     <td>ID</td>
                                     <td>Rol</td>
+                                    <td>Cédula de Identidad</td>
                                     <td>Nombres</td>
                                     <td>Apellidos</td>
                                     <td>Email</td>
@@ -46,6 +52,7 @@
                                     <tr>
                                         <td>{{ $user->id }}</td>
                                         <td>{{ $user->rol->name }}</td>
+                                        <td>{{ $user->ci }}</td>
                                         <td>{{ $user->name }}</td>
                                         <td>{{ $user->last_name }}</td>
                                         <td>{{ $user->email }}</td>
@@ -73,7 +80,8 @@
 
                     <div class="row justify-content-around">
                         {{ $users->links() }}
-                        {{-- <span>Total de Usuarios: <b>{{ $count }}</b></span> --}}
+                        {{-- <span>Total de Usuarios: <b>{{ $count }}</b></span>
+                        --}}
                     </div>
 
                 </div>

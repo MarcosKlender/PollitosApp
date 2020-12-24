@@ -25,11 +25,6 @@
     <!-- Favicon -->
     <link href="{{ asset('img/favicon.png') }}" rel="icon" type="image/png">
 
-    <!-- Scripts -->
-    <script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>
-    <script src="{{ asset('vendor/bootstrap/js/bootstrap.min.js') }}"></script>
-    <script src="{{ asset('vendor/jquery-easing/jquery.easing.min.js') }}"></script>
-    <script src="{{ asset('js/sb-admin-2.min.js') }}"></script>
 </head>
 
 <body id="page-top">
@@ -170,8 +165,7 @@
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; <a href="https://marcosklender.brizy.site/"
-                                target="_blank">MarcosKlender</a> 2020</span>
+                        <span>Copyright &copy; <a href="https://ilinser.com/" target="_blank">iLinser</a> 2020</span>
                     </div>
                 </div>
             </footer>
@@ -210,6 +204,12 @@
             </div>
         </div>
     </div>
+
+    <!-- Scripts -->
+    <script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>
+    <script src="{{ asset('vendor/bootstrap/js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('vendor/jquery-easing/jquery.easing.min.js') }}"></script>
+    <script src="{{ asset('js/sb-admin-2.min.js') }}"></script>
 
 </body>
 

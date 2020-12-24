@@ -25,6 +25,7 @@ class DatabaseSeeder extends Seeder
     	foreach (range(1,20) as $index) {
             DB::table('users')->insert([
                 'rol_id' => 2,
+                'ci' => rand(1000000000, 9999999999),
                 'name' => Str::random(10),
                 'last_name' => Str::random(10),
                 'email' => Str::random(10).'@gmail.com',

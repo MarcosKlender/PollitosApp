@@ -21,6 +21,14 @@
                     <form method="post" action="{{ route('admin.store') }}">
                         @csrf
                         <div class="form-group">
+                            <label for="active">Usuario Activo</label>
+                            <select class="custom-select" id="active" name="active" required>
+                                <option value="" selected disabled>Elije un estado</option>
+                                <option value="1">Sí</option>
+                                <option value="0">No</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
                             <label for="rol_id">Permisos</label>
                             <select class="custom-select" id="rol_id" name="rol_id" required>
                                 <option value="" selected disabled>Elije un rol</option>
@@ -29,8 +37,12 @@
                             </select>
                         </div>
                         <div class="form-group">
+                            <label for="ci">Cédula de Identidad</label>
+                            <input type="name" class="form-control" id="ci" name="ci" value="{{ old('ci') }}" maxlength="10" pattern="\d*" required />
+                        </div>
+                        <div class="form-group">
                             <label for="name">Nombres</label>
-                            <input type="name" class="form-control" id="name" name="name" value="{{ old('name') }}" required />
+                            <input type="text" class="form-control" id="name" name="name" value="{{ old('name') }}" required />
                         </div>
                         <div class="form-group">
                             <label for="last_name">Apellidos</label>
@@ -39,14 +51,6 @@
                         <div class="form-group">
                             <label for="email">Email</label>
                             <input type="email" class="form-control" id="email" name="email" value="{{ old('email') }}" required />
-                        </div>
-                        <div class="form-group">
-                            <label for="active">Usuario Activo</label>
-                            <select class="custom-select" id="active" name="active" required>
-                                <option value="" selected disabled>Elije un estado</option>
-                                <option value="1">Sí</option>
-                                <option value="0">No</option>
-                            </select>
                         </div>
                         <div class="form-group">
                             <label for="password">Contraseña</label>

@@ -48,26 +48,6 @@
                                         </button>
                                     </div>
 
-                                    <hr>
-
-                                    <div class="form-group">
-                                        <button type="button" class="btn btn-facebook btn-user btn-block">
-                                            <i class="fab fa-facebook-f fa-fw mr-1"></i> {{ __('Iniciar Sesión con Facebook') }}
-                                        </button>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <button type="button" class="btn btn-twitter btn-user btn-block">
-                                            <i class="fab fa-twitter fa-fw mr-1"></i> {{ __('Iniciar Sesión con Twitter') }}
-                                        </button>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <button type="button" class="btn btn-google btn-user btn-block">
-                                            <i class="fab fa-google fa-fw mr-1"></i> {{ __('Iniciar Sesión con Gmail') }}
-                                        </button>
-                                    </div>
-
                                 </form>
 
                                 <hr>

@@ -23,11 +23,22 @@
                         @csrf
                         @method('PATCH')
                         <div class="form-group">
+                            <label for="active">Usuario Activo</label>
+                            <select class="custom-select" id="active" name="active" required>
+                                <option value="1">Sí</option>
+                                <option value="0">No</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
                             <label for="rol_id">Permisos</label>
                             <select class="custom-select" id="rol_id" name="rol_id" required>
                                 <option value="1">Administrador</option>
                                 <option value="2">Usuario Regular</option>
                             </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="ci">Cédula de Identidad</label>
+                            <input type="name" class="form-control" id="ci" name="ci" value="{{ $user->ci }}" maxlength="10" pattern="\d*" required />
                         </div>
                         <div class="form-group">
                             <label for="name">Nombres</label>
@@ -43,13 +54,6 @@
                             <label for="email">Email</label>
                             <input type="email" class="form-control" id="email" name="email" value="{{ $user->email }}"
                                 required />
-                        </div>
-                        <div class="form-group">
-                            <label for="active">Usuario Activo</label>
-                            <select class="custom-select" id="active" name="active" required>
-                                <option value="1">Sí</option>
-                                <option value="0">No</option>
-                            </select>
                         </div>
                         <div class="custom-control custom-switch mb-2">
                             <input type="checkbox" class="custom-control-input" id="check_password" name="check_password">
@@ -68,6 +72,7 @@
         </div>
     </div>
 
+    <script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>
     <script>
         $(document).ready(function() {
             $("#active").val("{{ $user->active }}");

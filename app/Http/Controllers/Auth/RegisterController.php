@@ -67,6 +67,7 @@ class RegisterController extends Controller
     {
         return User::create([
             'rol_id' => 2, // Usuario regular por defecto
+            'ci' => $data['ci'],
             'name' => $data['name'],
             'last_name' => $data['last_name'],
             'email' => $data['email'],

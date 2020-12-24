@@ -19,29 +19,19 @@ class AdminController extends Controller
         $users = User::orderBy('id')->paginate(8);
         $count = count(User::all());
         
-        return view('admin', compact('users', 'count'));
+        return view('admin.admin', compact('users', 'count'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        return view('create');
+        return view('admin.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         $storeData = $request->validate([
             'rol_id' => 'required|max:1',
+            'ci' => 'required|digits:10|unique:users,ci|max:10',
             'name' => 'required|max:191',
             'last_name' => 'required|max:191',
             'email' => 'required|email|unique:users,email|max:191',
@@ -52,6 +42,7 @@ class AdminController extends Controller
         $users = User::create($storeData);
 
         // Mantener datos del formulario
+        $request->old('ci');
         $request->old('name');
         $request->old('last_name');
         $request->old('email');
@@ -59,45 +50,31 @@ class AdminController extends Controller
         return redirect('/admin')->with('success', '¡Usuario creado exitosamente!');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
+    public function show(Request $request)
     {
-        //
+        $ci = $request->get('ci');
+        $searches = User::orderBy('id')->where('ci', 'like', $ci.'%')->paginate(8);
+        $count = count($searches);
+
+        return view('admin.search', compact('searches', 'count', 'ci'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
         $user = User::findOrFail($id);
 
-        return view('edit', compact('user'));
+        return view('admin.edit', compact('user'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
         $updateData = $request->validate([
             'rol_id' => 'required|max:1',
+            'ci' => 'required|digits:10|max:10|unique:users,ci,'.$id,
             'name' => 'required|max:191',
             'last_name' => 'required|max:191',
             'email' => 'required|email|max:191|unique:users,email,'.$id,
-            'password' => '',
+            'password' => 'min:6|max:20',
             'active' => 'required|max:1',
         ]);
 
@@ -109,23 +86,12 @@ class AdminController extends Controller
         {
             unset($updateData['password']);
         }
-
-        if ($updateData['email'] == User::whereId($id)->value('email'))
-        {
-            unset($updateData['email']);
-        }
         
         User::whereId($id)->update($updateData);
 
         return redirect('/admin')->with('success', '¡Usuario actualizado exitosamente!');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
         // $user = User::findOrFail($id);
