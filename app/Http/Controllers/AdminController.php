@@ -19,7 +19,7 @@ class AdminController extends Controller
         $users = User::orderBy('id')->paginate(8);
         $count = count(User::all());
         
-        return view('admin.admin', compact('users', 'count'));
+        return view('admin.index', compact('users', 'count'));
     }
 
     public function create()
@@ -31,7 +31,7 @@ class AdminController extends Controller
     {
         $storeData = $request->validate([
             'rol_id' => 'required|max:1',
-            'ci' => 'required|digits:10|unique:users,ci|max:10',
+            'username' => 'required|unique:users,username|max:191',
             'name' => 'required|max:191',
             'last_name' => 'required|max:191',
             'email' => 'required|email|unique:users,email|max:191',
@@ -42,7 +42,7 @@ class AdminController extends Controller
         $users = User::create($storeData);
 
         // Mantener datos del formulario
-        $request->old('ci');
+        $request->old('username');
         $request->old('name');
         $request->old('last_name');
         $request->old('email');
@@ -52,11 +52,11 @@ class AdminController extends Controller
 
     public function show(Request $request)
     {
-        $ci = $request->get('ci');
-        $searches = User::orderBy('id')->where('ci', 'like', $ci.'%')->paginate(8);
+        $username = $request->get('username');
+        $searches = User::orderBy('id')->where('username', 'like', '%'.$username.'%')->paginate(8);
         $count = count($searches);
 
-        return view('admin.search', compact('searches', 'count', 'ci'));
+        return view('admin.search', compact('searches', 'count', 'username'));
     }
 
     public function edit($id)
@@ -70,7 +70,7 @@ class AdminController extends Controller
     {
         $updateData = $request->validate([
             'rol_id' => 'required|max:1',
-            'ci' => 'required|digits:10|max:10|unique:users,ci,'.$id,
+            'username' => 'required|max:191|unique:users,username,'.$id,
             'name' => 'required|max:191',
             'last_name' => 'required|max:191',
             'email' => 'required|email|max:191|unique:users,email,'.$id,

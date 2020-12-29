@@ -22,10 +22,10 @@ class DatabaseSeeder extends Seeder
 
         DB::table('users')->truncate();
 
-    	foreach (range(1,20) as $index) {
+    	foreach (range(1,15) as $index) {
             DB::table('users')->insert([
                 'rol_id' => 2,
-                'ci' => rand(1000000000, 9999999999),
+                'username' => Str::random(10),
                 'name' => Str::random(10),
                 'last_name' => Str::random(10),
                 'email' => Str::random(10).'@gmail.com',
@@ -33,6 +33,26 @@ class DatabaseSeeder extends Seeder
                 'created_at' => Carbon::now()->toDateTimeString(),
                 'updated_at' => Carbon::now()->toDateTimeString(),
                 'active' => 1,
+            ]);
+        }
+
+        DB::table('proveedores')->truncate();
+
+    	foreach (range(1,15) as $index) {
+            DB::table('proveedores')->insert([
+                'tipo' => Str::random(3),
+                'ruc_ci' => Str::random(13),
+                'nombres' => Str::random(10),
+                'razon_social' => Str::random(10),
+                'direccion' => Str::random(10),
+                'telefono' => Str::random(10),
+                'movil' => Str::random(10),
+                'email' => Str::random(10).'@gmail.com',
+                'provincia' => Str::random(10),
+                'ciudad' => Str::random(10),
+                'parroquia' => Str::random(10),
+                'created_at' => Carbon::now()->toDateTimeString(),
+                'updated_at' => Carbon::now()->toDateTimeString(),
             ]);
         }
     }

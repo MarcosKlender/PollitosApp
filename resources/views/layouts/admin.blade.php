@@ -35,36 +35,66 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion toggled" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ route('home') }}">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center">
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
                 </div>
-                <div class="sidebar-brand-text mx-3">SB Admin <sup>2</sup></div>
+                <div class="sidebar-brand-text mx-3">Pollitos App</div>
             </a>
+
+            @if (Auth::user()->rol->key == 'admin')
+            
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+
+            <!-- Heading -->
+            <div class="sidebar-heading">
+                {{ __('Admin') }}
+            </div>
+
+            
+                <!-- Nav Item - Usuarios -->
+                <li class="nav-item {{ (request()->is('admin')) ? 'active' : '' }}">
+                    <a class="nav-link" href="{{ route('admin.index') }}">
+                        <i class="fas fa-fw fa-users"></i>
+                        <span>{{ __('Usuarios') }}</span>
+                    </a>
+                </li>
+
+                <!-- Nav Item - Admin -->
+                <li class="nav-item {{ (request()->is('proveedores')) ? 'active' : '' }}">
+                    <a class="nav-link" href="{{ route('proveedores.index') }}">
+                        <i class="fas fa-fw fa-warehouse"></i>
+                        <span>{{ __('Proveedores') }}</span>
+                    </a>
+                </li>
+            @endif
 
             <!-- Divider -->
             <hr class="sidebar-divider">
 
             <!-- Heading -->
             <div class="sidebar-heading">
-                {{ __('Páginas') }}
+                {{ __('Registros') }}
             </div>
 
-            @if (Auth::user()->rol->key == 'admin')
-                <!-- Nav Item - Admin -->
-                <li class="nav-item {{ Nav::isRoute('admin') }}">
-                    <a class="nav-link" href="{{ route('admin.index') }}">
-                        <i class="fas fa-fw fa-crown"></i>
-                        <span>{{ __('Administrador') }}</span>
-                    </a>
-                </li>
-            @endif
-
             <!-- Nav Item - Dashboard -->
-            <li class="nav-item {{ Nav::isRoute('home') }}">
-                <a class="nav-link" href="{{ route('home') }}">
-                    <i class="far fa-fw fa-newspaper"></i>
-                    <span>{{ __('Escritorio') }}</span></a>
+            <li class="nav-item {{ (request()->is('pesobruto')) ? 'active' : '' }}">
+                <a class="nav-link" href="{{ route('pesobruto.index') }}">
+                    <i class="fas fa-weight-hanging"></i>
+                    <span>{{ __('Peso Bruto') }}</span></a>
+            </li>
+
+            <li class="nav-item {{ (request()->is('pesoneto')) ? 'active' : '' }}">
+                <a class="nav-link" href="{{ route('pesoneto.index') }}">
+                    <i class="fas fa-weight-hanging"></i>
+                    <span>{{ __('Peso Neto') }}</span></a>
+            </li>
+
+            <li class="nav-item {{ (request()->is('entregas')) ? 'active' : '' }}">
+                <a class="nav-link" href="{{ route('entregas.index') }}">
+                    <i class="fas fa-fw fa-truck"></i>
+                    <span>{{ __('Entregas') }}</span></a>
             </li>
 
             <!-- Divider -->

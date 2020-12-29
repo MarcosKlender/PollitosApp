@@ -28,7 +28,7 @@
                                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                     
                                     <div class="form-group">
-                                        <input type="text" class="form-control form-control-user" name="ci" placeholder="{{ __('Cédula de Identidad') }}" value="{{ old('ci') }}" required autofocus>
+                                        <input type="text" class="form-control form-control-user" name="username" placeholder="{{ __('Nombre de Usuario') }}" value="{{ old('username') }}" required autofocus>
                                     </div>
 
                                     <div class="form-group">

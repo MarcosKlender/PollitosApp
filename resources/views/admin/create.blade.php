@@ -37,8 +37,8 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="ci">Cédula de Identidad</label>
-                            <input type="name" class="form-control" id="ci" name="ci" value="{{ old('ci') }}" maxlength="10" pattern="\d*" required />
+                            <label for="username">Nombre de Usuario</label>
+                            <input type="text" class="form-control" id="username" name="username" value="{{ old('username') }}" required />
                         </div>
                         <div class="form-group">
                             <label for="name">Nombres</label>

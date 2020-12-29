@@ -32,7 +32,7 @@
                         <div class="col-lg-12">
                             <div class="text-center">
                                 <h5 class="font-weight-bold">{{  Auth::user()->fullName }}</h5>
-                                <h6 class="font-weight-bold">{{  Auth::user()->ci }}</h6>
+                                <h6 class="font-weight-bold">{{  Auth::user()->username }}</h6>
                                 <p>{{ Auth::user()->rol->name }}</p>
                             </div>
                         </div>
