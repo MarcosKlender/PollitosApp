@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
+use App\Lotes;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class PesoBrutoController extends Controller
 {
@@ -14,28 +15,37 @@ class PesoBrutoController extends Controller
     
     public function index()
     {
-        return view('pesobruto.index');
+        $lotes = Lotes::orderBy('id')->paginate(8);
+        $count = count(Lotes::all());
+        
+        return view('pesobruto.index', compact('lotes', 'count'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        //
+        return view('pesobruto.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        //
+        $storeData = $request->validate([
+            'tipo' => 'required|max:7',
+            'proveedor' => 'required|max:191',
+            'procedencia' => 'required|max:191',
+            'placa' => 'required|size:7',
+            'conductor' => 'required|max:191',
+            'usuario' => 'required|max:191',
+        ]);
+
+        $lotes = Lotes::create($storeData);
+
+        // Mantener datos del formulario
+        $request->old('proveedor');
+        $request->old('procedencia');
+        $request->old('placa');
+        $request->old('conductor');
+
+        return redirect('/pesobruto')->with('success', '¡Lote creado exitosamente!');
     }
 
     /**

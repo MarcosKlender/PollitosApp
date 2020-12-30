@@ -70,7 +70,7 @@ class AdminController extends Controller
     {
         $updateData = $request->validate([
             'rol_id' => 'required|max:1',
-            'username' => 'required|max:191|unique:users,username,'.$id,
+            // 'username' => 'required|max:191|unique:users,username,'.$id,
             'name' => 'required|max:191',
             'last_name' => 'required|max:191',
             'email' => 'required|email|max:191|unique:users,email,'.$id,

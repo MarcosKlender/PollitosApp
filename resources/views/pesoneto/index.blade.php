@@ -12,7 +12,7 @@
                 </div>
 
                 <div class="card-body">
-                    <h4>En contrucción</h4>
+                    <h4>En construcción</h4>
                 </div>
             </div>
         </div>

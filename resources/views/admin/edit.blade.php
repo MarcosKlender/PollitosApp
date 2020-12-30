@@ -36,10 +36,10 @@
                                 <option value="2">Usuario Regular</option>
                             </select>
                         </div>
-                        <div class="form-group">
+                        {{-- <div class="form-group">
                             <label for="username">Nombre de Usuario</label>
                             <input type="name" class="form-control" id="username" name="username" value="{{ $user->username }}" required />
-                        </div>
+                        </div> --}}
                         <div class="form-group">
                             <label for="name">Nombres</label>
                             <input type="name" class="form-control" id="name" name="name" value="{{ $user->name }}"
