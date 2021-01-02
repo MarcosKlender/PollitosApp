@@ -6,7 +6,7 @@
         <div class="col-lg-4">
             <div class="card shadow mb-4">
                 <div class="card-header mt-2 text-center">
-                    <h4>Nuevo Registro de Peso en Bruto</h4>
+                    <h4>Nuevo Registro - Peso en Bruto</h4>
                 </div>
                 <div class="card-body">
                     @if ($errors->any())
@@ -45,6 +45,7 @@
                             <input type="text" class="form-control" id="conductor" name="conductor" value="{{ old('conductor') }}" required />
                         </div>
                         <input type="hidden" id="usuario" name="usuario" value="{{  Auth::user()->username }}" required />
+                        <input type="hidden" id="anulado" name="anulado" value="0" required />
                         <div class="row justify-content-around">
                             <a href="{{ route('pesobruto.index') }}" class="btn btn-primary">Cancelar</a>
                             <button type="submit" class="btn btn-danger">Crear</button>

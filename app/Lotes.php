@@ -2,19 +2,21 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Registros;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Lotes extends Model
 {
     use HasFactory;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
     protected $fillable = [
-        'tipo', 'proveedor', 'procedencia', 'placa', 'conductor', 'cant_gavetas', 'cant_pollos', 'peso', 'usuario'
+        'tipo', 'proveedor', 'procedencia', 'placa', 'conductor', 'cant_gavetas', 'cant_pollos',
+        'peso_gavetas_pollos', 'peso_gavetas', 'peso_final', 'usuario', 'anulado'
     ];
+
+    public function registros()
+    {
+        return $this->hasMany(Registros::class);
+    }
 }

@@ -1,0 +1,9 @@
+DB::table("lotes")->insert(["tipo"=>"pollo", "proveedor"=>"Pronaca", "procedencia"=>"Santo Domingo", "placa"=>"PDF0001", "conductor"=>"Fabricio Palacios", "usuario"=>"mcarrasco", "anulado"=>"0"]);
+DB::table("lotes")->insert(["tipo"=>"chancho", "proveedor"=>"Puercos", "procedencia"=>"Quito", "placa"=>"ABD5633", "conductor"=>"Patricio Falacios", "usuario"=>"mcarrasco", "anulado"=>"0"]);
+
+DB::table("registros")->insert(["lotes_id"=>"1", "cant_gavetas"=>"50", "cant_pollos"=>"100", "peso_gavetas_pollos"=>"50.50", "peso_gavetas"=>"10.10", "peso_final"=>"60.60"]);
+DB::table("registros")->insert(["lotes_id"=>"1", "cant_gavetas"=>"50", "cant_pollos"=>"100", "peso_gavetas_pollos"=>"50.50", "peso_gavetas"=>"10.10", "peso_final"=>"60.60"]);
+DB::table("registros")->insert(["lotes_id"=>"2", "cant_gavetas"=>"50", "cant_pollos"=>"100", "peso_gavetas_pollos"=>"50.50", "peso_gavetas"=>"10.10", "peso_final"=>"60.60"]);
+
+$lote = Lotes::first();
+$registro = Registros::first();

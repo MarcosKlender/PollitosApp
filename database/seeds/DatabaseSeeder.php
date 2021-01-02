@@ -22,19 +22,43 @@ class DatabaseSeeder extends Seeder
 
         DB::table('users')->truncate();
 
-    	foreach (range(1,15) as $index) {
-            DB::table('users')->insert([
-                'rol_id' => 2,
-                'username' => Str::random(10),
-                'name' => Str::random(10),
-                'last_name' => Str::random(10),
-                'email' => Str::random(10).'@gmail.com',
-                'password' => Hash::make('password'),
-                'created_at' => Carbon::now()->toDateTimeString(),
-                'updated_at' => Carbon::now()->toDateTimeString(),
-                'active' => 1,
-            ]);
-        }
+    	// foreach (range(1,15) as $index) {
+        //     DB::table('users')->insert([
+        //         'rol_id' => 2,
+        //         'username' => Str::random(10),
+        //         'name' => Str::random(10),
+        //         'last_name' => Str::random(10),
+        //         'email' => Str::random(10).'@gmail.com',
+        //         'password' => Hash::make('password'),
+        //         'created_at' => Carbon::now()->toDateTimeString(),
+        //         'updated_at' => Carbon::now()->toDateTimeString(),
+        //         'active' => 1,
+        //     ]);
+        // }
+        
+        DB::table('users')->insert([
+            'rol_id' => 1,
+            'username' => 'mcarrasco',
+            'name' => 'Marcos',
+            'last_name' => 'Carrasco',
+            'email' => 'marcos@gmail.com',
+            'password' => Hash::make('Ecuador2020'),
+            'created_at' => Carbon::now()->toDateTimeString(),
+            'updated_at' => Carbon::now()->toDateTimeString(),
+            'active' => 1,
+        ]);
+
+        DB::table('users')->insert([
+            'rol_id' => 2,
+            'username' => 'kcarrasco',
+            'name' => 'Klender',
+            'last_name' => 'Carrasco',
+            'email' => 'klender@gmail.com',
+            'password' => Hash::make('Ecuador2020'),
+            'created_at' => Carbon::now()->toDateTimeString(),
+            'updated_at' => Carbon::now()->toDateTimeString(),
+            'active' => 1,
+        ]);
 
         DB::table('proveedores')->truncate();
 
@@ -55,5 +79,7 @@ class DatabaseSeeder extends Seeder
                 'updated_at' => Carbon::now()->toDateTimeString(),
             ]);
         }
+
+        DB::table('lotes')->truncate();
     }
 }

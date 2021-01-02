@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-lg-4">
             <div class="card shadow mb-4">
-                <div class="card-header mt-2">
+                <div class="card-header mt-2 text-center">
                     <h4>Crear Nuevo Usuario</h4>
                 </div>
                 <div class="card-body">
@@ -57,8 +57,8 @@
                             <input type="text" class="form-control" id="password" name="password" required />
                         </div>
                         <div class="row justify-content-around">
-                            <a href="{{ route('admin.index') }}" class="btn btn-primary">Cancelar</a>
-                            <button type="submit" class="btn btn-danger">Crear</button>
+                            <a href="{{ route('admin.index') }}" class="btn btn-danger">Cancelar</a>
+                            <button type="submit" class="btn btn-success">Crear</button>
                         </div>
                     </form>
                 </div>

@@ -7,7 +7,7 @@
             <div class="card shadow mb-4">
                 <div class="card-header mt-2">
                     <div class="text-center">
-                        <h4>Lotes - Registro de Peso en Bruto</h4>
+                        <h4>Lotes - Peso en Bruto</h4>
                     </div>
                 </div>
 
@@ -16,52 +16,77 @@
                         <div class="mb-3">
                             <a href="{{ route('pesobruto.create') }}" class="btn btn-success">Nuevo Registro</a>
                         </div>
+                        @if (Auth::user()->rol->key == 'admin')
+                            <div class="mb-3">
+                                <a href="{{ route('pesobruto.anulados') }}" class="btn btn-danger">Lotes Anulados</a>
+                            </div>
+                        @endif
                     </div>
                     @if (session()->get('success'))
                         <div class="alert alert-success">
                             {{ session()->get('success') }}
                         </div>
                     @endif
-                    <div class="table-responsive">
-                        <table class="table table-striped table-bordered">
-                            <thead>
-                                <tr>
-                                    <td>ID</td>
-                                    <td>Tipo</td>
-                                    <td>Proveedor</td>
-                                    <td>Procedencia</td>
-                                    <td>Placa</td>
-                                    <td>Conductor</td>
-                                    <td>Cantidad de Gavetas</td>
-                                    <td>Cantidad de Pollos</td>
-                                    <td>Peso</td>
-                                    <td>Usuario</td>
-                                    <td>Fecha de Registro</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach ($lotes as $lote)
+
+                    @if ($count == 0)
+                        <div class="alert alert-danger">No se han encontrado lotes.</div>
+                    @else
+
+                        <div class="table-responsive">
+                            <table class="table table-striped table-bordered">
+                                <thead>
                                     <tr>
-                                        <td>{{ $lote->id }}</td>
-                                        <td>{{ $lote->tipo }}</td>
-                                        <td>{{ $lote->proveedor }}</td>
-                                        <td>{{ $lote->procedencia }}</td>
-                                        <td>{{ $lote->placa }}</td>
-                                        <td>{{ $lote->conductor }}</td>
-                                        <td>{{ $lote->cant_gavetas }}</td>
-                                        <td>{{ $lote->cant_pollos }}</td>
-                                        <td>{{ $lote->peso }}</td>
-                                        <td>{{ $lote->usuario }}</td>
-                                        <td>{{ $lote->created_at }}</td>
+                                        <td>ID</td>
+                                        <td>Tipo</td>
+                                        <td>Proveedor</td>
+                                        <td>Procedencia</td>
+                                        <td>Placa</td>
+                                        <td>Conductor</td>
+                                        <td>Usuario</td>
+                                        <td>Fecha de Registro</td>
+                                        @if (Auth::user()->rol->key == 'admin')
+                                            <td>Anulado</td>
+                                        @endif
+                                        <td>Acciones</td>
                                     </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
-                    </div>
+                                </thead>
+                                <tbody>
+                                    @foreach ($lotes as $lote)
+                                        <tr>
+                                            <td>{{ $lote->id }}</td>
+                                            <td>{{ $lote->tipo }}</td>
+                                            <td>{{ $lote->proveedor }}</td>
+                                            <td>{{ $lote->procedencia }}</td>
+                                            <td>{{ $lote->placa }}</td>
+                                            <td>{{ $lote->conductor }}</td>
+                                            <td>{{ $lote->usuario }}</td>
+                                            <td>{{ $lote->created_at }}</td>
+                                            @if (Auth::user()->rol->key == 'admin')
+                                                <td class="text-center">
+                                                    <form action="{{ route('pesobruto.anular') }}" method="post">
+                                                        @csrf
+                                                        <input type="hidden" id="id" name="id" value="{{ $lote->id }}">
+                                                        <input type="hidden" id="anulado" name="anulado" value="1">
+                                                        <button class="btn btn-sm btn-success" type="submit">NO</button>
+                                                    </form>
+                                                </td>
+                                            @endif
+                                            <td class="text-center">
+                                                <a href="{{ route('pesobruto.edit', $lote->id) }}"
+                                                    class="btn btn-sm btn-primary">Pesos</a>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+
+                    @endif
 
                     <div class="row justify-content-around">
                         {{ $lotes->links() }}
-                        {{-- <span>Total de Lotes: <b>{{ $count }}</b></span> --}}
+                        {{-- <span>Total de Lotes:
+                            <b>{{ $count }}</b></span>--}}
                     </div>
 
                 </div>

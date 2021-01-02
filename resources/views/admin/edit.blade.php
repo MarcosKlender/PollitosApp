@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-lg-4">
             <div class="card shadow mb-4">
-                <div class="card-header mt-2">
+                <div class="card-header mt-2 text-center">
                     <h4>Editar Usuario</h4>
                 </div>
 
@@ -63,8 +63,8 @@
                             <input type="text" class="form-control" id="password" name="password" disabled />
                         </div>
                         <div class="row justify-content-around">
-                            <a href="{{ route('admin.index') }}" class="btn btn-primary">Cancelar</a>
-                            <button type="submit" class="btn btn-danger">Actualizar</button>
+                            <a href="{{ route('admin.index') }}" class="btn btn-danger">Cancelar</a>
+                            <button type="submit" class="btn btn-success">Actualizar</button>
                         </div>
                     </form>
                 </div>

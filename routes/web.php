@@ -26,6 +26,10 @@ Route::put('/profile', 'ProfileController@update')->name('profile.update');
 
 Route::resource('admin', AdminController::class);
 Route::resource('proveedores', ProveedoresController::class);
+
+Route::get('/pesobruto/anulados', 'PesoBrutoController@anulados')->name('pesobruto.anulados');
+Route::post('/pesobruto/anular', 'PesoBrutoController@anular')->name('pesobruto.anular');
 Route::resource('pesobruto', PesoBrutoController::class);
+
 Route::resource('pesoneto', PesoNetoController::class);
 Route::resource('entregas', EntregasController::class);

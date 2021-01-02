@@ -20,10 +20,13 @@ class CreateLotesTable extends Migration
             $table->string('procedencia');
             $table->string('placa');
             $table->string('conductor');
-            $table->string('cant_gavetas')->nullable();
-            $table->string('cant_pollos')->nullable();
-            $table->string('peso')->nullable();
+            // $table->string('cant_gavetas')->nullable();
+            // $table->string('cant_pollos')->nullable();
+            // $table->decimal('peso_gavetas_pollos')->nullable();
+            // $table->decimal('peso_gavetas')->nullable();
+            // $table->decimal('peso_final')->nullable();
             $table->string('usuario');
+            $table->string('anulado', 1);
             $table->timestamps();
         });
     }
