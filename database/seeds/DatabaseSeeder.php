@@ -13,6 +13,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        // TABLA ROLES
         DB::table('rols')->truncate();
 
         DB::table('rols')->insert([
@@ -20,6 +21,7 @@ class DatabaseSeeder extends Seeder
             ['key' => 'user', 'name' => 'Usuario Regular', 'description' => 'Este rol tiene privilegios limitados sobre el sistema.', 'created_at' => Carbon::now()->toDateTimeString(), 'updated_at' => Carbon::now()->toDateTimeString()],
         ]);
 
+        // TABLA USUARIOS
         DB::table('users')->truncate();
 
     	// foreach (range(1,15) as $index) {
@@ -60,6 +62,7 @@ class DatabaseSeeder extends Seeder
             'active' => 1,
         ]);
 
+        // TABLA PROVEEDORES
         DB::table('proveedores')->truncate();
 
     	foreach (range(1,15) as $index) {
@@ -80,6 +83,10 @@ class DatabaseSeeder extends Seeder
             ]);
         }
 
+        // TABLA LOTES
         DB::table('lotes')->truncate();
+
+        // TABLA REGISTROS
+        DB::table('registros')->truncate();
     }
 }

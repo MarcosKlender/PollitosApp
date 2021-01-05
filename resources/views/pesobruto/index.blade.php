@@ -14,11 +14,14 @@
                 <div class="card-body">
                     <div class="row justify-content-around">
                         <div class="mb-3">
-                            <a href="{{ route('pesobruto.create') }}" class="btn btn-success">Nuevo Registro</a>
+                            <a href="{{ route('pesobruto.create') }}" class="btn btn-success">Crear Registro</a>
                         </div>
                         @if (Auth::user()->rol->key == 'admin')
                             <div class="mb-3">
-                                <a href="{{ route('pesobruto.anulados') }}" class="btn btn-danger">Lotes Anulados</a>
+                                <a href="{{ route('pesobruto.lotes_anulados') }}" class="btn btn-danger">Lotes Anulados</a>
+                            </div>
+                            <div class="mb-3">
+                                <a href="{{ route('pesobruto.registros_anulados') }}" class="btn btn-danger">Registros Anulados</a>
                             </div>
                         @endif
                     </div>
@@ -63,7 +66,7 @@
                                             <td>{{ $lote->created_at }}</td>
                                             @if (Auth::user()->rol->key == 'admin')
                                                 <td class="text-center">
-                                                    <form action="{{ route('pesobruto.anular') }}" method="post">
+                                                    <form action="{{ route('pesobruto.anular_lote') }}" method="post">
                                                         @csrf
                                                         <input type="hidden" id="id" name="id" value="{{ $lote->id }}">
                                                         <input type="hidden" id="anulado" name="anulado" value="1">

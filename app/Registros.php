@@ -11,7 +11,8 @@ class Registros extends Model
     use HasFactory;
 
     protected $fillable = [
-        'lotes_id', 'cant_gavetas', 'cant_pollos', 'peso_gavetas_pollos', 'peso_gavetas', 'peso_final'
+        'lotes_id', 'cant_gavetas', 'cant_pollos', 'peso_gavetas_pollos', 'peso_gavetas', 'peso_final',
+        'usuario', 'anulado'
     ];
 
     public function lote()

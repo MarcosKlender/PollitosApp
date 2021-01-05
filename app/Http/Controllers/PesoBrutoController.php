@@ -71,8 +71,9 @@ class PesoBrutoController extends Controller
     public function edit($id)
     {
         $lote = Lotes::findOrFail($id);
+        $registros = Registros::where('lotes_id', $id)->where('anulado', 0)->orderBy('id')->get();
 
-        return view('pesobruto.edit', compact('lote'));
+        return view('pesobruto.edit', compact('lote', 'registros'));
     }
 
     /**
@@ -87,18 +88,19 @@ class PesoBrutoController extends Controller
         $updateData = $request->validate([
             'lotes_id' => 'required|numeric',
             'cant_gavetas' => 'required|numeric',
-            'cant_pollos' => 'required|numeric',
+            'cant_pollos' => '',
             'peso_gavetas_pollos' => 'required|numeric',
             'peso_gavetas' => 'required|numeric',
             'peso_final' => 'required|numeric',
+            'usuario' => 'required|max:191',
+            'anulado' => 'required|size:1',
         ]);
         
         Registros::whereId($id)->create($updateData);
 
-        $registros = Registros::where('lotes_id', $id)->get();
         $lote = Lotes::findOrFail($id);
 
-        return view('pesobruto.edit', compact('registros', 'lote'));
+        return redirect()->route('pesobruto.edit', $id)->with('lote');
     }
 
     /**
@@ -112,9 +114,9 @@ class PesoBrutoController extends Controller
         //
     }
 
-    public function anulados()
+    public function lotes_anulados()
     {
-        $lotes = Lotes::orderBy('id')->where('anulado', 1)->paginate(8);
+        $lotes = Lotes::orderBy('id', 'desc')->where('anulado', 1)->paginate(8);
         $count = count($lotes);
 
         if (Auth::user()->rol->key != 'admin')
@@ -122,10 +124,10 @@ class PesoBrutoController extends Controller
             return redirect('/pesobruto');
         }
         
-        return view('pesobruto.anulados', compact('lotes', 'count'));
+        return view('pesobruto.lotes_anulados', compact('lotes', 'count'));
     }
 
-    public function anular(Request $request)
+    public function anular_lote(Request $request)
     {
         $updateData = $request->validate([
             'anulado' => 'required|size:1',
@@ -134,5 +136,29 @@ class PesoBrutoController extends Controller
         Lotes::whereId($request->id)->update($updateData);
 
         return back()->with('success', '¡Lote actualizado exitosamente!');
+    }
+
+    public function registros_anulados()
+    {
+        $registros = Registros::orderBy('id', 'desc')->where('anulado', 1)->paginate(10);
+        $count = count($registros);
+
+        if (Auth::user()->rol->key != 'admin')
+        {
+            return redirect('/pesobruto');
+        }
+        
+        return view('pesobruto.registros_anulados', compact('registros', 'count'));
+    }
+
+    public function anular_registro(Request $request)
+    {
+        $updateData = $request->validate([
+            'anulado' => 'required|size:1',
+        ]);
+        
+        Registros::whereId($request->id)->update($updateData);
+
+        return back()->with('success', '¡El registro ha sido anulado!');
     }
 }
