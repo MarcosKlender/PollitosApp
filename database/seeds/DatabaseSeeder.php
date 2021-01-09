@@ -68,7 +68,7 @@ class DatabaseSeeder extends Seeder
     	foreach (range(1,15) as $index) {
             DB::table('proveedores')->insert([
                 'tipo' => Str::random(3),
-                'ruc_ci' => Str::random(13),
+                'ruc_ci' => mt_rand(0000000000000, 9999999999999),
                 'nombres' => Str::random(10),
                 'razon_social' => Str::random(10),
                 'direccion' => Str::random(10),

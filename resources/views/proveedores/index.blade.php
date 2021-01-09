@@ -13,20 +13,31 @@
 
                 <div class="card-body">
                     <div class="row justify-content-around">
+                        
                         <div class="mb-3">
                             <a href="{{ route('proveedores.create') }}" class="btn btn-success">Importar Proveedores</a>
                         </div>
-                        <div class="mb-3 col-lg-3">
-                            <form action="{{ route('proveedores.show', 'search') }}" method="get">
-                                <div class="input-group ">
-                                    <input type="search" id="criterio" name="criterio" class="form-control border"
-                                        placeholder="Nombres / Razón Social" required>
+                        
+                        <div class="mb-3">
+                            <form method="get" action="{{ route('proveedores.show', 'search') }}">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <select class="form-control" id="tipo_busqueda" name="tipo_busqueda" required>
+                                            <option value="" selected disabled>Búsqueda</option>
+                                            <option value="ruc_ci">RUC / CI</option>
+                                            <option value="nom_rs">Nombres</option>
+                                        </select>
+                                    </div>
+                                    <input type="search" id="criterio" name="criterio" class="form-control" required>
                                     <div class="input-group-append">
-                                        <button class="btn btn-outline-primary border" type="submit">Búsqueda</button>
+                                        <button class="btn btn-outline-primary border" type="submit">
+                                            <i class="fas fa-search"></i>
+                                        </button>
                                     </div>
                                 </div>
                             </form>
                         </div>
+
                     </div>
                     @if (session()->get('success'))
                         <div class="alert alert-success">

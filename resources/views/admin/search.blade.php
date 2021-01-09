@@ -85,7 +85,7 @@
                     @endif
 
                     <div class="row justify-content-around">
-                        {{ $searches->links() }}
+                        {{ $searches->withQueryString()->links() }}
                         {{-- <span>Total de Usuarios: <b>{{ $count }}</b></span>
                         --}}
                     </div>

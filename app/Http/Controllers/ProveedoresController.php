@@ -51,9 +51,19 @@ class ProveedoresController extends Controller
      */
     public function show(Request $request)
     {
+        $tipo_busqueda = $request->get('tipo_busqueda');
         $criterio = $request->get('criterio');
-        $searches = Proveedores::orderBy('id')->where('nombres', 'like', '%'.$criterio.'%')->orWhere('razon_social', 'like', '%'.$criterio.'%')->paginate(8);
-        $count = count($searches);
+
+        if ($tipo_busqueda == 'ruc_ci')
+        {
+            $searches = Proveedores::orderBy('id')->where('ruc_ci', 'like', '%'.$criterio.'%')->paginate(10);
+            $count = count($searches);
+        }
+        elseif ($tipo_busqueda == 'nom_rs')
+        {
+            $searches = Proveedores::orderBy('id')->where('nombres', 'like', '%'.$criterio.'%')->orWhere('razon_social', 'like', '%'.$criterio.'%')->paginate(10);
+            $count = count($searches);
+        }
 
         return view('proveedores.search', compact('searches', 'count', 'criterio'));
     }
