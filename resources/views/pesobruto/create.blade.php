@@ -24,8 +24,8 @@
                             <label for="tipo">Tipo de Animal</label>
                             <select class="custom-select" id="tipo" name="tipo" required>
                                 <option value="" selected disabled>Elije un tipo de animal</option>
-                                <option value="Pollo">Pollo</option>
-                                <option value="Chancho">Chancho</option>
+                                <option value="Pollos">Pollos</option>
+                                <option value="Cerdos">Cerdos</option>
                             </select>
                         </div>
                         <div class="form-group">
@@ -47,8 +47,8 @@
                         <input type="hidden" id="usuario" name="usuario" value="{{  Auth::user()->username }}" required />
                         <input type="hidden" id="anulado" name="anulado" value="0" required />
                         <div class="row justify-content-around">
-                            <a href="{{ route('pesobruto.index') }}" class="btn btn-primary">Cancelar</a>
-                            <button type="submit" class="btn btn-danger">Crear</button>
+                            <a href="{{ route('pesobruto.index') }}" class="btn btn-danger">Cancelar</a>
+                            <button type="submit" class="btn btn-success">Crear</button>
                         </div>
                     </form>
                 </div>

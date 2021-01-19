@@ -31,7 +31,7 @@ class PesoBrutoController extends Controller
     public function store(Request $request)
     {
         $storeData = $request->validate([
-            'tipo' => 'required|max:7',
+            'tipo' => 'required|max:191',
             'proveedor' => 'required|max:191',
             'procedencia' => 'required|max:191',
             'placa' => 'required|size:7',
@@ -85,13 +85,14 @@ class PesoBrutoController extends Controller
      */
     public function update(Request $request, $id)
     {
+        //dd($request->peso_bruto);
         $updateData = $request->validate([
             'lotes_id' => 'required|numeric',
             'cant_gavetas' => 'required|numeric',
             'cant_pollos' => '',
-            'peso_gavetas_pollos' => 'required|numeric',
-            'peso_gavetas' => 'required|numeric',
-            'peso_final' => 'required|numeric',
+            'peso_bruto' => 'required|numeric',
+            'peso_gavetas' => '',
+            'peso_final' => '',
             'usuario' => 'required|max:191',
             'anulado' => 'required|size:1',
         ]);
@@ -157,8 +158,20 @@ class PesoBrutoController extends Controller
             'anulado' => 'required|size:1',
         ]);
         
-        Registros::whereId($request->id)->update($updateData);
+        Registros::whereId($request->id_anular)->update($updateData);
 
         return back()->with('success', '¡El registro ha sido anulado!');
+    }
+
+    public function registrar_gavetas(Request $request)
+    {
+        $updateData = $request->validate([
+            'peso_gavetas' => 'required|numeric',
+            'peso_final' => 'required|numeric'
+        ]);
+        
+        Registros::whereId($request->id_gavetas)->update($updateData);
+
+        return back()->with('success', '¡El peso de las gavetas fue registrado exitosamente!');
     }
 }

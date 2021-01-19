@@ -76,7 +76,7 @@
                                             @endif
                                             <td class="text-center">
                                                 <a href="{{ route('pesobruto.edit', $lote->id) }}"
-                                                    class="btn btn-sm btn-primary">Pesos</a>
+                                                    class="btn btn-sm btn-primary">Registrar Pesos</a>
                                             </td>
                                         </tr>
                                     @endforeach

@@ -66,4 +66,25 @@
         </div>
     </div>
 
+    <script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>
+    <script>
+        $(document).ready(function() {
+            $('#username').keyup(function() {
+                $(this).val($(this).val().toLowerCase());
+            });
+
+            $('#name').keyup(function() {
+                $(this).val($(this).val().toUpperCase());
+            });
+            
+            $('#last_name').keyup(function() {
+                $(this).val($(this).val().toUpperCase());
+            });
+            
+            $('#email').keyup(function() {
+                $(this).val($(this).val().toLowerCase());
+            });
+        });
+    </script>
+
 @endsection

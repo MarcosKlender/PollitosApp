@@ -31,6 +31,7 @@ Route::get('/pesobruto/lotes_anulados', 'PesoBrutoController@lotes_anulados')->n
 Route::post('/pesobruto/anular_lote', 'PesoBrutoController@anular_lote')->name('pesobruto.anular_lote');
 Route::get('/pesobruto/registros_anulados', 'PesoBrutoController@registros_anulados')->name('pesobruto.registros_anulados');
 Route::post('/pesobruto/anular_registro', 'PesoBrutoController@anular_registro')->name('pesobruto.anular_registro');
+Route::post('/pesobruto/registrar_gavetas', 'PesoBrutoController@registrar_gavetas')->name('pesobruto.registrar_gavetas');
 Route::resource('pesobruto', PesoBrutoController::class);
 
 Route::resource('pesoneto', PesoNetoController::class);

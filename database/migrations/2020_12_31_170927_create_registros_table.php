@@ -18,9 +18,9 @@ class CreateRegistrosTable extends Migration
             $table->unsignedBigInteger('lotes_id');
             $table->integer('cant_gavetas');
             $table->integer('cant_pollos')->nullable();
-            $table->decimal('peso_gavetas_pollos');
-            $table->decimal('peso_gavetas');
-            $table->decimal('peso_final');
+            $table->decimal('peso_bruto');
+            $table->decimal('peso_gavetas')->nullable();
+            $table->decimal('peso_final')->nullable();
             $table->string('usuario');
             $table->string('anulado', 1);
             $table->timestamps();

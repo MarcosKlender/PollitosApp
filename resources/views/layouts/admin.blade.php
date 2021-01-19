@@ -216,7 +216,7 @@
                 </div>
                 <div class="modal-body">Por favor, confirme si está listo para cerrar sesión.</div>
                 <div class="modal-footer">
-                    <button class="btn btn-link" type="button" data-dismiss="modal">{{ __('Cancelar') }}</button>
+                    <button class="btn btn-primary" type="button" data-dismiss="modal">{{ __('Cancelar') }}</button>
                     <a class="btn btn-danger" href="{{ route('logout') }}"
                         onclick="event.preventDefault(); document.getElementById('logout-form').submit();">{{ __('Cerrar Sesión') }}</a>
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
