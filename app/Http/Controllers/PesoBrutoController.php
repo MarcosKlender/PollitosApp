@@ -38,6 +38,7 @@ class PesoBrutoController extends Controller
             'conductor' => 'required|max:191',
             'usuario' => 'required|max:191',
             'anulado' => 'required|size:1',
+            'liquidado' => 'required|size:1',
         ]);
 
         $lotes = Lotes::create($storeData);
@@ -51,23 +52,14 @@ class PesoBrutoController extends Controller
         return redirect('/pesobruto')->with('success', '¡Lote creado exitosamente!');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
-        //
+        $lote = Lotes::findOrFail($id);
+        $registros = Registros::where('lotes_id', $id)->where('anulado', 0)->orderBy('id')->get();
+
+        return view('pesobruto.show', compact('lote', 'registros'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
         $lote = Lotes::findOrFail($id);
@@ -76,16 +68,8 @@ class PesoBrutoController extends Controller
         return view('pesobruto.edit', compact('lote', 'registros'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
-        //dd($request->peso_bruto);
         $updateData = $request->validate([
             'lotes_id' => 'required|numeric',
             'cant_gavetas' => 'required|numeric',
@@ -104,12 +88,6 @@ class PesoBrutoController extends Controller
         return redirect()->route('pesobruto.edit', $id)->with('lote');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
         //
@@ -173,5 +151,16 @@ class PesoBrutoController extends Controller
         Registros::whereId($request->id_gavetas)->update($updateData);
 
         return back()->with('success', '¡El peso de las gavetas fue registrado exitosamente!');
+    }
+
+    public function liquidar_lote(Request $request)
+    {
+        $updateData = $request->validate([
+            'liquidado' => 'required|size:1',
+        ]);
+        
+        Lotes::whereId($request->id_liquidar)->update($updateData);
+
+        return redirect('/pesobruto')->with('success', '¡Lote liquidado exitosamente!');
     }
 }

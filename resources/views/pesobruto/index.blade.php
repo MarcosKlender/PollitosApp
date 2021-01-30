@@ -7,7 +7,7 @@
             <div class="card shadow mb-4">
                 <div class="card-header mt-2">
                     <div class="text-center">
-                        <h4>Lotes - Peso en Bruto</h4>
+                        <h4>Peso en Bruto</h4>
                     </div>
                 </div>
 
@@ -21,7 +21,8 @@
                                 <a href="{{ route('pesobruto.lotes_anulados') }}" class="btn btn-danger">Lotes Anulados</a>
                             </div>
                             <div class="mb-3">
-                                <a href="{{ route('pesobruto.registros_anulados') }}" class="btn btn-danger">Registros Anulados</a>
+                                <a href="{{ route('pesobruto.registros_anulados') }}" class="btn btn-danger">Registros
+                                    Anulados</a>
                             </div>
                         @endif
                     </div>
@@ -50,6 +51,7 @@
                                         @if (Auth::user()->rol->key == 'admin')
                                             <td>Anulado</td>
                                         @endif
+                                        <td>Liquidado</td>
                                         <td>Acciones</td>
                                     </tr>
                                 </thead>
@@ -65,18 +67,30 @@
                                             <td>{{ $lote->usuario }}</td>
                                             <td>{{ $lote->created_at }}</td>
                                             @if (Auth::user()->rol->key == 'admin')
-                                                <td class="text-center">
+                                                <td>
                                                     <form action="{{ route('pesobruto.anular_lote') }}" method="post">
                                                         @csrf
                                                         <input type="hidden" id="id" name="id" value="{{ $lote->id }}">
                                                         <input type="hidden" id="anulado" name="anulado" value="1">
-                                                        <button class="btn btn-sm btn-success" type="submit">NO</button>
+                                                        <button class="btn btn-sm btn-primary" type="submit">NO</button>
                                                     </form>
                                                 </td>
                                             @endif
-                                            <td class="text-center">
-                                                <a href="{{ route('pesobruto.edit', $lote->id) }}"
-                                                    class="btn btn-sm btn-primary">Registrar Pesos</a>
+                                            <td>
+                                                @if ($lote->liquidado == '0')
+                                                    <button type="button" class="btn btn-sm btn-primary">NO</button>
+                                                @else
+                                                    <button type="button" class="btn btn-sm btn-primary">SI</button>
+                                                @endif
+                                            </td>
+                                            <td>
+                                                @if ($lote->liquidado == '0')
+                                                    <a href="{{ route('pesobruto.edit', $lote->id) }}"
+                                                        class="btn btn-sm btn-primary">Registrar Pesos</a>
+                                                @else
+                                                    <a href="{{ route('pesobruto.show', $lote->id) }}"
+                                                        class="btn btn-sm btn-primary">Ver Pesos</a>
+                                                @endif
                                             </td>
                                         </tr>
                                     @endforeach

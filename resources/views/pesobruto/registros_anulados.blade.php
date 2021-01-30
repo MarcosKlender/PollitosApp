@@ -34,9 +34,9 @@
                                         <td>ID Registro</td>
                                         <td>ID Lote</td>
                                         <td>Cantidad Gavetas</td>
-                                        <td>Cantidad Pollos</td>
-                                        <td>Peso G+P</td>
-                                        <td>Peso G</td>
+                                        {{-- <td>Cantidad Pollos</td> --}}
+                                        <td>Peso Bruto</td>
+                                        <td>Peso Gavetas</td>
                                         <td>Peso Final</td>
                                         <td>Usuario</td>
                                         <td>Fecha de Creación</td>
@@ -48,12 +48,8 @@
                                             <td>{{ $registro->id }}</td>
                                             <td>{{ $registro->lotes_id }}</td>
                                             <td>{{ $registro->cant_gavetas }}</td>
-                                            @if ($registro->cant_pollos == null)
-                                                <td>N/A</td>
-                                            @else
-                                                <td>{{ $registro->cant_pollos }}</td>
-                                            @endif
-                                            <td>{{ $registro->peso_gavetas_pollos }}</td>
+                                            {{-- @if ($registro->cant_pollos == null) @else <td>{{ $registro->cant_pollos }}</td> @endif --}}
+                                            <td>{{ $registro->peso_bruto }}</td>
                                             <td>{{ $registro->peso_gavetas }}</td>
                                             <td>{{ $registro->peso_final }}</td>
                                             <td>{{ $registro->usuario }}</td>

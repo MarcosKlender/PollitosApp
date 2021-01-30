@@ -46,6 +46,7 @@
                         </div>
                         <input type="hidden" id="usuario" name="usuario" value="{{  Auth::user()->username }}" required />
                         <input type="hidden" id="anulado" name="anulado" value="0" required />
+                        <input type="hidden" id="liquidado" name="liquidado" value="0" required />
                         <div class="row justify-content-around">
                             <a href="{{ route('pesobruto.index') }}" class="btn btn-danger">Cancelar</a>
                             <button type="submit" class="btn btn-success">Crear</button>

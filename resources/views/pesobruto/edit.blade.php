@@ -6,7 +6,7 @@
         <div class="col-lg-9">
             <div class="card shadow mb-4">
                 <div class="card-header mt-2 text-center">
-                    <h4>Registro de Pesos - Lote {{ $lote->id }} </h4>
+                    <h4>Lote {{ $lote->id }} </h4>
                 </div>
                 <div class="card-body">
                     @if (session()->get('success'))
@@ -33,7 +33,7 @@
                                 <input type="number" class="form-control" id="cant_gavetas" name="cant_gavetas"
                                     value="{{ old('cant_gavetas') }}" required autofocus />
                             </div>
-                            <!-- <div class="form-group col-lg-6">
+                            {{-- <div class="form-group col-lg-6">
                                 <div class="custom-control custom-switch mb-2">
                                     <input type="checkbox" class="custom-control-input" id="check_pollos"
                                         name="check_pollos">
@@ -41,11 +41,11 @@
                                 </div>
                                 <input type="number" class="form-control" id="cant_pollos" name="cant_pollos"
                                     value="{{ old('cant_pollos') }}" disabled />
-                            </div> -->
+                            </div> --}}
                             <div class="form-group col-lg-6">
                                 <label for="peso_bruto">Peso Bruto</label>
-                                <input type="number" class="form-control" id="peso_bruto"
-                                    name="peso_bruto" value="{{ old('peso_bruto') }}" step=".01" required />
+                                <input type="number" class="form-control" id="peso_bruto" name="peso_bruto"
+                                    value="{{ old('peso_bruto') }}" step=".01" required />
                             </div>
                         </div>
                         <input type="hidden" id="lotes_id" name="lotes_id" value="{{ $lote->id }}">
@@ -79,44 +79,56 @@
                                             <td>{{ $registro->id }}</td>
                                             <td>{{ $registro->lotes_id }}</td>
                                             <td>{{ $registro->cant_gavetas }}</td>
-                                            <!-- @if ($registro->cant_pollos == null) <td>N/A</td> @else <td>{{ $registro->cant_pollos }}</td> @endif -->
-                                            <td class="tdbruto" value="{{ $registro->peso_bruto }}">{{ $registro->peso_bruto }}</td>
+                                            {{-- @if ($registro->cant_pollos == null)
+                                                <td>N/A</td> @else <td>{{ $registro->cant_pollos }}</td>
+                                            @endif --}}
+                                            <td>{{ $registro->peso_bruto }}</td>
                                             <td>{{ $registro->peso_gavetas }}</td>
                                             <td>{{ $registro->peso_final }}</td>
                                             <td>{{ $registro->usuario }}</td>
-                                            <td><button type="button" class="btn btn-sm btn-primary modal_gavetas" data-toggle="modal" data-target="#staticBackdrop1" data-id="{{ $registro->id }}" data-peso-bruto="{{ $registro->peso_bruto }}">Gavetas</button>
-                                            <button type="button" class="btn btn-sm btn-danger modal_anular" data-toggle="modal" data-target="#staticBackdrop2" data-id="{{ $registro->id }}">Anular</button></td>
+                                            <td><button type="button" class="btn btn-sm btn-primary modal_gavetas"
+                                                    data-toggle="modal" data-target="#staticBackdrop1"
+                                                    data-id="{{ $registro->id }}"
+                                                    data-peso-bruto="{{ $registro->peso_bruto }}">Gavetas</button>
+                                                <button type="button" class="btn btn-sm btn-danger modal_anular"
+                                                    data-toggle="modal" data-target="#staticBackdrop2"
+                                                    data-id="{{ $registro->id }}">Anular</button>
+                                            </td>
                                         </tr>
                                     @endforeach
                                 </tbody>
                             </table>
                         </div>
                     @endif
-
+                    <div class="text-center">
+                        <button type="button" class="btn btn-danger" data-toggle="modal"
+                            data-target="#staticBackdrop3">Liquidar Lote</button>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Modal para Gavetas -->
+    <!-- Modal para GAVETAS -->
     <div class="modal fade" id="staticBackdrop1" data-backdrop="static" data-keyboard="false" tabindex="-1"
         aria-labelledby="staticBackdropLabel1" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel1">Registrar Peso de Gavetas</h5>
+                    <h5 class="modal-title" id="staticBackdropLabel1"></h5>
                 </div>
 
                 <form action="{{ route('pesobruto.registrar_gavetas') }}" method="post">
-                @csrf
+                    @csrf
                     <div class="modal-body">
-                        <input type="number" class="form-control" id="peso_gavetas" name="peso_gavetas" step=".01" required />
+                        <input type="number" class="form-control" id="peso_gavetas" name="peso_gavetas" step=".01"
+                            required />
                     </div>
                     <div class="modal-footer">
-                            <input type="hidden" id="id_gavetas" name="id_gavetas">
-                            <input type="hidden" id="peso_final" name="peso_final">
-                            <button type="button" class="btn btn-primary" data-dismiss="modal">Cancelar</button>
-                            <button type="submit" id="supersubmit" class="btn btn-success">Registrar Peso</button>
+                        <input type="hidden" id="id_gavetas" name="id_gavetas">
+                        <input type="hidden" id="peso_final" name="peso_final">
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">Cancelar</button>
+                        <button type="submit" id="supersubmit" class="btn btn-success">Registrar Peso</button>
                     </div>
                 </form>
 
@@ -124,7 +136,7 @@
         </div>
     </div>
 
-    <!-- Modal para Anular -->
+    <!-- Modal para ANULAR -->
     <div class="modal fade" id="staticBackdrop2" data-backdrop="static" data-keyboard="false" tabindex="-1"
         aria-labelledby="staticBackdropLabel2" aria-hidden="true">
         <div class="modal-dialog">
@@ -148,11 +160,36 @@
         </div>
     </div>
 
+    <!-- Modal para LIQUIDAR -->
+    <div class="modal fade" id="staticBackdrop3" data-backdrop="static" data-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel3" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel3">¿Está seguro de liquidar el lote?</h5>
+                </div>
+                <div class="modal-body">
+                    Una vez liquidado el lote no podrá registrar más pesos.
+                </div>
+                <div class="modal-footer">
+                    <form action="{{ route('pesobruto.liquidar_lote') }}" method="post">
+                        @csrf
+                        <input type="hidden" id="id_liquidar" name="id_liquidar" value="{{ $lote->id }}">
+                        <input type="hidden" id="liquidado" name="liquidado" value="1">
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">Cancelar</button>
+                        <button type="submit" class="btn btn-danger">Liquidar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>
     <script>
         $(document).ready(function() {
             $(".modal_gavetas").click(function() {
                 var registro_g = $(this).attr('data-id');
+                $(".modal-title").html('Registrar Peso de Gavetas ' + registro_g);
                 $("#id_gavetas").val(registro_g);
                 var peso_bruto = parseFloat($(this).attr('data-peso-bruto')).toFixed(2);
 
@@ -168,6 +205,7 @@
                 $("#id_anular").val(registro_a);
             });
         });
+
     </script>
 
 @endsection

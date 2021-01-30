@@ -22,6 +22,7 @@ class CreateLotesTable extends Migration
             $table->string('conductor');
             $table->string('usuario');
             $table->string('anulado', 1);
+            $table->string('liquidado', 1);
             $table->timestamps();
         });
     }

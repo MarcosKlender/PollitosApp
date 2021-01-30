@@ -12,7 +12,7 @@ class Lotes extends Model
 
     protected $fillable = [
         'tipo', 'proveedor', 'procedencia', 'placa', 'conductor', 'cant_gavetas', 'cant_pollos',
-        'peso_gavetas_pollos', 'peso_gavetas', 'peso_final', 'usuario', 'anulado'
+        'peso_gavetas_pollos', 'peso_gavetas', 'peso_final', 'usuario', 'anulado', 'liquidado'
     ];
 
     public function registros()
