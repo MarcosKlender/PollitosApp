@@ -6,7 +6,7 @@
         <div class="col-lg-9">
             <div class="card shadow mb-4">
                 <div class="card-header mt-2 text-center">
-                    <h4>Registros - Lote {{ $lote->id }} </h4>
+                    <h4>LOTE {{ $lote->id }} - {{ $lote->tipo }}</h4>
                 </div>
                 <div class="card-body">
                     @if (session()->get('success'))
@@ -39,8 +39,9 @@
                                         <td>Cantidad de Gavetas</td>
                                         <td>Peso Bruto</td>
                                         <td>Peso Gavetas</td>
-                                        <td>Peso {{ $lote->tipo }}</td>
+                                        <td>Peso Final</td>
                                         <td>Usuario</td>
+                                        <td>Fecha de Registro</td>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -53,12 +54,21 @@
                                             <td>{{ $registro->peso_gavetas }}</td>
                                             <td>{{ $registro->peso_final }}</td>
                                             <td>{{ $registro->usuario }}</td>
+                                            <td>{{ $registro->updated_at }}</td>
                                         </tr>
                                     @endforeach
+                                    <tr>
+                                        <td colspan="2"><b>TOTAL</b></td>
+                                        <td><b>{{ $total_cantidad }}</b></td>
+                                        <td><b>{{ $total_bruto }}</b></td>
+                                        <td><b>{{ $total_gavetas }}</b></td>
+                                        <td><b>{{ $total_final }}</b></td>
+                                    </tr>
                                 </tbody>
                             </table>
                         </div>
                     @endif
+
                 </div>
             </div>
         </div>

@@ -6,7 +6,7 @@
         <div class="col-lg-9">
             <div class="card shadow mb-4">
                 <div class="card-header mt-2 text-center">
-                    <h4>Lote {{ $lote->id }} </h4>
+                    <h4>LOTE {{ $lote->id }} - {{ $lote->tipo }}</h4>
                 </div>
                 <div class="card-body">
                     @if (session()->get('success'))
@@ -68,7 +68,7 @@
                                         <!-- <td>Cantidad {{ $lote->tipo }}</td> -->
                                         <td>Peso Bruto</td>
                                         <td>Peso Gavetas</td>
-                                        <td>Peso {{ $lote->tipo }}</td>
+                                        <td>Peso Final</td>
                                         <td>Usuario</td>
                                         <td>Acciones</td>
                                     </tr>
@@ -102,7 +102,7 @@
                     @endif
                     <div class="text-center">
                         <button type="button" class="btn btn-danger" data-toggle="modal"
-                            data-target="#staticBackdrop3">Liquidar Lote</button>
+                            data-target="#staticBackdrop3" id="liquidar" name="liquidar">Liquidar Lote</button>
                     </div>
                 </div>
             </div>
@@ -127,8 +127,8 @@
                     <div class="modal-footer">
                         <input type="hidden" id="id_gavetas" name="id_gavetas">
                         <input type="hidden" id="peso_final" name="peso_final">
-                        <button type="button" class="btn btn-primary" data-dismiss="modal">Cancelar</button>
-                        <button type="submit" id="supersubmit" class="btn btn-success">Registrar Peso</button>
+                        <button type="button" id="cancelar_gavetas" class="btn btn-primary" data-dismiss="modal">Cancelar</button>
+                        <button type="submit" id="submit_gavetas" class="btn btn-success">Registrar Peso</button>
                     </div>
                 </form>
 
@@ -187,16 +187,25 @@
     <script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>
     <script>
         $(document).ready(function() {
+            if ( $("td").is(":empty") )
+            {
+                $("#liquidar").prop('disabled', true);
+            }
+
             $(".modal_gavetas").click(function() {
                 var registro_g = $(this).attr('data-id');
                 $(".modal-title").html('Registrar Peso de Gavetas ' + registro_g);
                 $("#id_gavetas").val(registro_g);
                 var peso_bruto = parseFloat($(this).attr('data-peso-bruto')).toFixed(2);
 
-                $("#supersubmit").click(function() {
+                $("#submit_gavetas").click(function() {
                     var peso_gavetas = parseFloat($("#peso_gavetas").val()).toFixed(2);
                     var peso_final = parseFloat(peso_bruto - peso_gavetas).toFixed(2);
                     $("#peso_final").val(peso_final);
+                });
+
+                $("#cancelar_gavetas").click(function() {
+                    $("#peso_gavetas").val("");
                 });
             });
 
@@ -205,7 +214,6 @@
                 $("#id_anular").val(registro_a);
             });
         });
-
     </script>
 
 @endsection

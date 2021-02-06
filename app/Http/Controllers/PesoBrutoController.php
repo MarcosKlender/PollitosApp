@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Lotes;
 use App\Registros;
+use App\Proveedores;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -25,7 +26,10 @@ class PesoBrutoController extends Controller
 
     public function create()
     {
-        return view('pesobruto.create');
+        $proveedores = Proveedores::pluck('nombres');
+        //dd($proveedores);
+
+        return view('pesobruto.create', compact('proveedores'));
     }
 
     public function store(Request $request)
@@ -57,7 +61,12 @@ class PesoBrutoController extends Controller
         $lote = Lotes::findOrFail($id);
         $registros = Registros::where('lotes_id', $id)->where('anulado', 0)->orderBy('id')->get();
 
-        return view('pesobruto.show', compact('lote', 'registros'));
+        $total_cantidad = Registros::where('lotes_id', $id)->where('anulado', 0)->select('cant_gavetas')->sum('cant_gavetas');
+        $total_bruto = Registros::where('lotes_id', $id)->where('anulado', 0)->select('peso_bruto')->sum('peso_bruto');
+        $total_gavetas = Registros::where('lotes_id', $id)->where('anulado', 0)->select('peso_gavetas')->sum('peso_gavetas');
+        $total_final = Registros::where('lotes_id', $id)->where('anulado', 0)->select('peso_final')->sum('peso_final');
+
+        return view('pesobruto.show', compact('lote', 'registros', 'total_cantidad', 'total_bruto', 'total_gavetas', 'total_final'));
     }
 
     public function edit($id)

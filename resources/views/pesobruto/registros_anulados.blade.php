@@ -7,7 +7,7 @@
             <div class="card shadow mb-4">
                 <div class="card-header mt-2">
                     <div class="text-center">
-                        <h4>Registros Anulados - Peso en Bruto</h4>
+                        <h4>REGISTROS ANULADOS - PESO EN BRUTO</h4>
                     </div>
                 </div>
 

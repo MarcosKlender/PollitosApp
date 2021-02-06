@@ -6,7 +6,7 @@
         <div class="col-lg-4">
             <div class="card shadow mb-4">
                 <div class="card-header mt-2 text-center">
-                    <h4>Nuevo Registro - Peso en Bruto</h4>
+                    <h4>NUEVO REGISTRO - PESO EN BRUTO</h4>
                 </div>
                 <div class="card-body">
                     @if ($errors->any())
@@ -23,14 +23,22 @@
                         <div class="form-group">
                             <label for="tipo">Tipo de Animal</label>
                             <select class="custom-select" id="tipo" name="tipo" required>
-                                <option value="" selected disabled>Elije un tipo de animal</option>
-                                <option value="Pollos">Pollos</option>
-                                <option value="Cerdos">Cerdos</option>
+                                <option value="" selected disabled>Elija un tipo de animal</option>
+                                <option value="POLLOS">POLLOS</option>
+                                <option value="CERDOS">CERDOS</option>
                             </select>
                         </div>
                         <div class="form-group">
                             <label for="proveedor">Proveedor</label>
-                            <input type="text" class="form-control" id="proveedor" name="proveedor" value="{{ old('proveedor') }}" required />
+                            <select class="form-control" id="proveedor" name="proveedor" required>
+                                <option value="" selected disabled>Elija un proveedor</option>
+                                @foreach ($proveedores as $proveedor => $value)
+                                    <option value="{{ $value }}"> 
+                                        {{ $value }} 
+                                    </option>
+                                @endforeach    
+                            </select>
+                            {{-- <input type="text" class="form-control" id="proveedor" name="proveedor" value="{{ old('proveedor') }}" required /> --}}
                         </div>
                         <div class="form-group">
                             <label for="procedencia">Procedencia</label>
@@ -56,5 +64,26 @@
             </div>
         </div>
     </div>
+
+    <script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>
+    <script>
+        $(document).ready(function() {
+            $('#proveedor').keyup(function() {
+                $(this).val($(this).val().toUpperCase());
+            });
+
+            $('#procedencia').keyup(function() {
+                $(this).val($(this).val().toUpperCase());
+            });
+            
+            $('#placa').keyup(function() {
+                $(this).val($(this).val().toUpperCase());
+            });
+            
+            $('#conductor').keyup(function() {
+                $(this).val($(this).val().toUpperCase());
+            });
+        });
+    </script>
 
 @endsection
