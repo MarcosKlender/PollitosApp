@@ -6,7 +6,7 @@
         <div class="col-lg-9">
             <div class="card shadow mb-4">
                 <div class="card-header mt-2 text-center">
-                    <h4>LOTE {{ $lote->id }} - {{ $lote->tipo }}</h4>
+                    <h4>LOTE {{ $lote->id }} - {{ $lote->tipo }} - {{ $lote->proveedor }}</h4>
                 </div>
                 <div class="card-body">
                     @if (session()->get('success'))
@@ -187,7 +187,7 @@
     <script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>
     <script>
         $(document).ready(function() {
-            if ( $("td").is(":empty") )
+            if ( $("td").is(":empty") || $("td").length == 0 )
             {
                 $("#liquidar").prop('disabled', true);
             }

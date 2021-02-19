@@ -37,9 +37,9 @@ class PesoBrutoController extends Controller
         $storeData = $request->validate([
             'tipo' => 'required|max:191',
             'proveedor' => 'required|max:191',
-            'procedencia' => 'required|max:191',
-            'placa' => 'required|size:7',
-            'conductor' => 'required|max:191',
+            'procedencia' => 'required|regex:/^[\pL\pM\pN\s]+$/u|max:191',
+            'placa' => 'required|regex:/^[\pL\pM\pN\s]+$/u|size:7',
+            'conductor' => 'required|regex:/^[\pL\pM\pN\s]+$/u|max:191',
             'usuario' => 'required|max:191',
             'anulado' => 'required|size:1',
             'liquidado' => 'required|size:1',

@@ -80,7 +80,7 @@
                                                 @if ($lote->liquidado == '0')
                                                     <button type="button" class="btn btn-sm btn-primary">NO</button>
                                                 @else
-                                                    <button type="button" class="btn btn-sm btn-primary">SI</button>
+                                                    <button type="button" class="btn btn-sm btn-success">SI</button>
                                                 @endif
                                             </td>
                                             <td>
