@@ -2,6 +2,10 @@
 
 @section('main-content')
     <!-- Page Heading -->
+
+   
+
+
     <div class="row justify-content-center">
         <div class="col-lg-4">
             <div class="card shadow mb-4">
@@ -28,6 +32,8 @@
                                 <option value="CERDOS">CERDOS</option>
                             </select>
                         </div>
+
+
                         <div class="form-group">
                             <label for="proveedor">Proveedor</label>
                             <select class="form-control" id="proveedor" name="proveedor" required>
@@ -40,6 +46,25 @@
                             </select>
                             {{-- <input type="text" class="form-control" id="proveedor" name="proveedor" value="{{ old('proveedor') }}" required /> --}}
                         </div>
+
+
+
+                        <!--div class="form-group">
+                            <label for="proveedor">Proveedor</label>
+                           
+                        <!--  visualiza proveedores !-->
+                         <!--select class="form-control" id="proveedor" onchange= "javascript:prueba()" required > </select>
+
+                    
+                        <!--  muestra ruc/ci de proveedores !-->
+                        <!--input  name="ruc" id="ruc" type="hidden">
+                          
+
+                            {{-- <input type="text" class="form-control" id="proveedor" name="proveedor" value="{{ old('proveedor') }}" required /> --}}
+                        </div!-->
+
+                          
+
                         <div class="form-group">
                             <label for="procedencia">Procedencia</label>
                             <input type="text" class="form-control" id="procedencia" name="procedencia" value="{{ old('procedencia') }}" required />
@@ -85,5 +110,38 @@
             });
         });
     </script>
+
+
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
+
+    <script type="text/javascript">
+    $('#proveedor').select2({
+        placeholder: 'Seleccione el proveedor',
+        ajax: {
+            url: '/ajax-autocomplete-search',
+            dataType: 'json',
+            delay: 250,
+            processResults: function (data) {
+                return {
+                    results: $.map(data, function (item) {
+                        return {
+                            text: item.nombres,
+                            id: item.nombres,
+                            value: item.ruc_ci
+                        }
+                    })
+                };
+            },
+            cache: true
+        }
+    });
+    function prueba(){
+        var p = document.getElementById("proveedor"); 
+        document.getElementById("ruc").value=p.value;
+    }
+</script>
+
 
 @endsection
