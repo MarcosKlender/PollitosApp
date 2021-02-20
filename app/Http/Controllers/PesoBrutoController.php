@@ -21,7 +21,9 @@ class PesoBrutoController extends Controller
         $lotes = Lotes::orderBy('id')->where('anulado', 0)->paginate(8);
         $count = count($lotes);
         
-        return view('pesobruto.index', compact('lotes', 'count'));
+       
+
+        return view('pesobruto.index', compact('lotes','count'));
     }
 
     public function create()
@@ -34,6 +36,11 @@ class PesoBrutoController extends Controller
 
     public function store(Request $request)
     {
+
+        //dd( $request->old('placa'), $request->old('procedencia') );
+
+
+
         $storeData = $request->validate([
             'tipo' => 'required|max:191',
             'proveedor' => 'required|max:191',
@@ -54,6 +61,22 @@ class PesoBrutoController extends Controller
         $request->old('conductor');
 
         return redirect('/pesobruto')->with('success', '¡Lote creado exitosamente!');
+    }
+
+
+      public function selectSearch(Request $request)
+    {
+        
+        $proveedores = [];
+
+        if($request->has('q')){
+            $search = $request->q;
+            $proveedor =Proveedores::select("ruc_ci", "nombres")
+                    ->where('nombres', 'iLIKE', "%$search%")
+                    ->get();
+        }
+
+        return response()->json($proveedor);
     }
 
     public function show($id)
