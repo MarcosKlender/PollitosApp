@@ -27,6 +27,8 @@ Route::put('/profile', 'ProfileController@update')->name('profile.update');
 Route::resource('admin', AdminController::class);
 Route::resource('proveedores', ProveedoresController::class);
 
+Route::get('/ajax-autocomplete-search', 'PesoBrutoController@selectSearch')->name('selectSearch');
+
 Route::get('/pesobruto/lotes_anulados', 'PesoBrutoController@lotes_anulados')->name('pesobruto.lotes_anulados');
 Route::post('/pesobruto/anular_lote', 'PesoBrutoController@anular_lote')->name('pesobruto.anular_lote');
 Route::get('/pesobruto/registros_anulados', 'PesoBrutoController@registros_anulados')->name('pesobruto.registros_anulados');
