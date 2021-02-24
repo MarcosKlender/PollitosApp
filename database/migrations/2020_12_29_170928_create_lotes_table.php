@@ -17,12 +17,14 @@ class CreateLotesTable extends Migration
             $table->id();
             $table->string('tipo');
             $table->string('proveedor');
+            $table->string('ruc_ci', 13)->nullable();
             $table->string('procedencia');
             $table->string('placa');
             $table->string('conductor');
             $table->string('usuario');
             $table->string('anulado', 1);
             $table->string('liquidado', 1);
+            $table->string('observaciones')->nullable();
             $table->timestamps();
         });
     }

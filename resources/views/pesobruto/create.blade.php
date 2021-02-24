@@ -3,9 +3,6 @@
 @section('main-content')
     <!-- Page Heading -->
 
-   
-
-
     <div class="row justify-content-center">
         <div class="col-lg-4">
             <div class="card shadow mb-4">
@@ -33,51 +30,48 @@
                             </select>
                         </div>
 
-
                         <div class="form-group">
                             <label for="proveedor">Proveedor</label>
                             <select class="form-control" id="proveedor" name="proveedor" required>
                                 <option value="" selected disabled>Elija un proveedor</option>
-                                @foreach ($proveedores as $proveedor => $value)
-                                    <option value="{{ $value }}"> 
-                                        {{ $value }} 
+                                @foreach ($proveedores as $proveedor)
+                                    <option value="{{ $proveedor->nombres }}">
+                                        {{ $proveedor->nombres }}
                                     </option>
-                                @endforeach    
+                                @endforeach
                             </select>
                             {{-- <input type="text" class="form-control" id="proveedor" name="proveedor" value="{{ old('proveedor') }}" required /> --}}
                         </div>
 
-
-
-                        <!--div class="form-group">
+                        {{-- <div class="form-group">
                             <label for="proveedor">Proveedor</label>
-                           
-                        <!--  visualiza proveedores !-->
-                         <!--select class="form-control" id="proveedor" onchange= "javascript:prueba()" required > </select>
 
-                    
-                        <!--  muestra ruc/ci de proveedores !-->
-                        <!--input  name="ruc" id="ruc" type="hidden">
-                          
+                            <!--  visualiza proveedores !-->
+                            <select class="form-control" id="proveedor" onchange="javascript:prueba()" required> </select>
 
-                            {{-- <input type="text" class="form-control" id="proveedor" name="proveedor" value="{{ old('proveedor') }}" required /> --}}
-                        </div!-->
+                            <!--  muestra ruc/ci de proveedores !-->
+                            <input name="ruc" id="ruc" type="hidden">
 
-                          
+                            <input type="text" class="form-control" id="proveedor" name="proveedor"
+                                value="{{ old('proveedor') }}" required />
+                        </div> --}}
 
                         <div class="form-group">
                             <label for="procedencia">Procedencia</label>
-                            <input type="text" class="form-control" id="procedencia" name="procedencia" value="{{ old('procedencia') }}" required />
+                            <input type="text" class="form-control" id="procedencia" name="procedencia"
+                                value="{{ old('procedencia') }}" required />
                         </div>
                         <div class="form-group">
                             <label for="placa">Placa del Vehículo</label>
-                            <input type="text" class="form-control" id="placa" name="placa" value="{{ old('placa') }}" maxlength="7" required />
+                            <input type="text" class="form-control" id="placa" name="placa" value="{{ old('placa') }}"
+                                maxlength="7" required />
                         </div>
                         <div class="form-group">
                             <label for="conductor">Conductor del Vehículo</label>
-                            <input type="text" class="form-control" id="conductor" name="conductor" value="{{ old('conductor') }}" required />
+                            <input type="text" class="form-control" id="conductor" name="conductor"
+                                value="{{ old('conductor') }}" required />
                         </div>
-                        <input type="hidden" id="usuario" name="usuario" value="{{  Auth::user()->username }}" required />
+                        <input type="hidden" id="usuario" name="usuario" value="{{ Auth::user()->username }}" required />
                         <input type="hidden" id="anulado" name="anulado" value="0" required />
                         <input type="hidden" id="liquidado" name="liquidado" value="0" required />
                         <div class="row justify-content-around">
@@ -100,48 +94,51 @@
             $('#procedencia').keyup(function() {
                 $(this).val($(this).val().toUpperCase());
             });
-            
+
             $('#placa').keyup(function() {
                 $(this).val($(this).val().toUpperCase());
             });
-            
+
             $('#conductor').keyup(function() {
                 $(this).val($(this).val().toUpperCase());
             });
         });
+
     </script>
 
 
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
 
-    <script type="text/javascript">
-    $('#proveedor').select2({
-        placeholder: 'Seleccione el proveedor',
-        ajax: {
-            url: '/ajax-autocomplete-search',
-            dataType: 'json',
-            delay: 250,
-            processResults: function (data) {
-                return {
-                    results: $.map(data, function (item) {
-                        return {
-                            text: item.nombres,
-                            id: item.nombres,
-                            value: item.ruc_ci
-                        }
-                    })
-                };
-            },
-            cache: true
+    {{-- <script type="text/javascript">
+        $('#proveedor').select2({
+            placeholder: 'Seleccione el proveedor',
+            ajax: {
+                url: '/ajax-autocomplete-search',
+                dataType: 'json',
+                delay: 250,
+                processResults: function(data) {
+                    return {
+                        results: $.map(data, function(item) {
+                            return {
+                                text: item.nombres,
+                                id: item.nombres,
+                                value: item.ruc_ci
+                            }
+                        })
+                    };
+                },
+                cache: true
+            }
+        });
+
+        function prueba() {
+            var p = document.getElementById("proveedor");
+            document.getElementById("ruc").value = p.value;
         }
-    });
-    function prueba(){
-        var p = document.getElementById("proveedor"); 
-        document.getElementById("ruc").value=p.value;
-    }
-</script>
+
+    </script> --}}
 
 
 @endsection

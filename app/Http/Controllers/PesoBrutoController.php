@@ -18,29 +18,29 @@ class PesoBrutoController extends Controller
     
     public function index()
     {
-        $lotes = Lotes::orderBy('id')->where('anulado', 0)->paginate(8);
+        if (Auth::user()->rol_id == 1)
+        {
+            $lotes = Lotes::orderBy('id', 'desc')->where('anulado', 0)->paginate(8);
+        }
+        else
+        {
+            $lotes = Lotes::orderBy('id', 'desc')->where('anulado', 0)->where('usuario', Auth::user()->username)->paginate(8);
+        }
+
         $count = count($lotes);
         
-       
-
-        return view('pesobruto.index', compact('lotes','count'));
+        return view('pesobruto.index', compact('lotes', 'count'));
     }
 
     public function create()
     {
-        $proveedores = Proveedores::pluck('nombres');
-        //dd($proveedores);
+        $proveedores = Proveedores::select('nombres', 'ruc_ci')->get();
 
         return view('pesobruto.create', compact('proveedores'));
     }
 
     public function store(Request $request)
     {
-
-        //dd( $request->old('placa'), $request->old('procedencia') );
-
-
-
         $storeData = $request->validate([
             'tipo' => 'required|max:191',
             'proveedor' => 'required|max:191',
@@ -64,14 +64,13 @@ class PesoBrutoController extends Controller
     }
 
 
-      public function selectSearch(Request $request)
+    public function selectSearch(Request $request)
     {
-        
         $proveedores = [];
 
-        if($request->has('q')){
+        if ($request->has('q')) {
             $search = $request->q;
-            $proveedor =Proveedores::select("ruc_ci", "nombres")
+            $proveedor = Proveedores::select("ruc_ci", "nombres")
                     ->where('nombres', 'iLIKE', "%$search%")
                     ->get();
         }
@@ -130,8 +129,7 @@ class PesoBrutoController extends Controller
         $lotes = Lotes::orderBy('id', 'desc')->where('anulado', 1)->paginate(8);
         $count = count($lotes);
 
-        if (Auth::user()->rol->key != 'admin')
-        {
+        if (Auth::user()->rol->key != 'admin') {
             return redirect('/pesobruto');
         }
         
@@ -142,9 +140,10 @@ class PesoBrutoController extends Controller
     {
         $updateData = $request->validate([
             'anulado' => 'required|size:1',
+            'observaciones' => 'max:191',
         ]);
         
-        Lotes::whereId($request->id)->update($updateData);
+        Lotes::whereId($request->id_anular)->update($updateData);
 
         return back()->with('success', '¡Lote actualizado exitosamente!');
     }
@@ -154,8 +153,7 @@ class PesoBrutoController extends Controller
         $registros = Registros::orderBy('id', 'desc')->where('anulado', 1)->paginate(10);
         $count = count($registros);
 
-        if (Auth::user()->rol->key != 'admin')
-        {
+        if (Auth::user()->rol->key != 'admin') {
             return redirect('/pesobruto');
         }
         
@@ -166,6 +164,7 @@ class PesoBrutoController extends Controller
     {
         $updateData = $request->validate([
             'anulado' => 'required|size:1',
+            'observaciones' => 'max:191',
         ]);
         
         Registros::whereId($request->id_anular)->update($updateData);
