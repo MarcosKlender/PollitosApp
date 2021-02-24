@@ -89,6 +89,7 @@
                                             <td><button type="button" class="btn btn-sm btn-primary modal_gavetas"
                                                     data-toggle="modal" data-target="#staticBackdrop1"
                                                     data-id="{{ $registro->id }}"
+                                                    data-cant-gavetas="{{ $registro->cant_gavetas }}"
                                                     data-peso-bruto="{{ $registro->peso_bruto }}">Gavetas</button>
                                                 <button type="button" class="btn btn-sm btn-danger modal_anular"
                                                     data-toggle="modal" data-target="#staticBackdrop2"
@@ -101,8 +102,8 @@
                         </div>
                     @endif
                     <div class="text-center">
-                        <button type="button" class="btn btn-danger" data-toggle="modal"
-                            data-target="#staticBackdrop3" id="liquidar" name="liquidar">Liquidar Lote</button>
+                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#staticBackdrop3"
+                            id="liquidar" name="liquidar">Liquidar Lote</button>
                     </div>
                 </div>
             </div>
@@ -127,7 +128,8 @@
                     <div class="modal-footer">
                         <input type="hidden" id="id_gavetas" name="id_gavetas">
                         <input type="hidden" id="peso_final" name="peso_final">
-                        <button type="button" id="cancelar_gavetas" class="btn btn-primary" data-dismiss="modal">Cancelar</button>
+                        <button type="button" id="cancelar_gavetas" class="btn btn-primary"
+                            data-dismiss="modal">Cancelar</button>
                         <button type="submit" id="submit_gavetas" class="btn btn-success">Registrar Peso</button>
                     </div>
                 </form>
@@ -145,14 +147,17 @@
                     <h5 class="modal-title" id="staticBackdropLabel2">¿Está seguro de anular el registro?</h5>
                 </div>
                 <div class="modal-body">
-                    Esta acción no se puede deshacer.
-                </div>
-                <div class="modal-footer">
+                    Esta acción no se puede deshacer. <br><br>
+
                     <form action="{{ route('pesobruto.anular_registro') }}" method="post">
                         @csrf
+                        <div class="form-group">
+                            <label for="exampleFormControlTextarea1">Razones de la Anulación</label>
+                            <textarea class="form-control" id="observaciones" name="observaciones" rows="3" required></textarea>
+                        </div>
                         <input type="hidden" id="id_anular" name="id_anular">
                         <input type="hidden" id="anulado" name="anulado" value="1">
-                        <button type="button" class="btn btn-primary" data-dismiss="modal">Cancelar</button>
+                        <button type="button" id="cancelar_anular" class="btn btn-primary" data-dismiss="modal">Cancelar</button>
                         <button type="submit" class="btn btn-danger">Anular</button>
                     </form>
                 </div>
@@ -187,14 +192,18 @@
     <script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>
     <script>
         $(document).ready(function() {
-            if ( $("td").is(":empty") || $("td").length == 0 )
-            {
+            if ($("td").is(":empty") || $("td").length == 0) {
                 $("#liquidar").prop('disabled', true);
             }
 
             $(".modal_gavetas").click(function() {
+                $("#staticBackdrop1").on('shown.bs.modal', function() {
+                    $(this).find('#peso_gavetas').focus();
+                });
+
                 var registro_g = $(this).attr('data-id');
-                $(".modal-title").html('Registrar Peso de Gavetas ' + registro_g);
+                var cantidad_g = $(this).attr('data-cant-gavetas');
+                $(".modal-title").html('REGISTRO #' + registro_g + ' - CANTIDAD DE GAVETAS: ' + cantidad_g);
                 $("#id_gavetas").val(registro_g);
                 var peso_bruto = parseFloat($(this).attr('data-peso-bruto')).toFixed(2);
 
@@ -212,8 +221,13 @@
             $(".modal_anular").click(function() {
                 var registro_a = $(this).attr('data-id');
                 $("#id_anular").val(registro_a);
+
+                $("#cancelar_anular").click(function() {
+                    $("#observaciones").val("");
+                });
             });
         });
+
     </script>
 
 @endsection

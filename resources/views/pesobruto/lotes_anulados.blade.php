@@ -34,14 +34,13 @@
                                         <td>ID</td>
                                         <td>Tipo</td>
                                         <td>Proveedor</td>
+                                        <td>RUC/CI</td>
                                         <td>Procedencia</td>
                                         <td>Placa</td>
                                         <td>Conductor</td>
                                         <td>Usuario</td>
+                                        <td>Observaciones</td>
                                         <td>Fecha de Registro</td>
-                                        @if (Auth::user()->rol->key == 'admin')
-                                            <td>Anulado</td>
-                                        @endif
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -50,21 +49,13 @@
                                             <td>{{ $lote->id }}</td>
                                             <td>{{ $lote->tipo }}</td>
                                             <td>{{ $lote->proveedor }}</td>
+                                            <td>{{ $lote->ruc_ci }}</td>
                                             <td>{{ $lote->procedencia }}</td>
                                             <td>{{ $lote->placa }}</td>
                                             <td>{{ $lote->conductor }}</td>
                                             <td>{{ $lote->usuario }}</td>
+                                            <td>{{ $lote->observaciones }}</td>
                                             <td>{{ $lote->created_at }}</td>
-                                            @if (Auth::user()->rol->key == 'admin')
-                                                <td>
-                                                    <form action="{{ route('pesobruto.anular_lote') }}" method="post">
-                                                        @csrf
-                                                        <input type="hidden" id="id" name="id" value="{{ $lote->id }}">
-                                                        <input type="hidden" id="anulado" name="anulado" value="0">
-                                                        <button class="btn btn-sm btn-danger" type="submit">SI</button>
-                                                    </form>
-                                                </td>
-                                            @endif
                                         </tr>
                                     @endforeach
                                 </tbody>

@@ -23,6 +23,7 @@ class CreateRegistrosTable extends Migration
             $table->decimal('peso_final')->nullable();
             $table->string('usuario');
             $table->string('anulado', 1);
+            $table->string('observaciones')->nullable();
             $table->timestamps();
 
             $table->foreign('lotes_id')->references('id')->on('lotes');
