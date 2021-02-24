@@ -97,8 +97,23 @@
                     <span>{{ __('Entregas') }}</span></a>
             </li>
 
+
+
             <!-- Divider -->
             <hr class="sidebar-divider">
+
+
+            <!-- Heading -->
+            <div class="sidebar-heading">
+                {{ __('Reportes') }}
+            </div>
+            
+             <li class="nav-item {{ (request()->is('reportes')) ? 'active' : '' }}">
+                <a class="nav-link" href="{{ route('reportes.index') }}">
+                    <i class="fas fa-fw fa-file"></i>
+                    <span>{{ __('Reportes') }}</span></a>
+            </li>
+
 
             <!-- Heading -->
             <div class="sidebar-heading">
