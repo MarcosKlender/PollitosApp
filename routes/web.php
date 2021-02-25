@@ -26,6 +26,7 @@ Route::put('/profile', 'ProfileController@update')->name('profile.update');
 
 Route::resource('admin', AdminController::class);
 Route::resource('proveedores', ProveedoresController::class);
+Route::resource('clientes', ClientesController::class);
 
 
 

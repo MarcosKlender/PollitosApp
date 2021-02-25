@@ -68,6 +68,16 @@
                         <span>{{ __('Proveedores') }}</span>
                     </a>
                 </li>
+
+                 <!-- Nav Item - Admin -->
+                <li class="nav-item {{ (request()->is('clientes')) ? 'active' : '' }}">
+                    <a class="nav-link" href="{{ route('clientes.index') }}">
+                        <i class="fas fa-fw fa-warehouse"></i>
+                        <span>{{ __('Clientes') }}</span>
+                    </a>
+                </li>
+                
+
             @endif
 
             <!-- Divider -->
