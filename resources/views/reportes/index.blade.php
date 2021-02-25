@@ -94,12 +94,16 @@
                             <table class="table table-striped table-bordered" id="reportes_peso" >
                                 <thead>
                                     <tr>
-                                        <td>ID</td>
+                                        <td>N° Lote</td>
                                         <td>Tipo</td>
                                         <td>Proveedor</td>
-                                        <td>Procedencia</td>
+                                        <td>Procedencia</td>                                       
                                         <td>Placa</td>
                                         <td>Conductor</td>
+                                        <td>Tot. Cant. Gavetas</td>
+                                        <td>Tot. Peso Bruto</td>
+                                        <td>Tot. Peso Gavetas</td>
+                                        <td>Tot. Peso Final</td>
                                         <td>Usuario</td>
                                         <td>Fecha de Registro</td>
                                         <td>Anulado</td>
@@ -113,9 +117,13 @@
                                             <td id="{{ $lote->id}}" >{{ $lote->id }}</td>
                                             <td>{{ $lote->tipo }}</td>
                                             <td>{{ $lote->proveedor }}</td>
-                                            <td>{{ $lote->procedencia }}</td>
+                                            <td>{{ $lote->procedencia }}</td>                                           
                                             <td>{{ $lote->placa }}</td>
                                             <td>{{ $lote->conductor }}</td>
+                                            <td>{{ $lote->total_cant_gavetas }}</td>
+                                            <td>{{ $lote->total_peso_bruto }}</td>
+                                            <td>{{ $lote->total_peso_gavetas }}</td>
+                                            <td>{{ $lote->total_peso_final }}</td>
                                             <td>{{ $lote->usuario }}</td>
                                             <td>{{ $lote->created_at }}</td>
                                             <td>

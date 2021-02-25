@@ -71,15 +71,23 @@
                             <table class="table table-striped table-bordered">
                                 <thead>
                                     <tr>
-                                        <td>ID</td>
+                                        <tr>
+                                        <td>N° Lote</td>
                                         <td>Tipo</td>
                                         <td>Proveedor</td>
-                                        <td>Procedencia</td>
+                                        <td>Procedencia</td>                                       
                                         <td>Placa</td>
                                         <td>Conductor</td>
+                                        <td>Tot. Cant. Gavetas</td>
+                                        <td>Tot. Peso Bruto</td>
+                                        <td>Tot. Peso Gavetas</td>
+                                        <td>Tot. Peso Final</td>
                                         <td>Usuario</td>
+                                        <td>Fecha de Registro</td>
                                         <td>Anulado</td>
                                         <td>Liquidado</td>
+                                        <td>Acciones</td>
+                                    </tr>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -91,7 +99,12 @@
                                             <td>{{ $search->procedencia }}</td>
                                             <td>{{ $search->placa }}</td>
                                             <td>{{ $search->conductor }}</td>
+                                            <td>{{ $search->total_cant_gavetas }}</td>
+                                            <td>{{ $search->total_peso_bruto }}</td>
+                                            <td>{{ $search->total_peso_gavetas }}</td>
+                                            <td>{{ $search->total_peso_final }}</td>
                                             <td>{{ $search->usuario }}</td>
+                                            <td>{{ $search->created_at }}</td>
                                             <td>
                                             @if ($search->anulado == '0')
                                                  <button class="btn btn-sm btn-primary" type="submit">NO</button>
@@ -102,14 +115,14 @@
 
                                             <td>
                                                 @if ($search->liquidado == '0')
-                                                    <button type="button" class="btn btn-sm btn-primary">NO</button>
+                                                    <button type="button" class="btn btn-sm btn-info">NO</button>
                                                 @else
-                                                    <button type="button" class="btn btn-sm btn-success">SI</button>
+                                                    <button type="button" class="btn btn-sm btn-warning">SI</button>
                                                 @endif
                                             </td>
                                             <td>
                                                 @if ($search->liquidado == '0')
-                                                    <a href="{{ route('pesobruto.show', $search->id) }}"
+                                                    <a href="#"
                                                         class="btn btn-sm btn-primary">Registrar Pesos</a>
                                                 @else
                                                     <a href="{{ route('pesobruto.show', $search->id) }}"

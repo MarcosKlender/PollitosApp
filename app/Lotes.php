@@ -4,70 +4,85 @@ namespace App;
 
 use App\Registros;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Lotes extends Model
 {
     use HasFactory;
 
+
     protected $fillable = [
-        'tipo', 'proveedor', 'procedencia', 'placa', 'conductor', 'cant_gavetas', 'cant_pollos',
-        'peso_gavetas_pollos', 'peso_gavetas', 'peso_final', 'usuario', 'anulado', 'liquidado'
+        'tipo', 'proveedor', 'procedencia', 'placa', 'conductor', 'peso_bruto', 'cant_gavetas', 'cant_pollos',
+        'peso_gavetas_pollos', 'peso_gavetas', 'peso_final', 'usuario', 'anulado', 'liquidado','id','lote_id'
     ];
+
+
 
     public function registros()
     {
         return $this->hasMany(Registros::class);
     }
 
+
+     public function scopeAll_index($query){
+
+        return $query->join('registros','registros.lotes_id', '=','lotes.id')->select('lotes.*',
+                        DB::raw('sum(registros.cant_gavetas) as total_cant_gavetas'),
+                        DB::raw('sum(registros.peso_bruto) as total_peso_bruto'),
+                        DB::raw('sum(registros.peso_gavetas) as total_peso_gavetas'),
+                        DB::raw('sum(registros.peso_final) as total_peso_final'))
+                        ->groupBy('registros.lotes_id','lotes.id');
+     }
+
     public function scopeTipo($query, $tipo ){
     	if($tipo)
-    		return $query->where('tipo', 'ilike', "%$tipo%");
+    		return $query->where('lotes.tipo', 'ilike', "%$tipo%");
     }
 
     public function scopeProveedor($query, $proveedor ){
     	if($proveedor)
-    		return $query->where('proveedor', 'ilike', "%$proveedor%");
+    		return $query->where('lotes.proveedor', 'ilike', "%$proveedor%");
     }
 
     public function scopeProcedencia($query, $procedencia ){
     	if($procedencia)
-    		return $query->where('procedencia', 'ilike', "%$procedencia%");
+    		return $query->where('lotes.procedencia', 'ilike', "%$procedencia%");
     }
 
     public function scopePlaca($query, $placa ){
     	if($placa)
-    		return $query->where('placa', 'ilike', "%$placa%");
+    		return $query->where('lotes.placa', 'ilike', "%$placa%");
     }
 
     public function scopeConductor($query, $conductor ){
     	if($conductor)
-    		return $query->where('conductor', 'ilike', "%$conductor%");
+    		return $query->where('lotes.conductor', 'ilike', "%$conductor%");
     }
 
      public function scopeUsuario($query, $usuario ){
     	if($usuario)
-    		return $query->where('usuario', 'ilike', "%$usuario%");
+    		return $query->where('lotes.usuario', 'ilike', "%$usuario%");
     }
 
      public function scopeAnulado($query, $anulado ){
     	if($anulado)
-    		return $query->where('anulado', $anulado);
+    		return $query->where('lotes.anulado', $anulado);
     }
 
     public function scopeLiquidado($query, $liquidado ){
     	if($liquidado)
-    		return $query->where('liquidado', $liquidado);
+    		return $query->where('lotes.liquidado', $liquidado);
     }
 
      public function scopeFechaini($query, $fechaini ){
     	if($fechaini)
-    		return $query->where('created_at', $fechaini);
+    		return $query->where('lotes.created_at', $fechaini);
     }
 
     public function scopeFechafin($query, $fechafin ){
     	if($fechafin)
-    		return $query->where('created_at', $fechafin);
+    		return $query->where('lotes.created_at', $fechafin);
     }
 
 }

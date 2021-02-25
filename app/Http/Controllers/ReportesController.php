@@ -20,18 +20,10 @@ class ReportesController extends Controller
     public function index(Request $request)
     {
         
-        if($request->ajax()){
 
-             return response()->json(1);
-
-        }
-     
-
-       // $lotes = DB::table('lotes')->join('registros','lotes.id','=','registros.lotes_id')->distinct('lotes.id')->paginate(4);
-        
-        $lotes = Lotes::orderBy('created_at','DESC')->paginate(4);
-        $count = count($lotes);
-        return view('reportes.index', compact('lotes','count'));
+         $lotes = Lotes::all_index()->paginate(4);
+         $count = count($lotes);
+         return view('reportes.index', compact('lotes','count'));
     }
 
    
@@ -51,7 +43,7 @@ class ReportesController extends Controller
         $criterio_conductor = $request->get('criterio_conductor');
         $criterio_usuario = $request->get('criterio_usuario');
 
-        $searches = Lotes::orderBy('created_at', 'DESC')
+            $searches = Lotes::all_index()
             ->tipo($criterio_tipo)
             ->proveedor($criterio_proveedor)
             ->procedencia($criterio_procedencia)
@@ -61,6 +53,7 @@ class ReportesController extends Controller
             ->anulado($criterio_anulado)
             ->liquidado($criterio_liquidado)
             ->paginate(4);
+
 
         $count = count($searches);
 
