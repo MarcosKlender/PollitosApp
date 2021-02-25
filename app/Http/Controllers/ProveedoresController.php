@@ -51,10 +51,24 @@ class ProveedoresController extends Controller
      */
     public function show(Request $request)
     {
-        $tipo_busqueda = $request->get('tipo_busqueda');
-        $criterio = $request->get('criterio');
 
-        if ($tipo_busqueda == 'ruc_ci')
+        $criterio_ruc_ci = $request->get('criterio_ruc_ci');
+        $criterio_nombres = $request->get('criterio_nombres');
+        $criterio_rsocial = $request->get('criterio_rsocial');
+        $criterio_ciudad = $request->get('criterio_ciudad');
+
+        $searches = Proveedores::orderBy('id')
+            ->ruc_ci($criterio_ruc_ci)
+            ->nombre($criterio_nombres)
+            ->razonsocial($criterio_rsocial)
+            ->ciudad($criterio_ciudad)
+            ->paginate(10);
+
+        $count = count($searches);
+
+
+
+        /*if ($tipo_busqueda == 'ruc_ci')
         {
             $searches = Proveedores::orderBy('id')->where('ruc_ci', 'like', '%'.$criterio.'%')->paginate(10);
             $count = count($searches);
@@ -63,9 +77,12 @@ class ProveedoresController extends Controller
         {
             $searches = Proveedores::orderBy('id')->where('nombres', 'like', '%'.$criterio.'%')->orWhere('razon_social', 'like', '%'.$criterio.'%')->paginate(10);
             $count = count($searches);
-        }
+        }*/
 
-        return view('proveedores.search', compact('searches', 'count', 'criterio'));
+        return view('proveedores.search', compact('searches', 'count'));
+
+
+
     }
 
     /**

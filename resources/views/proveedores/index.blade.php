@@ -14,27 +14,40 @@
                 <div class="card-body">
                     <div class="row justify-content-around">
                         
-                        <div class="mb-3">
-                            <a href="{{ route('proveedores.create') }}" class="btn btn-success">Importar Proveedores</a>
-                        </div>
+                       
                         
                         <div class="mb-3">
                             <form method="get" action="{{ route('proveedores.show', 'search') }}">
+
                                 <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <select class="form-control" id="tipo_busqueda" name="tipo_busqueda" required>
-                                            <option value="" selected disabled>Búsqueda</option>
-                                            <option value="ruc_ci">RUC / CI</option>
-                                            <option value="nom_rs">Nombres</option>
-                                        </select>
+                               
+
+                                     <div class="col-auto input-group-append">
+                                        <input type="search" id="criterio_ruc_ci" name="criterio_ruc_ci" class="form-control"  placeholder="Buscar RUC/CI"  >
                                     </div>
-                                    <input type="search" id="criterio" name="criterio" class="form-control" required>
+
+                                    <div class="col-auto input-group-append">
+                                        <input type="search" id="criterio_nombres" name="criterio_nombres" class="form-control"  placeholder="Buscar proveedor"  >
+                                    </div>
+
+                                    <div class="col-auto input-group-append">
+                                        <input type="search" id="criterio_rsocial" name="criterio_rsocial" class="form-control"  placeholder="Buscar razon social"  >
+                                    </div>
+                            
+                                     <div class="col-auto input-group-append">
+                                        <input type="search" id="criterio_ciudad" name="criterio_ciudad" class="form-control"  placeholder="Buscar ciudad"  >
+                                    </div>
+
+
                                     <div class="input-group-append">
                                         <button class="btn btn-outline-primary border" type="submit">
                                             <i class="fas fa-search"></i>
                                         </button>
                                     </div>
                                 </div>
+
+
+
                             </form>
                         </div>
 
