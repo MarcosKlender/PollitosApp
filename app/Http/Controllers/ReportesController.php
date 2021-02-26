@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Clientes;
 use App\Lotes;
 use App\Registros;
 use App\Proveedores;
@@ -9,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use PDF;
 
 class ReportesController extends Controller
 {
@@ -90,8 +92,28 @@ class ReportesController extends Controller
         return view('pesobruto.registros_anulados', compact('registros', 'count'));
     }
 
-  
+    public function generar_pdf($id)
+    {
+    $pdf = \App::make('dompdf.wrapper');
+    
+    $lotes = Lotes::all_index()->orderBy('lotes.id')->paginate(10);
+    $registros = Registros::orderBy('id')->get();
+     $count = count($lotes);
+     $view = \View::make('reportes.lotepdf')->with('lotes',$lotes)->with('registros',$registros)->with('count',$count)->with('id_lote',$id)->render();
+     $pdf->loadHTML($view);
+    //return dd($id);
+    return $pdf->stream();
+    }
+
+    public function detalle_lotes()
+    {
+        $criterio_tipo = 'POLLOS';
+
+            $searches = Lotes::all_index()->orderBy('lotes.id')->paginate(4);
    
+        
+        return var_dump($searches);
+    } 
 
    
 }

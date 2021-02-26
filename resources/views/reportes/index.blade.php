@@ -109,6 +109,7 @@
                                         <td>Anulado</td>
                                         <td>Liquidado</td>
                                         <td>Acciones</td>
+                                        <td>Reporte</td>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -126,7 +127,7 @@
                                             <td>{{ $lote->total_peso_final }}</td>
                                             <td>{{ $lote->usuario }}</td>
                                             <td>{{ $lote->created_at }}</td>
-                                            <td>
+                                            <td class="button">
                                             @if ($lote->anulado == '0')
                                                  <button id="btn_prueba" class="btn btn-sm btn-primary" type="submit">NO</button>
                                                  @else
@@ -134,14 +135,14 @@
                                             @endif
                                              </td>
 
-                                            <td>
+                                            <td class="button">
                                                 @if ($lote->liquidado == '0')
                                                     <button type="button" class="btn btn-sm btn-info">NO</button>
                                                 @else
                                                     <button type="button" class="btn btn-sm btn-warning">SI</button>
                                                 @endif
                                             </td>
-                                            <td>
+                                            <td class="button">
                                                 @if ($lote->liquidado == '0')
                                                     <a href="#"
                                                         class="btn btn-sm btn-primary">Registrar Pesos</a>
@@ -149,6 +150,10 @@
                                                     <a href="{{ route('pesobruto.show', $lote->id) }}"
                                                         class="btn btn-sm btn-primary">Ver Pesos</a>
                                                 @endif
+                                            </td>
+                                            <td class="button">
+                                                   <a href="{{ route('reportes.generar_pdf',$lote->id) }}" target="_blank"
+                                                        class="btn btn-sm btn-primary"><i class="far fa-file-pdf"></i></a>
                                             </td>
                                         </tr>
                                     @endforeach
@@ -164,14 +169,24 @@
                             <b>{{ $count }}</b></span>--}}
                     </div>
 
+<!--<table>
+  <thead>
+    <th>Nombre</th>
+    <th>Apellido</th>
+    <th>Cargo</th>
+    <th>Empresa</th>
+  </thead>
+  <tbody id="cuerpo">
+  </tbody>
+</table>-->
+
                 </div>
             </div>
         </div>
     </div>
 
-
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js" type="text/javascript"></script>
-    <script>
+<!--  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> 
+    <script type="text/javascript">
         $(document).ready(function(){
 
             $("#reportes_peso tbody tr").click(function(e){
@@ -188,13 +203,27 @@
 
                      console.log(id);
  
-                  /*  $.ajax({                       
-                        data:{"id":id},
-                        url:'reportes',
+                    $.ajax({                       
+                        data:{id:id},
+                        url:'/reportes/detalle_lotes',
                         type:'post',
-                        dataType:'json',
+                        //dataType:'json',
                         success: function(response){
-                            alert(response);
+                            $("#cuerpo").html("");
+                            var obj = Object.values(response);
+                         for(var i=0; i<obj.length; i++){
+                           var tr = `<tr>
+                             <td>`+obj[0][17]+`</td>
+                             <td>`+obj[0][17]+`</td>
+                             <td>`+obj[0][17]+`</td>
+                             <td>`+obj[0][17]+`</td>
+                           </tr>`;
+                           $("#cuerpo").append(tr)}
+                            
+                          console.log(typeof(obj));
+                           console.log(response);
+                           alert(response);
+                           
                         },
                         statusCode:{
                             404: function(){
@@ -206,7 +235,7 @@
                         }
 
 
-                     }); */
+                     }); 
 
                         
                  
@@ -214,8 +243,9 @@
 
                });
 
-        })
+        });
           
-     </script>
+     </script>-->
+   
 
 @endsection
