@@ -33,9 +33,9 @@ class ReportesController extends Controller
 
     public function show(Request $request)
     {
-
-        // $criterio_fecha_ini = $request->get('criterio_fecha_ini');
-        //$criterio_fecha_fin = $request->get('criterio_fecha_fin');
+        
+        $criterio_fecha_ini = $request->get('criterio_fecha_ini');
+        $criterio_fecha_fin = $request->get('criterio_fecha_fin');
         $criterio_liquidado = $request->get('criterio_liquidado');
         $criterio_anulado = $request->get('criterio_anulado');
         $criterio_tipo = $request->get('criterio_tipo');
@@ -45,7 +45,7 @@ class ReportesController extends Controller
         $criterio_conductor = $request->get('criterio_conductor');
         $criterio_usuario = $request->get('criterio_usuario');
 
-            $searches = Lotes::all_index()
+            $lotes = Lotes::all_index()
             ->tipo($criterio_tipo)
             ->proveedor($criterio_proveedor)
             ->procedencia($criterio_procedencia)
@@ -54,13 +54,14 @@ class ReportesController extends Controller
             ->usuario($criterio_usuario)
             ->anulado($criterio_anulado)
             ->liquidado($criterio_liquidado)
+            ->fecha($criterio_fecha_ini,$criterio_fecha_fin)
             ->orderBy('lotes.id')
             ->paginate(4);
 
 
-        $count = count($searches);
+        $count = count($lotes);
 
-        return view('reportes.search', compact('searches', 'count'));
+        return view('reportes.index', compact('lotes', 'count'));
     }
 
 
@@ -104,15 +105,21 @@ class ReportesController extends Controller
     //return dd($id);
     return $pdf->stream();
     }
+    
+    public function generar_pdf_general($lotes)
+    {
+    return dd($lotes);
+    }
+
 
     public function detalle_lotes()
     {
-        $criterio_tipo = 'POLLOS';
-
-            $searches = Lotes::all_index()->orderBy('lotes.id')->paginate(4);
+            
+            $id=Request()->id;
+            $registros = Registros::where('lotes_id', $id)->orderBy('id')->get();
    
         
-        return var_dump($searches);
+        return $registros;
     } 
 
    

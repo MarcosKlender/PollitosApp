@@ -18,21 +18,7 @@
                         <div class="mb-3">
                             <form method="get" action="{{ route('reportes.show', 'search') }}">
                                
-
-                             <!--div class="col-md-10 mb-2">
-
-                                        <label for="fecha_ini"> Desde:</label>
-                                        <div class=" col-md-2 mt-lg-0 mt-md-0 mt-2">
-                                             <input type="date" class="form-control ml-2" name="criterio_fecha_ini">
-                                        </div>
-
-                                        <label for="fecha_fin"> Hasta:</label>
-                                        <div class="input-group col-md-2 mt-lg-0 mt-md-0 mt-2">
-                                            <input type="date" class="form-control ml-2" name="criterio_fecha_fin">
-                                        </div>
-                                </div!-->
-
-                                
+                               
                                 <div class="input-group">
 
                                      <div class="col-auto input-group-append">
@@ -59,6 +45,17 @@
                                          <input type="search" id="criterio_usuario" name="criterio_usuario" class="form-control"  placeholder="Buscar usuario">
                                     </div>
 
+
+                                        <label for="fecha_ini"> Desde:</label>
+                                        <div class=" col-md-2 mt-lg-0 mt-md-0 mt-2">
+                                             <input type="date" class="form-control ml-2" name="criterio_fecha_ini">
+                                        </div>
+
+                                        <label for="fecha_fin"> Hasta:</label>
+                                        <div class="input-group col-md-2 mt-lg-0 mt-md-0 mt-2">
+                                            <input type="date" class="form-control ml-2" name="criterio_fecha_fin">
+                                        </div>
+
                                     <div class="form-check form-check-inline">
                                         <input class="form-check-input" type="checkbox" id="criterio_anulado" value="1" name="criterio_anulado">
                                         <label class="form-check-label" for="inlineCheckbox1"> Anulado </label>
@@ -76,6 +73,7 @@
                                     </div>
                                 </div>
                             </form>
+                            
                         </div>
                     
 
@@ -116,8 +114,8 @@
                                     @foreach ($lotes as $lote)
                                         <tr>
                                             <td id="{{ $lote->id}}" >{{ $lote->id }}</td>
-                                            <td>{{ $lote->tipo }}</td>
-                                            <td>{{ $lote->proveedor }}</td>
+                                            <td id="a">{{ $lote->tipo }}</td>
+                                            <td id="b">{{ $lote->proveedor }}</td>
                                             <td>{{ $lote->procedencia }}</td>                                           
                                             <td>{{ $lote->placa }}</td>
                                             <td>{{ $lote->conductor }}</td>
@@ -152,8 +150,8 @@
                                                 @endif
                                             </td>
                                             <td class="button">
-                                                   <a href="{{ route('reportes.generar_pdf',$lote->id) }}" target="_blank"
-                                                        class="btn btn-sm btn-primary"><i class="far fa-file-pdf"></i></a>
+                                                     <a href="{{ route('reportes.generar_pdf',$lote->id) }}" target="_blank"
+                                                        class="btn btn-sm btn-primary" onclick = "botonclic();"><i class="far fa-file-pdf"></i></a>
                                             </td>
                                         </tr>
                                     @endforeach
@@ -168,28 +166,48 @@
                         {{-- <span>Total de Lotes:
                             <b>{{ $count }}</b></span>--}}
                     </div>
-
-<!--<table>
-  <thead>
-    <th>Nombre</th>
-    <th>Apellido</th>
-    <th>Cargo</th>
-    <th>Empresa</th>
-  </thead>
-  <tbody id="cuerpo">
-  </tbody>
-</table>-->
+                    <br>
+                       <h4><strong>DETALLE DEL LOTE # </strong><label id="nombre_lote"></label></h4>
+                              <table class="table table-striped table-bordered">
+                                <thead>
+                                    <tr>
+                                        <td>ID</td>
+                                        <td>Cantidad de Gavetas</td>
+                                        <td>Peso Bruto</td>
+                                        <td>Peso Gavetas</td>
+                                        <td>Peso Final</td>
+                                        <td>Usuario</td>
+                                        <td>Fecha de Registro</td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                <tbody id="cuerpo">
+                                </tbody>
+                                 <tr>
+                                        <td colspan="1"><b>TOTAL</b></td>
+                                        <td id="total_cantidad"><b></b></td>
+                                        <td id="total_bruto"><b></b></td>
+                                        <td id="total_gavetas"><b></b></td>
+                                        <td id="total_final"><b></b></td>
+                                    </tr>
+                              </table>
 
                 </div>
             </div>
         </div>
     </div>
 
-<!--  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> 
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> 
     <script type="text/javascript">
         $(document).ready(function(){
+            
+           function botonclic()
+           {
+            alert('ok');
+           }
 
-            $("#reportes_peso tbody tr").click(function(e){
+            $("#reportes_peso").on('click', 'tr', function (e){
+           // $("#reportes_peso tbody tr").click(function(e){
 
 
                 $.ajaxSetup({
@@ -199,9 +217,16 @@
                     });
                     e.preventDefault();
   
-                     var id=$(this).find("td:first-child").html();  
+                    var id=$(this).find("td:first-child").html(); 
+
+                     var tc=0;
+                     var tb=0;
+                     var tg=0;
+                     var tf=0;
 
                      console.log(id);
+                    
+                    document.querySelector('#nombre_lote').innerText = id;
  
                     $.ajax({                       
                         data:{id:id},
@@ -210,19 +235,30 @@
                         //dataType:'json',
                         success: function(response){
                             $("#cuerpo").html("");
-                            var obj = Object.values(response);
-                         for(var i=0; i<obj.length; i++){
-                           var tr = `<tr>
-                             <td>`+obj[0][17]+`</td>
-                             <td>`+obj[0][17]+`</td>
-                             <td>`+obj[0][17]+`</td>
-                             <td>`+obj[0][17]+`</td>
-                           </tr>`;
-                           $("#cuerpo").append(tr)}
-                            
-                          console.log(typeof(obj));
-                           console.log(response);
-                           alert(response);
+                            //var obj = Object.values(response);
+                             $.each(response, function(index, value) {
+                         $("#cuerpo").append(
+                        $('<tr>'),
+                        $('<td>').text(value.id),
+                        $('<td>').text(value.cant_gavetas),
+                        $('<td>').text(value.peso_bruto  ),
+                        $('<td>').text(value.peso_gavetas),
+                        $('<td>').text(value.peso_final  ),
+                        $('<td>').text(value.usuario     ),
+                        $('<td>').text(value.updated_at),
+                        $('</tr>'));
+                         tc = tc+ parseFloat(value.cant_gavetas);
+                         tb = tb+ parseFloat(value.peso_bruto);
+                         tg = tg+ parseFloat(value.peso_gavetas);
+                         tf = tf+ parseFloat(value.peso_final);
+                         })
+                        document.querySelector('#total_cantidad').innerText = tc;
+                        document.querySelector('#total_bruto').innerText = tb ;
+                        document.querySelector('#total_gavetas').innerText = tg ;
+                        document.querySelector('#total_final').innerText = tf ;
+                        //  console.log(typeof(obj));
+                         //  console.log(response);
+                        //   alert(response);
                            
                         },
                         statusCode:{
@@ -245,7 +281,7 @@
 
         });
           
-     </script>-->
+     </script>
    
 
 @endsection

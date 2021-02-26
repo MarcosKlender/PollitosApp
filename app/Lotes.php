@@ -75,14 +75,11 @@ class Lotes extends Model
     		return $query->where('lotes.liquidado', $liquidado);
     }
 
-     public function scopeFechaini($query, $fechaini ){
+     public function scopeFecha($query, $fechaini,  $fechafin ){
     	if($fechaini)
-    		return $query->where('lotes.created_at', $fechaini);
+    		return $query->wherebetween('lotes.created_at', [$fechaini, $fechafin]);
+
     }
 
-    public function scopeFechafin($query, $fechafin ){
-    	if($fechafin)
-    		return $query->where('lotes.created_at', $fechafin);
-    }
 
 }
