@@ -33,6 +33,8 @@ Route::resource('clientes', ClientesController::class);
 Route::get('/ajax-autocomplete-search', 'PesoBrutoController@selectSearch')->name('selectSearch');
 Route::get('/pesobruto/peso_bascula','PesoBrutoController@pesobascula')->name('pesobascula');
 
+Route::get('/pesobruto/seccion', 'PesoBrutoController@index2')->name('seccion');
+
 //Route::post('/reportes/ajaxshowdetallepesobruto','ReportesController@index');
 
 
