@@ -14,7 +14,8 @@ class Clientes extends Model
     protected $tabla = 'clientes';
 
     protected $fillable = [
-    	'tipo','ruc_ci','nombres','razon_social','direccion','telefono','movil','email','provincia','ciudad','parroquia'
+                'id','tipo','ruc_ci','nombres','razon_social','direccion','telefono','movil','email',
+                'provincia','ciudad','parroquia','created_at','updated_at'
     ];
 
     protected $primarykey = 'id';
