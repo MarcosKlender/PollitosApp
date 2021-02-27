@@ -32,6 +32,22 @@ class PesoBrutoController extends Controller
         return view('pesobruto.index', compact('lotes', 'count'));
     }
 
+
+    public function index2()
+    {
+        $ch = curl_init("http://192.168.0.103/ws.php?opcion=get");
+        curl_setopt($ch, CURLOPT_URL, "http://192.168.0.103/ws.php?opcion=get");
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_TIMEOUT_MS, 200);
+        $res = curl_exec($ch);
+        curl_close($ch);   
+
+        return view('pesobruto.seccion', compact('res'));
+         
+    }
+
+
+
     public function create()
     {
         $proveedores = Proveedores::select('nombres', 'ruc_ci')->get();
