@@ -152,11 +152,11 @@
                                             </td>
                                             <td class="button">
                                                      <a href="{{ route('reportes.generar_pdf',$lote->id) }}" target="_blank"
-                                                        class="btn btn-sm btn-primary"><i class="far fa-file-pdf"></i></a>
+                                                        class="btn btn-lg btn-primary"><i class="far fa-file-pdf"></i></a>
                                             </td>
                                             <td class="button">
                                                      <a href="{{ route('reportes.generar_excel',$lote->id) }}" target="_blank"
-                                                        class="btn btn-sm btn-primary"><i class="far fa-file-pdf"></i></a>
+                                                        class="btn btn-lg btn-primary"><i class="far fa-file-excel"></i></a>
                                             </td>
                                         </tr>
                                     @endforeach
@@ -202,7 +202,7 @@
         </div>
     </div>
 
- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> 
+ <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> 
     <script type="text/javascript">
         $(document).ready(function(){
 
@@ -281,7 +281,7 @@
 
         });
           
-     </script>
+     </script>-->
    
 
 @endsection

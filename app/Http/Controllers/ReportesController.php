@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use App\Clientes;
 use App\Lotes;
 use App\Registros;
@@ -11,8 +10,10 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use PDF;
+use Illuminate\Contracts\View\View;
+use Maatwebsite\Excel\Concerns\FromView;
 use Maatwebsite\Excel\Concerns\Exportable;
-use Maatwebsite\Excel\Concerns\FromCollection;
+use App\Exports\PostsExport;
 
 class ReportesController extends Controller
 {
@@ -102,7 +103,7 @@ class ReportesController extends Controller
     $lotes = Lotes::all_index()->orderBy('lotes.id')->paginate(10);
     $registros = Registros::orderBy('id')->get();
      $count = count($lotes);
-     $view = \View::make('reportes.lotepdf')->with('lotes',$lotes)->with('registros',$registros)->with('count',$count)->with('id_lote',$id)->render();
+     $view = \View::make('reportes.pdfviews.lotepdf')->with('lotes',$lotes)->with('registros',$registros)->with('count',$count)->with('id_lote',$id)->render();
      $pdf->loadHTML($view);
     //return dd($id);
     return $pdf->stream();
@@ -126,8 +127,7 @@ class ReportesController extends Controller
     
     public function generar_excel($id)
     {
-        $lotes = Lotes::all_index()->orderBy('lotes.id')->paginate(10);
-    return (new PostsExport($lotes))->download('lotes.tsv', \Maatwebsite\Excel\Excel::TSV);
+    return (new PostsExport($id))->download('lotes.xlsx');
     }
    
 }
