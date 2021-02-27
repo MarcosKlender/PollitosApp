@@ -76,8 +76,7 @@ class Lotes extends Model
     }
 
      public function scopeFecha($query, $fechaini,  $fechafin ){
-    	if($fechaini)
-    		return $query->wherebetween('lotes.created_at', [$fechaini, $fechafin]);
+            return $query->whereDate('lotes.created_at','>=', [$fechaini])->whereDate('lotes.created_at','<=', [$fechafin]);
 
     }
 
