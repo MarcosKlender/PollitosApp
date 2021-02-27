@@ -114,17 +114,17 @@
                                 <tbody>
                                     @foreach ($lotes as $lote)
                                         <tr>
-                                            <td id="{{ $lote->id}}" >{{ $lote->id }}</td>
-                                            <td id="a">{{ $lote->tipo }}</td>
-                                            <td id="b">{{ $lote->proveedor }}</td>
-                                            <td>{{ $lote->procedencia }}</td>                                           
-                                            <td>{{ $lote->placa }}</td>
-                                            <td>{{ $lote->conductor }}</td>
-                                            <td>{{ $lote->total_cant_gavetas }}</td>
-                                            <td>{{ $lote->total_peso_bruto }}</td>
-                                            <td>{{ $lote->total_peso_gavetas }}</td>
-                                            <td>{{ $lote->total_peso_final }}</td>
-                                            <td>{{ $lote->usuario }}</td>
+                                            <td class="numero_id" id="{{$lote->id}}" >{{ $lote->id }}</td>
+                                            <td class="row_peso">{{ $lote->tipo }}</td>
+                                            <td class="row_peso">{{ $lote->proveedor }}</td>
+                                            <td class="row_peso">{{ $lote->procedencia }}</td>                                           
+                                            <td class="row_peso">{{ $lote->placa }}</td>
+                                            <td class="row_peso">{{ $lote->conductor }}</td>
+                                            <td class="row_peso">{{ $lote->total_cant_gavetas }}</td>
+                                            <td class="row_peso">{{ $lote->total_peso_bruto }}</td>
+                                            <td class="row_peso">{{ $lote->total_peso_gavetas }}</td>
+                                            <td class="row_peso">{{ $lote->total_peso_final }}</td>
+                                            <td class="row_peso">{{ $lote->usuario }}</td>
                                             <td>{{ $lote->created_at }}</td>
                                             <td class="button">
                                             @if ($lote->anulado == '0')
@@ -202,11 +202,11 @@
         </div>
     </div>
 
- <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> 
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> 
     <script type="text/javascript">
         $(document).ready(function(){
 
-            $("#reportes_peso").on('click', 'tr', function (e){
+            $(".row_peso").on('click', function (e){
            // $("#reportes_peso tbody tr").click(function(e){
 
 
@@ -217,7 +217,12 @@
                     });
                     e.preventDefault();
   
-                    var id=$(this).find("td:first-child").html(); 
+                   // var id=$(this).find("td:first-child").html(); 
+
+                     id = "";
+                     $(this).parents("tr").find(".numero_id").each(function(){
+                        id += $(this).html() + "\n";
+                     });
 
                      var tc=0;
                      var tb=0;
@@ -281,7 +286,7 @@
 
         });
           
-     </script>-->
+     </script>
    
 
 @endsection
