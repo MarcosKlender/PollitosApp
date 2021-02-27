@@ -48,7 +48,9 @@
                                         <td>Procedencia</td>
                                         <td>Placa</td>
                                         <td>Conductor</td>
-                                        <td>Usuario</td>
+                                         @if(Auth::user()->rol->key == 'admin')   
+                                                <td>Usuario</td>
+                                         @endif       
                                         <td>Fecha de Registro</td>
                                         @if (Auth::user()->rol->key == 'admin')
                                             <td>Anulado</td>
@@ -67,7 +69,9 @@
                                             <td>{{ $lote->procedencia }}</td>
                                             <td>{{ $lote->placa }}</td>
                                             <td>{{ $lote->conductor }}</td>
-                                            <td>{{ $lote->usuario }}</td>
+                                             @if(Auth::user()->rol->key == 'admin')   
+                                                <td>{{ $lote->usuario }}</td>
+                                             @endif   
                                             <td>{{ $lote->created_at }}</td>
                                             @if (Auth::user()->rol->key == 'admin')
                                                 <td>
@@ -88,7 +92,7 @@
                                                         class="btn btn-sm btn-primary">Registrar Pesos</a>
                                                 @else
                                                     <a href="{{ route('pesobruto.show', $lote->id) }}"
-                                                        class="btn btn-sm btn-primary">Ver Pesos</a>
+                                                        class="btn btn-sm btn-success">Ver Pesos</a>
                                                 @endif
                                             </td>
                                         </tr>

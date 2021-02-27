@@ -44,6 +44,9 @@
                             </div> --}}
                             <div class="form-group col-lg-6">
                                 <label for="peso_bruto">Peso Bruto</label>
+
+                                 <!--div id="recargar" name="recargar" ></div!-->
+
                                 <input type="number" class="form-control" id="peso_bruto" name="peso_bruto"
                                     value="{{ old('peso_bruto') }}" step=".01" required />
                             </div>
@@ -69,7 +72,10 @@
                                         <td>Peso Bruto</td>
                                         <td>Peso Gavetas</td>
                                         <td>Peso Final</td>
-                                        <td>Usuario</td>
+                                        @if (Auth::user()->rol->key == 'admin')
+                                            <td>Usuario</td>
+                                        @endif
+                                        <td>Acciones</td>
                                         <td>Acciones</td>
                                     </tr>
                                 </thead>
@@ -85,13 +91,16 @@
                                             <td>{{ $registro->peso_bruto }}</td>
                                             <td>{{ $registro->peso_gavetas }}</td>
                                             <td>{{ $registro->peso_final }}</td>
-                                            <td>{{ $registro->usuario }}</td>
+                                            @if (Auth::user()->rol->key == 'admin')
+                                                <td>{{ $registro->usuario }}</td>
+                                            @endif
                                             <td><button type="button" class="btn btn-sm btn-primary modal_gavetas"
                                                     data-toggle="modal" data-target="#staticBackdrop1"
                                                     data-id="{{ $registro->id }}"
                                                     data-cant-gavetas="{{ $registro->cant_gavetas }}"
                                                     data-peso-bruto="{{ $registro->peso_bruto }}">Gavetas</button>
-                                                <button type="button" class="btn btn-sm btn-danger modal_anular"
+                                               </td>     
+                                               <td> <button type="button" class="btn btn-sm btn-danger modal_anular"
                                                     data-toggle="modal" data-target="#staticBackdrop2"
                                                     data-id="{{ $registro->id }}">Anular</button>
                                             </td>
@@ -226,7 +235,26 @@
                     $("#observaciones").val("");
                 });
             });
+
+
+            
+
+
+
+
+
+
         });
+
+         $(document).ready(function() {
+
+             setInterval(
+                function(){
+                    $('#recargar').load('/pesobruto/seccion');
+                },2000
+            );
+
+         });
 
     </script>
 
