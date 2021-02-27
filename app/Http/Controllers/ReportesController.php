@@ -11,6 +11,8 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use PDF;
+use Maatwebsite\Excel\Concerns\Exportable;
+use Maatwebsite\Excel\Concerns\FromCollection;
 
 class ReportesController extends Controller
 {
@@ -121,6 +123,11 @@ class ReportesController extends Controller
         
         return $registros;
     } 
-
+    
+    public function generar_excel($id)
+    {
+        $lotes = Lotes::all_index()->orderBy('lotes.id')->paginate(10);
+    return (new PostsExport($lotes))->download('lotes.tsv', \Maatwebsite\Excel\Excel::TSV);
+    }
    
 }

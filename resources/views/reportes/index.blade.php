@@ -107,15 +107,16 @@
                                         <td>Anulado</td>
                                         <td>Liquidado</td>
                                         <td>Acciones</td>
-                                        <td>Reporte</td>
+                                        <td>Reporte pdf</td>
+                                        <td>Reporte excel</td>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @foreach ($lotes as $lote)
                                         <tr>
                                             <td id="{{ $lote->id}}" >{{ $lote->id }}</td>
-                                            <td id="a">{{ $lote->tipo }}</td>
-                                            <td id="b">{{ $lote->proveedor }}</td>
+                                            <td id="detalle">{{ $lote->tipo }}</td>
+                                            <td id="detalle">{{ $lote->proveedor }}</td>
                                             <td>{{ $lote->procedencia }}</td>                                           
                                             <td>{{ $lote->placa }}</td>
                                             <td>{{ $lote->conductor }}</td>
@@ -151,7 +152,11 @@
                                             </td>
                                             <td class="button">
                                                      <a href="{{ route('reportes.generar_pdf',$lote->id) }}" target="_blank"
-                                                        class="btn btn-sm btn-primary" onclick = "botonclic();"><i class="far fa-file-pdf"></i></a>
+                                                        class="btn btn-sm btn-primary"><i class="far fa-file-pdf"></i></a>
+                                            </td>
+                                             <td class="button">
+                                                     <a href="{{ route('reportes.generar_excel',$lote->id) }}" target="_blank"
+                                                        class="btn btn-sm btn-primary" ><i class="far fa-file-pdf"></i></a>
                                             </td>
                                         </tr>
                                     @endforeach
@@ -199,12 +204,6 @@
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> 
     <script type="text/javascript">
-        $(document).ready(function(){
-            
-           function botonclic()
-           {
-            alert('ok');
-           }
 
             $("#reportes_peso").on('click', 'tr', function (e){
            // $("#reportes_peso tbody tr").click(function(e){
@@ -217,7 +216,7 @@
                     });
                     e.preventDefault();
   
-                    var id=$(this).find("td:first-child").html(); 
+                    var id=$(this).find("td:first-child ").html(); 
 
                      var tc=0;
                      var tb=0;
