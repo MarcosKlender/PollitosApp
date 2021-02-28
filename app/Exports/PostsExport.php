@@ -1,44 +1,4 @@
 <?php
-/*namespace App\Exports;
-
-use App\Lotes;
-use Maatwebsite\Excel\Concerns\Exportable;
-use Maatwebsite\Excel\Concerns\FromView;
-use App\Exports\PostsExport;
-use App\Clientes;
-//use App\Lotes;
-use App\Registros;
-use App\Proveedores;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Auth;
-use PDF;
-//use Maatwebsite\Excel\Concerns\Exportable;
-//use Maatwebsite\Excel\Concerns\FromView;
-
-class PostsExport implements FromView
-{
-    use Exportable;
-
-    protected $id;
-
-    public function __construct($id = null)
-    {
-        $this->id = $id;
-    }
-
-    /**
-    * @return \Illuminate\Support\Collection
-    */
-  /*  public function view()
-    {
-     $registros = Registros::orderBy('id')->get();
-     $return = \View::make('reportes.excelviews.lotdetexcel')->with('lotes',$lotes)->with('registros',$registros)->with('count',$count)->with('id_lote',$id)->render();
-     
-    }
-}*/
-
 namespace App\Exports;
 use App\Registros;
 use App\Lotes;
