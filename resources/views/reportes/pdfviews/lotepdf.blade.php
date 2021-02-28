@@ -91,7 +91,7 @@
                                         @endif
                                     @endforeach
                                     <tr>
-                                        <td colspan="2"><b>TOTAL</b></td>
+                                        <td colspan="1"><b>TOTAL</b></td>
                                         <td><b>{{ $lote->total_cant_gavetas }}</b></td>
                                         <td><b>{{ $lote->total_peso_bruto }}  </b></td>
                                         <td><b>{{ $lote->total_peso_gavetas }}</b></td>
