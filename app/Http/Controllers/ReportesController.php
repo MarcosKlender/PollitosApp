@@ -100,7 +100,7 @@ class ReportesController extends Controller
     {
     $pdf = \App::make('dompdf.wrapper');
     
-    $lotes = Lotes::all_index()->orderBy('lotes.id')->paginate(10);
+    $lotes = Lotes::all_index()->orderBy('lotes.id')->paginate(1000);
     $registros = Registros::orderBy('id')->get();
      $count = count($lotes);
      $view = \View::make('reportes.pdfviews.lotepdf')->with('lotes',$lotes)->with('registros',$registros)->with('count',$count)->with('id_lote',$id)->render();

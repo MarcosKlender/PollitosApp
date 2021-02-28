@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Factura</title>
+    <title>Reporte</title>
     <link rel="stylesheet" href="css/style.css" media="all" />
   </head>
   <body>
