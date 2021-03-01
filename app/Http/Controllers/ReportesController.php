@@ -36,9 +36,7 @@ class ReportesController extends Controller
 
     public function show(Request $request)
     {
-        
-        $criterio_fecha_ini = $request->get('criterio_fecha_ini');
-        $criterio_fecha_fin = $request->get('criterio_fecha_fin');
+
         $criterio_liquidado = $request->get('criterio_liquidado');
         $criterio_anulado = $request->get('criterio_anulado');
         $criterio_tipo = $request->get('criterio_tipo');
@@ -47,6 +45,8 @@ class ReportesController extends Controller
         $criterio_placa = $request->get('criterio_placa');
         $criterio_conductor = $request->get('criterio_conductor');
         $criterio_usuario = $request->get('criterio_usuario');
+        $criterio_fecha_ini = $request->get('criterio_fecha_ini');
+        $criterio_fecha_fin = $request->get('criterio_fecha_fin');
 
             $lotes = Lotes::all_index()
             ->tipo($criterio_tipo)
@@ -59,12 +59,13 @@ class ReportesController extends Controller
             ->liquidado($criterio_liquidado)
             ->fecha($criterio_fecha_ini,$criterio_fecha_fin)
             ->orderBy('lotes.id')
-            ->paginate(4);
+            ->paginate(5);
 
 
         $count = count($lotes);
 
-        return view('reportes.index', compact('lotes', 'count'));
+       // return dd($request);
+       return view('reportes.index', compact('lotes', 'count'));
     }
 
 
@@ -100,7 +101,7 @@ class ReportesController extends Controller
     {
     $pdf = \App::make('dompdf.wrapper');
     
-    $lotes = Lotes::all_index()->orderBy('lotes.id')->paginate(10);
+    $lotes = Lotes::all_index()->orderBy('lotes.id')->paginate(10000);
     $registros = Registros::orderBy('id')->get();
      $count = count($lotes);
      $view = \View::make('reportes.pdfviews.lotepdf')->with('lotes',$lotes)->with('registros',$registros)->with('count',$count)->with('id_lote',$id)->render();
