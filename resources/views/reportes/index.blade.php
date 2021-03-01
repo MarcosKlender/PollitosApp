@@ -15,7 +15,7 @@
                     <div class="row justify-content-around">
                         
 
-                        <div class="mb-3">
+                        <div class="mb-3 ">
                             <form method="get" action="{{ route('reportes.show', 'search') }}">
                                
                                
@@ -36,24 +36,31 @@
                                     <div class="col-auto input-group-append">
                                          <input type="search" id="criterio_placa" name="criterio_placa" class="form-control"  placeholder="Buscar placa">
                                     </div>
-
+                                    
+                                    
                                     <div class="col-auto input-group-append">
                                          <input type="search" id="criterio_conductor" name="criterio_conductor" class="form-control"  placeholder="Buscar conductor">
                                     </div>
-
-                                    <div class="col-auto input-group-append">
+                                    
+                                    </div>
+                                    <br>
+                                    <div class="input-group">
+                                    <div class="input-group-append col-auto input-group-append">
                                          <input type="search" id="criterio_usuario" name="criterio_usuario" class="form-control"  placeholder="Buscar usuario">
                                     </div>
-
-
-                                        <label for="fecha_ini"> Desde:</label>
-                                        <div class=" col-md-2 mt-lg-0 mt-md-0 mt-2">
-                                             <input type="date" class="form-control ml-2" name="criterio_fecha_ini">
+                                    </div>
+                                    <br>
+                                    <div class="input-group">
+                                        
+                                       <div class="input-group-append col-auto input-group-append">
+                                        <label for="fecha_ini" class="col-auto col-form-label"> Desde: </label>
+                                             <input type="date" class="form-control" name="criterio_fecha_ini" >
                                         </div>
 
-                                        <label for="fecha_fin"> Hasta:</label>
-                                        <div class="input-group col-md-2 mt-lg-0 mt-md-0 mt-2">
-                                            <input type="date" class="form-control ml-2" name="criterio_fecha_fin">
+                                        
+                                       <div class="input-group-append col-auto input-group-append">
+                                        <label for="fecha_fin" class="col-auto col-form-label"> Hasta: </label>
+                                            <input type="date" class="form-control" name="criterio_fecha_fin" >
                                         </div>
 
                                     <div class="form-check form-check-inline">
@@ -172,7 +179,10 @@
                             <b>{{ $count }}</b></span>--}}
                     </div>
                     <br>
-                       <h4><strong>DETALLE DEL LOTE # </strong><label id="nombre_lote"></label></h4>
+<ul class="nav nav-tabs">
+  <li class="nav-item">
+    <a class="nav-link active" href="#"><h4><strong>DETALLE DEL LOTE # </strong><label id="nombre_lote"></label></h4></a>
+  </li>
                               <table class="table table-striped table-bordered">
                                 <thead>
                                     <tr>
@@ -196,7 +206,8 @@
                                         <td id="total_final"><b></b></td>
                                     </tr>
                               </table>
-
+</ul>
+                    
                 </div>
             </div>
         </div>
@@ -242,6 +253,8 @@
                             $("#cuerpo").html("");
                             //var obj = Object.values(response);
                              $.each(response, function(index, value) {
+                                var fech=new Date(value.created_at);
+                                var fecha=fech.toLocaleString();
                          $("#cuerpo").append(
                         $('<tr>'),
                         $('<td>').text(value.id),
@@ -250,7 +263,7 @@
                         $('<td>').text(value.peso_gavetas),
                         $('<td>').text(value.peso_final  ),
                         $('<td>').text(value.usuario     ),
-                        $('<td>').text(value.updated_at),
+                        $('<td>').text(fecha),
                         $('</tr>'));
                          tc = tc+ parseFloat(value.cant_gavetas);
                          tb = tb+ parseFloat(value.peso_bruto);

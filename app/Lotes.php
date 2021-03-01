@@ -14,7 +14,7 @@ class Lotes extends Model
 
     protected $fillable = [
         'tipo', 'proveedor', 'procedencia', 'placa', 'conductor', 'peso_bruto', 'cant_gavetas', 'cant_pollos',
-        'peso_gavetas_pollos', 'peso_gavetas', 'peso_final', 'usuario', 'anulado', 'liquidado','id','lote_id'
+        'peso_gavetas_pollos', 'peso_gavetas', 'peso_final', 'usuario', 'anulado', 'liquidado','id','lote_id','created_at'
     ];
 
 
@@ -76,8 +76,9 @@ class Lotes extends Model
     }
 
      public function scopeFecha($query, $fechaini,  $fechafin ){
+        if($fechaini && $fechafin)
             return $query->whereDate('lotes.created_at','>=', [$fechaini])->whereDate('lotes.created_at','<=', [$fechafin]);
-
+         //  return $query->whereBetween('lotes.created_at',[$fechaini, $fechafin]);
     }
 
 
