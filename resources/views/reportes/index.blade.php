@@ -42,9 +42,7 @@
                                          <input type="search" id="criterio_conductor" name="criterio_conductor" class="form-control"  placeholder="Buscar conductor">
                                     </div>
                                     
-                                    </div>
-                                    <br>
-                                    <div class="input-group">
+                                    
                                     <div class="input-group-append col-auto input-group-append">
                                          <input type="search" id="criterio_usuario" name="criterio_usuario" class="form-control"  placeholder="Buscar usuario">
                                     </div>
