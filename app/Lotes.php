@@ -27,7 +27,7 @@ class Lotes extends Model
 
      public function scopeAll_index($query){
 
-        return $query->join('registros','registros.lotes_id', '=','lotes.id')->select('lotes.*',
+        return $query->leftJoin('registros','registros.lotes_id', '=','lotes.id')->select('lotes.*',
                         DB::raw('sum(registros.cant_gavetas) as total_cant_gavetas'),
                         DB::raw('sum(registros.peso_bruto) as total_peso_bruto'),
                         DB::raw('sum(registros.peso_gavetas) as total_peso_gavetas'),
