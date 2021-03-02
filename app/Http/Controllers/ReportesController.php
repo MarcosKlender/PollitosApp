@@ -26,7 +26,7 @@ class ReportesController extends Controller
     {
         
 
-         $lotes = Lotes::all_index()->orderBy('lotes.id')->paginate(4);
+         $lotes = Lotes::all_index()->orderBy('lotes.id', 'DESC')->paginate(4);
          $count = count($lotes);
          return view('reportes.index', compact('lotes','count'));
     }
@@ -58,7 +58,7 @@ class ReportesController extends Controller
             ->anulado($criterio_anulado)
             ->liquidado($criterio_liquidado)
             ->fecha($criterio_fecha_ini,$criterio_fecha_fin)
-            ->orderBy('lotes.id')
+            ->orderBy('lotes.id','DESC')
             ->paginate(5);
 
 
