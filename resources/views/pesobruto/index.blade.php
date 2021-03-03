@@ -43,6 +43,7 @@
                                     <tr>
                                         <td>ID</td>
                                         <td>Tipo</td>
+                                        <td>Cantidad</td>
                                         <td>Proveedor</td>
                                         <td>RUC/CI</td>
                                         <td>Procedencia</td>
@@ -64,6 +65,7 @@
                                         <tr>
                                             <td>{{ $lote->id }}</td>
                                             <td>{{ $lote->tipo }}</td>
+                                            <td>{{ $lote->cantidad }}</td>
                                             <td>{{ $lote->proveedor }}</td>
                                             <td>{{ $lote->ruc_ci }}</td>
                                             <td>{{ $lote->procedencia }}</td>

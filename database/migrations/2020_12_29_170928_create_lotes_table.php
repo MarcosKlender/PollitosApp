@@ -16,6 +16,7 @@ class CreateLotesTable extends Migration
         Schema::create('lotes', function (Blueprint $table) {
             $table->id();
             $table->string('tipo');
+            $table->integer('cantidad');
             $table->string('proveedor');
             $table->string('ruc_ci', 13)->nullable();
             $table->string('procedencia');
@@ -25,6 +26,8 @@ class CreateLotesTable extends Migration
             $table->string('anulado', 1);
             $table->string('liquidado', 1);
             $table->string('observaciones')->nullable();
+            $table->integer('cant_ahogados')->nullable();
+            $table->integer('peso_ahogados')->nullable();
             $table->timestamps();
         });
     }

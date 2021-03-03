@@ -31,6 +31,12 @@
                         </div>
 
                         <div class="form-group">
+                            <label for="cantidad">Cantidad</label>
+                            <input type="number" class="form-control" id="cantidad" name="cantidad"
+                                value="{{ old('cantidad') }}" required />
+                        </div>
+
+                        <div class="form-group">
                             <label for="proveedor">Proveedor</label>
                             <select class="form-control" id="proveedor" name="proveedor" required>
                                 <option value="" selected disabled>Elija un proveedor</option>

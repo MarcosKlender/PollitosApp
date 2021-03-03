@@ -182,18 +182,29 @@
                 <div class="modal-header">
                     <h5 class="modal-title" id="staticBackdropLabel3">¿Está seguro de liquidar el lote?</h5>
                 </div>
-                <div class="modal-body">
-                    Una vez liquidado el lote no podrá registrar más pesos.
-                </div>
-                <div class="modal-footer">
-                    <form action="{{ route('pesobruto.liquidar_lote') }}" method="post">
-                        @csrf
-                        <input type="hidden" id="id_liquidar" name="id_liquidar" value="{{ $lote->id }}">
-                        <input type="hidden" id="liquidado" name="liquidado" value="1">
-                        <button type="button" class="btn btn-primary" data-dismiss="modal">Cancelar</button>
-                        <button type="submit" class="btn btn-danger">Liquidar</button>
-                    </form>
-                </div>
+                <form action="{{ route('pesobruto.liquidar_lote') }}" method="post">
+                    <div class="modal-body">
+                        Para liquidar el lote, agregue la siguiente información:<br><br>
+                        <div class="form-group">
+                            <label for="cant_ahogados">Cantidad Ahogados</label>
+                            <input type="number" class="form-control" id="cant_ahogados" name="cant_ahogados"
+                                value="{{ old('cant_ahogados') }}" required />
+                        </div>
+                        <div class="form-group">
+                            <label for="peso_ahogados">Peso Ahogados</label>
+                            <input type="number" class="form-control" id="peso_ahogados" name="peso_ahogados"
+                                value="{{ old('peso_ahogados') }}" required />
+                        </div>
+                        Una vez liquidado el lote no podrá registrar más pesos.
+                    </div>
+                    <div class="modal-footer">
+                            @csrf
+                            <input type="hidden" id="id_liquidar" name="id_liquidar" value="{{ $lote->id }}">
+                            <input type="hidden" id="liquidado" name="liquidado" value="1">
+                            <button type="button" class="btn btn-primary" data-dismiss="modal">Cancelar</button>
+                            <button type="submit" class="btn btn-danger">Liquidar</button> 
+                    </div>
+                </form>
             </div>
         </div>
     </div>

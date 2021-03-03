@@ -59,6 +59,7 @@ class PesoBrutoController extends Controller
     {
         $storeData = $request->validate([
             'tipo' => 'required|max:191',
+            'cantidad' => 'required|numeric',
             'proveedor' => 'required|max:191',
             'procedencia' => 'required|regex:/^[\pL\pM\pN\s]+$/u|max:191',
             'placa' => 'required|regex:/^[\pL\pM\pN\s]+$/u|size:7',
@@ -204,6 +205,8 @@ class PesoBrutoController extends Controller
     {
         $updateData = $request->validate([
             'liquidado' => 'required|size:1',
+            'cant_ahogados' => 'required|numeric',
+            'peso_ahogados' => 'required|numeric',
         ]);
         
         Lotes::whereId($request->id_liquidar)->update($updateData);

@@ -67,6 +67,22 @@
                                 </tbody>
                             </table>
                         </div>
+                        <div class="table-responsive mt-3">
+                            <table class="table table-striped table-bordered">
+                                <thead>
+                                    <tr>
+                                        <td>Cantidad Ahogados</td>
+                                        <td>Peso Ahogados</td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>{{ $lote->cant_ahogados }}</td>
+                                        <td>{{ $lote->peso_ahogados }}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     @endif
 
                 </div>
