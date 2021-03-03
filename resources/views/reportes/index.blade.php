@@ -21,6 +21,11 @@
                                
                                 <div class="input-group">
 
+
+                                    <div class="col-auto input-group-append">
+                                        <input type="search" id="criterio_lote" name="criterio_lote" class="form-control"  placeholder="Buscar lote"  >
+                                    </div>
+
                                      <div class="col-auto input-group-append">
                                         <input type="search" id="criterio_tipo" name="criterio_tipo" class="form-control"  placeholder="Buscar tipo"  >
                                     </div>

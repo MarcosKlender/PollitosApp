@@ -39,6 +39,7 @@ class ReportesController extends Controller
 
         $criterio_liquidado = $request->get('criterio_liquidado');
         $criterio_anulado = $request->get('criterio_anulado');
+        $criterio_lote = $request->get('criterio_lote');
         $criterio_tipo = $request->get('criterio_tipo');
         $criterio_proveedor = $request->get('criterio_proveedor');
         $criterio_procedencia = $request->get('criterio_procedencia');
@@ -49,6 +50,7 @@ class ReportesController extends Controller
         $criterio_fecha_fin = $request->get('criterio_fecha_fin');
 
             $lotes = Lotes::all_index()
+            ->lote($criterio_lote)
             ->tipo($criterio_tipo)
             ->proveedor($criterio_proveedor)
             ->procedencia($criterio_procedencia)

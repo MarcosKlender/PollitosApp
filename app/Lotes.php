@@ -35,6 +35,11 @@ class Lotes extends Model
                         ->groupBy('registros.lotes_id','lotes.id');
      }
 
+     public function scopeLote($query, $lote ){
+        if($lote)
+            return $query->where('lotes.id', 'ilike', "%$lote%");
+    }
+
     public function scopeTipo($query, $tipo ){
     	if($tipo)
     		return $query->where('lotes.tipo', 'ilike', "%$tipo%");
