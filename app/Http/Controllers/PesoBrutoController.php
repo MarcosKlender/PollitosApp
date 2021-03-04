@@ -67,6 +67,7 @@ class PesoBrutoController extends Controller
             'usuario' => 'required|max:191',
             'anulado' => 'required|size:1',
             'liquidado' => 'required|size:1',
+            'visceras' => 'required|size:1',
         ]);
 
         $lotes = Lotes::create($storeData);

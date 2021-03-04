@@ -72,7 +72,7 @@
                  <!-- Nav Item - Admin -->
                 <li class="nav-item {{ (request()->is('clientes')) ? 'active' : '' }}">
                     <a class="nav-link" href="{{ route('clientes.index') }}">
-                        <i class="fas fa-fw fa-warehouse"></i>
+                        <i class="fas fa-fw fa-address-card"></i>
                         <span>{{ __('Clientes') }}</span>
                     </a>
                 </li>
@@ -91,14 +91,20 @@
             <!-- Nav Item - Dashboard -->
             <li class="nav-item {{ (request()->is('pesobruto')) ? 'active' : '' }}">
                 <a class="nav-link" href="{{ route('pesobruto.index') }}">
-                    <i class="fas fa-weight-hanging"></i>
+                    <i class="fas fa-balance-scale-left"></i>
                     <span>{{ __('Peso Bruto') }}</span></a>
             </li>
 
             <li class="nav-item {{ (request()->is('pesoneto')) ? 'active' : '' }}">
                 <a class="nav-link" href="{{ route('pesoneto.index') }}">
-                    <i class="fas fa-weight-hanging"></i>
+                    <i class="fas fa-balance-scale-right"></i>
                     <span>{{ __('Peso Neto') }}</span></a>
+            </li>
+
+            <li class="nav-item {{ (request()->is('visceras')) ? 'active' : '' }}">
+                <a class="nav-link" href="{{ route('visceras.index') }}">
+                    <i class="fas fa-drumstick-bite"></i>
+                    <span>{{ __('Vísceras y Buches') }}</span></a>
             </li>
 
             <li class="nav-item {{ (request()->is('entregas')) ? 'active' : '' }}">

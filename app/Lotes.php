@@ -2,9 +2,10 @@
 
 namespace App;
 
+use App\Visceras;
 use App\Registros;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Lotes extends Model
@@ -13,13 +14,18 @@ class Lotes extends Model
 
     protected $fillable = [
         'tipo', 'cantidad', 'proveedor', 'ruc_ci', 'procedencia', 'placa', 'conductor', 'peso_bruto',
-        'cant_gavetas', 'peso_gavetas', 'peso_final', 'usuario', 'anulado', 'liquidado','id','lote_id','created_at',
-        'observaciones', 'cant_ahogados', 'peso_ahogados'
+        'cant_gavetas', 'peso_gavetas', 'peso_final', 'usuario', 'anulado', 'liquidado', 'visceras',
+        'id','lote_id','created_at', 'observaciones', 'cant_ahogados', 'peso_ahogados'
     ];
 
     public function registros()
     {
         return $this->hasMany(Registros::class);
+    }
+
+    public function visceras()
+    {
+        return $this->hasMany(Visceras::class);
     }
 
     public function scopeAll_index($query)

@@ -60,6 +60,11 @@ Route::post('/reportes/detalle_lotes', 'ReportesController@detalle_lotes')->name
 
 Route::resource('pesobruto', PesoBrutoController::class);
 Route::resource('pesoneto', PesoNetoController::class);
+Route::get('/visceras/registros_anulados', 'ViscerasController@registros_anulados')->name('visceras.registros_anulados');
+Route::post('/visceras/anular_registro', 'ViscerasController@anular_registro')->name('visceras.anular_registro');
+Route::post('/visceras/registrar_gavetas', 'ViscerasController@registrar_gavetas')->name('visceras.registrar_gavetas');
+Route::post('/visceras/liquidar_lote', 'ViscerasController@liquidar_lote')->name('visceras.liquidar_lote');
+Route::resource('visceras', ViscerasController::class);
 Route::resource('entregas', EntregasController::class);
 Route::resource('reportes', ReportesController::class);
 
