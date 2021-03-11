@@ -62,6 +62,14 @@
                 </li>
 
                 <!-- Nav Item - Admin -->
+                <li class="nav-item {{ (request()->is('basculas')) ? 'active' : '' }}">
+                    <a class="nav-link" href="{{ route('basculas.index') }}">
+                        <i class="fas fa-fw fa-warehouse"></i>
+                        <span>{{ __('Basculas') }}</span>
+                    </a>
+                </li>
+
+                <!-- Nav Item - Admin -->
                 <li class="nav-item {{ (request()->is('proveedores')) ? 'active' : '' }}">
                     <a class="nav-link" href="{{ route('proveedores.index') }}">
                         <i class="fas fa-fw fa-warehouse"></i>
@@ -95,16 +103,16 @@
                     <span>{{ __('Peso Bruto') }}</span></a>
             </li>
 
-            <li class="nav-item {{ (request()->is('pesoneto')) ? 'active' : '' }}">
-                <a class="nav-link" href="{{ route('pesoneto.index') }}">
-                    <i class="fas fa-balance-scale-right"></i>
-                    <span>{{ __('Peso Neto') }}</span></a>
-            </li>
-
             <li class="nav-item {{ (request()->is('visceras')) ? 'active' : '' }}">
                 <a class="nav-link" href="{{ route('visceras.index') }}">
                     <i class="fas fa-drumstick-bite"></i>
                     <span>{{ __('Vísceras y Buches') }}</span></a>
+            </li>
+
+            <li class="nav-item {{ (request()->is('pesoneto')) ? 'active' : '' }}">
+                <a class="nav-link" href="{{ route('pesoneto.index') }}">
+                    <i class="fas fa-balance-scale-right"></i>
+                    <span>{{ __('Peso Neto') }}</span></a>
             </li>
 
             <li class="nav-item {{ (request()->is('entregas')) ? 'active' : '' }}">

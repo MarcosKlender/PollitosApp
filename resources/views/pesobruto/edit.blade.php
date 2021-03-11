@@ -45,10 +45,13 @@
                             <div class="form-group col-lg-6">
                                 <label for="peso_bruto">Peso Bruto</label>
 
+
                                  <!--div id="recargar" name="recargar" ></div!-->
 
                                 <input type="number" class="form-control" id="peso_bruto" name="peso_bruto"
                                     value="{{ old('peso_bruto') }}" step=".01" required />
+
+
                             </div>
                         </div>
                         <input type="hidden" id="lotes_id" name="lotes_id" value="{{ $lote->id }}">

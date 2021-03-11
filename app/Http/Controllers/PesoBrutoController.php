@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Lotes;
 use App\Registros;
 use App\Proveedores;
+use App\Basculas;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -33,7 +34,7 @@ class PesoBrutoController extends Controller
     }
 
 
-    public function index2()
+   /* public function index2()
     {
         $ch = curl_init("http://192.168.0.103/ws.php?opcion=get");
         curl_setopt($ch, CURLOPT_URL, "http://192.168.0.103/ws.php?opcion=get");
@@ -44,8 +45,45 @@ class PesoBrutoController extends Controller
 
         return view('pesobruto.seccion', compact('res'));
          
-    }
+    }*/
 
+    public function index2()
+    {       
+        $user=auth()->user()->username;
+
+        $busuario =Basculas::select("id")
+            ->where('nom_user', '=', "$user")
+            ->get();
+
+
+
+        if (count($busuario)>0) {
+            $busuario=$busuario[0]['id'];
+            
+        }if($busuario==="B001"){
+            $ch = curl_init("http://192.168.0.103/ws.php?opcion=get");
+            curl_setopt($ch, CURLOPT_URL, "http://192.168.0.103/ws.php?opcion=get");
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($ch, CURLOPT_TIMEOUT_MS, 3000);
+            $res = curl_exec($ch);
+            curl_close($ch);
+            //$res="Con_accesoB001";
+
+        }elseif ($busuario==="B002") {
+            /*$ch = curl_init("URL DE LA BASCULA 2");
+            curl_setopt($ch, CURLOPT_URL, "URL DE LA BASCULA 2");
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($ch, CURLOPT_TIMEOUT_MS, 200);
+            $res = curl_exec($ch);
+            curl_close($ch);*/
+            $res="Con_accesoB002";
+
+        }else{
+            $res="Sin_acceso"; 
+        }
+            return view('pesobruto.seccion',compact('res'));
+    }
+    
 
 
     public function create()
