@@ -120,7 +120,6 @@
 
     <script type="text/javascript">
         $('#proveedor').select2({
-            placeholder: 'Seleccione el proveedor',
             ajax: {
                 url: '/ajax-autocomplete-search',
                 dataType: 'json',
