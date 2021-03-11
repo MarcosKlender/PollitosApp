@@ -665,6 +665,7 @@ class ComposerStaticInitfba83e6cfee4c1f2dc06ef0fe6046ae7
     );
 
     public static $classMap = array (
+        'App\\Basculas' => __DIR__ . '/../..' . '/app/Basculas.php',
         'App\\Clientes' => __DIR__ . '/../..' . '/app/Clientes.php',
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
@@ -676,6 +677,7 @@ class ComposerStaticInitfba83e6cfee4c1f2dc06ef0fe6046ae7
         'App\\Http\\Controllers\\Auth\\RegisterController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/RegisterController.php',
         'App\\Http\\Controllers\\Auth\\ResetPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ResetPasswordController.php',
         'App\\Http\\Controllers\\Auth\\VerificationController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/VerificationController.php',
+        'App\\Http\\Controllers\\BasculasController' => __DIR__ . '/../..' . '/app/Http/Controllers/BasculasController.php',
         'App\\Http\\Controllers\\ClientesController' => __DIR__ . '/../..' . '/app/Http/Controllers/ClientesController.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
         'App\\Http\\Controllers\\EntregasController' => __DIR__ . '/../..' . '/app/Http/Controllers/EntregasController.php',
@@ -705,6 +707,7 @@ class ComposerStaticInitfba83e6cfee4c1f2dc06ef0fe6046ae7
         'App\\Registros' => __DIR__ . '/../..' . '/app/Registros.php',
         'App\\Rol' => __DIR__ . '/../..' . '/app/Rol.php',
         'App\\User' => __DIR__ . '/../..' . '/app/User.php',
+        'App\\Visceras' => __DIR__ . '/../..' . '/app/Visceras.php',
         'Asm89\\Stack\\Cors' => __DIR__ . '/..' . '/asm89/stack-cors/src/Cors.php',
         'Asm89\\Stack\\CorsService' => __DIR__ . '/..' . '/asm89/stack-cors/src/CorsService.php',
         'Attribute' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/Attribute.php',
