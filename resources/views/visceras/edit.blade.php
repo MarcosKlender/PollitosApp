@@ -6,7 +6,7 @@
         <div class="col-lg-9">
             <div class="card shadow mb-4">
                 <div class="card-header mt-2 text-center">
-                    <h4>LOTE {{ $lote->id }} - VÍSCERAS Y BUCHES</h4>
+                    <h4>LOTE {{ $lote->id }} - {{ $lote->tipo }} - VÍSCERAS Y BUCHES</h4>
                 </div>
                 <div class="card-body">
                     @if (session()->get('success'))
@@ -66,8 +66,7 @@
                                         @if (Auth::user()->rol->key == 'admin')
                                             <td>Usuario</td>
                                         @endif
-                                        <td>Acciones</td>
-                                        <td>Acciones</td>
+                                        <td colspan="2" class="text-center">Acciones</td>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -82,14 +81,15 @@
                                             @if (Auth::user()->rol->key == 'admin')
                                                 <td>{{ $viscera->usuario }}</td>
                                             @endif
-                                            <td><button type="button" class="btn btn-sm btn-primary modal_gavetas"
-                                                    data-toggle="modal" data-target="#staticBackdrop1"
-                                                    data-id="{{ $viscera->id }}"
+                                            <td class="text-center"><button type="button"
+                                                    class="btn btn-sm btn-primary modal_gavetas" data-toggle="modal"
+                                                    data-target="#staticBackdrop1" data-id="{{ $viscera->id }}"
                                                     data-cant-gavetas="{{ $viscera->cant_gavetas }}"
                                                     data-peso-bruto="{{ $viscera->peso_bruto }}">Gavetas</button>
                                             </td>
-                                            <td> <button type="button" class="btn btn-sm btn-danger modal_anular"
-                                                    data-toggle="modal" data-target="#staticBackdrop2"
+                                            <td class="text-center"><button type="button"
+                                                    class="btn btn-sm btn-danger modal_anular" data-toggle="modal"
+                                                    data-target="#staticBackdrop2"
                                                     data-id="{{ $viscera->id }}">Anular</button>
                                             </td>
                                         </tr>
@@ -141,7 +141,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel2">¿Está seguro de anular el registro?</h5>
+                    <h5 class="modal-title" id="staticBackdropLabel2"></h5>
                 </div>
                 <div class="modal-body">
                     Esta acción no se puede deshacer. <br><br>
@@ -195,6 +195,10 @@
                 $("#liquidar").prop('disabled', true);
             }
 
+            $("#liquidar").click(function() {
+                $(".modal-title").html('¿Está seguro de liquidar el lote?');
+            });
+
             $(".modal_gavetas").click(function() {
                 $("#staticBackdrop1").on('shown.bs.modal', function() {
                     $(this).find('#peso_gavetas').focus();
@@ -202,7 +206,7 @@
 
                 var registro_g = $(this).attr('data-id');
                 var cantidad_g = $(this).attr('data-cant-gavetas');
-                $(".modal-title").html('REGISTRO #' + registro_g + ' - PESO DE GAVETAS: ');
+                $(".modal-title").html('REGISTRO #' + registro_g + ' - INGRESE EL PESO DE GAVETAS:');
                 $("#id_gavetas").val(registro_g);
                 var peso_bruto = parseFloat($(this).attr('data-peso-bruto')).toFixed(2);
 
@@ -219,6 +223,7 @@
 
             $(".modal_anular").click(function() {
                 var registro_a = $(this).attr('data-id');
+                $(".modal-title").html('¿Está seguro de anular el registro #' + registro_a + '?');
                 $("#id_anular").val(registro_a);
 
                 $("#cancelar_anular").click(function() {

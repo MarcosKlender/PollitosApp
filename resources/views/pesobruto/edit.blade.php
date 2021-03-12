@@ -46,7 +46,7 @@
                                 <label for="peso_bruto">Peso Bruto</label>
 
 
-                                 <!--div id="recargar" name="recargar" ></div!-->
+                                <!--div id="recargar" name="recargar" ></div!-->
 
                                 <input type="number" class="form-control" id="peso_bruto" name="peso_bruto"
                                     value="{{ old('peso_bruto') }}" step=".01" required />
@@ -78,8 +78,7 @@
                                         @if (Auth::user()->rol->key == 'admin')
                                             <td>Usuario</td>
                                         @endif
-                                        <td>Acciones</td>
-                                        <td>Acciones</td>
+                                        <td colspan="2" class="text-center">Acciones</td>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -97,14 +96,15 @@
                                             @if (Auth::user()->rol->key == 'admin')
                                                 <td>{{ $registro->usuario }}</td>
                                             @endif
-                                            <td><button type="button" class="btn btn-sm btn-primary modal_gavetas"
-                                                    data-toggle="modal" data-target="#staticBackdrop1"
-                                                    data-id="{{ $registro->id }}"
+                                            <td class="text-center"><button type="button"
+                                                    class="btn btn-sm btn-primary modal_gavetas" data-toggle="modal"
+                                                    data-target="#staticBackdrop1" data-id="{{ $registro->id }}"
                                                     data-cant-gavetas="{{ $registro->cant_gavetas }}"
                                                     data-peso-bruto="{{ $registro->peso_bruto }}">Gavetas</button>
-                                               </td>     
-                                               <td> <button type="button" class="btn btn-sm btn-danger modal_anular"
-                                                    data-toggle="modal" data-target="#staticBackdrop2"
+                                            </td>
+                                            <td class="text-center"><button type="button"
+                                                    class="btn btn-sm btn-danger modal_anular" data-toggle="modal"
+                                                    data-target="#staticBackdrop2"
                                                     data-id="{{ $registro->id }}">Anular</button>
                                             </td>
                                         </tr>
@@ -156,7 +156,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel2">¿Está seguro de anular el registro?</h5>
+                    <h5 class="modal-title" id="staticBackdropLabel2"></h5>
                 </div>
                 <div class="modal-body">
                     Esta acción no se puede deshacer. <br><br>
@@ -165,11 +165,13 @@
                         @csrf
                         <div class="form-group">
                             <label for="exampleFormControlTextarea1">Razones de la Anulación</label>
-                            <textarea class="form-control" id="observaciones" name="observaciones" rows="3" required></textarea>
+                            <textarea class="form-control" id="observaciones" name="observaciones" rows="3"
+                                required></textarea>
                         </div>
                         <input type="hidden" id="id_anular" name="id_anular">
                         <input type="hidden" id="anulado" name="anulado" value="1">
-                        <button type="button" id="cancelar_anular" class="btn btn-primary" data-dismiss="modal">Cancelar</button>
+                        <button type="button" id="cancelar_anular" class="btn btn-primary"
+                            data-dismiss="modal">Cancelar</button>
                         <button type="submit" class="btn btn-danger">Anular</button>
                     </form>
                 </div>
@@ -201,11 +203,11 @@
                         Una vez liquidado el lote no podrá registrar más pesos.
                     </div>
                     <div class="modal-footer">
-                            @csrf
-                            <input type="hidden" id="id_liquidar" name="id_liquidar" value="{{ $lote->id }}">
-                            <input type="hidden" id="liquidado" name="liquidado" value="1">
-                            <button type="button" class="btn btn-primary" data-dismiss="modal">Cancelar</button>
-                            <button type="submit" class="btn btn-danger">Liquidar</button> 
+                        @csrf
+                        <input type="hidden" id="id_liquidar" name="id_liquidar" value="{{ $lote->id }}">
+                        <input type="hidden" id="liquidado" name="liquidado" value="1">
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">Cancelar</button>
+                        <button type="submit" class="btn btn-danger">Liquidar</button>
                     </div>
                 </form>
             </div>
@@ -218,6 +220,10 @@
             if ($("td").is(":empty") || $("td").length == 0) {
                 $("#liquidar").prop('disabled', true);
             }
+
+            $("#liquidar").click(function() {
+                $(".modal-title").html('¿Está seguro de liquidar el lote?');
+            });
 
             $(".modal_gavetas").click(function() {
                 $("#staticBackdrop1").on('shown.bs.modal', function() {
@@ -243,6 +249,7 @@
 
             $(".modal_anular").click(function() {
                 var registro_a = $(this).attr('data-id');
+                $(".modal-title").html('¿Está seguro de anular el registro #' + registro_a + '?');
                 $("#id_anular").val(registro_a);
 
                 $("#cancelar_anular").click(function() {
@@ -250,25 +257,15 @@
                 });
             });
 
-
-            
-
-
-
-
-
-
         });
 
-         $(document).ready(function() {
-
-             setInterval(
-                function(){
+        $(document).ready(function() {
+            setInterval(
+                function() {
                     $('#recargar').load('/pesobruto/seccion');
-                },2000
+                }, 2000
             );
-
-         });
+        });
 
     </script>
 
