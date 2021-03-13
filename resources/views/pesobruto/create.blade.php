@@ -41,8 +41,8 @@
                             <select class="form-control" id="proveedor" name="proveedor" required>
                                 <option value="" selected disabled>Elija un proveedor</option>
                                 @foreach ($proveedores as $proveedor)
-                                    <option value="{{ $proveedor->nombres }}">
-                                        {{ $proveedor->nombres }}
+                                    <option value="{{ $proveedor->pro_nombre }}">
+                                        {{ $proveedor->pro_nombre }}
                                     </option>
                                 @endforeach
                             </select>
@@ -128,9 +128,9 @@
                     return {
                         results: $.map(data, function(item) {
                             return {
-                                text: item.nombres,
-                                id: item.nombres,
-                                value: item.ruc_ci
+                                text: item.pro_nombre,
+                                id: item.pro_nombre,
+                                value: item.pro_ruc
                             }
                         })
                     };

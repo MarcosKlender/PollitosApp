@@ -28,33 +28,26 @@ class ProveedoresController extends Controller
 
     public function store(Request $request)
     {
+        //dd($request->get("ruc_ci"));
         $storeData = $request->validate([
-            'tipo' => 'required|max:3',
-            'ruc_ci' => 'required|unique:proveedores,ruc_ci|digits_between:10,13',
-            'nombres' => 'required|max:191',
-            'razon_social' => 'required|max:191',
-            'direccion' => 'required|max:191',
-            'telefono' => 'required|digits_between:7,9',
-            'movil' => 'required|digits:10',
-            'email' => 'required|email|unique:proveedores,email|max:191',
-            'provincia' => 'required|max:191',
-            'ciudad' => 'required|max:191',
-            'parroquia' => 'required|max:191',
+            //'tipo' => 'required|max:3',
+            'pro_ruc' => 'required|unique:proveedores,pro_ruc|digits_between:10,13',
+            'pro_nombre' => 'required|max:191',
+            'pro_nombre_comercial' => 'required|max:191',
+            'pro_direccion' => 'required|max:191',
+            'pro_telefonos' => 'required|digits_between:7,9',
+            'pro_email' => 'required|email|unique:proveedores,pro_email|max:191',
         ]);
 
         $proveedor = Proveedores::create($storeData);
 
         // Mantener datos del formulario
-        $request->old('ruc_ci');
-        $request->old('nombres');
-        $request->old('razon_social');
-        $request->old('direccion');
-        $request->old('telefono');
-        $request->old('movil');
-        $request->old('email');
-        $request->old('provincia');
-        $request->old('ciudad');
-        $request->old('parroquia');
+        $request->old('pro_ruc');
+        $request->old('pro_nombre');
+        $request->old('pro_nombre_comercial');
+        $request->old('pro_telefonos');
+        $request->old('pro_email');
+        $request->old('pro_direccion');
 
         return redirect('/proveedores')->with('success', '¡Proveedor creado exitosamente!');
     }
@@ -99,17 +92,12 @@ class ProveedoresController extends Controller
     public function update(Request $request, $id)
     {
         $updateData = $request->validate([
-            'tipo' => 'required|max:3',
-            'ruc_ci' => 'required|digits_between:10,13|unique:proveedores,ruc_ci,'.$id,
-            'nombres' => 'required|max:191',
-            'razon_social' => 'required|max:191',
-            'direccion' => 'required|max:191',
-            'telefono' => 'required|digits_between:7,9',
-            'movil' => 'required|digits:10',
-            'email' => 'required|email|max:191|unique:proveedores,email,'.$id,
-            'provincia' => 'required|max:191',
-            'ciudad' => 'required|max:191',
-            'parroquia' => 'required|max:191',
+            'pro_ruc' => 'required|digits_between:10,13|unique:proveedores,pro_ruc,'.$id,
+            'pro_nombre' => 'required|max:191',
+            'pro_nombre_comercial' => 'required|max:191',
+            'pro_direccion' => 'required|max:191',
+            'pro_telefonos' => 'required|digits_between:7,10',
+            'pro_email' => 'required|email|max:191|unique:proveedores,pro_email,'.$id,
         ]);
 
         Proveedores::whereId($id)->update($updateData);
