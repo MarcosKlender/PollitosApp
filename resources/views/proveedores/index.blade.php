@@ -62,34 +62,24 @@
                             <thead>
                                 <tr>
                                     <td>ID</td>
-                                    <td>Tipo</td>
                                     <td>RUC/CI</td>
                                     <td>Nombres</td>
-                                    <td>Razón Social</td>
-                                    <td>Dirección</td>
+                                    <td>Nombre Comercial</td>
                                     <td>Teléfono</td>
-                                    <td>Móvil</td>
                                     <td>Email</td>
-                                    <td>Provincia</td>
-                                    <td>Ciudad</td>
-                                    <td>Parroquia</td>
+                                    <td>Direccion</td>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach ($proveedores as $provedor)
                                     <tr>
-                                        <td>{{ $provedor->id }}</td>
-                                        <td>{{ $provedor->tipo }}</td>
-                                        <td>{{ $provedor->ruc_ci }}</td>
-                                        <td>{{ $provedor->nombres }}</td>
-                                        <td>{{ $provedor->razon_social }}</td>
-                                        <td>{{ $provedor->direccion }}</td>
-                                        <td>{{ $provedor->telefono }}</td>
-                                        <td>{{ $provedor->movil }}</td>
-                                        <td>{{ $provedor->email }}</td>
-                                        <td>{{ $provedor->provincia }}</td>
-                                        <td>{{ $provedor->ciudad }}</td>
-                                        <td>{{ $provedor->parroquia }}</td>
+                                      <td>{{ $provedor->id }}</td>
+                                        <td>{{ $provedor->pro_ruc }}</td>
+                                        <td>{{ $provedor->pro_nombre }}</td>
+                                        <td>{{ $provedor->pro_nombre_comercial }}</td>
+                                        <td>{{ $provedor->pro_telefonos }}</td>
+                                        <td>{{ $provedor->pro_email }}</td>
+                                        <td>{{ $provedor->pro_direccion }}</td>
                                     </tr>
                                 @endforeach
                             </tbody>

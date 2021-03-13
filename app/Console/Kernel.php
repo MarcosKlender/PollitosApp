@@ -3,12 +3,11 @@
 namespace App\Console;
 
 require_once 'vendor/autoload.php';
-use App\Proveedores;
+use App\Proveedores;    
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 use Illuminate\Support\Facades\DB;
 use Firebase\JWT\JWT;
-
 
 class Kernel extends ConsoleKernel
 {
@@ -29,7 +28,7 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-         // the call method
+    // the call method
     $schedule->call(function () {
       
       $time = time();
@@ -43,41 +42,35 @@ class Kernel extends ConsoleKernel
           'name'=>'rene'
         ]
       );
-
-      $jwt = JWT::encode($token, $key); //codifica el token 
-
-
-      $rucs = json_decode(collect(DB::table('proveedores')->get('ruc_ci')),true); //obtiene el valor de ruc_ci de la tabla proveedores
-        $url='http://192.168.0.106:85/ws_sheyla/ws.php?opcion=get_cli&token='.$jwt;//url para hacer la petición a la ws enviando el token
-        $cli=json_decode(file_get_contents($url),true);//obtiene los datos desde la WS
+      $jwt = JWT::encode($token, $key); //codifica el token
+      //dd($jwt);
+      $rucs = json_decode(collect(DB::table('proveedores')->get('pro_ruc')),true); //obtiene el valor de ruc_ci de la tabla proveedores;
+      $url='http://bf68bf4d3bc9.ngrok.io/WS_PROVEEDORES_SHEYLA/ws.php?opcion=get_cli&token='.$jwt;
+      $data=file_get_contents($url);
+      //dd($data);
+      $cli = json_decode(preg_replace('/[\x00-\x1F\x80-\xFF]/', '', $data), true);
+      //dd($data);
 
         foreach ($cli as $key => $value) 
         {
             
             $c=0; // se usa para saber si hubo una coincidencia
-            $ruc=strval($cli[$key]['ruc_ci']); 
+            $ruc=strval($cli[$key]['pro_ruc']); 
             
             foreach ($rucs as $key1 => $value1) 
             {
-                if ($rucs[$key1]['ruc_ci']==$ruc) //compara los valores de la WS con los de ruc_ci de la BDD y si son iguales procede a actualizar los datos de proveedores con los de la WS
+                if ($rucs[$key1]['pro_ruc']==$ruc) //compara los valores de la WS con los de pro_ruc de la BDD y si son iguales procede a actualizar los datos de proveedores con los de la WS
                 {
                    
                    $c=1; //si hay coincidencia cambia a 1
 
                     DB::table('proveedores')
-                    ->where('ruc_ci', $ruc)
-                    ->update(array( 'tipo' => "aa",
-                                    'nombres'   => $cli[$key]['nom_cliente'],
-                                    'razon_social'=> "Pollitos",
-                                    'direccion' => $cli[$key]['dir_cliente'],
-                                    'telefono' => $cli[$key]['tele_cliente'],   
-                                    'movil' => $cli[$key]['tele_cliente'], 
-                                    'email' => $cli[$key]['email_cliente'],
-                                    'provincia' => "Santo Domingo",
-                                    'ciudad' => "Santo Domingo",
-                                    'parroquia' => "Santo Domingo",
-                                    'created_at' => "12/12/12",
-                                    'updated_at' => "20/12/22"));
+                    ->where('pro_ruc', $ruc)
+                    ->update(array( 'pro_nombre' => $cli[$key]['pro_nombre'],
+                                    'pro_nombre_comercial' => $cli[$key]['pro_nombre_comercial'],
+                                    'pro_telefonos' => $cli[$key]['pro_telefonos'],   
+                                    'pro_email' => $cli[$key]['pro_email'], 
+                                    'pro_direccion' => $cli[$key]['pro_direccion'],));
                 }
             }
 
@@ -85,26 +78,21 @@ class Kernel extends ConsoleKernel
             {
                 $local = new Proveedores();
 
-                $local->tipo = "aa";
-                $local->ruc_ci = $cli[$key]['tele_cliente'];
-                $local->nombres = $cli[$key]['nom_cliente'];
-                $local->razon_social = "Pollitos";
-                $local->direccion = $cli[$key]['dir_cliente'];
-                $local->telefono = $cli[$key]['tele_cliente'];   
-                $local->movil = $cli[$key]['tele_cliente']; 
-                $local->email = $cli[$key]['email_cliente'];
-                $local->provincia = "Santo Domingo";
-                $local->ciudad = "Santo Domingo";
-                $local->parroquia = "Santo Domingo";
-                $local->created_at = "12/12/12";
-                $local->updated_at = "20/12/22"; 
-
+                //$local->id = $cli[$key]['pro_id'];
+                $local->pro_ruc = $cli[$key]['pro_ruc'];
+                $local->pro_nombre = $cli[$key]['pro_nombre'];
+                $local->pro_nombre_comercial = $cli[$key]['pro_nombre_comercial'];
+                $local->pro_telefonos = $cli[$key]['pro_telefonos'];   
+                $local->pro_email = $cli[$key]['pro_email']; 
+                $local->pro_direccion = $cli[$key]['pro_direccion'];
+                //$local->created_at = Carbon::now()->toDateTimeString();
+                //$local->updated_at = Carbon::now()->toDateTimeString();
+            
                 $local->save();
             }
         }
     })->everyMinute();
-
-    }
+  }
 
     /**
      * Register the commands for the application.

@@ -83,7 +83,7 @@ class DatabaseSeeder extends Seeder
         //     ]);
         // }
 
-        DB::table('proveedores')->insert([
+       /* DB::table('proveedores')->insert([
             'tipo' => 'RUC',
             'ruc_ci' => '0000000000001',
             'nombres' => 'PRONACA SD',
@@ -161,7 +161,7 @@ class DatabaseSeeder extends Seeder
             'parroquia' => Str::random(10),
             'created_at' => Carbon::now()->toDateTimeString(),
             'updated_at' => Carbon::now()->toDateTimeString(),
-        ]);
+        ]); */
 
         // TABLA LOTES
         DB::table('lotes')->truncate();

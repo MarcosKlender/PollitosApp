@@ -116,7 +116,6 @@
                                         <td>Fecha de Registro</td>
                                         <td>Anulado</td>
                                         <td>Liquidado</td>
-                                        <td>Acciones</td>
                                         <td>Reporte pdf</td>
                                         <td>Reporte excel</td>
                                     </tr>
@@ -152,15 +151,6 @@
                                                 @endif
                                             </td>
                                             <td class="button">
-                                                @if ($lote->liquidado == '0')
-                                                    <a href="#"
-                                                        class="btn btn-sm btn-primary">Registrar Pesos</a>
-                                                @else
-                                                    <a href="{{ route('pesobruto.show', $lote->id) }}"
-                                                        class="btn btn-sm btn-primary">Ver Pesos</a>
-                                                @endif
-                                            </td>
-                                            <td class="button">
                                                      <a href="{{ route('reportes.generar_pdf',$lote->id) }}" target="_blank"
                                                         class="btn btn-lg btn-primary"><i class="far fa-file-pdf"></i></a>
                                             </td>
@@ -184,8 +174,17 @@
                     <br>
 <ul class="nav nav-tabs">
   <li class="nav-item">
-    <a class="nav-link active" href="#"><h4><strong>DETALLE DEL LOTE # </strong><label id="nombre_lote"></label></h4></a>
+    <a class="nav-link active" href="#"><h6>REGISTROS / LOTE # <label id="nombre_lote"></label></h6></a>
   </li>
+
+  <li class="nav-item">
+    <a class="nav-link" href="#"><h6>VICERAS Y BUCHES <label id="viceras_buches"></label></h6></a>
+  </li>
+
+   <li class="nav-item">
+    <a class="nav-link" href="#"><h6>PESO NETO <label id="peso_neto"></label></h6></a>
+  </li>
+
                               <table class="table table-striped table-bordered">
                                 <thead>
                                     <tr>

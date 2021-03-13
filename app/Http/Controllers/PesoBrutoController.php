@@ -88,7 +88,7 @@ class PesoBrutoController extends Controller
 
     public function create()
     {
-        $proveedores = Proveedores::select('nombres', 'ruc_ci')->get();
+        $proveedores = Proveedores::select('pro_nombre', 'pro_ruc')->get();
 
         return view('pesobruto.create', compact('proveedores'));
     }
@@ -126,8 +126,8 @@ class PesoBrutoController extends Controller
 
         if ($request->has('q')) {
             $search = $request->q;
-            $proveedor = Proveedores::select("ruc_ci", "nombres")
-                    ->where('nombres', 'iLIKE', "%$search%")
+            $proveedor = Proveedores::select("pro_ruc", "pro_nombre")
+                    ->where('pro_nombre', 'iLIKE', "%$search%")
                     ->get();
         }
 

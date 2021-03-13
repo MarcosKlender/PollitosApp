@@ -58,35 +58,25 @@
                             <table class="table table-striped table-bordered">
                                 <thead>
                                     <tr>
-                                        <td>ID</td>
-                                        <td>Tipo</td>
+                                       <td>ID</td>
                                         <td>RUC/CI</td>
                                         <td>Nombres</td>
-                                        <td>Razón Social</td>
-                                        <td>Dirección</td>
+                                        <td>Nombre Comercial</td>
                                         <td>Teléfono</td>
-                                        <td>Móvil</td>
                                         <td>Email</td>
-                                        <td>Provincia</td>
-                                        <td>Ciudad</td>
-                                        <td>Parroquia</td>
+                                        <td>Direccion</td>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @foreach ($searches as $search)
                                         <tr>
                                             <td>{{ $search->id }}</td>
-                                            <td>{{ $search->tipo }}</td>
-                                            <td>{{ $search->ruc_ci }}</td>
-                                            <td>{{ $search->nombres }}</td>
-                                            <td>{{ $search->razon_social }}</td>
-                                            <td>{{ $search->direccion }}</td>
-                                            <td>{{ $search->telefono }}</td>
-                                            <td>{{ $search->movil }}</td>
-                                            <td>{{ $search->email }}</td>
-                                            <td>{{ $search->provincia }}</td>
-                                            <td>{{ $search->ciudad }}</td>
-                                            <td>{{ $search->parroquia }}</td>
+                                            <td>{{ $search->pro_ruc }}</td>
+                                            <td>{{ $search->pro_nombre }}</td>
+                                            <td>{{ $search->pro_nombre_comercial }}</td>
+                                            <td>{{ $search->pro_telefonos }}</td>
+                                            <td>{{ $search->pro_email }}</td>
+                                            <td>{{ $search->pro_direccion }}</td>
                                         </tr>
                                     @endforeach
                                 </tbody>
