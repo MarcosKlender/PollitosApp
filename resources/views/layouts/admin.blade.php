@@ -64,8 +64,8 @@
                 <!-- Nav Item - Admin -->
                 <li class="nav-item {{ (request()->is('basculas')) ? 'active' : '' }}">
                     <a class="nav-link" href="{{ route('basculas.index') }}">
-                        <i class="fas fa-fw fa-warehouse"></i>
-                        <span>{{ __('Basculas') }}</span>
+                        <i class="fas fa-weight"></i>
+                        <span>{{ __('Básculas') }}</span>
                     </a>
                 </li>
 
@@ -99,8 +99,8 @@
             <!-- Nav Item - Dashboard -->
             <li class="nav-item {{ (request()->is('pesobruto')) ? 'active' : '' }}">
                 <a class="nav-link" href="{{ route('pesobruto.index') }}">
-                    <i class="fas fa-balance-scale-left"></i>
-                    <span>{{ __('Peso Bruto') }}</span></a>
+                    <i class="fas fa-arrow-circle-right"></i>
+                    <span>{{ __('Ingresos') }}</span></a>
             </li>
 
             <li class="nav-item {{ (request()->is('visceras')) ? 'active' : '' }}">
@@ -111,8 +111,8 @@
 
             <li class="nav-item {{ (request()->is('pesoneto')) ? 'active' : '' }}">
                 <a class="nav-link" href="{{ route('pesoneto.index') }}">
-                    <i class="fas fa-balance-scale-right"></i>
-                    <span>{{ __('Peso Neto') }}</span></a>
+                    <i class="fas fa-arrow-circle-left"></i>
+                    <span>{{ __('Egresos') }}</span></a>
             </li>
 
             <li class="nav-item {{ (request()->is('entregas')) ? 'active' : '' }}">
@@ -129,12 +129,12 @@
 
             <!-- Heading -->
             <div class="sidebar-heading">
-                {{ __('Reportes') }}
+                {{ __('Reportería') }}
             </div>
             
              <li class="nav-item {{ (request()->is('reportes')) ? 'active' : '' }}">
                 <a class="nav-link" href="{{ route('reportes.index') }}">
-                    <i class="fas fa-fw fa-file"></i>
+                    <i class="fas fa-fw fa-copy"></i>
                     <span>{{ __('Reportes') }}</span></a>
             </li>
 

@@ -21,34 +21,44 @@ class ProveedoresController extends Controller
         return view('proveedores.index', compact('proveedores', 'count'));
     }
 
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        //
+        return view('proveedores.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        //
+        $storeData = $request->validate([
+            'tipo' => 'required|max:3',
+            'ruc_ci' => 'required|unique:proveedores,ruc_ci|digits_between:10,13',
+            'nombres' => 'required|max:191',
+            'razon_social' => 'required|max:191',
+            'direccion' => 'required|max:191',
+            'telefono' => 'required|digits_between:7,9',
+            'movil' => 'required|digits:10',
+            'email' => 'required|email|unique:proveedores,email|max:191',
+            'provincia' => 'required|max:191',
+            'ciudad' => 'required|max:191',
+            'parroquia' => 'required|max:191',
+        ]);
+
+        $proveedor = Proveedores::create($storeData);
+
+        // Mantener datos del formulario
+        $request->old('ruc_ci');
+        $request->old('nombres');
+        $request->old('razon_social');
+        $request->old('direccion');
+        $request->old('telefono');
+        $request->old('movil');
+        $request->old('email');
+        $request->old('provincia');
+        $request->old('ciudad');
+        $request->old('parroquia');
+
+        return redirect('/proveedores')->with('success', '¡Proveedor creado exitosamente!');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show(Request $request)
     {
 
@@ -65,8 +75,6 @@ class ProveedoresController extends Controller
 
         $count = count($searches);
 
-
-
         /*if ($tipo_busqueda == 'ruc_ci')
         {
             $searches = Proveedores::orderBy('id')->where('ruc_ci', 'like', '%'.$criterio.'%')->paginate(10);
@@ -79,40 +87,36 @@ class ProveedoresController extends Controller
         }*/
 
         return view('proveedores.search', compact('searches', 'count'));
-
-
-
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
-        //
+        $proveedor = Proveedores::findOrFail($id);
+
+        return view('proveedores.edit', compact('proveedor'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
-        //
+        $updateData = $request->validate([
+            'tipo' => 'required|max:3',
+            'ruc_ci' => 'required|digits_between:10,13|unique:proveedores,ruc_ci,'.$id,
+            'nombres' => 'required|max:191',
+            'razon_social' => 'required|max:191',
+            'direccion' => 'required|max:191',
+            'telefono' => 'required|digits_between:7,9',
+            'movil' => 'required|digits:10',
+            'email' => 'required|email|max:191|unique:proveedores,email,'.$id,
+            'provincia' => 'required|max:191',
+            'ciudad' => 'required|max:191',
+            'parroquia' => 'required|max:191',
+        ]);
+
+        Proveedores::whereId($id)->update($updateData);
+
+        return redirect('/proveedores')->with('success', '¡Proveedor actualizado exitosamente!');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
         //
