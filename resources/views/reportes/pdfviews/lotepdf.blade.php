@@ -14,7 +14,7 @@
         <div>------------------------------</div>
         <div>-------------------</div>
       </div>
-      <h1>REPORTES</h1>
+      <h3>REGISTRO DE INGRESO</h3>
       <div id="company" class="clearfix">
     </header>
     <main>
@@ -38,7 +38,7 @@
                      @if($lote->id==$id_lote) 
                         <div class="card-header mt-2">
                                 <div class="text-center">
-                              <h4>CABECERA DEL LOTE N° {{ $lote->id }} </h4>
+                              <!--h4>CABECERA DEL LOTE N° {{ $lote->id }} </h4!-->
                            </div>
                         </div> 
                         
@@ -46,6 +46,7 @@
                         <div style="position:absolute; left:0pt; width:192pt;">
                          <div>   <strong>N° Lote: </strong>           <label>{{ $lote->id }}                     </label></div>  
                          <div>   <strong>Tipo: </strong>            <label>{{ $lote->tipo }}                   </label></div>
+                         <div>   <strong>Cantidad: </strong>            <label>{{ $lote->cantidad }}                </label></div>
                          <div>   <strong>Proveedor:</strong>         <label>{{ $lote->proveedor }}              </label></div>
                          <div>   <strong>Procedencia: </strong>       <label>{{ $lote->procedencia }}            </label></div> 
                         </div>
@@ -57,6 +58,9 @@
                         </div>
                         </div>
                        <div>
+                        <br/>
+                        <br/>
+
                          <div class="card-header mt-2">
                                 <div class="text-center">
                               <h4>DETALLE LOTE N° {{ $lote->id }} </h4>

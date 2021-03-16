@@ -14,7 +14,7 @@
         <div>------------------------------</div>
         <div>-------------------</div>
       </div>
-      <h1>REPORTES</h1>
+      <h3>REGISTRO DE INGRESO</h3>
       <div id="company" class="clearfix">
     </header>
     <main>
@@ -38,23 +38,24 @@
                      @if($lote->id==$id_lote) 
                         <div class="card-header mt-2">
                                 <div class="text-center">
-                              <h4>CABECERA DEL LOTE N° {{ $lote->id }} </h4>
+                              <!--h4>CABECERA DEL LOTE N° {{ $lote->id }} </h4!-->
                            </div>
                         </div> 
                         
                         <div style="clear:both; position:relative;">
-                        <div style="position:absolute; left:0pt; width:192pt;">
-                         <div>   <strong>N° Lote: </strong>           <label>{{ $lote->id }}                     </label></div>  
-                         <div>   <strong>Tipo: </strong>            <label>{{ $lote->tipo }}                   </label></div>
-                         <div>   <strong>Proveedor:</strong>         <label>{{ $lote->proveedor }}              </label></div>
-                         <div>   <strong>Procedencia: </strong>       <label>{{ $lote->procedencia }}            </label></div> 
-                        </div>
-                        <div style="margin-left:200pt;">
-                         <div>   <strong>Placa:     </strong>         <label>{{ $lote->placa }}                  </label></div>
-                         <div>   <strong>Conductor:  </strong>        <label>{{ $lote->conductor }}              </label></div>
-                         <div>   <strong>Usuario:       </strong>     <label>{{ $lote->usuario }}           </label></div>
-                         <div>   <strong>Fecha de Registro:</strong>  <label>{{ $lote->created_at }}             </label></div>
-                        </div>
+                          <div style="position:absolute; left:0pt; width:192pt;">
+                           <div>   <strong>N° Lote: </strong>           <label>{{ $lote->id }}                     </label></div>  
+                           <div>   <strong>Tipo: </strong>            <label>{{ $lote->tipo }}                   </label></div>
+                           <div>   <strong>Cantidad: </strong>            <label>{{ $lote->cantidad }}                </label></div>
+                           <div>   <strong>Proveedor:</strong>         <label>{{ $lote->proveedor }}              </label></div>
+                           <div>   <strong >Procedencia: </strong>       <label>{{ $lote->procedencia }}            </label></div> 
+                          </div>
+                          <div style="margin-left:200pt;">
+                           <div>   <strong>Placa:     </strong>         <label>{{ $lote->placa }}                  </label></div>
+                           <div>   <strong>Conductor:  </strong>        <label>{{ $lote->conductor }}              </label></div>
+                           <div>   <strong>Usuario:       </strong>     <label>{{ $lote->usuario }}           </label></div>
+                           <div>   <strong>Fecha de Registro:</strong>  <label>{{ $lote->created_at }}             </label></div>
+                          </div>
                         </div>
                        <div>
                          <div class="card-header mt-2">

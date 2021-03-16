@@ -58,6 +58,7 @@
                                         @endif
                                         <td>Liquidado</td>
                                         <td>Acciones</td>
+                                         <td>Ver pdf</td>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -74,7 +75,7 @@
                                              @if(Auth::user()->rol->key == 'admin')   
                                                 <td>{{ $lote->usuario }}</td>
                                              @endif   
-                                            <td>{{ $lote->created_at }}</td>
+                                            <td>{{ $lote->created_at }}</td>                                         
                                             @if (Auth::user()->rol->key == 'admin')
                                                 <td>
                                                     <button type="button" class="btn btn-sm btn-primary modal_anular" data-toggle="modal"
@@ -96,6 +97,10 @@
                                                     <a href="{{ route('pesobruto.show', $lote->id) }}"
                                                         class="btn btn-sm btn-success">Ver Pesos</a>
                                                 @endif
+                                            </td>
+                                               <td class="button">
+                                                     <a href="{{ route('reportes.generar_pdf',$lote->id) }}" target="_blank"
+                                                        class="btn btn-lg btn-primary"><i class="far fa-file-pdf"></i></a>
                                             </td>
                                         </tr>
                                     @endforeach

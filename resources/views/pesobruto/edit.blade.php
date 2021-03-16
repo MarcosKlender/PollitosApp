@@ -69,7 +69,7 @@
                                 <thead>
                                     <tr>
                                         <td>#</td>
-                                        <td>ID Lote</td>
+                                        <!--td >ID Lote</td!-->
                                         <td>Cantidad de Gavetas</td>
                                         <!-- <td>Cantidad {{ $lote->tipo }}</td> -->
                                         <td>Peso Bruto</td>
@@ -85,7 +85,7 @@
                                     @foreach ($registros as $registro)
                                         <tr>
                                             <td>{{ $registro->id }}</td>
-                                            <td>{{ $registro->lotes_id }}</td>
+                                            <!--td>{{ $registro->lotes_id }}</td!-->
                                             <td>{{ $registro->cant_gavetas }}</td>
                                             {{-- @if ($registro->cant_pollos == null)
                                                 <td>N/A</td> @else <td>{{ $registro->cant_pollos }}</td>
