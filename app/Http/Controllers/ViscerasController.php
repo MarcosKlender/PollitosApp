@@ -10,19 +10,11 @@ use Illuminate\Support\Facades\Auth;
 
 class ViscerasController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        if (Auth::user()->rol_id == 1)
-        {
+        if (Auth::user()->rol_id == 1) {
             $lotes = Lotes::orderBy('id', 'desc')->where('anulado', 0)->paginate(8);
-        }
-        else
-        {
+        } else {
             $lotes = Lotes::orderBy('id', 'desc')->where('anulado', 0)->where('usuario', Auth::user()->username)->paginate(8);
         }
 
@@ -31,33 +23,16 @@ class ViscerasController extends Controller
         return view('visceras.index', compact('lotes', 'count'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         //
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
         $lote = Lotes::findOrFail($id);
@@ -70,12 +45,6 @@ class ViscerasController extends Controller
         return view('visceras.show', compact('lote', 'visceras', 'total_bruto', 'total_gavetas', 'total_final'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
         $lote = Lotes::findOrFail($id);
@@ -84,20 +53,13 @@ class ViscerasController extends Controller
         return view('visceras.edit', compact('lote', 'visceras'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
         //dd($request);
         $updateData = $request->validate([
             'lotes_id' => 'required|numeric',
             'tipo' => 'required|max:8',
-            'peso_bruto' => 'required|numeric',
+            'peso_bruto' => 'required|numeric|min:1',
             'peso_gavetas' => '',
             'peso_final' => '',
             'usuario' => 'required|max:191',
@@ -111,12 +73,6 @@ class ViscerasController extends Controller
         return redirect()->route('visceras.edit', $id)->with('lote');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
         //
@@ -149,7 +105,7 @@ class ViscerasController extends Controller
     public function registrar_gavetas(Request $request)
     {
         $updateData = $request->validate([
-            'peso_gavetas' => 'required|numeric',
+            'peso_gavetas' => 'required|numeric|min:1',
             'peso_final' => 'required|numeric'
         ]);
         

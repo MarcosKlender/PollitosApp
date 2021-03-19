@@ -19,12 +19,9 @@ class PesoBrutoController extends Controller
     
     public function index()
     {
-        if (Auth::user()->rol_id == 1)
-        {
+        if (Auth::user()->rol_id == 1) {
             $lotes = Lotes::orderBy('id', 'desc')->where('anulado', 0)->paginate(8);
-        }
-        else
-        {
+        } else {
             $lotes = Lotes::orderBy('id', 'desc')->where('anulado', 0)->where('usuario', Auth::user()->username)->paginate(8);
         }
 
@@ -33,43 +30,39 @@ class PesoBrutoController extends Controller
         return view('pesobruto.index', compact('lotes', 'count'));
     }
 
+    /* public function index2()
+     {
+         $ch = curl_init("http://192.168.0.103/ws.php?opcion=get");
+         curl_setopt($ch, CURLOPT_URL, "http://192.168.0.103/ws.php?opcion=get");
+         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+         curl_setopt($ch, CURLOPT_TIMEOUT_MS, 200);
+         $res = curl_exec($ch);
+         curl_close($ch);
 
-   /* public function index2()
-    {
-        $ch = curl_init("http://192.168.0.103/ws.php?opcion=get");
-        curl_setopt($ch, CURLOPT_URL, "http://192.168.0.103/ws.php?opcion=get");
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch, CURLOPT_TIMEOUT_MS, 200);
-        $res = curl_exec($ch);
-        curl_close($ch);   
+         return view('pesobruto.seccion', compact('res'));
 
-        return view('pesobruto.seccion', compact('res'));
-         
-    }*/
+     }*/
 
     public function index2()
-    {       
+    {
         $user=auth()->user()->username;
 
         $busuario =Basculas::select("id")
             ->where('nom_user', '=', "$user")
             ->get();
 
-
-
         if (count($busuario)>0) {
             $busuario=$busuario[0]['id'];
-            
-        }if($busuario==="B001"){
+        }
+        if ($busuario==="B001") {
             $ch = curl_init("http://192.168.0.103/ws.php?opcion=get");
             curl_setopt($ch, CURLOPT_URL, "http://192.168.0.103/ws.php?opcion=get");
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
             curl_setopt($ch, CURLOPT_TIMEOUT_MS, 3000);
             $res = curl_exec($ch);
             curl_close($ch);
-            //$res="Con_accesoB001";
-
-        }elseif ($busuario==="B002") {
+        //$res="Con_accesoB001";
+        } elseif ($busuario==="B002") {
             /*$ch = curl_init("URL DE LA BASCULA 2");
             curl_setopt($ch, CURLOPT_URL, "URL DE LA BASCULA 2");
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -77,15 +70,12 @@ class PesoBrutoController extends Controller
             $res = curl_exec($ch);
             curl_close($ch);*/
             $res="Con_accesoB002";
-
-        }else{
-            $res="Sin_acceso"; 
+        } else {
+            $res="Sin_acceso";
         }
-            return view('pesobruto.seccion',compact('res'));
+        return view('pesobruto.seccion', compact('res'));
     }
     
-
-
     public function create()
     {
         $proveedores = Proveedores::select('pro_nombre', 'pro_ruc')->get();
@@ -97,7 +87,7 @@ class PesoBrutoController extends Controller
     {
         $storeData = $request->validate([
             'tipo' => 'required|max:191',
-            'cantidad' => 'required|numeric',
+            'cantidad' => 'required|numeric|min:1',
             'proveedor' => 'required|max:191',
             'procedencia' => 'required|regex:/^[\pL\pM\pN\s]+$/u|max:191',
             'placa' => 'required|regex:/^[\pL\pM\pN\s]+$/u|size:7',
@@ -118,8 +108,7 @@ class PesoBrutoController extends Controller
 
         return redirect('/pesobruto')->with('success', '¡Lote creado exitosamente!');
     }
-
-
+    
     public function selectSearch(Request $request)
     {
         $proveedores = [];
@@ -159,9 +148,9 @@ class PesoBrutoController extends Controller
     {
         $updateData = $request->validate([
             'lotes_id' => 'required|numeric',
-            'cant_gavetas' => 'required|numeric',
+            'cant_gavetas' => 'required|numeric|min:1',
             'cant_pollos' => '',
-            'peso_bruto' => 'required|numeric',
+            'peso_bruto' => 'required|numeric|min:1',
             'peso_gavetas' => '',
             'peso_final' => '',
             'usuario' => 'required|max:191',
@@ -231,7 +220,7 @@ class PesoBrutoController extends Controller
     public function registrar_gavetas(Request $request)
     {
         $updateData = $request->validate([
-            'peso_gavetas' => 'required|numeric',
+            'peso_gavetas' => 'required|numeric|min:1',
             'peso_final' => 'required|numeric'
         ]);
         
