@@ -3,12 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Lotes;
-use App\Visceras;
+use App\Egresos;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
-class ViscerasController extends Controller
+class EgresosController extends Controller
 {
     public function index()
     {
@@ -20,7 +20,7 @@ class ViscerasController extends Controller
 
         $count = count($lotes);
         
-        return view('visceras.index', compact('lotes', 'count'));
+        return view('egresos.index', compact('lotes', 'count'));
     }
 
     public function create()
@@ -36,28 +36,29 @@ class ViscerasController extends Controller
     public function show($id)
     {
         $lote = Lotes::findOrFail($id);
-        $visceras = Visceras::where('lotes_id', $id)->where('anulado', 0)->orderBy('id')->get();
+        $egresos = Egresos::where('lotes_id', $id)->where('anulado', 0)->orderBy('id')->get();
 
-        $total_bruto = Visceras::where('lotes_id', $id)->where('anulado', 0)->select('peso_bruto')->sum('peso_bruto');
-        $total_gavetas = Visceras::where('lotes_id', $id)->where('anulado', 0)->select('peso_gavetas')->sum('peso_gavetas');
-        $total_final = Visceras::where('lotes_id', $id)->where('anulado', 0)->select('peso_final')->sum('peso_final');
+        $total_cantidad = Egresos::where('lotes_id', $id)->where('anulado', 0)->select('cant_gavetas')->sum('cant_gavetas');
+        $total_bruto = Egresos::where('lotes_id', $id)->where('anulado', 0)->select('peso_bruto')->sum('peso_bruto');
+        $total_gavetas = Egresos::where('lotes_id', $id)->where('anulado', 0)->select('peso_gavetas')->sum('peso_gavetas');
+        $total_final = Egresos::where('lotes_id', $id)->where('anulado', 0)->select('peso_final')->sum('peso_final');
 
-        return view('visceras.show', compact('lote', 'visceras', 'total_bruto', 'total_gavetas', 'total_final'));
+        return view('egresos.show', compact('lote', 'egresos', 'total_cantidad', 'total_bruto', 'total_gavetas', 'total_final'));
     }
 
     public function edit($id)
     {
         $lote = Lotes::findOrFail($id);
-        $visceras = Visceras::where('lotes_id', $id)->where('anulado', 0)->orderBy('id')->get();
+        $egresos = Egresos::where('lotes_id', $id)->where('anulado', 0)->orderBy('id')->get();
 
-        return view('visceras.edit', compact('lote', 'visceras'));
+        return view('egresos.edit', compact('lote', 'egresos'));
     }
 
     public function update(Request $request, $id)
     {
         $updateData = $request->validate([
             'lotes_id' => 'required|numeric',
-            'tipo' => 'required|max:8',
+            'cant_gavetas' => 'required|numeric|min:1',
             'peso_bruto' => 'required|numeric|min:1',
             'peso_gavetas' => '',
             'peso_final' => '',
@@ -65,11 +66,11 @@ class ViscerasController extends Controller
             'anulado' => 'required|size:1',
         ]);
         
-        Visceras::whereId($id)->create($updateData);
+        Egresos::whereId($id)->create($updateData);
 
         $lote = Lotes::findOrFail($id);
 
-        return redirect()->route('visceras.edit', $id)->with('lote');
+        return redirect()->route('egresos.edit', $id)->with('lote');
     }
 
     public function destroy($id)
@@ -79,14 +80,14 @@ class ViscerasController extends Controller
 
     public function registros_anulados()
     {
-        $visceras = Visceras::orderBy('id', 'desc')->where('anulado', 1)->paginate(10);
-        $count = count($visceras);
+        $egresos = Egresos::orderBy('id', 'desc')->where('anulado', 1)->paginate(10);
+        $count = count($egresos);
 
         if (Auth::user()->rol->key != 'admin') {
-            return redirect('/visceras');
+            return redirect('/egresos');
         }
         
-        return view('visceras.registros_anulados', compact('visceras', 'count'));
+        return view('egresos.registros_anulados', compact('egresos', 'count'));
     }
 
     public function anular_registro(Request $request)
@@ -96,7 +97,7 @@ class ViscerasController extends Controller
             'observaciones' => 'max:191',
         ]);
         
-        Visceras::whereId($request->id_anular)->update($updateData);
+        Egresos::whereId($request->id_anular)->update($updateData);
 
         return back()->with('success', '¡El registro ha sido anulado!');
     }
@@ -108,7 +109,7 @@ class ViscerasController extends Controller
             'peso_final' => 'required|numeric'
         ]);
         
-        Visceras::whereId($request->id_gavetas)->update($updateData);
+        Egresos::whereId($request->id_gavetas)->update($updateData);
 
         return back()->with('success', '¡El peso de las gavetas fue registrado exitosamente!');
     }
@@ -116,11 +117,11 @@ class ViscerasController extends Controller
     public function liquidar_lote(Request $request)
     {
         $updateData = $request->validate([
-            'visceras' => 'required|size:1',
+            'egresos' => 'required|size:1',
         ]);
         
         Lotes::whereId($request->id_liquidar)->update($updateData);
 
-        return redirect('/visceras')->with('success', '¡Lote liquidado exitosamente!');
+        return redirect('/egresos')->with('success', '¡Lote liquidado exitosamente!');
     }
 }

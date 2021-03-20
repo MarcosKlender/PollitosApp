@@ -7,14 +7,14 @@
             <div class="card shadow mb-4">
                 <div class="card-header mt-2">
                     <div class="text-center">
-                        <h4>LOTES ANULADOS</h4>
+                        <h4>REGISTROS ANULADOS - EGRESOS</h4>
                     </div>
                 </div>
 
                 <div class="card-body">
                     <div class="row justify-content-around">
                         <div class="mb-3">
-                            <a href="javascript:history.back()" class="btn btn-primary">Volver Atrás</a>
+                            <a href="{{ route('egresos.index') }}" class="btn btn-primary">Volver Atrás</a>
                         </div>
                     </div>
                     @if (session()->get('success'))
@@ -24,38 +24,34 @@
                     @endif
 
                     @if ($count == 0)
-                        <div class="alert alert-danger">No se han encontrado lotes anulados.</div>
+                        <div class="alert alert-danger">No se han encontrado registros anulados.</div>
                     @else
 
                         <div class="table-responsive">
                             <table class="table table-striped table-bordered">
                                 <thead>
                                     <tr>
-                                        <td>ID</td>
-                                        <td>Tipo</td>
-                                        <td>Proveedor</td>
-                                        <td>RUC/CI</td>
-                                        <td>Procedencia</td>
-                                        <td>Placa</td>
-                                        <td>Conductor</td>
+                                        <td>ID Registro</td>
+                                        <td>ID Lote</td>
+                                        <td>Peso Bruto</td>
+                                        <td>Peso Gavetas</td>
+                                        <td>Peso Final</td>
                                         <td>Usuario</td>
                                         <td>Observaciones</td>
-                                        <td>Fecha de Registro</td>
+                                        <td>Fecha de Anulación</td>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($lotes as $lote)
+                                    @foreach ($egresos as $egreso)
                                         <tr>
-                                            <td>{{ $lote->id }}</td>
-                                            <td>{{ $lote->tipo }}</td>
-                                            <td>{{ $lote->proveedor }}</td>
-                                            <td>{{ $lote->ruc_ci }}</td>
-                                            <td>{{ $lote->procedencia }}</td>
-                                            <td>{{ $lote->placa }}</td>
-                                            <td>{{ $lote->conductor }}</td>
-                                            <td>{{ $lote->usuario }}</td>
-                                            <td>{{ $lote->observaciones }}</td>
-                                            <td>{{ $lote->created_at }}</td>
+                                            <td>{{ $egreso->id }}</td>
+                                            <td>{{ $egreso->lotes_id }}</td>
+                                            <td>{{ $egreso->peso_bruto }}</td>
+                                            <td>{{ $egreso->peso_gavetas }}</td>
+                                            <td>{{ $egreso->peso_final }}</td>
+                                            <td>{{ $egreso->usuario }}</td>
+                                            <td>{{ $egreso->observaciones }}</td>
+                                            <td>{{ $egreso->updated_at }}</td>
                                         </tr>
                                     @endforeach
                                 </tbody>
@@ -65,7 +61,7 @@
                     @endif
 
                     <div class="row justify-content-around">
-                        {{ $lotes->links() }}
+                        {{ $egresos->links() }}
                         {{-- <span>Total de Lotes:
                             <b>{{ $count }}</b></span>--}}
                     </div>

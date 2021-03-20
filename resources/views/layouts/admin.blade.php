@@ -109,8 +109,8 @@
                     <span>{{ __('Vísceras y Buches') }}</span></a>
             </li>
 
-            <li class="nav-item {{ (request()->is('pesoneto')) ? 'active' : '' }}">
-                <a class="nav-link" href="{{ route('pesoneto.index') }}">
+            <li class="nav-item {{ (request()->is('egresos')) ? 'active' : '' }}">
+                <a class="nav-link" href="{{ route('egresos.index') }}">
                     <i class="fas fa-arrow-circle-left"></i>
                     <span>{{ __('Egresos') }}</span></a>
             </li>

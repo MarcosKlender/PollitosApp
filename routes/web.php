@@ -18,7 +18,6 @@ use Maatwebsite\Excel\Facades\Excel;
 //EXPORTAR A EXCEL
 Route::get('/reportes/generar_excel/{lotes}', 'ReportesController@generar_excel')->name('reportes.generar_excel');
 
-
 Route::get('/', function () {
     return view('welcome');
 });
@@ -34,8 +33,6 @@ Route::resource('admin', AdminController::class);
 Route::resource('proveedores', ProveedoresController::class);
 Route::resource('clientes', ClientesController::class);
 
-
-
 Route::get('/ajax-autocomplete-search', 'PesoBrutoController@selectSearch')->name('selectSearch');
 Route::get('/ajax-autocomplete-search2', 'BasculasController@selectSearch')->name('selectSearch2');
 Route::get('/pesobruto/peso_bascula','PesoBrutoController@pesobascula')->name('pesobascula');
@@ -43,7 +40,6 @@ Route::get('/pesobruto/peso_bascula','PesoBrutoController@pesobascula')->name('p
 Route::get('/pesobruto/seccion', 'PesoBrutoController@index2')->name('seccion');
 
 //Route::post('/reportes/ajaxshowdetallepesobruto','ReportesController@index');
-
 
 Route::get('/pesobruto/lotes_anulados', 'PesoBrutoController@lotes_anulados')->name('pesobruto.lotes_anulados');
 Route::post('/pesobruto/anular_lote', 'PesoBrutoController@anular_lote')->name('pesobruto.anular_lote');
@@ -57,15 +53,20 @@ Route::get('/reportes/generar_pdf_general/{lotes}', 'ReportesController@generar_
 Route::post('/reportes/detalle_lotes', 'ReportesController@detalle_lotes')->name('reportes.detalle_lotes');
 //Route::post('/reportes/show_detalle', 'ReportesController@show_detalle')->name('reportes.show_detalle');
 
-
-
 Route::resource('pesobruto', PesoBrutoController::class);
-Route::resource('pesoneto', PesoNetoController::class);
+
 Route::get('/visceras/registros_anulados', 'ViscerasController@registros_anulados')->name('visceras.registros_anulados');
 Route::post('/visceras/anular_registro', 'ViscerasController@anular_registro')->name('visceras.anular_registro');
 Route::post('/visceras/registrar_gavetas', 'ViscerasController@registrar_gavetas')->name('visceras.registrar_gavetas');
 Route::post('/visceras/liquidar_lote', 'ViscerasController@liquidar_lote')->name('visceras.liquidar_lote');
 Route::resource('visceras', ViscerasController::class);
+
+Route::get('/egresos/registros_anulados', 'EgresosController@registros_anulados')->name('egresos.registros_anulados');
+Route::post('/egresos/anular_registro', 'EgresosController@anular_registro')->name('egresos.anular_registro');
+Route::post('/egresos/registrar_gavetas', 'EgresosController@registrar_gavetas')->name('egresos.registrar_gavetas');
+Route::post('/egresos/liquidar_lote', 'EgresosController@liquidar_lote')->name('egresos.liquidar_lote');
+Route::resource('egresos', EgresosController::class);
+
 Route::resource('entregas', EntregasController::class);
 Route::resource('reportes', ReportesController::class);
 Route::resource('basculas', BasculasController::class);

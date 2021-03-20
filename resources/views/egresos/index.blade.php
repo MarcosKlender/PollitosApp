@@ -7,23 +7,19 @@
             <div class="card shadow mb-4">
                 <div class="card-header mt-2">
                     <div class="text-center">
-                        <h4>INGRESOS</h4>
+                        <h4>EGRESOS</h4>
                     </div>
                 </div>
 
                 <div class="card-body">
                     <div class="row justify-content-around">
-                        <div class="mb-3">
-                            <a href="{{ route('pesobruto.create') }}" class="btn btn-success">Crear Registro</a>
-                        </div>
                         @if (Auth::user()->rol->key == 'admin')
                             <div class="mb-3">
                                 <a href="{{ route('pesobruto.lotes_anulados') }}" class="btn btn-danger">Lotes
                                     Anulados</a>
                             </div>
                             <div class="mb-3">
-                                <a href="{{ route('pesobruto.registros_anulados') }}" class="btn btn-danger">Registros
-                                    Anulados</a>
+                                <a href="{{ route('egresos.registros_anulados') }}" class="btn btn-danger">Registros Anulados</a>
                             </div>
                         @endif
                     </div>
@@ -46,19 +42,15 @@
                                         <td>Cantidad</td>
                                         <td>Proveedor</td>
                                         <td>RUC/CI</td>
-                                        <td>Procedencia</td>
-                                        <td>Placa</td>
-                                        <td>Conductor</td>
-                                         @if(Auth::user()->rol->key == 'admin')   
-                                                <td>Usuario</td>
-                                         @endif       
+                                        @if (Auth::user()->rol->key == 'admin')
+                                            <td>Usuario</td>
+                                        @endif
                                         <td>Fecha de Registro</td>
                                         @if (Auth::user()->rol->key == 'admin')
                                             <td>Anulado</td>
                                         @endif
                                         <td>Liquidado</td>
                                         <td>Acciones</td>
-                                         <td>Ver pdf</td>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -69,38 +61,32 @@
                                             <td>{{ $lote->cantidad }}</td>
                                             <td>{{ $lote->proveedor }}</td>
                                             <td>{{ $lote->ruc_ci }}</td>
-                                            <td>{{ $lote->procedencia }}</td>
-                                            <td>{{ $lote->placa }}</td>
-                                            <td>{{ $lote->conductor }}</td>
-                                             @if(Auth::user()->rol->key == 'admin')   
+                                            @if (Auth::user()->rol->key == 'admin')
                                                 <td>{{ $lote->usuario }}</td>
-                                             @endif   
-                                            <td>{{ $lote->created_at }}</td>                                         
+                                            @endif
+                                            <td>{{ $lote->created_at }}</td>
                                             @if (Auth::user()->rol->key == 'admin')
                                                 <td>
-                                                    <button type="button" class="btn btn-sm btn-primary modal_anular" data-toggle="modal"
-                                                        data-id="{{ $lote->id }}" data-target="#staticBackdrop1">NO</button>
+                                                    <button type="button" class="btn btn-sm btn-primary modal_anular"
+                                                        data-toggle="modal" data-id="{{ $lote->id }}"
+                                                        data-target="#staticBackdrop1">NO</button>
                                                 </td>
                                             @endif
                                             <td>
-                                                @if ($lote->liquidado == '0')
+                                                @if ($lote->egresos == '0')
                                                     <button type="button" class="btn btn-sm btn-primary">NO</button>
                                                 @else
                                                     <button type="button" class="btn btn-sm btn-success">SI</button>
                                                 @endif
                                             </td>
                                             <td>
-                                                @if ($lote->liquidado == '0')
-                                                    <a href="{{ route('pesobruto.edit', $lote->id) }}"
+                                                @if ($lote->egresos == '0')
+                                                    <a href="{{ route('egresos.edit', $lote->id) }}"
                                                         class="btn btn-sm btn-primary">Registrar Pesos</a>
                                                 @else
-                                                    <a href="{{ route('pesobruto.show', $lote->id) }}"
-                                                        class="btn btn-sm btn-success">Ver Pesos</a>
+                                                    <a href="{{ route('egresos.show', $lote->id) }}"
+                                                        class="btn btn-sm btn-success">Ver Registros</a>
                                                 @endif
-                                            </td>
-                                               <td class="button">
-                                                     <a href="{{ route('reportes.generar_pdf',$lote->id) }}" target="_blank"
-                                                        class="btn btn-lg btn-primary"><i class="far fa-file-pdf"></i></a>
                                             </td>
                                         </tr>
                                     @endforeach

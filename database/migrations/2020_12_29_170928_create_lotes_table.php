@@ -26,6 +26,7 @@ class CreateLotesTable extends Migration
             $table->string('anulado', 1);
             $table->string('liquidado', 1);
             $table->string('visceras', 1);
+            $table->string('egresos', 1);
             $table->string('observaciones')->nullable();
             $table->integer('cant_ahogados')->nullable();
             $table->integer('peso_ahogados')->nullable();
