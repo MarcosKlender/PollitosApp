@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Egresos;
 use App\Visceras;
 use App\Registros;
 use Illuminate\Support\Facades\DB;
@@ -26,6 +27,11 @@ class Lotes extends Model
     public function visceras()
     {
         return $this->hasMany(Visceras::class);
+    }
+
+    public function egresos()
+    {
+        return $this->hasMany(Egresos::class);
     }
 
     public function scopeAll_index($query)
