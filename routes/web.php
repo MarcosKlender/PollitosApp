@@ -67,7 +67,10 @@ Route::post('/egresos/registrar_gavetas', 'EgresosController@registrar_gavetas')
 Route::post('/egresos/liquidar_lote', 'EgresosController@liquidar_lote')->name('egresos.liquidar_lote');
 Route::resource('egresos', EgresosController::class);
 
+Route::get('/entregas/entregas_anuladas', 'EntregasController@entregas_anuladas')->name('entregas.entregas_anuladas');
+Route::post('/entregas/anular_entrega', 'EntregasController@anular_entrega')->name('entregas.anular_entrega');
 Route::resource('entregas', EntregasController::class);
+
 Route::resource('reportes', ReportesController::class);
 Route::resource('basculas', BasculasController::class);
 

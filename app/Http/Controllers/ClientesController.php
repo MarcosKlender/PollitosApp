@@ -17,7 +17,6 @@ class ClientesController extends Controller
 
 
     public function index(){
-
     	$clientes = Clientes::orderBy('id')->paginate(10);
         $count = count(Clientes::all());
         
@@ -25,7 +24,6 @@ class ClientesController extends Controller
     }
 
     public function show(Request $request){
-
     	$criterio_ruc_ci = $request->get('criterio_ruc_ci');
         $criterio_nombres = $request->get('criterio_nombres');
         $criterio_rsocial = $request->get('criterio_rsocial');
@@ -41,7 +39,6 @@ class ClientesController extends Controller
         $count = count($searches);
 
         return view('clientes.search', compact('searches', 'count'));
-
     }
 
 }

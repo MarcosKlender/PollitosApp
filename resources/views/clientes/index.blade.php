@@ -12,16 +12,14 @@
                 </div>
 
                 <div class="card-body">
+
                     <div class="row justify-content-around">
-                        
-                       
                         
                         <div class="mb-3">
                             <form method="get" action="{{ route('clientes.show', 'search') }}">
 
                                 <div class="input-group">
                                
-
                                      <div class="col-auto input-group-append">
                                         <input type="search" id="criterio_ruc_ci" name="criterio_ruc_ci" class="form-control"  placeholder="Buscar RUC/CI"  >
                                     </div>
@@ -45,8 +43,6 @@
                                         </button>
                                     </div>
                                 </div>
-
-
 
                             </form>
                         </div>

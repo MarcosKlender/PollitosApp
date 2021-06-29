@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
+use App\Entregas;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class EntregasController extends Controller
 {
@@ -14,72 +16,80 @@ class EntregasController extends Controller
     
     public function index()
     {
-        return view('entregas.index');
+        $entregas = Entregas::orderBy('id', 'desc')->where('anulado', 0)->paginate(10);
+        $count = count($entregas);
+        
+        return view('entregas.index', compact('entregas', 'count'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        //
+        return view('entregas.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        //
+        $storeData = $request->validate([
+            'cliente' => 'required|max:191',
+            'placa' => 'required|regex:/^[\pL\pM\pN\s]+$/u|size:7',
+            'conductor' => 'required|regex:/^[\pL\pM\pN\s]+$/u|max:191',
+            'peso_entrega' => 'required|numeric|min:1',
+            'usuario' => 'required|max:191',
+            'anulado' => 'required|size:1',
+        ]);
+
+        $entregas = Entregas::create($storeData);
+
+        // Mantener datos del formulario
+        $request->old('cliente');
+        $request->old('placa');
+        $request->old('conductor');
+        $request->old('peso_entrega');
+
+        return redirect('/entregas')->with('success', '¡Entrega creada exitosamente!');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
         //
+    }
+
+    public function entregas_anuladas()
+    {
+        $entregas = Entregas::orderBy('id', 'desc')->where('anulado', 1)->paginate(10);
+        $count = count($entregas);
+
+        if (Auth::user()->rol->key != 'admin') {
+            return redirect('/entregas');
+        }
+        
+        return view('entregas.entregas_anuladas', compact('entregas', 'count'));
+    }
+
+    public function anular_entrega(Request $request)
+    {
+        $updateData = $request->validate([
+            'anulado' => 'required|size:1',
+            'observaciones' => 'max:191',
+        ]);
+        
+        Entregas::whereId($request->id_anular)->update($updateData);
+
+        return back()->with('success', '¡Entrega actualizada exitosamente!');
     }
 }
