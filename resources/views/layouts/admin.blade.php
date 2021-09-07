@@ -222,19 +222,11 @@
             </div>
             <!-- End of Main Content -->
 
-            <!-- Footer -->
-            <footer class="sticky-footer bg-white">
-                <div class="container my-auto">
-                    <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; <a href="https://ilinser.com/" target="_blank">iLinser</a> 2021</span>
-                    </div>
-                </div>
-            </footer>
-            <!-- End of Footer -->
+        
 
         </div>
         <!-- End of Content Wrapper -->
-
+    
     </div>
 
     <!-- Scroll to Top Button-->
@@ -273,5 +265,13 @@
     <script src="{{ asset('js/sb-admin-2.min.js') }}"></script>
 
 </body>
-
+<!-- Footer -->
+            <footer class="sticky-footer bg-white ">
+                <div class="container" >
+                    <div class="copyright text-center mx-auto">
+                        <span>Copyright &copy; <a href="https://ilinser.com/" target="_blank">iLinser</a> 2020</span>
+                    </div>
+                </div>
+            </footer>
+            <!-- End of Footer -->
 </html>
