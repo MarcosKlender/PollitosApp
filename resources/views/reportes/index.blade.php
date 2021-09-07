@@ -172,20 +172,23 @@
                             <b>{{ $count }}</b></span>--}}
                     </div>
                     <br>
-<ul class="nav nav-tabs">
-  <li class="nav-item">
-    <a class="nav-link active" href="#"><h6>REGISTROS / LOTE # <label id="nombre_lote"></label></h6></a>
-  </li>
+<ul class="nav nav-tabs" id="myTab" role="tablist">
+      <li class="nav-item">
+        <a class="nav-link active" id="home-tab" data-toggle="tab" href="#lote" role="tab" aria-controls="lote" aria-selected="true"><h6>REGISTROS / LOTE # <label id="nombre_lote"></label></h6></a>
+      </li>
 
-  <li class="nav-item">
-    <a class="nav-link" href="#"><h6>VICERAS Y BUCHES <label id="viceras_buches"></label></h6></a>
-  </li>
+      <li class="nav-item">
+        <a class="nav-link" id="profile-tab" data-toggle="tab" href="#visceras" role="tab" aria-controls="visceras" aria-selected="false"><h6>VICERAS Y BUCHES <label id="viceras_buches"></label></h6></a>
+      </li>
 
-   <li class="nav-item">
-    <a class="nav-link" href="#"><h6>PESO NETO <label id="peso_neto"></label></h6></a>
-  </li>
+       <li class="nav-item">
+       <a class="nav-link" id="contact-tab" data-toggle="tab" href="#egresos" role="tab" aria-controls="egresos" aria-selected="false"><h6>PESO NETO <label id="peso_neto"></label></h6></a>
+      </li>
 
-                              <table class="table table-striped table-bordered">
+    </ul>
+            <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade show active" id="lote" role="tabpanel" aria-labelledby="lote">
+                <table class="table table-striped table-bordered">
                                 <thead>
                                     <tr>
                                         <td>ID</td>
@@ -198,7 +201,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                <tbody id="cuerpo">
+                                <tbody id="cuerpo_lote">
                                 </tbody>
                                  <tr>
                                         <td colspan="1"><b>TOTAL</b></td>
@@ -208,7 +211,69 @@
                                         <td id="total_final"><b></b></td>
                                     </tr>
                               </table>
-</ul>
+
+
+ </div>
+  <div class="tab-pane fade" id="visceras" role="tabpanel" aria-labelledby="visceras">
+     <table class="table table-striped table-bordered">
+
+                                <thead>
+                                    <tr>
+                                        <td>ID Lote</td>
+                                        <td>Tipo</td>
+                                        <td>Peso Bruto</td>
+                                        <td>Peso Gavetas</td>
+                                        <td>Peso Final</td>
+                                        <td>Usuario</td>
+                                        <td>Fecha de Registro</td>
+                                    </tr>
+                                </thead>
+
+                                 <tbody>
+                                <tbody id="cuerpo_visceras">
+                                </tbody>
+                                 <tr>
+                                        <td colspan="1"><b>TOTAL</b></td>
+                                        <td></td>
+                                        <td id="total_brutov"><b></b></td>
+                                        <td id="total_gavetasv"><b></b></td>
+                                        <td id="total_finalv"><b></b></td>
+                                    </tr>
+                              </table>
+
+                            </table>
+  </div>
+  <div class="tab-pane fade" id="egresos" role="tabpanel" aria-labelledby="egresos">
+       <table class="table table-striped table-bordered">
+                                <thead>
+                                    <tr>
+                                        <td>ID Lote</td>
+                                        <td>Cantidad de Gavetas</td>
+                                        <td>Peso Bruto</td>
+                                        <td>Peso Gavetas</td>
+                                        <td>Peso Final</td>
+                                        <td>Usuario</td>
+                                        <td>Fecha de Registro</td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                <tbody id="cuerpo_egresos">
+                                </tbody>
+                                 <tr>
+                                        <td colspan="1"><b>TOTAL</b></td>
+                                        <td id="total_cantidade"><b></b></td>
+                                        <td id="total_brutoe"><b></b></td>
+                                        <td id="total_gavetase"><b></b></td>
+                                        <td id="total_finale"><b></b></td>
+                                    </tr>
+                              </table>
+          </div>
+        </div>
+
+        </div>
+
+
+
                     
                 </div>
             </div>
@@ -241,6 +306,14 @@
                      var tb=0;
                      var tg=0;
                      var tf=0;
+                     var tcv=0;
+                     var tbv=0;
+                     var tgv=0;
+                     var tfv=0;
+                     var tce=0;
+                     var tbe=0;
+                     var tge=0;
+                     var tfe=0;
 
                      console.log(id);
                     
@@ -252,12 +325,12 @@
                         type:'post',
                         //dataType:'json',
                         success: function(response){
-                            $("#cuerpo").html("");
+                            $("#cuerpo_lote").html("");
                             //var obj = Object.values(response);
                              $.each(response, function(index, value) {
                                 var fech=new Date(value.created_at);
                                 var fecha=fech.toLocaleString();
-                         $("#cuerpo").append(
+                         $("#cuerpo_lote").append(
                         $('<tr>'),
                         $('<td>').text(value.id),
                         $('<td>').text(value.cant_gavetas),
@@ -293,13 +366,105 @@
 
                      }); 
 
+
+                      $.ajax({                       
+                        data:{id:id},
+                        url:'/reportes/detalle_visceras',
+                        type:'post',
+                        //dataType:'json',
+                        success: function(response){
+                            $("#cuerpo_visceras").html("");
+                            //var obj = Object.values(response);
+                             $.each(response, function(index, value) {
+                                var fech=new Date(value.created_at);
+                                var fecha=fech.toLocaleString();
+                         $("#cuerpo_visceras").append(
+                         $('<tr>'),
+                        $('<td>').text(value.lotes_id),
+                        $('<td>').text(value.tipo),
+                        $('<td>').text(value.peso_bruto  ),
+                        $('<td>').text(value.peso_gavetas),
+                        $('<td>').text(value.peso_final  ),
+                        $('<td>').text(value.usuario     ),
+                        $('<td>').text(fecha),
+                        $('</tr>'));
+                         tcv = tcv+ parseFloat(value.cant_gavetas);
+                         tbv = tbv+ parseFloat(value.peso_bruto);
+                         tgv = tgv+ parseFloat(value.peso_gavetas);
+                         tfv = tfv+ parseFloat(value.peso_final);
+                         })
+                        
+                        document.querySelector('#total_brutov').innerText = tbv ;
+                        document.querySelector('#total_gavetasv').innerText = tgv ;
+                        document.querySelector('#total_finalv').innerText = tfv ;
+                        //  console.log(typeof(obj));
+                         //  console.log(response);
+                        //   alert(response);
+                           
+                        },
+                        statusCode:{
+                            404: function(){
+                                alert('web no encontrada');
+                            }
+                        },
+                        error:function(response){
+                            alert(response);
+                        }
+                     }); 
+                     
+                           $.ajax({                       
+                        data:{id:id},
+                        url:'/reportes/detalle_egresos',
+                        type:'post',
+                        //dataType:'json',
+                        success: function(response){
+                            $("#cuerpo_egresos").html("");
+                            //var obj = Object.values(response);
+                             $.each(response, function(index, value) {
+                                var fech=new Date(value.created_at);
+                                var fecha=fech.toLocaleString();
+                         $("#cuerpo_egresos").append(
+                        $('<tr>'),
+                        $('<td>').text(value.lotes_id),
+                        $('<td>').text(value.cant_gavetas),
+                        $('<td>').text(value.peso_bruto  ),
+                        $('<td>').text(value.peso_gavetas),
+                        $('<td>').text(value.peso_final  ),
+                        $('<td>').text(value.usuario     ),
+                        $('<td>').text(fecha),
+                        $('</tr>'));
+                         tce = tce+ parseFloat(value.cant_gavetas);
+                         tbe = tbe+ parseFloat(value.peso_bruto);
+                         tge = tge+ parseFloat(value.peso_gavetas);
+                         tfe = tfe+ parseFloat(value.peso_final);
+                         })
+                        document.querySelector('#total_cantidade').innerText = tce;
+                        document.querySelector('#total_brutoe').innerText = tbe ;
+                        document.querySelector('#total_gavetase').innerText = tge ;
+                        document.querySelector('#total_finale').innerText = tfe ;
+                        //  console.log(typeof(obj));
+                         //  console.log(response);
+                        //   alert(response);
+                           
+                        },
+                        statusCode:{
+                            404: function(){
+                                alert('web no encontrada');
+                            }
+                        },
+                        error:function(response){
+                            alert(response);
+                        }
+                     }); 
                         
                  
-
-
-               });
+                });
 
         });
+
+              
+
+        
           
      </script>
    

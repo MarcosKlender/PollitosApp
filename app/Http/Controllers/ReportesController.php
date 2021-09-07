@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 use App\Clientes;
 use App\Lotes;
 use App\Registros;
+use App\Visceras;
+use App\Egresos;
 use App\Proveedores;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -105,8 +107,12 @@ class ReportesController extends Controller
     
     $lotes = Lotes::all_index()->orderBy('lotes.id')->paginate(10000);
     $registros = Registros::orderBy('id')->get();
-     $count = count($lotes);
-     $view = \View::make('reportes.pdfviews.lotepdf')->with('lotes',$lotes)->with('registros',$registros)->with('count',$count)->with('id_lote',$id)->render();
+
+    $visceras = Visceras::where('lotes_id', $id)->get();
+    $egresos = Egresos::where('lotes_id', $id)->get();
+    $count = count($lotes);
+    $view = \View::make('reportes.pdfviews.lotepdf')->with('lotes',$lotes)->with('registros',$registros)->with('visceras',$visceras)->with('egresos',$egresos)->with('count',$count)->with('id_lote',$id)->render();
+
      $pdf->loadHTML($view);
     //return dd($id);
     return $pdf->stream();
@@ -127,6 +133,24 @@ class ReportesController extends Controller
         
         return $registros;
     } 
+
+
+     public function detalle_visceras()
+    {
+            $id=Request()->id;
+            $visceras = Visceras::where('lotes_id', $id)->orderBy('id')->get();
+
+            return $visceras;   
+    }
+
+    public function detalle_egresos()
+    {
+            $id=Request()->id;
+            $egresos = Egresos::where('lotes_id', $id)->orderBy('id')->get();
+
+            return $egresos;   
+    }
+
     
     public function generar_excel($id)
     {
