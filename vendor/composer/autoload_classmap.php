@@ -10,6 +10,7 @@ return array(
     'App\\Clientes' => $baseDir . '/app/Clientes.php',
     'App\\Console\\Kernel' => $baseDir . '/app/Console/Kernel.php',
     'App\\Egresos' => $baseDir . '/app/Egresos.php',
+    'App\\Entregas' => $baseDir . '/app/Entregas.php',
     'App\\Exceptions\\Handler' => $baseDir . '/app/Exceptions/Handler.php',
     'App\\Exports\\PostsExport' => $baseDir . '/app/Exports/PostsExport.php',
     'App\\Http\\Controllers\\AdminController' => $baseDir . '/app/Http/Controllers/AdminController.php',

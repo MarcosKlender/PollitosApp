@@ -69,6 +69,8 @@
                     </a>
                 </li>
 
+            @endif
+
                 <!-- Nav Item - Admin -->
                 <li class="nav-item {{ (request()->is('proveedores')) ? 'active' : '' }}">
                     <a class="nav-link" href="{{ route('proveedores.index') }}">
@@ -84,9 +86,6 @@
                         <span>{{ __('Clientes') }}</span>
                     </a>
                 </li>
-                
-
-            @endif
 
             <!-- Divider -->
             <hr class="sidebar-divider">

@@ -54,7 +54,7 @@
                         <div class="form-group">
                             <label for="procedencia">Teléfono</label>
                             <input type="text" class="form-control" id="pro_telefonos" name="pro_telefonos"
-                                value="{{ old('pro_telefonos') }}" maxlength="9" required />
+                                value="{{ old('pro_telefonos') }}" maxlength="10" required />
                         </div>
 
                         <div class="form-group">

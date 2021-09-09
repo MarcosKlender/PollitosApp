@@ -674,6 +674,7 @@ class ComposerStaticInitfba83e6cfee4c1f2dc06ef0fe6046ae7
         'App\\Clientes' => __DIR__ . '/../..' . '/app/Clientes.php',
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\Egresos' => __DIR__ . '/../..' . '/app/Egresos.php',
+        'App\\Entregas' => __DIR__ . '/../..' . '/app/Entregas.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
         'App\\Exports\\PostsExport' => __DIR__ . '/../..' . '/app/Exports/PostsExport.php',
         'App\\Http\\Controllers\\AdminController' => __DIR__ . '/../..' . '/app/Http/Controllers/AdminController.php',

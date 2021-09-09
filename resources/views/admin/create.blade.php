@@ -38,23 +38,28 @@
                         </div>
                         <div class="form-group">
                             <label for="username">Nombre de Usuario</label>
-                            <input type="text" class="form-control" id="username" name="username" value="{{ old('username') }}" required />
+                            <input type="text" class="form-control" id="username" name="username"
+                                value="{{ old('username') }}" required />
                         </div>
                         <div class="form-group">
                             <label for="name">Nombres</label>
-                            <input type="text" class="form-control" id="name" name="name" value="{{ old('name') }}" required />
+                            <input type="text" class="form-control" id="name" name="name" value="{{ old('name') }}"
+                                required />
                         </div>
                         <div class="form-group">
                             <label for="last_name">Apellidos</label>
-                            <input type="text" class="form-control" id="last_name" name="last_name" value="{{ old('last_name') }}" required />
+                            <input type="text" class="form-control" id="last_name" name="last_name"
+                                value="{{ old('last_name') }}" required />
                         </div>
                         <div class="form-group">
                             <label for="email">Email</label>
-                            <input type="email" class="form-control" id="email" name="email" value="{{ old('email') }}" required />
+                            <input type="email" class="form-control" id="email" name="email" value="{{ old('email') }}"
+                                required />
                         </div>
                         <div class="form-group">
-                            <label for="password">Contraseña</label>
-                            <input type="text" class="form-control" id="password" name="password" required />
+                            <label for="password">Contraseña</label><i class="fas fa-eye" id="togglePassword"
+                                style="padding-left: 3%; cursor: pointer;"></i>
+                            <input type="password" class="form-control" id="password" name="password" required />
                         </div>
                         <div class="row justify-content-around">
                             <a href="{{ route('admin.index') }}" class="btn btn-danger">Cancelar</a>
@@ -76,15 +81,26 @@
             $('#name').keyup(function() {
                 $(this).val($(this).val().toUpperCase());
             });
-            
+
             $('#last_name').keyup(function() {
                 $(this).val($(this).val().toUpperCase());
             });
-            
+
             $('#email').keyup(function() {
                 $(this).val($(this).val().toLowerCase());
             });
+
+            const togglePassword = document.querySelector('#togglePassword');
+            const password = document.querySelector('#password');
+
+            togglePassword.addEventListener('click', function(e) {
+                const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+                password.setAttribute('type', type);
+
+                this.classList.toggle('fa-eye-slash');
+            });
         });
+
     </script>
 
 @endsection

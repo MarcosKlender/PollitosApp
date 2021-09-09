@@ -6,7 +6,7 @@
     'aliases' => 
     array (
     ),
-    'reference' => 'ca2c0493d410e8f45d6246730ddce96f57b53cfb',
+    'reference' => 'e45f8b77ca0097444cee66aafe66333132faea07',
     'name' => 'laravel/laravel',
   ),
   'versions' => 
@@ -481,7 +481,7 @@
       'aliases' => 
       array (
       ),
-      'reference' => 'ca2c0493d410e8f45d6246730ddce96f57b53cfb',
+      'reference' => 'e45f8b77ca0097444cee66aafe66333132faea07',
     ),
     'laravel/legacy-factories' => 
     array (

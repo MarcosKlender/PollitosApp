@@ -10,7 +10,7 @@ class ProveedoresController extends Controller
 {
     public function __construct()
     {
-        $this->middleware(['auth', 'rol']);
+        $this->middleware(['auth']);
     }
 
     public function index()
@@ -35,7 +35,7 @@ class ProveedoresController extends Controller
             'pro_nombre' => 'required|max:191',
             'pro_nombre_comercial' => 'required|max:191',
             'pro_direccion' => 'required|max:191',
-            'pro_telefonos' => 'required|digits_between:7,9',
+            'pro_telefonos' => 'required|digits_between:7,10',
             'pro_email' => 'required|email|unique:proveedores,pro_email|max:191',
         ]);
 
