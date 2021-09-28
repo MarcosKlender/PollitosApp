@@ -115,7 +115,8 @@
                                         <td>Usuario</td>
                                         <td>Fecha de Registro</td>
                                         <td>Anulado</td>
-                                        <td>Liquidado</td>
+                                        <td>Liquidado ingreso</td>
+                                        <td>Liquidado egreso</td>
                                         <td>Reporte pdf</td>
                                         <td>Reporte excel</td>
                                     </tr>
@@ -143,9 +144,17 @@
                                             @endif
                                              </td>
 
-                                            <td class="button">
+                                             <td class="button">
                                                 @if ($lote->liquidado == '0')
-                                                    <button type="button" class="btn btn-sm btn-info">NO</button>
+                                                    <button type="button" class="btn btn-sm btn-danger">NO</button>
+                                                @else
+                                                    <button type="button" class="btn btn-sm btn-warning">SI</button>
+                                                @endif
+                                            </td>
+
+                                            <td class="button">
+                                                @if ($lote->egresos == '0')
+                                                    <button type="button" class="btn btn-sm btn-danger">NO</button>
                                                 @else
                                                     <button type="button" class="btn btn-sm btn-warning">SI</button>
                                                 @endif
