@@ -67,7 +67,7 @@
 
                         <div class="row justify-content-around">
                             <a href="{{ route('proveedores.index') }}" class="btn btn-danger">Cancelar</a>
-                            <button type="submit" class="btn btn-success">Crear</button>
+                            <button type="submit" class="btn btn-success">Actualizar</button>
                         </div>
                     </form>
                 </div>

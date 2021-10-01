@@ -7,13 +7,16 @@
             <div class="card shadow mb-4">
                 <div class="card-header mt-2">
                     <div class="text-center">
-                        <h4>Administración de Clientes</h4>
+                        <h4>Búsqueda de Clientes</h4>
                     </div>
                 </div>
 
                 <div class="card-body">
                     <div class="row justify-content-around">
                         
+                        <div class="mb-3">
+                            <a href="{{ route('clientes.index') }}" class="btn btn-primary">Volver Atrás</a>
+                        </div>
 
                         <div class="mb-3">
                             <form method="get" action="{{ route('clientes.show', 'search') }}">
@@ -25,20 +28,17 @@
                                     </div>
 
                                     <div class="col-auto input-group-append">
-                                        <input type="search" id="criterio_nombres" name="criterio_nombres" class="form-control"  placeholder="Buscar proveedor"  >
+                                        <input type="search" id="criterio_nombres" name="criterio_nombres" class="form-control"  placeholder="Buscar Nombres"  >
                                     </div>
 
                                     <div class="col-auto input-group-append">
-                                        <input type="search" id="criterio_rsocial" name="criterio_rsocial" class="form-control"  placeholder="Buscar razon social"  >
+                                        <input type="search" id="criterio_rsocial" name="criterio_rsocial" class="form-control"  placeholder="Buscar Razón Social"  >
                                     </div>
                             
                                      <div class="col-auto input-group-append">
-                                        <input type="search" id="criterio_ciudad" name="criterio_ciudad" class="form-control"  placeholder="Buscar ciudad"  >
+                                        <input type="search" id="criterio_ciudad" name="criterio_ciudad" class="form-control"  placeholder="Buscar Ciudad"  >
                                     </div>
 
-
-
-                                  
                                     <div class="input-group-append">
                                         <button class="btn btn-outline-primary border" type="submit">
                                             <i class="fas fa-search"></i>
@@ -50,9 +50,7 @@
 
                     </div>
                     @if ($count == 0)
-                        <div class="alert alert-danger">No se ha encontrado ningún usuario bajo la búsqueda:
-                            
-                        </div>
+                        <div class="alert alert-danger">No se ha encontrado ningún usuario.</div>
                     @else
                         <div class="table-responsive">
                             <table class="table table-striped table-bordered">

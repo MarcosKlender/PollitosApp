@@ -29,12 +29,17 @@
 
                                     <div class="col-auto input-group-append">
                                         <input type="search" id="criterio_nombres" name="criterio_nombres"
-                                            class="form-control" placeholder="Buscar nombre">
+                                            class="form-control" placeholder="Buscar Nombres">
                                     </div>
 
                                     <div class="col-auto input-group-append">
                                         <input type="search" id="criterio_rsocial" name="criterio_rsocial"
-                                            class="form-control" placeholder="Buscar razon social">
+                                            class="form-control" placeholder="Buscar Razón Social">
+                                    </div>
+
+                                    <div class="col-auto input-group-append">
+                                        <input type="search" id="criterio_ciudad" name="criterio_ciudad"
+                                            class="form-control" placeholder="Buscar Ciudad">
                                     </div>
 
                                     <div class="input-group-append">
@@ -60,7 +65,7 @@
                                     <td>ID</td>
                                     <td>RUC/CI</td>
                                     <td>Nombres</td>
-                                    <td>Nombre Comercial</td>
+                                    <td>Razón Social</td>
                                     <td>Teléfono</td>
                                     <td>Email</td>
                                     <td>Direccion</td>

@@ -135,7 +135,7 @@
                     @csrf
                     <div class="modal-body">
                         <input type="number" class="form-control" id="peso_gavetas" name="peso_gavetas" step=".01"
-                            required />
+                            placeholder="Ingrese PESO" required />
                     </div>
                     <div class="modal-footer">
                         <input type="hidden" id="id_gavetas" name="id_gavetas">

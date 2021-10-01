@@ -18,14 +18,14 @@ class CreateClientesTable extends Migration
             $table->string('tipo', 3);
             $table->string('ruc_ci', 13)->unique();
             $table->string('nombres');
-            $table->string('razon_social');
-            $table->string('direccion');
-            $table->string('telefono', 10);
-            $table->string('movil', 10);
-            $table->string('email');
-            $table->string('provincia');
-            $table->string('ciudad');
-            $table->string('parroquia');
+            $table->string('razon_social')->nullable();
+            $table->string('direccion')->nullable();
+            $table->string('telefono', 10)->nullable();
+            $table->string('movil', 10)->nullable();
+            $table->string('email')->nullable();
+            $table->string('provincia')->nullable();
+            $table->string('ciudad')->nullable();
+            $table->string('parroquia')->nullable();
             $table->timestamps();
         });
     }

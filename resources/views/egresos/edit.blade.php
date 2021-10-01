@@ -117,7 +117,7 @@
                     @csrf
                     <div class="modal-body">
                         <input type="number" class="form-control" id="peso_gavetas" name="peso_gavetas" step=".01"
-                            required />
+                            placeholder="Ingrese PESO" required />
                     </div>
                     <div class="modal-footer">
                         <input type="hidden" id="id_gavetas" name="id_gavetas">
@@ -171,6 +171,16 @@
                 </div>
                 <form action="{{ route('egresos.liquidar_lote') }}" method="post">
                     <div class="modal-body">
+
+                        @if ($total_egresos > $total_ingresos)
+                            <div class="alert alert-danger" role="alert">
+                                ¡Atención!<br>
+                                El peso total de egresos ({{ $total_egresos }}) es mayor que el de ingresos
+                                ({{ $total_ingresos }}).
+                                Por favor, revise los datos ingresados antes de continuar.
+                            </div>
+                        @endif
+
                         Una vez liquidado el lote no podrá registrar más pesos.
                     </div>
                     <div class="modal-footer">
@@ -203,7 +213,7 @@
 
                 var registro_g = $(this).attr('data-id');
                 var cantidad_g = $(this).attr('data-cant-gavetas');
-                $(".modal-title").html('REGISTRO #' + registro_g + ' - INGRESE EL PESO DE GAVETAS:');
+                $(".modal-title").html('REGISTRO #' + registro_g + ' - CANTIDAD DE GAVETAS: ' + cantidad_g);
                 $("#id_gavetas").val(registro_g);
                 var peso_bruto = parseFloat($(this).attr('data-peso-bruto')).toFixed(2);
 

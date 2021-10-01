@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Lotes;
 use App\Egresos;
+use App\Registros;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -51,7 +52,10 @@ class EgresosController extends Controller
         $lote = Lotes::findOrFail($id);
         $egresos = Egresos::where('lotes_id', $id)->where('anulado', 0)->orderBy('id')->get();
 
-        return view('egresos.edit', compact('lote', 'egresos'));
+        $total_ingresos = Registros::where('lotes_id', $id)->where('anulado', 0)->select('peso_final')->sum('peso_final');
+        $total_egresos = Egresos::where('lotes_id', $id)->where('anulado', 0)->select('peso_final')->sum('peso_final');
+
+        return view('egresos.edit', compact('lote', 'egresos', 'total_ingresos', 'total_egresos'));
     }
 
     public function update(Request $request, $id)

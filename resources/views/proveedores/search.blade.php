@@ -7,12 +7,16 @@
             <div class="card shadow mb-4">
                 <div class="card-header mt-2">
                     <div class="text-center">
-                        <h4>Administración de Proveedores</h4>
+                        <h4>Búsqueda de Proveedores</h4>
                     </div>
                 </div>
 
                 <div class="card-body">
                     <div class="row justify-content-around">
+
+                        <div class="mb-3">
+                            <a href="{{ route('proveedores.index') }}" class="btn btn-primary">Volver Atrás</a>
+                        </div>
 
                         <div class="mb-3">
                             <form method="get" action="{{ route('proveedores.show', 'search') }}">
@@ -25,17 +29,17 @@
 
                                     <div class="col-auto input-group-append">
                                         <input type="search" id="criterio_nombres" name="criterio_nombres"
-                                            class="form-control" placeholder="Buscar proveedor">
+                                            class="form-control" placeholder="Buscar Nombres">
                                     </div>
 
                                     <div class="col-auto input-group-append">
                                         <input type="search" id="criterio_rsocial" name="criterio_rsocial"
-                                            class="form-control" placeholder="Buscar razon social">
+                                            class="form-control" placeholder="Buscar Razón Social">
                                     </div>
 
                                     <div class="col-auto input-group-append">
                                         <input type="search" id="criterio_ciudad" name="criterio_ciudad"
-                                            class="form-control" placeholder="Buscar ciudad">
+                                            class="form-control" placeholder="Buscar Ciudad">
                                     </div>
 
                                     <div class="input-group-append">
@@ -49,9 +53,7 @@
 
                     </div>
                     @if ($count == 0)
-                        <div class="alert alert-danger">No se ha encontrado ningún usuario bajo la búsqueda:
-
-                        </div>
+                        <div class="alert alert-danger">No se ha encontrado ningún usuario.</div>
                     @else
                         <div class="table-responsive">
                             <table class="table table-striped table-bordered">
@@ -60,7 +62,7 @@
                                        <td>ID</td>
                                         <td>RUC/CI</td>
                                         <td>Nombres</td>
-                                        <td>Nombre Comercial</td>
+                                        <td>Razón Social</td>
                                         <td>Teléfono</td>
                                         <td>Email</td>
                                         <td>Direccion</td>
