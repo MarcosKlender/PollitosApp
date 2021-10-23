@@ -85,11 +85,14 @@ class PesoBrutoController extends Controller
 
     public function store(Request $request)
     {
+        //dd($request);
+
         $storeData = $request->validate([
             'tipo' => 'required|max:191',
             'cantidad' => 'required|numeric|min:1',
             'proveedor' => 'required|max:191',
             /*'ruc_ci' => 'required|digits_between:10,13|unique:lotes,pro_ruc'.$id, */
+            'ruc_ci' => 'required|digits_between:10,13',
             'procedencia' => 'required|regex:/^[\pL\pM\pN\s]+$/u|max:191',
             'placa' => 'required|regex:/^[\pL\pM\pN\s]+$/u|size:7',
             'conductor' => 'required|regex:/^[\pL\pM\pN\s]+$/u|max:191',
