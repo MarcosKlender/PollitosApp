@@ -94,7 +94,7 @@
         ajax: {
             url: '/ajax-autocomplete-search2',
             dataType: 'json',
-            delay: 250,
+            delay: 5,
             processResults: function (data) {
                 return {
                     results: $.map(data, function (item) {

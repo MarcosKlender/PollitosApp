@@ -46,10 +46,10 @@
                                 <label for="peso_bruto">Peso Bruto</label>
 
 
-                                <!--div id="recargar" name="recargar" ></div!-->
+                                <div id="recargar" name="recargar" ></div>
 
-                                <input type="number" class="form-control" id="peso_bruto" name="peso_bruto"
-                                    value="{{ old('peso_bruto') }}" step=".01" required />
+                                <!--input type="number" class="form-control" id="peso_bruto" name="peso_bruto"
+                                    value="{{ old('peso_bruto') }}" step=".01" required /!-->
 
 
                             </div>
