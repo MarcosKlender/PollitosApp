@@ -42,16 +42,17 @@
     </thead>
     <tbody>
     @foreach ($registros as $reg)
-     <tr>
-         
+    @if( $reg->anulado == 0)
+     <tr>         
          <td>{{ $reg->lotes_id }}</td>
          <td>{{ $reg->cant_gavetas }}</td>
          <td>{{ $reg->peso_bruto }}</td>
          <td>{{ $reg->peso_gavetas }}</td>
          <td>{{ $reg->peso_final }}</td>
          <td>{{ $reg->usuario }}</td>
-         <td>{{ $reg->updated_at }}</td>
+         <td>{{ $reg->updated_at }}</td>         
      </tr>
+     @endif
      @endforeach
      <tr>
          <td colspan="1"><b>TOTAL</b></td>
