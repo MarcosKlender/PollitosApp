@@ -205,6 +205,8 @@
                                         <td>Peso Bruto</td>
                                         <td>Peso Gavetas</td>
                                         <td>Peso Final</td>
+                                        <td>Estado</td>
+                                        <td>Observación</td>
                                         <td>Usuario</td>
                                         <td>Fecha de Registro</td>
                                     </tr>
@@ -339,15 +341,17 @@
                              $.each(response, function(index, value) {
                                 var fech=new Date(value.created_at);
                                 var fecha=fech.toLocaleString();
-                         $("#cuerpo_lote").append(
+                        $("#cuerpo_lote").append(
                         $('<tr>'),
                         $('<td>').text(value.id),
-                        $('<td>').text(value.cant_gavetas),
-                        $('<td>').text(value.peso_bruto  ),
-                        $('<td>').text(value.peso_gavetas),
-                        $('<td>').text(value.peso_final  ),
-                        $('<td>').text(value.usuario     ),
-                        $('<td>').text(fecha),
+                        $('<td>').text(value.cant_gavetas ),
+                        $('<td>').text(value.peso_bruto   ),
+                        $('<td>').text(value.peso_gavetas ),
+                        $('<td>').text(value.peso_final   ),
+                        (value.anulado == 1) ? $('<td>').text('Anulado'):$('<td>').text(''),
+                        $('<td>').text(value.observaciones),
+                        $('<td>').text(value.usuario      ),
+                        $('<td>').text(fecha              ),
                         $('</tr>'));
                          tc = tc+ parseFloat(value.cant_gavetas);
                          tb = tb+ parseFloat(value.peso_bruto);
