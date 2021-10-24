@@ -31,7 +31,7 @@ class EntregasController extends Controller
     {
         $storeData = $request->validate([
             'cliente' => 'required|max:191',
-            'placa' => 'required|regex:/^[\pL\pM\pN\s]+$/u|size:7',
+            'placa' => 'required|regex:/^[\pL\pM\pN\s]+$/u|between:6,7',
             'conductor' => 'required|regex:/^[\pL\pM\pN\s]+$/u|max:191',
             'peso_entrega' => 'required|numeric|min:1',
             'usuario' => 'required|max:191',

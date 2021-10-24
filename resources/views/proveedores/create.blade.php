@@ -88,6 +88,10 @@
             $('#pro_direccion').keyup(function() {
                 $(this).val($(this).val().toUpperCase());
             });
+
+            $('#pro_email').keyup(function() {
+                $(this).val($(this).val().toLowerCase());
+            });
         });
 
     </script>

@@ -38,14 +38,18 @@
 
                         <div class="form-group">
                             <label for="proveedor">Proveedor</label>
-                            <select class="form-control" id="proveedor" name="proveedor" required>
+                            <select class="form-control" id="proveedor_nombre" name="proveedor_nombre" required>
                                 <option value="" selected disabled>Elija un proveedor</option>
                                 @foreach ($proveedores as $proveedor)
-                                    <option value="{{ $proveedor->pro_nombre }}">
+                                    <option >
                                         {{ $proveedor->pro_nombre }}
                                     </option>
                                 @endforeach
                             </select>
+                            <!--  muestra ruc/ci de proveedores !-->
+                            <input name="proveedor" id="proveedor" type="hidden" >
+                            <input name="ruc_ci" id="ruc_ci" type="hidden" >
+
                             {{-- <input type="text" class="form-control" id="proveedor" name="proveedor" value="{{ old('proveedor') }}" required /> --}}
                         </div>
 
@@ -53,10 +57,10 @@
                             <label for="proveedor">Proveedor</label>
 
                             <!--  visualiza proveedores !-->
-                            <select class="form-control" id="proveedor" onchange="javascript:prueba()" required> </select>
+                            <!--select class="form-control" id="proveedor" onchange="javascript:prueba()" required> </select!-->
 
                             <!--  muestra ruc/ci de proveedores !-->
-                            <input name="ruc" id="ruc" type="hidden">
+                            <!--input name="ruc" id="ruc" type="hidden"!-->
 
                             <input type="text" class="form-control" id="proveedor" name="proveedor"
                                 value="{{ old('proveedor') }}" required />
@@ -120,30 +124,39 @@
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
 
     <script type="text/javascript">
-        $('#proveedor').select2({
+        $('#proveedor_nombre').select2({
             ajax: {
                 url: '/ajax-autocomplete-search',
                 dataType: 'json',
                 delay: 250,
-                processResults: function(data) {
+                processResults: function(data) {                    
                     return {
-                        results: $.map(data, function(item) {
+                        results: $.map(data, function(item) {                            
                             return {
                                 text: item.pro_nombre,
-                                id: item.pro_nombre,
-                                value: item.pro_ruc
+                                id: item.pro_ruc,
+                                value: item.pro_nombre
                             }
                         })
                     };
                 },
                 cache: true
-            }
+            },
+            placeholder: 'Seleccione proveedor'
         });
 
-        function prueba() {
+
+        $('#proveedor_nombre').on('select2:select',function(e){
+             $('#proveedor').val(e.params.data.text);
+             $('#ruc_ci').val(e.params.data.id);
+             console.log(e.params.data.text, e.params.data.id);
+        })
+
+
+       /* function prueba() {
             var p = document.getElementById("proveedor");
             document.getElementById("ruc").value = p.value;
-        }
+        } */
 
     </script> 
 

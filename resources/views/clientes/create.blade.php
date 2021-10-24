@@ -115,6 +115,10 @@
                 $(this).val($(this).val().toUpperCase());
             });
 
+            $('#email').keyup(function() {
+                $(this).val($(this).val().toLowerCase());
+            });
+
             $('#provincia').keyup(function() {
                 $(this).val($(this).val().toUpperCase());
             });

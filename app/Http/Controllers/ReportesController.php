@@ -106,7 +106,7 @@ class ReportesController extends Controller
     $pdf = \App::make('dompdf.wrapper');
     
     $lotes = Lotes::all_index()->orderBy('lotes.id')->paginate(10000);
-    $registros = Registros::orderBy('id')->get();
+    $registros = Registros::orderBy('id')->where('anulado',0)->get();
 
     $visceras = Visceras::where('lotes_id', $id)->get();
     $egresos = Egresos::where('lotes_id', $id)->get();
