@@ -84,7 +84,7 @@
                                             <td class="text-center"><button type="button"
                                                     class="btn btn-sm btn-primary modal_gavetas" data-toggle="modal"
                                                     data-target="#staticBackdrop1" data-id="{{ $viscera->id }}"
-                                                    data-cant-gavetas="{{ $viscera->cant_gavetas }}"
+                                                    data-tipo="{{ $viscera->tipo }}"
                                                     data-peso-bruto="{{ $viscera->peso_bruto }}">Gavetas</button>
                                             </td>
                                             <td class="text-center"><button type="button"
@@ -120,7 +120,7 @@
                     @csrf
                     <div class="modal-body">
                         <input type="number" class="form-control" id="peso_gavetas" name="peso_gavetas" step=".01"
-                            required />
+                            placeholder="Ingrese PESO" required />
                     </div>
                     <div class="modal-footer">
                         <input type="hidden" id="id_gavetas" name="id_gavetas">
@@ -205,8 +205,8 @@
                 });
 
                 var registro_g = $(this).attr('data-id');
-                var cantidad_g = $(this).attr('data-cant-gavetas');
-                $(".modal-title").html('REGISTRO #' + registro_g + ' - INGRESE EL PESO DE GAVETAS:');
+                var tipo_g = $(this).attr('data-tipo');
+                $(".modal-title").html('REGISTRO #' + registro_g + ' - TIPO: ' + tipo_g);
                 $("#id_gavetas").val(registro_g);
                 var peso_bruto = parseFloat($(this).attr('data-peso-bruto')).toFixed(2);
 

@@ -94,7 +94,7 @@ class PesoBrutoController extends Controller
             /*'ruc_ci' => 'required|digits_between:10,13|unique:lotes,pro_ruc'.$id, */
             'ruc_ci' => 'required|digits_between:10,13',
             'procedencia' => 'required|regex:/^[\pL\pM\pN\s]+$/u|max:191',
-            'placa' => 'required|regex:/^[\pL\pM\pN\s]+$/u|size:7',
+            'placa' => 'required|regex:/^[\pL\pM\pN\s]+$/u|between:6,7',
             'conductor' => 'required|regex:/^[\pL\pM\pN\s]+$/u|max:191',
             'usuario' => 'required|max:191',
             'anulado' => 'required|size:1',
