@@ -33,7 +33,7 @@
                                 <input type="number" class="form-control" id="cant_gavetas" name="cant_gavetas"
                                     value="{{ old('cant_gavetas') }}" required autofocus />
                             </div>
-                            {{-- <div class="form-group col-lg-6">
+                            <!-- <div class="form-group col-lg-6">
                                 <div class="custom-control custom-switch mb-2">
                                     <input type="checkbox" class="custom-control-input" id="check_pollos"
                                         name="check_pollos">
@@ -41,19 +41,19 @@
                                 </div>
                                 <input type="number" class="form-control" id="cant_pollos" name="cant_pollos"
                                     value="{{ old('cant_pollos') }}" disabled />
-                            </div> --}}
+                            </div> !-->
                             <div class="form-group col-lg-6">
                                 <label for="peso_bruto">Peso Bruto</label>
-
 
                                 <div id="recargar" name="recargar" ></div>
 
                                 <!--input type="number" class="form-control" id="peso_bruto" name="peso_bruto"
                                     value="{{ old('peso_bruto') }}" step=".01" required /!-->
 
-
                             </div>
                         </div>
+                        <input type="hidden" id="peso_gavetas_cero" name="peso_gavetas" value="0">
+                        <input type="hidden" id="peso_final_cero" name="peso_final" value="0">
                         <input type="hidden" id="lotes_id" name="lotes_id" value="{{ $lote->id }}">
                         <input type="hidden" id="usuario" name="usuario" value="{{ Auth::user()->username }}" required />
                         <input type="hidden" id="anulado" name="anulado" value="0" required />

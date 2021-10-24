@@ -338,35 +338,38 @@
                         success: function(response){
                             $("#cuerpo_lote").html("");
                             //var obj = Object.values(response);
-                             $.each(response, function(index, value) {
+                            $.each(response, function(index, value)
+                            {
                                 var fech=new Date(value.created_at);
                                 var fecha=fech.toLocaleString();
-                        $("#cuerpo_lote").append(
-                        $('<tr>'),
-                        $('<td>').text(value.id),
-                        $('<td>').text(value.cant_gavetas ),
-                        $('<td>').text(value.peso_bruto   ),
-                        $('<td>').text(value.peso_gavetas ),
-                        $('<td>').text(value.peso_final   ),
-                        (value.anulado == 1) ? $('<td>').text('Anulado'):$('<td>').text(''),
-                        $('<td>').text(value.observaciones),
-                        $('<td>').text(value.usuario      ),
-                        $('<td>').text(fecha              ),
-                        $('</tr>'));
-                         tc = tc+ parseFloat(value.cant_gavetas);
-                         tb = tb+ parseFloat(value.peso_bruto);
-                         tg = tg+ parseFloat(value.peso_gavetas);
-                         tf = tf+ parseFloat(value.peso_final);
-                         })
+                                $("#cuerpo_lote").append(
+                                $('<tr>'),
+                                $('<td>').text(value.id),
+                                $('<td>').text(value.cant_gavetas ),
+                                $('<td>').text(value.peso_bruto   ),
+                                $('<td>').text(value.peso_gavetas ),
+                                $('<td>').text(value.peso_final   ),
+                                (value.anulado == 1) ? $('<td>').text('Anulado'):$('<td>').text(''),
+                                $('<td>').text(value.observaciones),
+                                $('<td>').text(value.usuario      ),
+                                $('<td>').text(fecha              ),
+                                $('</tr>'));
+                                tc = tc + parseFloat(value.cant_gavetas);
+                                tb = tb + parseFloat(value.peso_bruto);
+                                tg = tg + parseFloat(value.peso_gavetas);
+                                tf = tf + parseFloat(value.peso_final);
+                            })
+
                         document.querySelector('#total_cantidad').innerText = tc;
                         document.querySelector('#total_bruto').innerText = tb ;
-                        document.querySelector('#total_gavetas').innerText = tg ;
-                        document.querySelector('#total_final').innerText = tf ;
+                        document.querySelector('#total_gavetas').innerText = tg;
+                        document.querySelector('#total_final').innerText = tf;
                         //  console.log(typeof(obj));
-                         //  console.log(response);
+                        //  console.log(response);
                         //   alert(response);
                            
                         },
+
                         statusCode:{
                             404: function(){
                                 alert('web no encontrada');
@@ -376,11 +379,9 @@
                             alert(response);
                         }
 
+                    }); 
 
-                     }); 
-
-
-                      $.ajax({                       
+                    $.ajax({                       
                         data:{id:id},
                         url:'/reportes/detalle_visceras',
                         type:'post',
@@ -388,33 +389,35 @@
                         success: function(response){
                             $("#cuerpo_visceras").html("");
                             //var obj = Object.values(response);
-                             $.each(response, function(index, value) {
+                            $.each(response, function(index, value)
+                            {
                                 var fech=new Date(value.created_at);
                                 var fecha=fech.toLocaleString();
-                         $("#cuerpo_visceras").append(
-                         $('<tr>'),
-                        $('<td>').text(value.lotes_id),
-                        $('<td>').text(value.tipo),
-                        $('<td>').text(value.peso_bruto  ),
-                        $('<td>').text(value.peso_gavetas),
-                        $('<td>').text(value.peso_final  ),
-                        $('<td>').text(value.usuario     ),
-                        $('<td>').text(fecha),
-                        $('</tr>'));
-                         tcv = tcv+ parseFloat(value.cant_gavetas);
-                         tbv = tbv+ parseFloat(value.peso_bruto);
-                         tgv = tgv+ parseFloat(value.peso_gavetas);
-                         tfv = tfv+ parseFloat(value.peso_final);
-                         })
+                                $("#cuerpo_visceras").append(
+                                $('<tr>'),
+                                $('<td>').text(value.lotes_id),
+                                $('<td>').text(value.tipo),
+                                $('<td>').text(value.peso_bruto  ),
+                                $('<td>').text(value.peso_gavetas),
+                                $('<td>').text(value.peso_final  ),
+                                $('<td>').text(value.usuario     ),
+                                $('<td>').text(fecha),
+                                $('</tr>'));
+                                 tcv = tcv+ parseFloat(value.cant_gavetas);
+                                 tbv = tbv+ parseFloat(value.peso_bruto);
+                                 tgv = tgv+ parseFloat(value.peso_gavetas);
+                                 tfv = tfv+ parseFloat(value.peso_final);
+                            })
                         
                         document.querySelector('#total_brutov').innerText = tbv ;
                         document.querySelector('#total_gavetasv').innerText = tgv ;
                         document.querySelector('#total_finalv').innerText = tfv ;
                         //  console.log(typeof(obj));
-                         //  console.log(response);
+                        //  console.log(response);
                         //   alert(response);
                            
                         },
+                        
                         statusCode:{
                             404: function(){
                                 alert('web no encontrada');
@@ -423,9 +426,9 @@
                         error:function(response){
                             alert(response);
                         }
-                     }); 
+                    }); 
                      
-                           $.ajax({                       
+                    $.ajax({                       
                         data:{id:id},
                         url:'/reportes/detalle_egresos',
                         type:'post',
@@ -433,33 +436,36 @@
                         success: function(response){
                             $("#cuerpo_egresos").html("");
                             //var obj = Object.values(response);
-                             $.each(response, function(index, value) {
+                            $.each(response, function(index, value)
+                            {
                                 var fech=new Date(value.created_at);
                                 var fecha=fech.toLocaleString();
-                         $("#cuerpo_egresos").append(
-                        $('<tr>'),
-                        $('<td>').text(value.lotes_id),
-                        $('<td>').text(value.cant_gavetas),
-                        $('<td>').text(value.peso_bruto  ),
-                        $('<td>').text(value.peso_gavetas),
-                        $('<td>').text(value.peso_final  ),
-                        $('<td>').text(value.usuario     ),
-                        $('<td>').text(fecha),
-                        $('</tr>'));
-                         tce = tce+ parseFloat(value.cant_gavetas);
-                         tbe = tbe+ parseFloat(value.peso_bruto);
-                         tge = tge+ parseFloat(value.peso_gavetas);
-                         tfe = tfe+ parseFloat(value.peso_final);
-                         })
+                                $("#cuerpo_egresos").append(
+                                $('<tr>'),
+                                $('<td>').text(value.lotes_id),
+                                $('<td>').text(value.cant_gavetas),
+                                $('<td>').text(value.peso_bruto  ),
+                                $('<td>').text(value.peso_gavetas),
+                                $('<td>').text(value.peso_final  ),
+                                $('<td>').text(value.usuario     ),
+                                $('<td>').text(fecha),
+                                $('</tr>'));
+                                tce = tce+ parseFloat(value.cant_gavetas);
+                                tbe = tbe+ parseFloat(value.peso_bruto);
+                                tge = tge+ parseFloat(value.peso_gavetas);
+                                tfe = tfe+ parseFloat(value.peso_final);
+                            })
+
                         document.querySelector('#total_cantidade').innerText = tce;
                         document.querySelector('#total_brutoe').innerText = tbe ;
                         document.querySelector('#total_gavetase').innerText = tge ;
                         document.querySelector('#total_finale').innerText = tfe ;
                         //  console.log(typeof(obj));
-                         //  console.log(response);
+                        //  console.log(response);
                         //   alert(response);
                            
                         },
+                        
                         statusCode:{
                             404: function(){
                                 alert('web no encontrada');
@@ -469,17 +475,8 @@
                             alert(response);
                         }
                      }); 
-                        
-                 
                 });
-
         });
-
-              
-
-        
-          
      </script>
-   
 
 @endsection
