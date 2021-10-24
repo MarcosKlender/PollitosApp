@@ -42,8 +42,8 @@ class Lotes extends Model
             DB::raw('sum(registros.peso_bruto) as total_peso_bruto'),
             DB::raw('sum(registros.peso_gavetas) as total_peso_gavetas'),
             DB::raw('sum(registros.peso_final) as total_peso_final')
-        )
-                        ->groupBy('registros.lotes_id', 'lotes.id');
+        )->where('registros.anulado',0)
+        ->groupBy('registros.lotes_id', 'lotes.id');
     }
 
     public function scopeLote($query, $lote)
