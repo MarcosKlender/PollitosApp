@@ -20,6 +20,7 @@ class CreateViscerasTable extends Migration
             $table->decimal('peso_bruto');
             $table->decimal('peso_gavetas')->nullable();
             $table->decimal('peso_final')->nullable();
+            $table->string('tipo_peso', 2);
             $table->string('usuario');
             $table->string('anulado', 1);
             $table->string('observaciones')->nullable();

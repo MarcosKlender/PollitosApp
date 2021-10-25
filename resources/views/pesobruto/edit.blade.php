@@ -34,22 +34,35 @@
                                     value="{{ old('cant_gavetas') }}" required autofocus />
                             </div>
                             <!-- <div class="form-group col-lg-6">
-                                <div class="custom-control custom-switch mb-2">
-                                    <input type="checkbox" class="custom-control-input" id="check_pollos"
-                                        name="check_pollos">
-                                    <label class="custom-control-label" for="check_pollos">Cantidad de Pollos</label>
-                                </div>
-                                <input type="number" class="form-control" id="cant_pollos" name="cant_pollos"
-                                    value="{{ old('cant_pollos') }}" disabled />
-                            </div> !-->
+                                    <div class="custom-control custom-switch mb-2">
+                                        <input type="checkbox" class="custom-control-input" id="check_pollos"
+                                            name="check_pollos">
+                                        <label class="custom-control-label" for="check_pollos">Cantidad de Pollos</label>
+                                    </div>
+                                    <input type="number" class="form-control" id="cant_pollos" name="cant_pollos"
+                                        value="{{ old('cant_pollos') }}" disabled />
+                                </div> !-->
                             <div class="form-group col-lg-6">
                                 <label for="peso_bruto">Peso Bruto</label>
 
-                                <div id="recargar" name="recargar" ></div>
+                                <div id="recargar" name="recargar"></div>
 
                                 <!--input type="number" class="form-control" id="peso_bruto" name="peso_bruto"
-                                    value="{{ old('peso_bruto') }}" step=".01" required /!-->
+                                        value="{{ old('peso_bruto') }}" step=".01" required /!-->
 
+                            </div>
+                            <div class="form-group col-lg-12 text-center">
+                                <label for="tipo_peso" class="mr-5">Tipo de Peso:</label>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="tipo_peso" id="tipo_peso"
+                                        value="lb" checked>
+                                    <label class="form-check-label" for="libras">Libras</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="tipo_peso" id="tipo_peso"
+                                        value="kg">
+                                    <label class="form-check-label" for="kilogramos">Kilogramos</label>
+                                </div>
                             </div>
                         </div>
                         <input type="hidden" id="peso_gavetas_cero" name="peso_gavetas" value="0">
@@ -57,14 +70,14 @@
                         <input type="hidden" id="lotes_id" name="lotes_id" value="{{ $lote->id }}">
                         <input type="hidden" id="usuario" name="usuario" value="{{ Auth::user()->username }}" required />
                         <input type="hidden" id="anulado" name="anulado" value="0" required />
-                        <div class="row justify-content-around">
+                        <div class="row justify-content-around mt-2">
                             <a href="{{ route('pesobruto.index') }}" class="btn btn-primary">Volver Atrás</a>
                             <button type="submit" class="btn btn-success">Registrar Peso</button>
                         </div>
                     </form>
 
                     @if (count($registros) != 0)
-                        <div class="table-responsive mt-3">
+                        <div class="table-responsive mt-4">
                             <table class="table table-striped table-bordered">
                                 <thead>
                                     <tr>
@@ -75,6 +88,7 @@
                                         <td>Peso Bruto</td>
                                         <td>Peso Gavetas</td>
                                         <td>Peso Final</td>
+                                        <td>Tipo Peso</td>
                                         @if (Auth::user()->rol->key == 'admin')
                                             <td>Usuario</td>
                                         @endif
@@ -93,6 +107,7 @@
                                             <td>{{ $registro->peso_bruto }}</td>
                                             <td>{{ $registro->peso_gavetas }}</td>
                                             <td>{{ $registro->peso_final }}</td>
+                                            <td>{{ $registro->tipo_peso }}</td>
                                             @if (Auth::user()->rol->key == 'admin')
                                                 <td>{{ $registro->usuario }}</td>
                                             @endif
@@ -113,7 +128,7 @@
                             </table>
                         </div>
                     @endif
-                    <div class="text-center">
+                    <div class="text-center mt-3">
                         <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#staticBackdrop3"
                             id="liquidar" name="liquidar">Liquidar Lote</button>
                     </div>
