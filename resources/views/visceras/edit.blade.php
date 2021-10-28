@@ -45,17 +45,18 @@
                             <div class="form-group col-lg-12 text-center">
                                 <label for="tipo_peso" class="mr-5">Tipo de Peso:</label>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="tipo_peso" id="tipo_peso"
-                                        value="lb" checked>
+                                    <input class="form-check-input" type="radio" name="tipo_peso" id="tipo_peso" value="lb"
+                                        checked>
                                     <label class="form-check-label" for="libras">Libras</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="tipo_peso" id="tipo_peso"
-                                        value="kg">
+                                    <input class="form-check-input" type="radio" name="tipo_peso" id="tipo_peso" value="kg">
                                     <label class="form-check-label" for="kilogramos">Kilogramos</label>
                                 </div>
                             </div>
                         </div>
+                        <input type="hidden" id="peso_gavetas_cero" name="peso_gavetas" value="0">
+                        <input type="hidden" id="peso_final_cero" name="peso_final" value="0">
                         <input type="hidden" id="lotes_id" name="lotes_id" value="{{ $lote->id }}" required />
                         <input type="hidden" id="usuario" name="usuario" value="{{ Auth::user()->username }}" required />
                         <input type="hidden" id="anulado" name="anulado" value="0" required />
@@ -67,7 +68,7 @@
 
                     @if (count($visceras) != 0)
                         <div class="table-responsive mt-4">
-                            <table class="table table-striped table-bordered">
+                            <table class="table table-striped table-bordered" id="tabla_visceras">
                                 <thead>
                                     <tr>
                                         <td>#</td>
@@ -206,7 +207,9 @@
     <script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>
     <script>
         $(document).ready(function() {
-            if ($("td").is(":empty") || $("td").length == 0) {
+            
+            var columna = $("#tabla_visceras td:nth-child(6)").map(function() { return $(this).text(); }).get();
+            if (jQuery.inArray('0.00', columna) != -1 || $("table").length == 0) {
                 $("#liquidar").prop('disabled', true);
             }
 
@@ -254,7 +257,6 @@
                 }, 2000
             );
         });
-
     </script>
 
 @endsection

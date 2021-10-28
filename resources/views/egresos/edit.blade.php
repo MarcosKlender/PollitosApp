@@ -53,6 +53,8 @@
                                 </div>
                             </div>
                         </div>
+                        <input type="hidden" id="peso_gavetas_cero" name="peso_gavetas" value="0">
+                        <input type="hidden" id="peso_final_cero" name="peso_final" value="0">
                         <input type="hidden" id="lotes_id" name="lotes_id" value="{{ $lote->id }}" required />
                         <input type="hidden" id="usuario" name="usuario" value="{{ Auth::user()->username }}" required />
                         <input type="hidden" id="anulado" name="anulado" value="0" required />
@@ -64,7 +66,7 @@
 
                     @if (count($egresos) != 0)
                         <div class="table-responsive mt-4">
-                            <table class="table table-striped table-bordered">
+                            <table class="table table-striped table-bordered" id="tabla_egresos">
                                 <thead>
                                     <tr>
                                         <td>#</td>
@@ -213,7 +215,9 @@
     <script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>
     <script>
         $(document).ready(function() {
-            if ($("td").is(":empty") || $("td").length == 0) {
+            
+            var columna = $("#tabla_egresos td:nth-child(6)").map(function() { return $(this).text(); }).get();
+            if (jQuery.inArray('0.00', columna) != -1 || $("table").length == 0) {
                 $("#liquidar").prop('disabled', true);
             }
 
