@@ -39,19 +39,34 @@
                                 <input type="number" class="form-control" id="peso_bruto" name="peso_bruto"
                                     value="{{ old('peso_bruto') }}" step=".01" required />
                             </div>
+                            <div class="form-group col-lg-12 text-center">
+                                <label for="tipo_peso" class="mr-5">Tipo de Peso:</label>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="tipo_peso" id="tipo_peso"
+                                        value="lb" checked>
+                                    <label class="form-check-label" for="libras">Libras</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="tipo_peso" id="tipo_peso"
+                                        value="kg">
+                                    <label class="form-check-label" for="kilogramos">Kilogramos</label>
+                                </div>
+                            </div>
                         </div>
+                        <input type="hidden" id="peso_gavetas_cero" name="peso_gavetas" value="0">
+                        <input type="hidden" id="peso_final_cero" name="peso_final" value="0">
                         <input type="hidden" id="lotes_id" name="lotes_id" value="{{ $lote->id }}" required />
                         <input type="hidden" id="usuario" name="usuario" value="{{ Auth::user()->username }}" required />
                         <input type="hidden" id="anulado" name="anulado" value="0" required />
-                        <div class="row justify-content-around">
+                        <div class="row justify-content-around mt-2">
                             <a href="{{ route('egresos.index') }}" class="btn btn-primary">Volver Atrás</a>
                             <button type="submit" class="btn btn-success">Registrar Peso</button>
                         </div>
                     </form>
 
                     @if (count($egresos) != 0)
-                        <div class="table-responsive mt-3">
-                            <table class="table table-striped table-bordered">
+                        <div class="table-responsive mt-4">
+                            <table class="table table-striped table-bordered" id="tabla_egresos">
                                 <thead>
                                     <tr>
                                         <td>#</td>
@@ -60,6 +75,7 @@
                                         <td>Peso Bruto</td>
                                         <td>Peso Gavetas</td>
                                         <td>Peso Final</td>
+                                        <td>Tipo Peso</td>
                                         @if (Auth::user()->rol->key == 'admin')
                                             <td>Usuario</td>
                                         @endif
@@ -75,6 +91,7 @@
                                             <td>{{ $egreso->peso_bruto }}</td>
                                             <td>{{ $egreso->peso_gavetas }}</td>
                                             <td>{{ $egreso->peso_final }}</td>
+                                            <td>{{ $egreso->tipo_peso }}</td>
                                             @if (Auth::user()->rol->key == 'admin')
                                                 <td>{{ $egreso->usuario }}</td>
                                             @endif
@@ -95,7 +112,7 @@
                             </table>
                         </div>
                     @endif
-                    <div class="text-center">
+                    <div class="text-center mt-3">
                         <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#staticBackdrop3"
                             id="liquidar" name="liquidar">Liquidar Lote</button>
                     </div>
@@ -198,7 +215,9 @@
     <script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>
     <script>
         $(document).ready(function() {
-            if ($("td").is(":empty") || $("td").length == 0) {
+            
+            var columna = $("#tabla_egresos td:nth-child(6)").map(function() { return $(this).text(); }).get();
+            if (jQuery.inArray('0.00', columna) != -1 || $("table").length == 0) {
                 $("#liquidar").prop('disabled', true);
             }
 

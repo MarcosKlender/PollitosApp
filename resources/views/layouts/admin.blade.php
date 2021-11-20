@@ -36,22 +36,21 @@
 
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center">
-                <div class="sidebar-brand-icon rotate-n-15">
-                    <i class="fas fa-laugh-wink"></i>
+                <div class="sidebar-brand-icon mt-3">
+                    <img src="/img/pollovencedor.png" width="70" height="70">
                 </div>
                 <div class="sidebar-brand-text mx-3">Pollitos App</div>
             </a>
-
-            @if (Auth::user()->rol->key == 'admin')
             
             <!-- Divider -->
-            <hr class="sidebar-divider">
+            <hr class="sidebar-divider mt-3">
 
             <!-- Heading -->
             <div class="sidebar-heading">
                 {{ __('Admin') }}
             </div>
 
+            @if (Auth::user()->rol->key == 'admin')
             
                 <!-- Nav Item - Usuarios -->
                 <li class="nav-item {{ (request()->is('admin')) ? 'active' : '' }}">
@@ -120,11 +119,8 @@
                     <span>{{ __('Entregas') }}</span></a>
             </li>
 
-
-
             <!-- Divider -->
             <hr class="sidebar-divider">
-
 
             <!-- Heading -->
             <div class="sidebar-heading">
@@ -137,6 +133,8 @@
                     <span>{{ __('Reportes') }}</span></a>
             </li>
 
+            <!-- Divider -->
+            <hr class="sidebar-divider">
 
             <!-- Heading -->
             <div class="sidebar-heading">
@@ -192,85 +190,85 @@
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="{{ route('profile') }}">
-                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    {{ __('Perfil') }}
-                                </a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
-                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    {{ __('Cerrar Sesión') }}
-                                </a>
-                            </div>
-                        </li>
-
-                    </ul>
-
-                </nav>
-                <!-- End of Topbar -->
-
-                <!-- Begin Page Content -->
-                <div class="container-fluid">
-
-                    @yield('main-content')
-
-                </div>
-                <!-- /.container-fluid -->
-
+                            aria-labelledby="userDropdown">
+                            <a class="dropdown-item" href="{{ route('profile') }}">
+                                <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                                {{ __('Perfil') }}
+                            </a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                                <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                {{ __('Cerrar Sesión') }}
+                            </a>
+                        </div>
+                    </li>
+                    
+                </ul>
+                
+            </nav>
+            <!-- End of Topbar -->
+            
+            <!-- Begin Page Content -->
+            <div class="container-fluid">
+                
+                @yield('main-content')
+                
             </div>
-            <!-- End of Main Content -->
-
+            <!-- /.container-fluid -->
+            
+        </div>
+        <!-- End of Main Content -->
         
-
-        </div>
-        <!-- End of Content Wrapper -->
+    </div>
+    <!-- End of Content Wrapper -->
     
-    </div>
+</div>
 
-    <!-- Scroll to Top Button-->
-    <a class="scroll-to-top rounded" href="#page-top">
-        <i class="fas fa-angle-up"></i>
-    </a>
+<!-- Scroll to Top Button-->
+<a class="scroll-to-top rounded" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+</a>
 
-    <!-- Logout Modal-->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">{{ __('¿Está seguro?') }}</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <div class="modal-body">Por favor, confirme si está listo para cerrar sesión.</div>
-                <div class="modal-footer">
-                    <button class="btn btn-primary" type="button" data-dismiss="modal">{{ __('Cancelar') }}</button>
-                    <a class="btn btn-danger" href="{{ route('logout') }}"
-                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();">{{ __('Cerrar Sesión') }}</a>
-                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                        @csrf
-                    </form>
-                </div>
-            </div>
+
+<!-- Logout Modal-->
+<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+aria-hidden="true">
+<div class="modal-dialog" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">{{ __('¿Está seguro?') }}</h5>
+            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">×</span>
+            </button>
+        </div>
+        <div class="modal-body">Por favor, confirme si está listo para cerrar sesión.</div>
+        <div class="modal-footer">
+            <button class="btn btn-primary" type="button" data-dismiss="modal">{{ __('Cancelar') }}</button>
+            <a class="btn btn-danger" href="{{ route('logout') }}"
+            onclick="event.preventDefault(); document.getElementById('logout-form').submit();">{{ __('Cerrar Sesión') }}</a>
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                @csrf
+            </form>
         </div>
     </div>
+</div>
+</div>
 
-    <!-- Scripts -->
-    <script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>
-    <script src="{{ asset('vendor/bootstrap/js/bootstrap.min.js') }}"></script>
-    <script src="{{ asset('vendor/jquery-easing/jquery.easing.min.js') }}"></script>
-    <script src="{{ asset('js/sb-admin-2.min.js') }}"></script>
+<!-- Scripts -->
+<script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>
+<script src="{{ asset('vendor/bootstrap/js/bootstrap.min.js') }}"></script>
+<script src="{{ asset('vendor/jquery-easing/jquery.easing.min.js') }}"></script>
+<script src="{{ asset('js/sb-admin-2.min.js') }}"></script>
+
+<!-- Footer -->
+<footer class="sticky-footer bg-white ">
+    <div class="container" >
+        <div class="copyright text-center mx-auto">
+            <span>Copyright &copy; <a href="https://ilinser.com/" target="_blank">iLinser</a> 2021</span>
+        </div>
+    </div>
+</footer>
+<!-- End of Footer -->
 
 </body>
-<!-- Footer -->
-            <footer class="sticky-footer bg-white ">
-                <div class="container" >
-                    <div class="copyright text-center mx-auto">
-                        <span>Copyright &copy; <a href="https://ilinser.com/" target="_blank">iLinser</a> 2020</span>
-                    </div>
-                </div>
-            </footer>
-            <!-- End of Footer -->
 </html>

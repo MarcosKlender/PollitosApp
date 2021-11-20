@@ -11,7 +11,8 @@ class Visceras extends Model
     use HasFactory;
 
     protected $fillable = [
-        'lotes_id', 'tipo', 'peso_bruto', 'peso_gavetas', 'peso_final', 'usuario', 'anulado', 'observaciones','created_at'
+        'lotes_id', 'tipo', 'peso_bruto', 'peso_gavetas', 'peso_final', 
+        'tipo_peso', 'usuario', 'anulado', 'observaciones','created_at'
     ];
 
     public function lote()

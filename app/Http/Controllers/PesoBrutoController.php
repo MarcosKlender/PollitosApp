@@ -158,6 +158,7 @@ class PesoBrutoController extends Controller
             'peso_bruto' => 'required|numeric|min:1',
             'peso_gavetas' => '',
             'peso_final' => '',
+            'tipo_peso' => 'required|size:2',
             'usuario' => 'required|max:191',
             'anulado' => 'required|size:1',
         ]);

@@ -8,11 +8,11 @@
   <body>
     <header class="clearfix">
       <div id="logo">
-        <img src="img/logo.png"><!-- AQUI VA EL LOGO DE LA EMPRESA -->
+        <img src="/wamp64/www/PollitosApp/public/img/pollovencedor.png" width="70" height="70"><!-- AQUI VA EL LOGO DE LA EMPRESA -->
       </div>
         <div>Santo Domingo de los Colorados</div>
         <div>------------------------------</div>
-        <div>-------------------</div>
+        <div>------------------------------</div>
       </div>
       <h3>REGISTRO DE INGRESO</h3>
       <div id="company" class="clearfix">
