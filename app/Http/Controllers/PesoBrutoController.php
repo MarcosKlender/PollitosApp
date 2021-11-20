@@ -55,8 +55,8 @@ class PesoBrutoController extends Controller
             $busuario=$busuario[0]['id'];
         }
         if ($busuario==="B001") {
-            $ch = curl_init("http://192.168.100.15/ws.php?opcion=get");
-            curl_setopt($ch, CURLOPT_URL, "http://192.168.100.15/ws.php?opcion=get");
+            $ch = curl_init("http://192.168.100.241/ws.php?opcion=get");
+            curl_setopt($ch, CURLOPT_URL, "http://192.168.100.11/ws.php?opcion=get");
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
             curl_setopt($ch, CURLOPT_TIMEOUT_MS, 3000);
             $res = curl_exec($ch);
