@@ -1,1 +1,1 @@
-<input type="text" class="form-control" id="peso_bruto" name="peso_bruto" required value=<?php echo $res ?> >
+<input type="text" class="form-control" id="peso_bruto" name="peso_bruto" disabled required value=<?php echo $res ?> >
