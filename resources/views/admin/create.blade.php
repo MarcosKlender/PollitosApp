@@ -34,6 +34,7 @@
                                 <option value="" selected disabled>Elije un rol</option>
                                 <option value="1">Administrador</option>
                                 <option value="2">Usuario Regular</option>
+                                <option value="3">Operador</option>
                             </select>
                         </div>
                         <div class="form-group">

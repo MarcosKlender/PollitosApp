@@ -39,7 +39,7 @@
                         <div class="form-group">
                             <label for="peso_entrega">Peso Entrega</label>
                             <input type="number" class="form-control" id="peso_entrega" name="peso_entrega"
-                                value="{{ old('peso_entrega') }}" required />
+                                value="{{ old('peso_entrega') }}" step=".01" required />
                         </div>
                         <input type="hidden" id="usuario" name="usuario" value="{{ Auth::user()->username }}" required />
                         <input type="hidden" id="anulado" name="anulado" value="0" required />

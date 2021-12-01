@@ -19,6 +19,7 @@ class DatabaseSeeder extends Seeder
         DB::table('rols')->insert([
             ['key' => 'admin', 'name' => 'Administrador', 'description' => 'Este rol tiene todos los privilegios sobre el sistema.', 'created_at' => Carbon::now()->toDateTimeString(), 'updated_at' => Carbon::now()->toDateTimeString()],
             ['key' => 'user', 'name' => 'Usuario Regular', 'description' => 'Este rol tiene privilegios limitados sobre el sistema.', 'created_at' => Carbon::now()->toDateTimeString(), 'updated_at' => Carbon::now()->toDateTimeString()],
+            ['key' => 'oper', 'name' => 'Operador', 'description' => 'Este rol tiene privilegios adicionales sobre el sistema.', 'created_at' => Carbon::now()->toDateTimeString(), 'updated_at' => Carbon::now()->toDateTimeString()],
         ]);
 
         // TABLA USUARIOS

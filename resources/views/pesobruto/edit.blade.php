@@ -212,7 +212,7 @@
                         <div class="form-group">
                             <label for="peso_ahogados">Peso Ahogados</label>
                             <input type="number" class="form-control" id="peso_ahogados" name="peso_ahogados"
-                                value="{{ old('peso_ahogados') }}" required />
+                                value="{{ old('peso_ahogados') }}" step=".01" required />
                         </div>
                         Una vez liquidado el lote no podrá registrar más pesos.
                     </div>

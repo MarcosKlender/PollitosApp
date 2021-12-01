@@ -34,6 +34,7 @@
                             <select class="custom-select" id="rol_id" name="rol_id" required>
                                 <option value="1">Administrador</option>
                                 <option value="2">Usuario Regular</option>
+                                <option value="3">Operador</option>
                             </select>
                         </div>
                         {{-- <div class="form-group">
