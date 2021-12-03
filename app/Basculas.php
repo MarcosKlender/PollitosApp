@@ -19,7 +19,7 @@ class Basculas extends Model
 
     public $incrementing = false;
 
-    protected $fillable = [ 'id', 'nom_user'];
+    protected $fillable = [ 'id', 'nom_user','automatico'];
 
 
 } 

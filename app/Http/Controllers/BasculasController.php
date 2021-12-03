@@ -45,8 +45,21 @@ class BasculasController extends Controller
         return response()->json($usuario);
     }
 
-    public function destroy ($id_basc)
+     public function update(Request $request, $id)
     {
+
+        $updateData = $request->validate([
+            'automatico'=>'nullable|max:1'
+        ]);
+
+        Basculas::whereId($id)->update($updateData);
+        return redirect('/basculas')->with('success', 'Bascula actualizado exitosamente!');
+        
+
+    }
+
+    public function destroy ($id_basc)
+    {            
         Basculas::destroy($id_basc);
         return redirect('basculas');
     }
