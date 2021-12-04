@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Clientes;
 use App\Lotes;
 use App\Registros;
@@ -26,19 +27,13 @@ class ReportesController extends Controller
     
     public function index(Request $request)
     {
-        
-
-         $lotes = Lotes::all_index()->orderBy('lotes.id', 'DESC')->paginate(4);
-         $count = count($lotes);
-         return view('reportes.index', compact('lotes','count'));
+        $lotes = Lotes::all_index()->orderBy('lotes.id', 'DESC')->paginate(4);
+        $count = count($lotes);
+        return view('reportes.index', compact('lotes', 'count'));
     }
-
-   
-  
 
     public function show(Request $request)
     {
-
         $criterio_liquidado = $request->get('criterio_liquidado');
         $criterio_anulado = $request->get('criterio_anulado');
         $criterio_lote = $request->get('criterio_lote');
@@ -51,7 +46,7 @@ class ReportesController extends Controller
         $criterio_fecha_ini = $request->get('criterio_fecha_ini');
         $criterio_fecha_fin = $request->get('criterio_fecha_fin');
 
-            $lotes = Lotes::all_index()
+        $lotes = Lotes::all_index()
             ->lote($criterio_lote)
             ->tipo($criterio_tipo)
             ->proveedor($criterio_proveedor)
@@ -61,40 +56,34 @@ class ReportesController extends Controller
             ->usuario($criterio_usuario)
             ->anulado($criterio_anulado)
             ->liquidado($criterio_liquidado)
-            ->fecha($criterio_fecha_ini,$criterio_fecha_fin)
-            ->orderBy('lotes.id','DESC')
+            ->fecha($criterio_fecha_ini, $criterio_fecha_fin)
+            ->orderBy('lotes.id', 'DESC')
             ->paginate(5);
-
 
         $count = count($lotes);
 
-       // return dd($request);
-       return view('reportes.index', compact('lotes', 'count'));
+        // return dd($request);
+        return view('reportes.index', compact('lotes', 'count'));
     }
-
-
 
     public function lotes_anulados()
     {
         $lotes = Lotes::orderBy('id', 'desc')->paginate(8);
         $count = count($lotes);
 
-        if (Auth::user()->rol->key != 'admin')
-        {
+        if (Auth::user()->rol->key != 'admin') {
             return redirect('/pesobruto');
         }
         
         return view('pesobruto.lotes_anulados', compact('lotes', 'count'));
     }
 
-  
     public function registros_anulados()
     {
         $registros = Registros::orderBy('id', 'desc')->where('anulado', 1)->paginate(10);
         $count = count($registros);
 
-        if (Auth::user()->rol->key != 'admin')
-        {
+        if (Auth::user()->rol->key != 'admin') {
             return redirect('/pesobruto');
         }
         
@@ -103,58 +92,56 @@ class ReportesController extends Controller
 
     public function generar_pdf($id)
     {
-    $pdf = \App::make('dompdf.wrapper');
+        $pdf = \App::make('dompdf.wrapper');
     
-    $lotes = Lotes::all_index()->orderBy('lotes.id')->paginate(10000);
-    $registros = Registros::orderBy('id')->where('anulado',0)->get();
+        $lotes = Lotes::all_index()->orderBy('lotes.id')->paginate(10000);
+        $registros = Registros::orderBy('id')->where('anulado', 0)->get();
 
-    $visceras = Visceras::where('lotes_id', $id)->get();
-    $egresos = Egresos::where('lotes_id', $id)->get();
-    $count = count($lotes);
-    $view = \View::make('reportes.pdfviews.lotepdf')->with('lotes',$lotes)->with('registros',$registros)->with('visceras',$visceras)->with('egresos',$egresos)->with('count',$count)->with('id_lote',$id)->render();
+        $visceras = Visceras::where('lotes_id', $id)->get();
+        $egresos = Egresos::where('lotes_id', $id)->get();
+        $count = count($lotes);
+        $view = \View::make('reportes.pdfviews.lotepdf')->with('lotes', $lotes)->with('registros', $registros)->with('visceras', $visceras)->with('egresos', $egresos)->with('count', $count)->with('id_lote', $id)->render();
 
-     $pdf->loadHTML($view);
-    //return dd($id);
-    return $pdf->stream();
+        $pdf->loadHTML($view);
+        //return dd($id);
+        return $pdf->stream();
     }
     
     public function generar_pdf_general($lotes)
     {
-    return dd($lotes);
+        return dd($lotes);
     }
 
 
     public function detalle_lotes()
     {
-            
-            $id=Request()->id;
-            $registros = Registros::where('lotes_id', $id)->orderBy('id')->get();
+        $id=Request()->id;
+        $registros = Registros::where('lotes_id', $id)->orderBy('id')->get();
    
         
         return $registros;
-    } 
+    }
 
 
-     public function detalle_visceras()
+    public function detalle_visceras()
     {
-            $id=Request()->id;
-            $visceras = Visceras::where('lotes_id', $id)->orderBy('id')->get();
+        $id=Request()->id;
+        $visceras = Visceras::where('lotes_id', $id)->orderBy('id')->get();
 
-            return $visceras;   
+        return $visceras;
     }
 
     public function detalle_egresos()
     {
-            $id=Request()->id;
-            $egresos = Egresos::where('lotes_id', $id)->orderBy('id')->get();
+        $id=Request()->id;
+        $egresos = Egresos::where('lotes_id', $id)->orderBy('id')->get();
 
-            return $egresos;   
+        return $egresos;
     }
 
     
     public function generar_excel($id)
     {
-    return (new PostsExport($id))->download('lotes.xlsx');
+        return (new PostsExport($id))->download('lotes.xlsx');
     }
-   
 }

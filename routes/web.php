@@ -74,5 +74,5 @@ Route::post('/entregas/anular_entrega', 'EntregasController@anular_entrega')->na
 Route::resource('entregas', EntregasController::class);
 
 Route::resource('reportes', ReportesController::class);
-Route::resource('basculas', BasculasController::class);
+Route::resource('basculas', BasculasController::class, ['except' => ['show']]);
 
