@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Lotes;
 use App\Egresos;
 use App\Registros;
+use App\Basculas;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -22,6 +23,39 @@ class EgresosController extends Controller
         $count = count($lotes);
         
         return view('egresos.index', compact('lotes', 'count'));
+    }
+
+    public function index2()
+    {
+        $user=auth()->user()->username;
+        $busuario =Basculas::select("id")
+            ->where('nom_user', '=', "$user")
+            ->get();
+        $e_automatico = Basculas::select("automatico")
+            ->where('nom_user', '=', "$user")
+            ->value("automatico");
+   
+
+        if (count($busuario)>0) {
+            $busuario=$busuario[0]['id'];
+        }
+        if ($busuario==="B002" && $e_automatico==="1") {
+            $ch = curl_init("http://192.168.100.12/ws.php?opcion=get");
+            curl_setopt($ch, CURLOPT_URL, "http://192.168.100.12/ws.php?opcion=get");
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($ch, CURLOPT_TIMEOUT_MS, 3000);
+            $res = curl_exec($ch);
+            curl_close($ch);
+        //$res="Con_accesoB001";
+        } else if( $busuario==="B002" && $e_automatico==="0") {
+
+            $res="0";
+
+        }else{
+            $res="Sin_acceso";
+        }
+
+        return view('egresos.seccion', compact('res'));
     }
 
     public function create()

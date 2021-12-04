@@ -43,8 +43,8 @@
                                                 value="{{ old('cant_pollos') }}" disabled />
                                         </div> !-->
                             <div class="form-group col-lg-6">
+                                <!-- input automatico para recepción de peso de bascula!-->
                                 <label for="peso_bruto">Peso Bruto</label>
-
                                 <div id="recargar" name="recargar"></div>
 
                                 <!--input type="number" class="form-control" id="peso_bruto" name="peso_bruto"
@@ -74,7 +74,7 @@
                             <button type="submit" class="btn btn-success">Registrar Peso</button>
                         </div>
                     </form>
-
+                    
                     @if (count($registros) != 0)
                         <div class="table-responsive mt-4">
                             <table class="table table-striped table-bordered" id="tabla_pesobruto">
@@ -276,10 +276,28 @@
         });
 
         $(document).ready(function() {
-            setInterval(
+            var timer = null,
+            intervalo = 2000,
+            input = $('#recargar').load('/pesobruto/seccion');
+
+            function iniciar (){
+                    setInterval(function(){
+                        input;
+                    }, 2000
+                );
+            }
+
+            var timer = setInterval(
                 function() {
-                    $('#recargar').load('/pesobruto/seccion');
-                }, 2000
+                    var isDisabled = $("#peso_bruto").prop("disabled");
+                    if (isDisabled){
+                        console.log("si");
+                        iniciar();
+                    }else{
+                        clearInterval(timer);
+                        console.log("no");
+                    };
+                }, intervalo
             );
         });
     </script>

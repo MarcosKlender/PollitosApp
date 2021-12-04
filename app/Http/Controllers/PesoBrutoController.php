@@ -50,11 +50,14 @@ class PesoBrutoController extends Controller
         $busuario =Basculas::select("id")
             ->where('nom_user', '=', "$user")
             ->get();
+        $e_automatico = Basculas::select("automatico")
+            ->where('nom_user', '=', "$user")
+            ->value("automatico");
 
         if (count($busuario)>0) {
             $busuario=$busuario[0]['id'];
         }
-        if ($busuario==="B001") {
+        if ($busuario==="B001" && $e_automatico==="1") {
             $ch = curl_init("http://192.168.100.241/ws.php?opcion=get");
             curl_setopt($ch, CURLOPT_URL, "http://192.168.100.11/ws.php?opcion=get");
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -62,17 +65,12 @@ class PesoBrutoController extends Controller
             $res = curl_exec($ch);
             curl_close($ch);
         //$res="Con_accesoB001";
-        } elseif ($busuario==="B002") {
-            /*$ch = curl_init("URL DE LA BASCULA 2");
-            curl_setopt($ch, CURLOPT_URL, "URL DE LA BASCULA 2");
-            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-            curl_setopt($ch, CURLOPT_TIMEOUT_MS, 200);
-            $res = curl_exec($ch);
-            curl_close($ch);*/
-            $res="Con_accesoB002";
-        } else {
+        } else if( $busuario==="B001" && $e_automatico==="0") {
+            $res="0";
+        }else{
             $res="Sin_acceso";
         }
+
         return view('pesobruto.seccion', compact('res'));
     }
     

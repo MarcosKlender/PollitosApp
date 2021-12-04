@@ -36,9 +36,20 @@
 
                             <div class="form-group col-lg-6">
                                 <label for="peso_bruto">Peso Bruto</label>
+
+                                <div id="recargar" name="recargar"></div>
+
+                                <!--input type="number" class="form-control" id="peso_bruto" name="peso_bruto"
+                                                value="{{ old('peso_bruto') }}" step=".01" required /!-->
+
+                            </div>
+
+                            <!--div class="form-group col-lg-6">
+                                <label for="peso_bruto">Peso Bruto</label>
                                 <input type="number" class="form-control" id="peso_bruto" name="peso_bruto"
                                     value="{{ old('peso_bruto') }}" step=".01" required />
-                            </div>
+                            </div!-->
+
                             <div class="form-group col-lg-12 text-center">
                                 <label for="tipo_peso" class="mr-5">Tipo de Peso:</label>
                                 <div class="form-check form-check-inline">
@@ -258,11 +269,37 @@
             });
         });
 
-        $(document).ready(function() {
-            setInterval(
+        //$(document).ready(function() {
+            /*setInterval(
                 function() {
-                    $('#recargar').load('/pesobruto/seccion');
+                    $('#recargar').load('/egresos/seccion');
                 }, 2000
+            );
+        });*/
+
+         $(document).ready(function() {
+            var timer = null,
+            intervalo = 2000,
+            input_e = $('#recargar').load('/egresos/seccion');
+
+            function iniciar (){
+                    setInterval(function(){
+                        input_e;
+                    }, intervalo
+                );
+            }
+
+            var timer = setInterval(
+                function() {
+                    var isDisabled = $("#peso_bruto").prop("disabled");
+                    if (isDisabled){
+                        console.log("si");
+                        iniciar();
+                    }else{
+                        clearInterval(timer);
+                        console.log("no");
+                    };
+                }, intervalo
             );
         });
 
