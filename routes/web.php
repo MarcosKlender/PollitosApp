@@ -48,6 +48,7 @@ Route::post('/pesobruto/anular_registro', 'PesoBrutoController@anular_registro')
 Route::post('/pesobruto/registrar_gavetas', 'PesoBrutoController@registrar_gavetas')->name('pesobruto.registrar_gavetas');
 Route::post('/pesobruto/liquidar_lote', 'PesoBrutoController@liquidar_lote')->name('pesobruto.liquidar_lote');
 Route::get('/reportes/generar_pdf/{id}', 'ReportesController@generar_pdf')->name('reportes.generar_pdf');
+//Route::post('/basculas/')
 //rutas para generar pdf y detalla lotes
 Route::get('/reportes/generar_pdf_general/{lotes}', 'ReportesController@generar_pdf_general')->name('reportes.generar_pdf_general');
 Route::post('/reportes/detalle_lotes', 'ReportesController@detalle_lotes')->name('reportes.detalle_lotes');
@@ -67,6 +68,8 @@ Route::get('/egresos/registros_anulados', 'EgresosController@registros_anulados'
 Route::post('/egresos/anular_registro', 'EgresosController@anular_registro')->name('egresos.anular_registro');
 Route::post('/egresos/registrar_gavetas', 'EgresosController@registrar_gavetas')->name('egresos.registrar_gavetas');
 Route::post('/egresos/liquidar_lote', 'EgresosController@liquidar_lote')->name('egresos.liquidar_lote');
+Route::get('/egresos/peso_bascula_egreso','EgresosController@pesobascula')->name('pesobasculaegreso');
+Route::get('/egresos/seccion', 'EgresosController@index2')->name('seccion_egreso');
 Route::resource('egresos', EgresosController::class);
 
 Route::get('/entregas/entregas_anuladas', 'EntregasController@entregas_anuladas')->name('entregas.entregas_anuladas');
