@@ -17,14 +17,13 @@ class BasculasController extends Controller
 
     public function index()
     {
-        $datos['basculas'] = Basculas::paginate(5);
+        $datos['basculas'] = Basculas::orderBy('id', 'asc')->paginate(5);
 
-        return view('basculas.index',$datos);
+        return view('basculas.index', $datos);
     }
 
     public function store(BasculaStoreRequest $request)
     {
-
         $bascula = Basculas::create($request->all());
 
         return redirect()->route('basculas.index');
@@ -32,10 +31,9 @@ class BasculasController extends Controller
 
     public function selectSearch(Request $request)
     {
-
         $user = [];
 
-        if($request->has('q')){
+        if ($request->has('q')) {
             $search = $request->q;
             $usuario =user::select("username")
                     ->where('username', 'iLIKE', "%$search%")
@@ -45,24 +43,20 @@ class BasculasController extends Controller
         return response()->json($usuario);
     }
 
-     public function update(Request $request, $id)
+    public function update(Request $request, $id)
     {
-
         $updateData = $request->validate([
-            'automatico'=>'nullable|max:1'
+            'automatico'=>'size:1'
         ]);
 
         Basculas::whereId($id)->update($updateData);
-        return redirect('/basculas')->with('success', 'Bascula actualizado exitosamente!');
-        
 
+        return back()->with('success', '¡Báscula actualizada exitosamente!');
     }
 
-    public function destroy ($id_basc)
-    {            
+    public function destroy($id_basc)
+    {
         Basculas::destroy($id_basc);
         return redirect('basculas');
     }
-
-
-} 
+}
