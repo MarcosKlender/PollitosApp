@@ -276,27 +276,30 @@
         });
 
         $(document).ready(function() {
-            var timer = null,
-            intervalo = 2000,
+            //var timer = null,
+            var intervalo = 4500;
             input = $('#recargar').load('/pesobruto/seccion');
 
-            function iniciar (){
+            function iniciar(){
                     setInterval(function(){
-                        input;
-                    }, 2000
+                        $('#recargar').load('/pesobruto/seccion');
+                        console.log("si");
+                    }, 7000
                 );
             }
 
             var timer = setInterval(
                 function() {
-                    var isDisabled = $("#peso_bruto").prop("disabled");
+                    var isDisabled = $("#peso_bruto").prop("readonly");
+
                     if (isDisabled){
-                        console.log("si");
+                      // console.log("si");
                         iniciar();
                     }else{
                         clearInterval(timer);
-                        console.log("no");
+                        //console.log("no");
                     };
+
                 }, intervalo
             );
         });

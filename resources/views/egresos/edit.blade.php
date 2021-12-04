@@ -278,26 +278,25 @@
         });*/
 
          $(document).ready(function() {
-            var timer = null,
-            intervalo = 2000,
-            input_e = $('#recargar').load('/egresos/seccion');
+            var intervalo = 4500,
+
 
             function iniciar (){
                     setInterval(function(){
-                        input_e;
-                    }, intervalo
+                        $('#recargar').load('/egresos/seccion');
+                    }, 7000
                 );
             }
 
             var timer = setInterval(
                 function() {
-                    var isDisabled = $("#peso_bruto").prop("disabled");
+                    var isDisabled = $("#peso_bruto").prop("readonly");
                     if (isDisabled){
-                        console.log("si");
+                        //console.log("si");
                         iniciar();
                     }else{
                         clearInterval(timer);
-                        console.log("no");
+                        //console.log("no");
                     };
                 }, intervalo
             );
