@@ -8,7 +8,7 @@
 
 	}elseif($res==="Sin_acceso"){
 ?>	
-	<input type="text" class="form-control" id="peso_bruto" name="peso_bruto" disabled required value=<?php echo $res ?> >
+	<input type="text" class="form-control" id="peso_bruto" name="peso_bruto" readonly required value=<?php echo $res ?> >
 <?php
 	}else{
 		?>

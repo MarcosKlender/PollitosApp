@@ -45,10 +45,14 @@
                             <div class="form-group col-lg-6">
                                 <!-- input automatico para recepción de peso de bascula!-->
                                 <label for="peso_bruto">Peso Bruto</label>
-                                <div id="recargar" name="recargar"></div>
 
-                                <!--input type="number" class="form-control" id="peso_bruto" name="peso_bruto"
-                                                value="{{ old('peso_bruto') }}" step=".01" required /!-->
+                                @if ($e_automatico)
+                                    <div id="recargar" name="recargar"></div>
+                                @else
+
+                                <input type="number" class="form-control" id="peso_bruto" name="peso_bruto"
+                                                value="{{ old('peso_bruto') }}" step=".01" required />
+                                 @endif
 
                             </div>
                             <div class="form-group col-lg-12 text-center">
@@ -276,32 +280,16 @@
         });
 
         $(document).ready(function() {
-            //var timer = null,
-            var intervalo = 4500;
-            input = $('#recargar').load('/pesobruto/seccion');
 
-            function iniciar(){
                     setInterval(function(){
                         $('#recargar').load('/pesobruto/seccion');
-                        console.log("si");
-                    }, 7000
+                    }, 2000
                 );
-            }
 
-            var timer = setInterval(
-                function() {
-                    var isDisabled = $("#peso_bruto").prop("readonly");
+                    var readonly = $("#peso_bruto").is('[readonly]');
 
-                    if (isDisabled){
-                      // console.log("si");
-                        iniciar();
-                    }else{
-                        clearInterval(timer);
-                        //console.log("no");
-                    };
+          
 
-                }, intervalo
-            );
         });
     </script>
 

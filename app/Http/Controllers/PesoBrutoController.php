@@ -141,10 +141,15 @@ class PesoBrutoController extends Controller
 
     public function edit($id)
     {
+        $user=auth()->user()->username;
+        $e_automatico = Basculas::select("automatico")
+            ->where('nom_user', '=', "$user")
+            ->value("automatico");
+
         $lote = Lotes::findOrFail($id);
         $registros = Registros::where('lotes_id', $id)->where('anulado', 0)->orderBy('id')->get();
 
-        return view('pesobruto.edit', compact('lote', 'registros'));
+        return view('pesobruto.edit', compact('lote', 'registros','e_automatico'));
     }
 
     public function update(Request $request, $id)

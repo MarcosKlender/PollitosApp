@@ -83,13 +83,18 @@ class EgresosController extends Controller
 
     public function edit($id)
     {
+        $user=auth()->user()->username;
+        $e_automatico = Basculas::select("automatico")
+            ->where('nom_user', '=', "$user")
+            ->value("automatico");
+
         $lote = Lotes::findOrFail($id);
         $egresos = Egresos::where('lotes_id', $id)->where('anulado', 0)->orderBy('id')->get();
 
         $total_ingresos = Registros::where('lotes_id', $id)->where('anulado', 0)->select('peso_final')->sum('peso_final');
         $total_egresos = Egresos::where('lotes_id', $id)->where('anulado', 0)->select('peso_final')->sum('peso_final');
 
-        return view('egresos.edit', compact('lote', 'egresos', 'total_ingresos', 'total_egresos'));
+        return view('egresos.edit', compact('lote', 'egresos', 'total_ingresos', 'total_egresos','e_automatico'));
     }
 
     public function update(Request $request, $id)
