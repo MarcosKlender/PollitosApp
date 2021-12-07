@@ -43,6 +43,15 @@ class PesoBrutoController extends Controller
 
      }*/
 
+     public function calular_kilos($tipo_peso, $peso){
+        $libra = 2.20462;
+        $peso_libra = 0;
+        if($tipo_peso == 'kg' && if_float($peso)){
+            $peso_libra = $peso * $libra;
+            return $peso_libra;
+        }
+     }
+
     public function index2()
     {
         $user=auth()->user()->username;
@@ -53,6 +62,9 @@ class PesoBrutoController extends Controller
         $e_automatico = Basculas::select("automatico")
             ->where('nom_user', '=', "$user")
             ->value("automatico");
+        $tipo_peso = Basculas::select("tipo_peso")
+            ->where('nom_user', '=', "$user")
+            ->value("tipo_peso");
 
         if (count($busuario)>0) {
             $busuario=$busuario[0]['id'];
@@ -64,6 +76,9 @@ class PesoBrutoController extends Controller
             curl_setopt($ch, CURLOPT_TIMEOUT_MS, 3000);
             $res = curl_exec($ch);
             curl_close($ch);
+
+            //$res = cacular_kilos($tipo_peso, $resultado);
+
         //$res="Con_accesoB001";
         } else if( $busuario==="B001" && $e_automatico==="0") {
             $res="0";
@@ -145,11 +160,14 @@ class PesoBrutoController extends Controller
         $e_automatico = Basculas::select("automatico")
             ->where('nom_user', '=', "$user")
             ->value("automatico");
+        $tipo_peso = Basculas::select("tipo_peso")
+            ->where('nom_user', '=', "$user")
+            ->value("tipo_peso");
 
         $lote = Lotes::findOrFail($id);
         $registros = Registros::where('lotes_id', $id)->where('anulado', 0)->orderBy('id')->get();
 
-        return view('pesobruto.edit', compact('lote', 'registros','e_automatico'));
+        return view('pesobruto.edit', compact('lote', 'registros','tipo_peso','e_automatico'));
     }
 
     public function update(Request $request, $id)

@@ -35,6 +35,7 @@
                                 <select class="nom_user form-control" id="nom_user" name="nom_user" required></select>
                             </div>
                             <br>
+                            <input type="hidden" id="tipo_peso" name="tipo_peso" value="kg">
                             <input type="hidden" id="automatico" name="automatico" value="0">
                             <button type="submit" class="btn btn-primary">Guardar</button>
                         </form>
@@ -64,6 +65,7 @@
                                     <th>#</th>
                                     <th>ID Báscula</th>
                                     <th>Usuario</th>
+                                    <th>Tipo Peso ( Lb / Kg )</th>
                                     <th>Automático</th>
                                     <th>Acciones</th>
                                 </tr>
@@ -74,6 +76,23 @@
                                         <td>{{ $loop->iteration }}</td>
                                         <td>{{ $bascula->id }}</td>
                                         <td>{{ $bascula->nom_user }}</td>
+                                        <td>
+                                            @if ($bascula->tipo_peso == 'lb')
+                                            <form method="post" action="{{ route('basculas.update', $bascula->id) }}">
+                                                {{ csrf_field() }}
+                                                {{ method_field('PATCH') }}
+                                                <input type="hidden" id="tipo_peso" name="tipo_peso" value="lb">
+                                                <button type="submit" class="btn btn-sm btn-primary">Libra</button>
+                                            </form>
+                                            @else
+                                                <form method="post" action="{{ route('basculas.update', $bascula->id) }}">
+                                                {{ csrf_field() }}
+                                                {{ method_field('PATCH') }}
+                                                <input type="hidden" id="tipo_peso" name="tipo_peso" value="kg">
+                                                <button type="submit" class="btn btn-sm btn-success">Kilo</button>
+                                            </form>
+                                            @endif
+                                        </td>
                                         {{-- <td>{{ $bascula->automatico }}</td> --}}
                                         <td>
                                             @if ($bascula->automatico == '0')

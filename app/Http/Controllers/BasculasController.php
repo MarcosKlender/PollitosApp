@@ -46,7 +46,9 @@ class BasculasController extends Controller
     public function update(Request $request, $id)
     {
         $updateData = $request->validate([
+            'tipo_peso' =>'size:2',
             'automatico'=>'size:1'
+            
         ]);
 
         Basculas::whereId($id)->update($updateData);
