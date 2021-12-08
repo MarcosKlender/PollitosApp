@@ -76,20 +76,21 @@
                                         <td>{{ $loop->iteration }}</td>
                                         <td>{{ $bascula->id }}</td>
                                         <td>{{ $bascula->nom_user }}</td>
+                                        {{-- <td>{{ $bascula->tipo_peso }}</td> --}}
                                         <td>
                                             @if ($bascula->tipo_peso == 'lb')
                                             <form method="post" action="{{ route('basculas.update', $bascula->id) }}">
                                                 {{ csrf_field() }}
                                                 {{ method_field('PATCH') }}
-                                                <input type="hidden" id="tipo_peso" name="tipo_peso" value="lb">
-                                                <button type="submit" class="btn btn-sm btn-primary">Libra</button>
+                                                <input type="hidden" id="tipo_peso" name="tipo_peso" value="kg">
+                                                <button type="submit" class="btn btn-sm btn-primary">Libras</button>
                                             </form>
                                             @else
                                                 <form method="post" action="{{ route('basculas.update', $bascula->id) }}">
                                                 {{ csrf_field() }}
                                                 {{ method_field('PATCH') }}
-                                                <input type="hidden" id="tipo_peso" name="tipo_peso" value="kg">
-                                                <button type="submit" class="btn btn-sm btn-success">Kilo</button>
+                                                <input type="hidden" id="tipo_peso" name="tipo_peso" value="lb">
+                                                <button type="submit" class="btn btn-sm btn-success">Kilogramos</button>
                                             </form>
                                             @endif
                                         </td>
