@@ -4,6 +4,7 @@
     <tr>
          <td><b>N° Lote</b></td>
          <td><b>Tipo</b></td>
+         <td><b>Cantidad Pollos</b></td>
          <td><b>Proveedor</b></td>
          <td><b>Procedencia</b></td>                                       
          <td><b>Placa</b></td>
@@ -17,6 +18,7 @@
         <tr>
             <td >{{ $lote->id }}</td>
             <td >{{ $lote->tipo }}</td>
+            <td >{{ $lote->cantidad }}</td>
             <td >{{ $lote->proveedor }}</td>
             <td>{{ $lote->procedencia }}</td>                                           
             <td>{{ $lote->placa }}</td>
