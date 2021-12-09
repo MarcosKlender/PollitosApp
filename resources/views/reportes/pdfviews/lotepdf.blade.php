@@ -195,7 +195,7 @@
                                     @endforeach
                                     <tr>
                                         <td colspan="2"><b>TOTAL</b></td>
-                                        <td><b>{{ $sume_pb }}</b></td>
+                                        <td><b>{{ $sume_cg }}</b></td>
                                         <td><b>{{ $sume_pb }}</b></td>
                                         <td><b>{{ $sume_pg }}</b></td>
                                         <td><b>{{ $sume_pf }}</b></td>
