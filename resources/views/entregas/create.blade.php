@@ -21,6 +21,16 @@
                     @endif
                     <form method="post" action="{{ route('entregas.store') }}">
                         @csrf
+
+                         <div class="form-group">
+                            <label for="tipo">Tipo de Animal</label>
+                            <select class="custom-select" id="tipo" name="tipo" required>
+                                <option value="" selected disabled>Elija un tipo de animal</option>
+                                <option value="POLLOS">POLLOS</option>
+                                <option value="CERDOS">CERDOS</option>
+                            </select>
+                        </div>
+
                         <div class="form-group">
                             <label for="cliente">Cliente</label>
                                 <select class="form-control" id="cliente_nombre" name="cliente_nombre" required>

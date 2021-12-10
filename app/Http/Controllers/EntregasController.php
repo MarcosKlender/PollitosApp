@@ -33,6 +33,7 @@ class EntregasController extends Controller
     public function store(Request $request)
     {
         $storeData = $request->validate([
+            'tipo' => 'required|max:15',
             'cliente' => 'required|max:191',
             'ruc_ci' => 'required|digits_between:10,13',
             'placa' => 'required|regex:/^[\pL\pM\pN\s]+$/u|between:6,7',
@@ -45,6 +46,7 @@ class EntregasController extends Controller
         $entregas = Entregas::create($storeData);
 
         // Mantener datos del formulario
+        $request->old('tipo');
         $request->old('cliente');
         $request->old('placa');
         $request->old('conductor');

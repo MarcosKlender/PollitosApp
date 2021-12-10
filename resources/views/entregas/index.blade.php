@@ -41,12 +41,14 @@
                             <thead>
                                 <tr>
                                     <td>N°</td>
+                                    <td>Tipo Animal</td>
                                     <td>Cliente</td>
                                     <td>RUC/CI</td>
                                     <td>Placa</td>
                                     <td>Conductor</td>
                                     <td>Peso</td>
                                     <td>Usuario</td>
+                                    <td>Fecha de Registro</td>
                                     @if (Auth::user()->rol->key == 'admin')
                                         <td>Anulado</td>
                                     @endif
@@ -56,12 +58,14 @@
                                 @foreach ($entregas as $entrega)
                                     <tr>
                                         <td>{{$loop->iteration  }} </td> 
+                                        <td>{{ $entrega->tipo }}</td>
                                         <td>{{ $entrega->cliente }}</td>
                                         <td>{{ $entrega->ruc_ci }}</td>
                                         <td>{{ $entrega->placa }}</td>
                                         <td>{{ $entrega->conductor }}</td>
                                         <td>{{ $entrega->peso_entrega }}</td>
                                         <td>{{ $entrega->usuario }}</td>
+                                        <td>{{ $entrega->created_at }}</td>    
                                         @if (Auth::user()->rol->key == 'admin')
                                             <td>
                                                 <button type="button" class="btn btn-sm btn-primary modal_anular"
