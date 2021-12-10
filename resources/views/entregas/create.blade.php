@@ -23,9 +23,22 @@
                         @csrf
                         <div class="form-group">
                             <label for="cliente">Cliente</label>
-                            <input type="text" class="form-control" id="cliente" name="cliente"
-                                value="{{ old('cliente') }}" required />
+                                <select class="form-control" id="cliente_nombre" name="cliente_nombre" required>
+                                    <option value="" selected disabled>Elija un cliente</option>
+                                    @foreach($clientes as $cliente)
+                                        <option >
+                                            {{ $cliente->nombres }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                                <!--  muestra ruc/ci de clientes !-->
+                                <input name="cliente" id="cliente" type="hidden" >
+                                <input name="ruc_ci" id="ruc_ci" type="hidden" >
+
+                            {{--<input type="text" class="form-control" id="cliente" name="cliente"
+                                value="{{ old('cliente') }}" required />--}}
                         </div>
+                        
                         <div class="form-group">
                             <label for="placa">Placa del Vehículo</label>
                             <input type="text" class="form-control" id="placa" name="placa" value="{{ old('placa') }}"
@@ -75,5 +88,43 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
+
+
+     <script type="text/javascript">
+        $('#cliente_nombre').select2({
+            ajax: {
+                url: '/ajax-autocomplete-search3',
+                dataType: 'json',
+                delay: 250,
+                processResults: function(data) {                    
+                    return {
+                        results: $.map(data, function(item) {                       
+                            return {
+                                text: item.nombres,
+                                id: item.ruc_ci,
+                                value: item.nombres
+                            }
+                        })
+                    };
+                },
+                cache: true
+            },
+            placeholder: 'Seleccione cliente'
+        });
+
+
+        $('#cliente_nombre').on('select2:select',function(e){
+             $('#cliente').val(e.params.data.text);
+             $('#ruc_ci').val(e.params.data.id);
+             console.log(e.params.data.text, e.params.data.id);
+        })
+
+
+       /* function prueba() {
+            var p = document.getElementById("proveedor");
+            document.getElementById("ruc").value = p.value;
+        } */
+
+    </script> 
 
 @endsection

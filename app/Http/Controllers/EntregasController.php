@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Entregas;
+use App\Clientes;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -24,13 +25,16 @@ class EntregasController extends Controller
 
     public function create()
     {
-        return view('entregas.create');
+        $clientes = Clientes::select('nombres', 'ruc_ci')->get();
+
+        return view('entregas.create',compact('clientes'));
     }
 
     public function store(Request $request)
     {
         $storeData = $request->validate([
             'cliente' => 'required|max:191',
+            'ruc_ci' => 'required|digits_between:10,13',
             'placa' => 'required|regex:/^[\pL\pM\pN\s]+$/u|between:6,7',
             'conductor' => 'required|regex:/^[\pL\pM\pN\s]+$/u|max:191',
             'peso_entrega' => 'required|numeric|min:1',
@@ -67,6 +71,20 @@ class EntregasController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function selectSearch(Request $request)
+    {
+        $clientes = [];
+
+        if ($request->has('q')) {
+            $search = $request->q;
+            $cliente = Clientes::select("ruc_ci", "nombres")
+                    ->where('nombres', 'iLIKE', "%$search%")
+                    ->get();
+        }
+
+        return response()->json($cliente);
     }
 
     public function entregas_anuladas()

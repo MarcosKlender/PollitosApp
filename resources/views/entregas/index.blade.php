@@ -40,7 +40,9 @@
                         <table class="table table-striped table-bordered">
                             <thead>
                                 <tr>
+                                    <td>N°</td>
                                     <td>Cliente</td>
+                                    <td>RUC/CI</td>
                                     <td>Placa</td>
                                     <td>Conductor</td>
                                     <td>Peso</td>
@@ -53,7 +55,9 @@
                             <tbody>
                                 @foreach ($entregas as $entrega)
                                     <tr>
+                                        <td>{{$loop->iteration  }} </td> 
                                         <td>{{ $entrega->cliente }}</td>
+                                        <td>{{ $entrega->ruc_ci }}</td>
                                         <td>{{ $entrega->placa }}</td>
                                         <td>{{ $entrega->conductor }}</td>
                                         <td>{{ $entrega->peso_entrega }}</td>

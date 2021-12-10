@@ -10,7 +10,7 @@ class Entregas extends Model
     use HasFactory;
 
     protected $fillable = [
-        'cliente', 'placa', 'conductor', 'peso_entrega', 'usuario', 'anulado', 'observaciones'
+        'cliente', 'ruc_ci','placa', 'conductor', 'peso_entrega', 'usuario', 'anulado', 'observaciones'
     ];
 
 }
