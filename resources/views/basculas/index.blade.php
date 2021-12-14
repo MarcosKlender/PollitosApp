@@ -35,7 +35,7 @@
                                 <select class="nom_user form-control" id="nom_user" name="nom_user" required></select>
                             </div>
                             <br>
-                            <input type="hidden" id="tipo_peso" name="tipo_peso" value="kg">
+                            <input type="hidden" id="tipo_peso" name="tipo_peso" value="lb">
                             <input type="hidden" id="automatico" name="automatico" value="0">
                             <button type="submit" class="btn btn-primary">Guardar</button>
                         </form>
