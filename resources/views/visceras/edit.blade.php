@@ -72,7 +72,7 @@
                                 <thead>
                                     <tr>
                                         <td>#</td>
-                                        <td>ID Lote</td>
+                                        {{-- <td>ID Lote</td> --}}
                                         <td>Tipo</td>
                                         <td>Peso Bruto</td>
                                         <td>Peso Gavetas</td>
@@ -87,8 +87,8 @@
                                 <tbody>
                                     @foreach ($visceras as $viscera)
                                         <tr>
-                                            <td>{{ $viscera->id }}</td>
-                                            <td>{{ $viscera->lotes_id }}</td>
+                                            <td>{{ $loop->iteration }}</td>
+                                            {{-- <td>{{ $viscera->lotes_id }}</td> --}}
                                             <td>{{ $viscera->tipo }}</td>
                                             <td>{{ $viscera->peso_bruto }}</td>
                                             <td>{{ $viscera->peso_gavetas }}</td>

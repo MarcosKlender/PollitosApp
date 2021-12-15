@@ -43,8 +43,8 @@
                                     </div>
 
                                     <div class="col-auto input-group-append">
-                                        <input type="search" id="criterio_placa" name="criterio_placa" class="form-control"
-                                            placeholder="Buscar placa">
+                                        <input type="search" id="criterio_placa" name="criterio_placa"
+                                            class="form-control" placeholder="Buscar placa">
                                     </div>
 
 
@@ -219,7 +219,6 @@
                                 <h6>PESO NETO <label id="peso_neto"></label></h6>
                             </a>
                         </li>
-
                     </ul>
                     <div class="tab-content" id="myTabContent">
                         <div class="tab-pane fade show active" id="lote" role="tabpanel" aria-labelledby="lote">
@@ -377,13 +376,14 @@
                                 $('<td>').text(value.peso_gavetas),
                                 $('<td>').text(value.peso_final),
                                 $('<td>').text(value.tipo_peso),
-                                (value.anulado === '1') ? $('<td>').text('Anulado') :
+                                (value.anulado === '1') ? $('<td>').text(
+                                    'Anulado') :
                                 $('<td>').text(''),
                                 $('<td>').text(value.observaciones),
                                 $('<td>').text(value.usuario),
                                 $('<td>').text(fecha),
                                 $('</tr>'));
-                            if(value.anulado === '0'){
+                            if (value.anulado === '0') {
                                 tc = tc + parseFloat(value.cant_gavetas);
                                 tb = tb + parseFloat(value.peso_bruto);
                                 tg = tg + parseFloat(value.peso_gavetas);
@@ -482,13 +482,14 @@
                                 $('<td>').text(value.peso_gavetas),
                                 $('<td>').text(value.peso_final),
                                 $('<td>').text(value.tipo_peso),
-                                (value.anulado === '1') ? $('<td>').text('Anulado') :
+                                (value.anulado === '1') ? $('<td>').text(
+                                    'Anulado') :
                                 $('<td>').text(''),
                                 $('<td>').text(value.observaciones),
                                 $('<td>').text(value.usuario),
                                 $('<td>').text(fecha),
                                 $('</tr>'));
-                            if(value.anulado === '0'){
+                            if (value.anulado === '0') {
                                 tce = tce + parseFloat(value.cant_gavetas);
                                 tbe = tbe + parseFloat(value.peso_bruto);
                                 tge = tge + parseFloat(value.peso_gavetas);
@@ -518,7 +519,6 @@
                 });
             });
         });
-
     </script>
 
 @endsection

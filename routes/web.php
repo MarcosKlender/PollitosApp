@@ -80,3 +80,5 @@ Route::resource('entregas', EntregasController::class);
 Route::resource('reportes', ReportesController::class);
 Route::resource('basculas', BasculasController::class, ['except' => ['show']]);
 
+Route::post('/gavetas_vacias/anular', 'GavetasVaciasController@anular')->name('gavetas_vacias.anular');
+Route::resource('gavetas_vacias', GavetasVaciasController::class);

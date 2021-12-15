@@ -3,9 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Lotes;
+use App\Basculas;
 use App\Registros;
 use App\Proveedores;
-use App\Basculas;
+use App\GavetasVacias;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -166,8 +167,9 @@ class PesoBrutoController extends Controller
 
         $lote = Lotes::findOrFail($id);
         $registros = Registros::where('lotes_id', $id)->where('anulado', 0)->orderBy('id')->get();
+        $gavetas = GavetasVacias::where('lotes_id', $id)->where('anulado', 0)->orderBy('id')->get();
 
-        return view('pesobruto.edit', compact('lote', 'registros','tipo_peso','e_automatico'));
+        return view('pesobruto.edit', compact('lote', 'registros', 'gavetas', 'tipo_peso', 'e_automatico'));
     }
 
     public function update(Request $request, $id)

@@ -40,7 +40,7 @@
                         <div class="table-responsive">
                             <table class="table table-striped table-bordered">
                                 <thead>
-                                    <tr>
+                                    <tr class="font-weight-bold">
                                         <td>ID</td>
                                         <td>Tipo</td>
                                         <td>Cantidad</td>
@@ -49,16 +49,16 @@
                                         <td>Procedencia</td>
                                         <td>Placa</td>
                                         <td>Conductor</td>
-                                         @if(Auth::user()->rol->key == 'admin')   
-                                                <td>Usuario</td>
-                                         @endif       
+                                        @if (Auth::user()->rol->key == 'admin')
+                                            <td>Usuario</td>
+                                        @endif
                                         <td>Fecha de Registro</td>
                                         @if (Auth::user()->rol->key == 'admin')
                                             <td>Anulado</td>
                                         @endif
                                         <td>Liquidado</td>
                                         <td>Acciones</td>
-                                         <td>Ver pdf</td>
+                                        <td>PDF</td>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -72,14 +72,15 @@
                                             <td>{{ $lote->procedencia }}</td>
                                             <td>{{ $lote->placa }}</td>
                                             <td>{{ $lote->conductor }}</td>
-                                             @if(Auth::user()->rol->key == 'admin')   
+                                            @if (Auth::user()->rol->key == 'admin')
                                                 <td>{{ $lote->usuario }}</td>
-                                             @endif   
-                                            <td>{{ $lote->created_at }}</td>                                         
+                                            @endif
+                                            <td>{{ $lote->created_at }}</td>
                                             @if (Auth::user()->rol->key == 'admin')
                                                 <td>
-                                                    <button type="button" class="btn btn-sm btn-primary modal_anular" data-toggle="modal"
-                                                        data-id="{{ $lote->id }}" data-target="#staticBackdrop1">NO</button>
+                                                    <button type="button" class="btn btn-sm btn-primary modal_anular"
+                                                        data-toggle="modal" data-id="{{ $lote->id }}"
+                                                        data-target="#staticBackdrop1">NO</button>
                                                 </td>
                                             @endif
                                             <td>
@@ -98,9 +99,9 @@
                                                         class="btn btn-sm btn-success">Ver Pesos</a>
                                                 @endif
                                             </td>
-                                               <td class="button">
-                                                     <a href="{{ route('reportes.generar_pdf',$lote->id) }}" target="_blank"
-                                                        class="btn btn-lg btn-primary"><i class="far fa-file-pdf"></i></a>
+                                            <td class="button">
+                                                <a href="{{ route('reportes.generar_pdf', $lote->id) }}" target="_blank"
+                                                    class="btn btn-lg btn-primary"><i class="far fa-file-pdf"></i></a>
                                             </td>
                                         </tr>
                                     @endforeach
@@ -159,7 +160,6 @@
                 $("#id_anular").val(lote_a);
             });
         });
-
     </script>
 
 @endsection

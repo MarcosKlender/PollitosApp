@@ -81,10 +81,10 @@
                         <div class="table-responsive mt-4">
                             <table class="table table-striped table-bordered" id="tabla_egresos">
                                 <thead>
-                                    <tr>
+                                    <tr class="font-weight-bold">
                                         <td>#</td>
-                                        <td>ID Lote</td>
-                                        <td>Cantidad de Gavetas</td>
+                                        {{-- <td>ID Lote</td> --}}
+                                        <td>Cantidad Gavetas</td>
                                         <td>Peso Bruto</td>
                                         <td>Peso Gavetas</td>
                                         <td>Peso Final</td>
@@ -98,8 +98,8 @@
                                 <tbody>
                                     @foreach ($egresos as $egreso)
                                         <tr>
-                                            <td>{{ $egreso->id }}</td>
-                                            <td>{{ $egreso->lotes_id }}</td>
+                                            <td>{{ $loop->iteration }}</td>
+                                            {{-- <td>{{ $egreso->lotes_id }}</td> --}}
                                             <td>{{ $egreso->cant_gavetas }}</td>
                                             <td>{{ $egreso->peso_bruto }}</td>
                                             <td>{{ $egreso->peso_gavetas }}</td>
