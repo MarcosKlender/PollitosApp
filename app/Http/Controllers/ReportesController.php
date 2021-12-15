@@ -98,7 +98,7 @@ class ReportesController extends Controller
         $registros = Registros::orderBy('id')->where('anulado', 0)->get();
 
         $visceras = Visceras::where('lotes_id', $id)->get();
-        $egresos = Egresos::where('lotes_id', $id)->get();
+        $egresos = Egresos::where('lotes_id', $id)->where('anulado',0)->get();
         $count = count($lotes);
         $view = \View::make('reportes.pdfviews.lotepdf')->with('lotes', $lotes)->with('registros', $registros)->with('visceras', $visceras)->with('egresos', $egresos)->with('count', $count)->with('id_lote', $id)->render();
 

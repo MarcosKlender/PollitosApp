@@ -38,7 +38,7 @@ class PostsExport implements FromView
         $totale_gavetas =  Egresos::where('lotes_id', $datoid)->where('anulado', 0)->select('peso_gavetas')->sum('peso_gavetas');
         $totale_final =    Egresos::where('lotes_id', $datoid)->where('anulado', 0)->select('peso_final')->sum('peso_final');
         $viceras=   Visceras::where('lotes_id', $this->id)->get();
-        $egresos=   Egresos::where('lotes_id', $this->id)->get();
+        $egresos=   Egresos::where('lotes_id', $this->id)->where('anulado',0)->get();
 
         return view('reportes.excelviews.lotdetexcel',[ 'lotes' => Lotes::where('id', $this->id)->get()],['registros' => Registros::where('lotes_id', $this->id)->get()])->with('id',$datoid)->with('total_cantidad',$total_cantidad)->with('total_bruto',$total_bruto)->with('total_gavetas',$total_gavetas)->with('total_final',$total_final)->with('totalv_bruto',$totalv_bruto)->with('totalv_gavetas',$totalv_gavetas)->with('totalv_final',$totalv_final)->with('totale_cantidad',$totale_cantidad)->with('totale_bruto',$totale_bruto)->with('totale_gavetas',$totale_gavetas)->with('totale_final',$totale_final)->with('visceras',$viceras)->with('egresos',$egresos);
 
