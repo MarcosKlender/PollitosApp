@@ -117,6 +117,9 @@
                                         <td>Procedencia</td>
                                         <td>Placa</td>
                                         <td>Conductor</td>
+                                        <td>Cantidad Total Pollos</td>
+                                        <td>Cantidad Pollos Ahogados</td>
+                                        <td>Peso Pollos Ahogados</td>
                                         <td>Tot. Cant. Gavetas</td>
                                         <td>Tot. Peso Bruto</td>
                                         <td>Tot. Peso Gavetas</td>
@@ -139,6 +142,9 @@
                                             <td class="row_peso">{{ $lote->procedencia }}</td>
                                             <td class="row_peso">{{ $lote->placa }}</td>
                                             <td class="row_peso">{{ $lote->conductor }}</td>
+                                            <td class="row_peso">{{ $lote->cantidad }}</td>
+                                            <td class="row_peso">{{ $lote->cant_ahogados }}</td>
+                                            <td class="row_peso">{{ $lote->peso_ahogados }}</td>
                                             <td class="row_peso">{{ $lote->total_cant_gavetas }}</td>
                                             <td class="row_peso">{{ $lote->total_peso_bruto }}</td>
                                             <td class="row_peso">{{ $lote->total_peso_gavetas }}</td>
@@ -284,6 +290,8 @@
                                         <td>Peso Gavetas</td>
                                         <td>Peso Final</td>
                                         <td>Tipo Peso</td>
+                                        <td>Estado</td>
+                                        <td>Observación</td>
                                         <td>Usuario</td>
                                         <td>Fecha de Registro</td>
                                     </tr>
@@ -369,16 +377,18 @@
                                 $('<td>').text(value.peso_gavetas),
                                 $('<td>').text(value.peso_final),
                                 $('<td>').text(value.tipo_peso),
-                                (value.anulado == 1) ? $('<td>').text('Anulado') :
+                                (value.anulado === '1') ? $('<td>').text('Anulado') :
                                 $('<td>').text(''),
                                 $('<td>').text(value.observaciones),
                                 $('<td>').text(value.usuario),
                                 $('<td>').text(fecha),
                                 $('</tr>'));
-                            tc = tc + parseFloat(value.cant_gavetas);
-                            tb = tb + parseFloat(value.peso_bruto);
-                            tg = tg + parseFloat(value.peso_gavetas);
-                            tf = tf + parseFloat(value.peso_final);
+                            if(value.anulado === '0'){
+                                tc = tc + parseFloat(value.cant_gavetas);
+                                tb = tb + parseFloat(value.peso_bruto);
+                                tg = tg + parseFloat(value.peso_gavetas);
+                                tf = tf + parseFloat(value.peso_final);
+                            }
                         })
 
                         document.querySelector('#total_cantidad').innerText = tc;
@@ -472,14 +482,20 @@
                                 $('<td>').text(value.peso_gavetas),
                                 $('<td>').text(value.peso_final),
                                 $('<td>').text(value.tipo_peso),
+                                (value.anulado === '1') ? $('<td>').text('Anulado') :
+                                $('<td>').text(''),
+                                $('<td>').text(value.observaciones),
                                 $('<td>').text(value.usuario),
                                 $('<td>').text(fecha),
                                 $('</tr>'));
-                            tce = tce + parseFloat(value.cant_gavetas);
-                            tbe = tbe + parseFloat(value.peso_bruto);
-                            tge = tge + parseFloat(value.peso_gavetas);
-                            tfe = tfe + parseFloat(value.peso_final);
+                            if(value.anulado === '0'){
+                                tce = tce + parseFloat(value.cant_gavetas);
+                                tbe = tbe + parseFloat(value.peso_bruto);
+                                tge = tge + parseFloat(value.peso_gavetas);
+                                tfe = tfe + parseFloat(value.peso_final);
+                            }
                         })
+
 
                         document.querySelector('#total_cantidade').innerText = tce;
                         document.querySelector('#total_brutoe').innerText = tbe;
