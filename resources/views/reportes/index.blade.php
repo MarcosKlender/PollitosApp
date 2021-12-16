@@ -5,6 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-lg-11">
             <div class="card shadow mb-4">
+
                 <div class="card-header mt-2">
                     <div class="text-center">
                         <h4>Reportes PESO EN BRUTO</h4>
@@ -13,14 +14,9 @@
 
                 <div class="card-body">
                     <div class="row justify-content-around">
-
-
-                        <div class="mb-3 ">
+                        <div class="mb-3">
                             <form method="get" action="{{ route('reportes.show', 'search') }}">
-
-
                                 <div class="input-group">
-
 
                                     <div class="col-auto input-group-append">
                                         <input type="search" id="criterio_lote" name="criterio_lote" class="form-control"
@@ -47,17 +43,16 @@
                                             class="form-control" placeholder="Buscar placa">
                                     </div>
 
-
                                     <div class="col-auto input-group-append">
                                         <input type="search" id="criterio_conductor" name="criterio_conductor"
                                             class="form-control" placeholder="Buscar conductor">
                                     </div>
 
-
                                     <div class="input-group-append col-auto input-group-append">
                                         <input type="search" id="criterio_usuario" name="criterio_usuario"
                                             class="form-control" placeholder="Buscar usuario">
                                     </div>
+
                                 </div>
                                 <br>
                                 <div class="input-group">
@@ -66,7 +61,6 @@
                                         <label for="fecha_ini" class="col-auto col-form-label"> Desde: </label>
                                         <input type="date" class="form-control" name="criterio_fecha_ini">
                                     </div>
-
 
                                     <div class="input-group-append col-auto input-group-append">
                                         <label for="fecha_fin" class="col-auto col-form-label"> Hasta: </label>
@@ -90,11 +84,10 @@
                                             <i class="fas fa-search"></i>
                                         </button>
                                     </div>
+
                                 </div>
                             </form>
-
                         </div>
-
 
                     </div>
                     @if (session()->get('success'))
@@ -198,6 +191,7 @@
                             <b>{{ $count }}</b></span> --}}
                     </div>
                     <br>
+
                     <ul class="nav nav-tabs" id="myTab" role="tablist">
                         <li class="nav-item">
                             <a class="nav-link active" id="home-tab" data-toggle="tab" href="#lote" role="tab"
@@ -220,97 +214,103 @@
                             </a>
                         </li>
                     </ul>
+
                     <div class="tab-content" id="myTabContent">
                         <div class="tab-pane fade show active" id="lote" role="tabpanel" aria-labelledby="lote">
-                            <table class="table table-striped table-bordered">
-                                <thead>
+                            <div class="table-responsive">
+                                <table class="table table-striped table-bordered">
+                                    <thead>
+                                        <tr class="font-weight-bold">
+                                            <td>ID</td>
+                                            <td>Cantidad de Gavetas</td>
+                                            <td>Peso Bruto</td>
+                                            <td>Peso Gavetas</td>
+                                            <td>Peso Final</td>
+                                            <td>Tipo Peso</td>
+                                            <td>Estado</td>
+                                            <td>Observación</td>
+                                            <td>Usuario</td>
+                                            <td>Fecha de Registro</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tbody id="cuerpo_lote">
+                                    </tbody>
                                     <tr class="font-weight-bold">
-                                        <td>ID</td>
-                                        <td>Cantidad de Gavetas</td>
-                                        <td>Peso Bruto</td>
-                                        <td>Peso Gavetas</td>
-                                        <td>Peso Final</td>
-                                        <td>Tipo Peso</td>
-                                        <td>Estado</td>
-                                        <td>Observación</td>
-                                        <td>Usuario</td>
-                                        <td>Fecha de Registro</td>
+                                        <td colspan="1"><b>TOTAL</b></td>
+                                        <td id="total_cantidad"><b></b></td>
+                                        <td id="total_bruto"><b></b></td>
+                                        <td id="total_gavetas"><b></b></td>
+                                        <td id="total_final"><b></b></td>
                                     </tr>
-                                </thead>
-                                <tbody>
-                                <tbody id="cuerpo_lote">
-                                </tbody>
-                                <tr class="font-weight-bold">
-                                    <td colspan="1"><b>TOTAL</b></td>
-                                    <td id="total_cantidad"><b></b></td>
-                                    <td id="total_bruto"><b></b></td>
-                                    <td id="total_gavetas"><b></b></td>
-                                    <td id="total_final"><b></b></td>
-                                </tr>
-                            </table>
-
-
+                                </table>
+                            </div>
                         </div>
+
                         <div class="tab-pane fade" id="visceras" role="tabpanel" aria-labelledby="visceras">
-                            <table class="table table-striped table-bordered">
-                                <thead>
+                            <div class="table-responsive">
+                                <table class="table table-striped table-bordered">
+                                    <thead>
+                                        <tr class="font-weight-bold">
+                                            <td>ID Lote</td>
+                                            <td>Tipo</td>
+                                            <td>Peso Bruto</td>
+                                            <td>Peso Gavetas</td>
+                                            <td>Peso Final</td>
+                                            <td>Tipo Peso</td>
+                                            <td>Usuario</td>
+                                            <td>Fecha de Registro</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tbody id="cuerpo_visceras">
+                                    </tbody>
                                     <tr class="font-weight-bold">
-                                        <td>ID Lote</td>
-                                        <td>Tipo</td>
-                                        <td>Peso Bruto</td>
-                                        <td>Peso Gavetas</td>
-                                        <td>Peso Final</td>
-                                        <td>Tipo Peso</td>
-                                        <td>Usuario</td>
-                                        <td>Fecha de Registro</td>
+                                        <td colspan="1"><b>TOTAL</b></td>
+                                        <td></td>
+                                        <td id="total_brutov"><b></b></td>
+                                        <td id="total_gavetasv"><b></b></td>
+                                        <td id="total_finalv"><b></b></td>
                                     </tr>
-                                </thead>
-                                <tbody>
-                                <tbody id="cuerpo_visceras">
-                                </tbody>
-                                <tr class="font-weight-bold">
-                                    <td colspan="1"><b>TOTAL</b></td>
-                                    <td></td>
-                                    <td id="total_brutov"><b></b></td>
-                                    <td id="total_gavetasv"><b></b></td>
-                                    <td id="total_finalv"><b></b></td>
-                                </tr>
-                            </table>
+                                </table>
+                            </div>
 
                             </table>
                         </div>
+
                         <div class="tab-pane fade" id="egresos" role="tabpanel" aria-labelledby="egresos">
-                            <table class="table table-striped table-bordered">
-                                <thead>
+                            <div class="table-responsive">
+                                <table class="table table-striped table-bordered">
+                                    <thead>
+                                        <tr class="font-weight-bold">
+                                            <td>ID Lote</td>
+                                            <td>Cantidad de Gavetas</td>
+                                            <td>Peso Bruto</td>
+                                            <td>Peso Gavetas</td>
+                                            <td>Peso Final</td>
+                                            <td>Tipo Peso</td>
+                                            <td>Estado</td>
+                                            <td>Observación</td>
+                                            <td>Usuario</td>
+                                            <td>Fecha de Registro</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tbody id="cuerpo_egresos">
+                                    </tbody>
                                     <tr class="font-weight-bold">
-                                        <td>ID Lote</td>
-                                        <td>Cantidad de Gavetas</td>
-                                        <td>Peso Bruto</td>
-                                        <td>Peso Gavetas</td>
-                                        <td>Peso Final</td>
-                                        <td>Tipo Peso</td>
-                                        <td>Estado</td>
-                                        <td>Observación</td>
-                                        <td>Usuario</td>
-                                        <td>Fecha de Registro</td>
+                                        <td colspan="1"><b>TOTAL</b></td>
+                                        <td id="total_cantidade"><b></b></td>
+                                        <td id="total_brutoe"><b></b></td>
+                                        <td id="total_gavetase"><b></b></td>
+                                        <td id="total_finale"><b></b></td>
                                     </tr>
-                                </thead>
-                                <tbody>
-                                <tbody id="cuerpo_egresos">
-                                </tbody>
-                                <tr class="font-weight-bold">
-                                    <td colspan="1"><b>TOTAL</b></td>
-                                    <td id="total_cantidade"><b></b></td>
-                                    <td id="total_brutoe"><b></b></td>
-                                    <td id="total_gavetase"><b></b></td>
-                                    <td id="total_finale"><b></b></td>
-                                </tr>
-                            </table>
+                                </table>
+                            </div>
                         </div>
                     </div>
 
                 </div>
-
             </div>
         </div>
     </div>
@@ -496,7 +496,6 @@
                                 tfe = tfe + parseFloat(value.peso_final);
                             }
                         })
-
 
                         document.querySelector('#total_cantidade').innerText = tce;
                         document.querySelector('#total_brutoe').innerText = tbe;
