@@ -152,7 +152,12 @@ class PesoBrutoController extends Controller
         $total_gavetas = Registros::where('lotes_id', $id)->where('anulado', 0)->select('peso_gavetas')->sum('peso_gavetas');
         $total_final = Registros::where('lotes_id', $id)->where('anulado', 0)->select('peso_final')->sum('peso_final');
 
-        return view('pesobruto.show', compact('lote', 'registros', 'total_cantidad', 'total_bruto', 'total_gavetas', 'total_final'));
+        $gavetas = GavetasVacias::where('lotes_id', $id)->where('anulado', 0)->orderBy('id')->get();
+        $cant_gav_vac = GavetasVacias::where('lotes_id', $id)->where('anulado', 0)->select('cant_gavetas_vacias')->sum('cant_gavetas_vacias');
+        $peso_gav_vac = GavetasVacias::where('lotes_id', $id)->where('anulado', 0)->select('peso_gavetas_vacias')->sum('peso_gavetas_vacias');
+
+        return view('pesobruto.show', compact('lote', 'registros', 'total_cantidad', 'total_bruto', 'total_gavetas', 'total_final',
+                    'gavetas', 'cant_gav_vac', 'peso_gav_vac'));
     }
 
     public function edit($id)
@@ -167,9 +172,12 @@ class PesoBrutoController extends Controller
 
         $lote = Lotes::findOrFail($id);
         $registros = Registros::where('lotes_id', $id)->where('anulado', 0)->orderBy('id')->get();
+        
         $gavetas = GavetasVacias::where('lotes_id', $id)->where('anulado', 0)->orderBy('id')->get();
+        $cant_gav = Registros::where('lotes_id', $id)->where('anulado', 0)->select('cant_gavetas')->sum('cant_gavetas');
+        $cant_gav_vac = GavetasVacias::where('lotes_id', $id)->where('anulado', 0)->select('cant_gavetas_vacias')->sum('cant_gavetas_vacias');
 
-        return view('pesobruto.edit', compact('lote', 'registros', 'gavetas', 'tipo_peso', 'e_automatico'));
+        return view('pesobruto.edit', compact('lote', 'registros', 'gavetas', 'tipo_peso', 'e_automatico', 'cant_gav', 'cant_gav_vac'));
     }
 
     public function update(Request $request, $id)

@@ -26,8 +26,8 @@
                 </ul>
 
                 <div class="tab-content" id="myTabContent">
-
                     <div class="tab-pane fade show active" id="pesos" role="tabpanel" aria-labelledby="pesos">
+
                         <div class="card-body">
                             @if (session()->get('success'))
                                 <div class="alert alert-success">
@@ -55,14 +55,14 @@
                                             value="{{ old('cant_gavetas') }}" required autofocus />
                                     </div>
                                     <!-- <div class="form-group col-lg-6">
-                                                                                        <div class="custom-control custom-switch mb-2">
-                                                                                            <input type="checkbox" class="custom-control-input" id="check_pollos"
-                                                                                                name="check_pollos">
-                                                                                            <label class="custom-control-label" for="check_pollos">Cantidad de Pollos</label>
-                                                                                        </div>
-                                                                                        <input type="number" class="form-control" id="cant_pollos" name="cant_pollos"
-                                                                                            value="{{ old('cant_pollos') }}" disabled />
-                                                                                    </div> !-->
+                                                                                                            <div class="custom-control custom-switch mb-2">
+                                                                                                                <input type="checkbox" class="custom-control-input" id="check_pollos"
+                                                                                                                    name="check_pollos">
+                                                                                                                <label class="custom-control-label" for="check_pollos">Cantidad de Pollos</label>
+                                                                                                            </div>
+                                                                                                            <input type="number" class="form-control" id="cant_pollos" name="cant_pollos"
+                                                                                                                value="{{ old('cant_pollos') }}" disabled />
+                                                                                                        </div> !-->
                                     <div class="form-group col-lg-6">
                                         <!-- input automatico para recepción de peso de bascula!-->
                                         <label for="peso_bruto">Peso Bruto</label>
@@ -158,9 +158,11 @@
                                 </div>
                             @endif
                         </div>
+
                     </div>
 
                     <div class="tab-pane fade" id="gavetas" role="tabpanel" aria-labelledby="gavetas">
+
                         <div class="card-body">
                             @if (session()->get('success'))
                                 <div class="alert alert-success">
@@ -221,8 +223,9 @@
                                 <input type="hidden" id="usuario" name="usuario" value="{{ Auth::user()->username }}"
                                     required />
                                 <input type="hidden" id="anulado" name="anulado" value="0" required />
-                                
-                                <div class="row justify-content-center mt-2">
+
+                                <div class="row justify-content-around mt-2">
+                                    <a href="{{ route('pesobruto.index') }}" class="btn btn-primary">Volver Atrás</a>
                                     <button type="submit" class="btn btn-success">Registrar Peso</button>
                                 </div>
                             </form>
@@ -253,8 +256,8 @@
                                                         <td>{{ $gaveta->usuario }}</td>
                                                     @endif
                                                     <td class="text-center"><button type="button"
-                                                            class="btn btn-sm btn-danger modal_anular_gavetas" data-toggle="modal"
-                                                            data-target="#staticBackdrop4"
+                                                            class="btn btn-sm btn-danger modal_anular_gavetas"
+                                                            data-toggle="modal" data-target="#staticBackdrop4"
                                                             data-id="{{ $gaveta->id }}">Anular</button>
                                                     </td>
                                                 </tr>
@@ -264,6 +267,7 @@
                                 </div>
                             @endif
                         </div>
+                        
                     </div>
 
                     <div class="text-center mb-4">
@@ -343,25 +347,34 @@
                 </div>
                 <form action="{{ route('pesobruto.liquidar_lote') }}" method="post">
                     <div class="modal-body">
-                        Para liquidar el lote, agregue la siguiente información:<br><br>
-                        <div class="form-group">
-                            <label for="cant_ahogados">Cantidad Ahogados</label>
-                            <input type="number" class="form-control" id="cant_ahogados" name="cant_ahogados"
-                                value="{{ old('cant_ahogados') }}" required />
-                        </div>
-                        <div class="form-group">
-                            <label for="peso_ahogados">Peso Ahogados</label>
-                            <input type="number" class="form-control" id="peso_ahogados" name="peso_ahogados"
-                                value="{{ old('peso_ahogados') }}" step=".01" required />
-                        </div>
-                        Una vez liquidado el lote no podrá registrar más pesos.
+                        @if ($cant_gav < $cant_gav_vac)
+                            <div class="alert alert-danger" role="alert">
+                                El número de gavetas vacías ({{ $cant_gav_vac }}) es mayor al número de gavetas
+                                pesadas anteriormente ({{ $cant_gav }}), corrija esto antes de liquidar este lote.
+                            </div>
+                        @else
+                            Para liquidar el lote, agregue la siguiente información:<br><br>
+                            <div class="form-group">
+                                <label for="cant_ahogados">Cantidad Ahogados</label>
+                                <input type="number" class="form-control" id="cant_ahogados" name="cant_ahogados"
+                                    value="{{ old('cant_ahogados') }}" required />
+                            </div>
+                            <div class="form-group">
+                                <label for="peso_ahogados">Peso Ahogados</label>
+                                <input type="number" class="form-control" id="peso_ahogados" name="peso_ahogados"
+                                    value="{{ old('peso_ahogados') }}" step=".01" required />
+                            </div>
+                            Una vez liquidado el lote no podrá registrar más pesos.
+                        @endif
                     </div>
                     <div class="modal-footer">
                         @csrf
                         <input type="hidden" id="id_liquidar" name="id_liquidar" value="{{ $lote->id }}">
                         <input type="hidden" id="liquidado" name="liquidado" value="1">
                         <button type="button" class="btn btn-primary" data-dismiss="modal">Cancelar</button>
-                        <button type="submit" class="btn btn-danger">Liquidar</button>
+                        @if ($cant_gav >= $cant_gav_vac)
+                            <button type="submit" class="btn btn-danger">Liquidar</button>
+                        @endif
                     </div>
                 </form>
             </div>
