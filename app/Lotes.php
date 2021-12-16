@@ -36,13 +36,14 @@ class Lotes extends Model
 
     public function scopeAll_index($query)
     {
-        return $query->leftJoin('registros', 'registros.lotes_id', '=', 'lotes.id')->select(
-            'lotes.*',
+        return $query->leftJoin('registros', 'registros.lotes_id', '=', 'lotes.id')
+                      ->rightJoin('gavetas_vacias','gavetas_vacias.lotes_id','=', 'lotes.id')->select('lotes.*',
             DB::raw('sum(registros.cant_gavetas) as total_cant_gavetas'),
             DB::raw('sum(registros.peso_bruto) as total_peso_bruto'),
             DB::raw('sum(registros.peso_gavetas) as total_peso_gavetas'),
+            DB::raw('sum(gavetas_vacias.peso_gavetas_vacias) as total_peso_gavetas_vacias'),
             DB::raw('sum(registros.peso_final) as total_peso_final')
-        )->where('registros.anulado',0)
+        )->where('registros.anulado',0)->where('gavetas_vacias.anulado',0)
         ->groupBy('registros.lotes_id', 'lotes.id');
     }
 

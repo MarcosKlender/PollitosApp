@@ -117,12 +117,12 @@
                                         <td>Procedencia</td>
                                         <td>Placa</td>
                                         <td>Conductor</td>
-                                        <td>Cantidad Total Pollos</td>
-                                        <td>Cantidad Pollos Ahogados</td>
-                                        <td>Peso Pollos Ahogados</td>
+                                        <td>Cantidad Total Animal</td>
                                         <td>Tot. Cant. Gavetas</td>
+                                        <td>Cantidad Animal Ahogado</td>
+                                        <td>Peso Animal Ahogado</td>
                                         <td>Tot. Peso Bruto</td>
-                                        <td>Tot. Peso Gavetas</td>
+                                        <td>Tot. Peso Gavetas Vacías</td>
                                         <td>Tot. Peso Final</td>
                                         <td>Usuario</td>
                                         <td>Fecha de Registro</td>
@@ -141,13 +141,13 @@
                                             <td class="row_peso">{{ $lote->proveedor }}</td>
                                             <td class="row_peso">{{ $lote->procedencia }}</td>
                                             <td class="row_peso">{{ $lote->placa }}</td>
-                                            <td class="row_peso">{{ $lote->conductor }}</td>
+                                            <td class="row_peso">{{ $lote->conductor }}</td>                                            
                                             <td class="row_peso">{{ $lote->cantidad }}</td>
+                                            <td class="row_peso">{{ $lote->total_cant_gavetas }}</td>
                                             <td class="row_peso">{{ $lote->cant_ahogados }}</td>
                                             <td class="row_peso">{{ $lote->peso_ahogados }}</td>
-                                            <td class="row_peso">{{ $lote->total_cant_gavetas }}</td>
                                             <td class="row_peso">{{ $lote->total_peso_bruto }}</td>
-                                            <td class="row_peso">{{ $lote->total_peso_gavetas }}</td>
+                                            <td class="row_peso">{{ $lote->total_peso_gavetas_vacias }}</td>
                                             <td class="row_peso">{{ $lote->total_peso_final }}</td>
                                             <td class="row_peso">{{ $lote->usuario }}</td>
                                             <td>{{ $lote->created_at }}</td>
