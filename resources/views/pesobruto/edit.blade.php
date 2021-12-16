@@ -115,8 +115,8 @@
                                                 <td>Cantidad Gavetas</td>
                                                 <!-- <td>Cantidad {{ $lote->tipo }}</td> -->
                                                 <td>Peso Bruto</td>
-                                                <td>Peso Gavetas</td>
-                                                <td>Peso Final</td>
+                                                <!--td>Peso Gavetas</td!-->
+                                                <!--td>Peso Final</td!-->
                                                 <td>Tipo Peso</td>
                                                 @if (Auth::user()->rol->key == 'admin')
                                                     <td>Usuario</td>
@@ -134,18 +134,18 @@
                                                 <td>N/A</td> @else <td>{{ $registro->cant_pollos }}</td>
                                             @endif --}}
                                                     <td>{{ $registro->peso_bruto }}</td>
-                                                    <td>{{ $registro->peso_gavetas }}</td>
-                                                    <td>{{ $registro->peso_final }}</td>
+                                                    <!--td>{{ $registro->peso_gavetas }}</td!-->
+                                                    <!--td>{{ $registro->peso_final }}</td!-->
                                                     <td>{{ $registro->tipo_peso }}</td>
                                                     @if (Auth::user()->rol->key == 'admin')
                                                         <td>{{ $registro->usuario }}</td>
                                                     @endif
-                                                    <td class="text-center"><button type="button"
+                                                    <!--td class="text-center"><button type="button"
                                                             class="btn btn-sm btn-primary modal_gavetas" data-toggle="modal"
                                                             data-target="#staticBackdrop1" data-id="{{ $registro->id }}"
                                                             data-cant-gavetas="{{ $registro->cant_gavetas }}"
                                                             data-peso-bruto="{{ $registro->peso_bruto }}">Gavetas</button>
-                                                    </td>
+                                                    </td!-->
                                                     <td class="text-center"><button type="button"
                                                             class="btn btn-sm btn-danger modal_anular" data-toggle="modal"
                                                             data-target="#staticBackdrop2"
@@ -229,7 +229,7 @@
 
                             @if (count($gavetas) != 0)
                                 <div class="table-responsive mt-4">
-                                    <table class="table table-striped table-bordered" id="tabla_pesobruto">
+                                    <table class="table table-striped table-bordered" id="tabla_pesobruto_gavetas">
                                         <thead>
                                             <tr class="font-weight-bold">
                                                 <td>#</td>
@@ -400,13 +400,25 @@
     <script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>
     <script>
         $(document).ready(function() {
+            var ac_cant_gaveta=0,
+                ac_cant_gaveta_vacia=0;
 
-            var columna = $("#tabla_pesobruto td:nth-child(5)").map(function() {
+            /*var columna = $("#tabla_pesobruto td:nth-child(2)").map(function() {
                 return $(this).text();
-            }).get();
-            if (jQuery.inArray('0.00', columna) != -1 || $("table").length == 0) {
+            }).get();*/
+
+             console.log($("#cant_gavetas").val());
+
+             var tbl_peso_bruto= $("#tabla_pesobruto").length;
+             var tbl_gabeta_vacia= $("#tabla_pesobruto_gavetas").length;
+
+             if(tbl_peso_bruto === 0 || tbl_gabeta_vacia === 0){
                 $("#liquidar").prop('disabled', true);
-            }
+             }
+             
+           /* if (jQuery.inArray('0.00', columna) != -1 || $("table").length == 0) {
+                $("#liquidar").prop('disabled', true);
+            }*/
 
             $("#liquidar").click(function() {
                 $(".modal-title").html('¿Está seguro de liquidar el lote?');
