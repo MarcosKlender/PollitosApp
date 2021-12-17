@@ -137,6 +137,24 @@
                             </tbody>
                         </table>
                     </div>
+
+                    <div class="table-responsive mt-3">
+                        <table class="table table-striped table-bordered">
+                            <thead>
+                                <tr class="font-weight-bold">
+                                    <td class="col-6">Total Peso Bruto</td>
+                                    <td class="col-6">Total Peso Gavetas Vacías</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>{{ $total_bruto }}</td>
+                                    <td>{{ $peso_gav_vac }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
                     <div class="table-responsive mt-3">
                         <table class="table table-striped table-bordered">
                             <thead>
