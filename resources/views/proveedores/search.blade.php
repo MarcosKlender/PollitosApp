@@ -58,7 +58,7 @@
                         <div class="table-responsive">
                             <table class="table table-striped table-bordered">
                                 <thead>
-                                    <tr>
+                                    <tr class="font-weight-bold">
                                        <td>ID</td>
                                         <td>RUC/CI</td>
                                         <td>Nombres</td>

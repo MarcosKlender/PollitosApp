@@ -30,14 +30,14 @@
                         <div class="table-responsive">
                             <table class="table table-striped table-bordered">
                                 <thead>
-                                    <tr>
+                                    <tr class="font-weight-bold">
                                         <td>ID Registro</td>
                                         <td>ID Lote</td>
                                         <td>Cantidad Gavetas</td>
                                         {{-- <td>Cantidad Pollos</td> --}}
                                         <td>Peso Bruto</td>
-                                        <td>Peso Gavetas</td>
-                                        <td>Peso Final</td>
+                                        {{-- <td>Peso Gavetas</td> --}}
+                                        {{-- <td>Peso Final</td> --}}
                                         <td>Usuario</td>
                                         <td>Observaciones</td>
                                         <td>Fecha de Anulación</td>
@@ -51,8 +51,8 @@
                                             <td>{{ $registro->cant_gavetas }}</td>
                                             {{-- @if ($registro->cant_pollos == null) @else <td>{{ $registro->cant_pollos }}</td> @endif --}}
                                             <td>{{ $registro->peso_bruto }}</td>
-                                            <td>{{ $registro->peso_gavetas }}</td>
-                                            <td>{{ $registro->peso_final }}</td>
+                                            {{-- <td>{{ $registro->peso_gavetas }}</td> --}}
+                                            {{-- <td>{{ $registro->peso_final }}</td> --}}
                                             <td>{{ $registro->usuario }}</td>
                                             <td>{{ $registro->observaciones }}</td>
                                             <td>{{ $registro->updated_at }}</td>

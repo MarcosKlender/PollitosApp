@@ -54,15 +54,16 @@
                                         <input type="number" class="form-control" id="cant_gavetas" name="cant_gavetas"
                                             value="{{ old('cant_gavetas') }}" required autofocus />
                                     </div>
-                                    <!-- <div class="form-group col-lg-6">
-                                                                                                            <div class="custom-control custom-switch mb-2">
-                                                                                                                <input type="checkbox" class="custom-control-input" id="check_pollos"
-                                                                                                                    name="check_pollos">
-                                                                                                                <label class="custom-control-label" for="check_pollos">Cantidad de Pollos</label>
-                                                                                                            </div>
-                                                                                                            <input type="number" class="form-control" id="cant_pollos" name="cant_pollos"
-                                                                                                                value="{{ old('cant_pollos') }}" disabled />
-                                                                                                        </div> !-->
+                                    {{-- <div class="form-group col-lg-6">
+                                        <div class="custom-control custom-switch mb-2">
+                                            <input type="checkbox" class="custom-control-input" id="check_pollos"
+                                                name="check_pollos">
+                                            <label class="custom-control-label" for="check_pollos">Cantidad de
+                                                Pollos</label>
+                                        </div>
+                                        <input type="number" class="form-control" id="cant_pollos" name="cant_pollos"
+                                            value="{{ old('cant_pollos') }}" disabled />
+                                    </div> --}}
                                     <div class="form-group col-lg-6">
                                         <!-- input automatico para recepción de peso de bascula!-->
                                         <label for="peso_bruto">Peso Bruto</label>
@@ -131,8 +132,8 @@
                                                     <!--td>{{ $registro->lotes_id }}</td!-->
                                                     <td>{{ $registro->cant_gavetas }}</td>
                                                     {{-- @if ($registro->cant_pollos == null)
-                                                <td>N/A</td> @else <td>{{ $registro->cant_pollos }}</td>
-                                            @endif --}}
+                                                    <td>N/A</td> @else <td>{{ $registro->cant_pollos }}</td>
+                                                    @endif --}}
                                                     <td>{{ $registro->peso_bruto }}</td>
                                                     <!--td>{{ $registro->peso_gavetas }}</td!-->
                                                     <!--td>{{ $registro->peso_final }}</td!-->
@@ -140,12 +141,12 @@
                                                     @if (Auth::user()->rol->key == 'admin')
                                                         <td>{{ $registro->usuario }}</td>
                                                     @endif
-                                                    <!--td class="text-center"><button type="button"
+                                                    {{-- <td class="text-center"><button type="button"
                                                             class="btn btn-sm btn-primary modal_gavetas" data-toggle="modal"
                                                             data-target="#staticBackdrop1" data-id="{{ $registro->id }}"
                                                             data-cant-gavetas="{{ $registro->cant_gavetas }}"
                                                             data-peso-bruto="{{ $registro->peso_bruto }}">Gavetas</button>
-                                                    </td!-->
+                                                    </td> --}}
                                                     <td class="text-center"><button type="button"
                                                             class="btn btn-sm btn-danger modal_anular" data-toggle="modal"
                                                             data-target="#staticBackdrop2"
@@ -267,7 +268,7 @@
                                 </div>
                             @endif
                         </div>
-                        
+
                     </div>
 
                     <div class="text-center mb-4">
@@ -349,8 +350,8 @@
                     <div class="modal-body">
                         @if ($cant_gav < $cant_gav_vac)
                             <div class="alert alert-danger" role="alert">
-                                El número de gavetas vacías ({{ $cant_gav_vac }}) es mayor al número de gavetas
-                                pesadas anteriormente ({{ $cant_gav }}), corrija esto antes de liquidar este lote.
+                                La cantidad de gavetas vacías ({{ $cant_gav_vac }}) es mayor a la cantidad de gavetas
+                                registradas ({{ $cant_gav }}), corrija esto antes de liquidar este lote.
                             </div>
                         @else
                             Para liquidar el lote, agregue la siguiente información:<br><br>
@@ -413,25 +414,33 @@
     <script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>
     <script>
         $(document).ready(function() {
-            var ac_cant_gaveta=0,
-                ac_cant_gaveta_vacia=0;
+            var usedTab = '{{ Session::get('usedTab') }}';
+
+            function activeTab(tab) {
+                $('.nav-tabs a[href="#' + tab + '"]').tab('show');
+            };
+
+            activeTab(usedTab);
+
+            var ac_cant_gaveta = 0,
+                ac_cant_gaveta_vacia = 0;
 
             /*var columna = $("#tabla_pesobruto td:nth-child(2)").map(function() {
                 return $(this).text();
             }).get();*/
 
-             console.log($("#cant_gavetas").val());
+            console.log($("#cant_gavetas").val());
 
-             var tbl_peso_bruto= $("#tabla_pesobruto").length;
-             var tbl_gabeta_vacia= $("#tabla_pesobruto_gavetas").length;
+            var tbl_peso_bruto = $("#tabla_pesobruto").length;
+            var tbl_gabeta_vacia = $("#tabla_pesobruto_gavetas").length;
 
-             if(tbl_peso_bruto === 0 || tbl_gabeta_vacia === 0){
+            if (tbl_peso_bruto === 0 || tbl_gabeta_vacia === 0) {
                 $("#liquidar").prop('disabled', true);
-             }
-             
-           /* if (jQuery.inArray('0.00', columna) != -1 || $("table").length == 0) {
-                $("#liquidar").prop('disabled', true);
-            }*/
+            }
+
+            /* if (jQuery.inArray('0.00', columna) != -1 || $("table").length == 0) {
+                 $("#liquidar").prop('disabled', true);
+             }*/
 
             $("#liquidar").click(function() {
                 $(".modal-title").html('¿Está seguro de liquidar el lote?');
@@ -482,15 +491,11 @@
         });
 
         $(document).ready(function() {
-
             setInterval(function() {
                 $('#recargar').load('/pesobruto/seccion');
             }, 2000);
 
             var readonly = $("#peso_bruto").is('[readonly]');
-
-
-
         });
     </script>
 

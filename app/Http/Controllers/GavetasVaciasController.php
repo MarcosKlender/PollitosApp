@@ -28,9 +28,8 @@ class GavetasVaciasController extends Controller
         GavetasVacias::whereId($id)->create($updateData);
 
         $lote = Lotes::findOrFail($id);
-        $tab = $request->get('tab');
 
-        return redirect()->route('pesobruto.edit', $id)->with('lote')->with('tab');
+        return redirect()->route('pesobruto.edit', $id)->with('lote')->with('usedTab', 'gavetas');
     }
 
     public function anular(Request $request)
@@ -42,6 +41,6 @@ class GavetasVaciasController extends Controller
         
         GavetasVacias::whereId($request->id_anular_gavetas)->update($updateData);
 
-        return back()->with('success', '¡El registro ha sido anulado!');
+        return back()->with('success', '¡El registro ha sido anulado!')->with('usedTab', 'gavetas');
     }
 }
