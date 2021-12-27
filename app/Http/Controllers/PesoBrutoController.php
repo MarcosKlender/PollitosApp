@@ -44,14 +44,15 @@ class PesoBrutoController extends Controller
 
      }*/
 
-     public function calular_kilos($tipo_peso, $peso){
+    public function calular_kilos($tipo_peso, $peso)
+    {
         $libra = 2.20462;
         $peso_libra = 0;
-        if($tipo_peso == 'kg' && if_float($peso)){
+        if ($tipo_peso == 'kg' && if_float($peso)) {
             $peso_libra = $peso * $libra;
             return $peso_libra;
         }
-     }
+    }
 
     public function index2()
     {
@@ -78,12 +79,12 @@ class PesoBrutoController extends Controller
             $res = curl_exec($ch);
             curl_close($ch);
 
-            //$res = cacular_kilos($tipo_peso, $resultado);
+        //$res = cacular_kilos($tipo_peso, $resultado);
 
         //$res="Con_accesoB001";
-        } else if( $busuario==="B001" && $e_automatico==="0") {
+        } elseif ($busuario==="B001" && $e_automatico==="0") {
             $res="0";
-        }else{
+        } else {
             $res="Sin_acceso";
         }
 
@@ -156,8 +157,17 @@ class PesoBrutoController extends Controller
         $cant_gav_vac = GavetasVacias::where('lotes_id', $id)->where('anulado', 0)->select('cant_gavetas_vacias')->sum('cant_gavetas_vacias');
         $peso_gav_vac = GavetasVacias::where('lotes_id', $id)->where('anulado', 0)->select('peso_gavetas_vacias')->sum('peso_gavetas_vacias');
 
-        return view('pesobruto.show', compact('lote', 'registros', 'total_cantidad', 'total_bruto', 'total_gavetas', 'total_final',
-                    'gavetas', 'cant_gav_vac', 'peso_gav_vac'));
+        return view('pesobruto.show', compact(
+            'lote',
+            'registros',
+            'total_cantidad',
+            'total_bruto',
+            'total_gavetas',
+            'total_final',
+            'gavetas',
+            'cant_gav_vac',
+            'peso_gav_vac'
+        ));
     }
 
     public function edit($id)
@@ -240,6 +250,18 @@ class PesoBrutoController extends Controller
         }
         
         return view('pesobruto.registros_anulados', compact('registros', 'count'));
+    }
+
+    public function gavetas_anuladas()
+    {
+        $gavetas = GavetasVacias::orderBy('id', 'desc')->where('anulado', 1)->paginate(10);
+        $count = count($gavetas);
+
+        if (Auth::user()->rol->key != 'admin') {
+            return redirect('/pesobruto');
+        }
+        
+        return view('pesobruto.gavetas_anuladas', compact('gavetas', 'count'));
     }
 
     public function anular_registro(Request $request)

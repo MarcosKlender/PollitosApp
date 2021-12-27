@@ -7,7 +7,7 @@
             <div class="card shadow mb-4">
                 <div class="card-header mt-2">
                     <div class="text-center">
-                        <h4>REGISTROS ANULADOS - PESO EN BRUTO</h4>
+                        <h4>GAVETAS ANULADAS - PESO EN BRUTO</h4>
                     </div>
                 </div>
 
@@ -20,7 +20,7 @@
                     </div>
 
                     @if ($count == 0)
-                        <div class="alert alert-danger">No se han encontrado registros anulados.</div>
+                        <div class="alert alert-danger">No se han encontrado gavetas anuladas.</div>
                     @else
 
                         <div class="table-responsive">
@@ -29,29 +29,25 @@
                                     <tr class="font-weight-bold">
                                         <td>ID Registro</td>
                                         <td>ID Lote</td>
-                                        <td>Cantidad Gavetas</td>
-                                        {{-- <td>Cantidad Pollos</td> --}}
-                                        <td>Peso Bruto</td>
-                                        {{-- <td>Peso Gavetas</td> --}}
-                                        {{-- <td>Peso Final</td> --}}
+                                        <td>Cantidad Gavetas Vacías</td>
+                                        <td>Peso Gavetas Vacías</td>
+                                        <td>Tipo Peso</td>
                                         <td>Usuario</td>
                                         <td>Observaciones</td>
                                         <td>Fecha de Anulación</td>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($registros as $registro)
+                                    @foreach ($gavetas as $gaveta)
                                         <tr>
-                                            <td>{{ $registro->id }}</td>
-                                            <td>{{ $registro->lotes_id }}</td>
-                                            <td>{{ $registro->cant_gavetas }}</td>
-                                            {{-- @if ($registro->cant_pollos == null) @else <td>{{ $registro->cant_pollos }}</td> @endif --}}
-                                            <td>{{ $registro->peso_bruto }}</td>
-                                            {{-- <td>{{ $registro->peso_gavetas }}</td> --}}
-                                            {{-- <td>{{ $registro->peso_final }}</td> --}}
-                                            <td>{{ $registro->usuario }}</td>
-                                            <td>{{ $registro->observaciones }}</td>
-                                            <td>{{ $registro->updated_at }}</td>
+                                            <td>{{ $gaveta->id }}</td>
+                                            <td>{{ $gaveta->lotes_id }}</td>
+                                            <td>{{ $gaveta->cant_gavetas_vacias }}</td>
+                                            <td>{{ $gaveta->peso_gavetas_vacias }}</td>
+                                            <td>{{ $gaveta->tipo_peso }}</td>
+                                            <td>{{ $gaveta->usuario }}</td>
+                                            <td>{{ $gaveta->observaciones }}</td>
+                                            <td>{{ $gaveta->updated_at }}</td>
                                         </tr>
                                     @endforeach
                                 </tbody>
@@ -61,7 +57,7 @@
                     @endif
 
                     <div class="row justify-content-around">
-                        {{ $registros->links() }}
+                        {{ $gavetas->links() }}
                     </div>
 
                 </div>

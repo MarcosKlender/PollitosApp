@@ -188,8 +188,8 @@
                                     <div class="form-group col-lg-6">
                                         <label for="cant_gavetas_vacias">Cantidad de Gavetas Vacías</label>
                                         <input type="number" class="form-control" id="cant_gavetas_vacias"
-                                            name="cant_gavetas_vacias" value="{{ old('cant_gavetas_vacias') }}" required
-                                            autofocus />
+                                            name="cant_gavetas_vacias" value="{{ old('cant_gavetas_vacias') }}"
+                                            required />
                                     </div>
 
                                     <div class="form-group col-lg-6">
@@ -421,6 +421,11 @@
             };
 
             activeTab(usedTab);
+
+            if (usedTab == "gavetas") {
+                $("#gavetas").show();
+                $("#cant_gavetas_vacias").focus();
+            }
 
             var ac_cant_gaveta = 0,
                 ac_cant_gaveta_vacia = 0;
