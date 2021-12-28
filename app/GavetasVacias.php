@@ -10,7 +10,7 @@ class GavetasVacias extends Model
     use HasFactory;
 
     protected $fillable = [
-        'lotes_id', 'cant_gavetas_vacias', 'peso_gavetas_vacias', 'tipo_peso', 'usuario', 'anulado', 'observaciones'
+        'lotes_id', 'cant_gavetas_vacias', 'peso_gavetas_vacias', 'peso_final_gavetas','tipo_peso', 'usuario', 'anulado', 'observaciones'
     ];
 
     public function lote()

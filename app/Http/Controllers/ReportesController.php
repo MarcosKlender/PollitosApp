@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Clientes;
 use App\Lotes;
 use App\Registros;
+use App\GavetasVacias;
 use App\Visceras;
 use App\Egresos;
 use App\Proveedores;
@@ -28,6 +29,7 @@ class ReportesController extends Controller
     public function index(Request $request)
     {
         $lotes = Lotes::all_index()->orderBy('lotes.id', 'DESC')->paginate(4);
+       // $gavetas_vacias = GavetasVacias::all_index_gavetas()->paginate(4);
         $count = count($lotes);
         return view('reportes.index', compact('lotes', 'count'));
     }
@@ -95,12 +97,22 @@ class ReportesController extends Controller
         $pdf = \App::make('dompdf.wrapper');
     
         $lotes = Lotes::all_index()->orderBy('lotes.id')->paginate(10000);
+        $lotes_gavetas = Lotes::gavetas_vacias()->orderBy('id')->get();
         $registros = Registros::orderBy('id')->where('anulado', 0)->get();
-
+        $gavetas_vacias = GavetasVacias::orderBy('id')->where('anulado', 0)->get();
         $visceras = Visceras::where('lotes_id', $id)->get();
         $egresos = Egresos::where('lotes_id', $id)->where('anulado',0)->get();
+        $anulado = Lotes::where('id',$id)->select('anulado')->value('anulado');
+        $liquidado = Lotes::where('id',$id)->select('liquidado')->value('liquidado');
+        
+        if($anulado != '1') {
+            if($liquidado === '1') {$est_liquidado = 'Liquidado';}else{$est_liquidado = 'Abierto'; }  
+        }else{
+            $est_liquidado = 'Anulado';
+        }
+
         $count = count($lotes);
-        $view = \View::make('reportes.pdfviews.lotepdf')->with('lotes', $lotes)->with('registros', $registros)->with('visceras', $visceras)->with('egresos', $egresos)->with('count', $count)->with('id_lote', $id)->render();
+        $view = \View::make('reportes.pdfviews.lotepdf')->with('lotes', $lotes)->with('lotes_gavetas',$lotes_gavetas)->with('registros', $registros)->with('gavetas_vacias', $gavetas_vacias)->with('visceras', $visceras)->with('egresos', $egresos)->with('count', $count)->with('liquidado',$est_liquidado)->with('id_lote', $id)->render();
 
         $pdf->loadHTML($view);
         //return dd($id);

@@ -14,7 +14,7 @@
         <div>Dirección: Mercado Central</div>
         <div>Celular: 099 358 2202</div>
       </div>
-      <h3>REGISTRO DE INGRESO</h3>
+      <h3></h3>
       <div id="company" class="clearfix">
     </header>
     <main>
@@ -43,18 +43,20 @@
                         </div> 
                         
                         <div style="clear:both; position:relative;">
-                        <div style="position:absolute; left:0pt; width:192pt;">
-                         <div>   <strong>N° Lote: </strong>           <label>{{ $lote->id }}                     </label></div>  
-                         <div>   <strong>Tipo: </strong>            <label>{{ $lote->tipo }}                   </label></div>
-                         <div>   <strong>Cantidad: </strong>            <label>{{ $lote->cantidad }}                </label></div>
+                            <div>   <strong>N° Lote: </strong>           <label>{{ $lote->id }}                </label></div>
+                        <div style="position:absolute; left:0pt; width:192pt;">   
+                         <div>   <strong>Tipo: </strong>            <label>{{ $lote->tipo }}                    </label></div>
+                         <div>   <strong>Cantidad: </strong>            <label>{{ $lote->cantidad }}            </label></div>
                          <div>   <strong>Proveedor:</strong>         <label>{{ $lote->proveedor }}              </label></div>
-                         <div>   <strong>Procedencia: </strong>       <label>{{ $lote->procedencia }}            </label></div> 
+                         <div>   <strong>RUC / C.I:</strong>         <label>{{ $lote->ruc_ci }}                 </label></div>   
+                         <div>   <strong>Procedencia: </strong>       <label>{{ $lote->procedencia }}           </label></div>                       
                         </div>
                         <div style="margin-left:200pt;">
                          <div>   <strong>Placa:     </strong>         <label>{{ $lote->placa }}                  </label></div>
                          <div>   <strong>Conductor:  </strong>        <label>{{ $lote->conductor }}              </label></div>
-                         <div>   <strong>Usuario:       </strong>     <label>{{ $lote->usuario }}           </label></div>
-                         <div>   <strong>Fecha de Registro:</strong>  <label>{{ $lote->created_at }}             </label></div>
+                         <div>   <strong>Usuario:       </strong>     <label>{{ $lote->usuario }}                </label></div>
+                         <div>   <strong>Fecha Creacion:</strong>  <label>{{ $lote->created_at }}                </label></div>
+                         <div>   <strong>Estado:</strong>  <label>{{ $liquidado}}                                </label></div>
                         </div>
                         </div>
                        <div>
@@ -63,9 +65,17 @@
                         <?php $sumv_pb=0; $sumv_pg=0; $sumv_pf=0; $sume_cg=0; $sume_pb=0; $sume_pg=0; $sume_pf=0 ; ?>
                          <div class="card-header mt-2">
                                 <div class="text-center">
-                              <h4>DETALLE LOTE N° {{ $lote->id }} </h4>
+                              <h4>INGRESOS LOTE N° {{ $lote->id }} </h4>
                            </div>
                         </div> 
+
+                        <!-- Peso bruto !-->
+                           <div class="card-header mt-2">
+                                <div class="text-center">
+                                    <h4>Peso Bruto </h4>
+                                 </div>
+                            </div> 
+
                        <div class="table-responsive mt-3">
                             <table border="1">
                                 <thead>
@@ -73,8 +83,8 @@
                                         <td>ID Lote</td>
                                         <td>Cantidad de Gavetas</td>
                                         <td>Peso Bruto</td>
-                                        <td>Peso Gavetas</td>
-                                        <td>Peso Final</td>
+                                        <!--td>Peso Gavetas</td!-->
+                                        <!--td>Peso Final</td!-->
                                         <td>Usuario</td>
                                         <td>Fecha de Registro</td>
                                     </tr>
@@ -87,8 +97,8 @@
                                             <td>{{ $reg->lotes_id }}</td>
                                             <td>{{ $reg->cant_gavetas }}</td>
                                             <td>{{ $reg->peso_bruto }}</td>
-                                            <td>{{ $reg->peso_gavetas }}</td>
-                                            <td>{{ $reg->peso_final }}</td>
+                                            <!--td>{{ $reg->peso_gavetas }}</td!-->
+                                            <!--td>{{ $reg->peso_final }}</td!-->
                                             <td>{{ $reg->usuario }}</td>
                                             <td>{{ $reg->updated_at }}</td>
                                         </tr>
@@ -98,21 +108,117 @@
                                         <td colspan="1"><b>TOTAL</b></td>
                                         <td><b>{{ $lote->total_cant_gavetas }}</b></td>
                                         <td><b>{{ $lote->total_peso_bruto }}  </b></td>
-                                        <td><b>{{ $lote->total_peso_gavetas }}</b></td>
-                                        <td><b>{{ $lote->total_peso_final }}  </b></td>
+                                        <!--td><b>{{ $lote->total_peso_gavetas }}</b></td!-->
+                                        <!--td><b>{{ $lote->total_peso_final }}  </b></td!-->
                                     </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <!-- Peso gavetas !-->
+                        <div class="card-header mt-2">
+                                <div class="text-center">
+                                    <h4>Peso Gavetas Vacías </h4>
+                                 </div>
+                        </div> 
+
+                        <div class="table-responsive mt-3">
+                            <table border="1">
+                                <thead>
+                                    <tr>
+                                        <td>ID Lote</td>
+                                        <td>Cantidad de Gavetas</td>
+                                        <td>Peso Gavetas</td>
+                                        <!--td>Peso Final</td!-->
+                                        <td>Usuario</td>
+                                        <td>Fecha de Registro</td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($gavetas_vacias as $gav_vacias)
+                                    @if($lote->id==$gav_vacias->lotes_id)
+                                        <tr>
+                                            <td>{{ $gav_vacias->lotes_id }}</td>
+                                            <td>{{ $gav_vacias->cant_gavetas_vacias }}</td>
+                                            <td>{{ $gav_vacias->peso_gavetas_vacias }}</td>
+                                            <!--td>{{ $gav_vacias->peso_final }}</td!-->
+                                            <td>{{ $gav_vacias->usuario }}</td>
+                                            <td>{{ $gav_vacias->updated_at }}</td>
+                                        </tr>
+                                        @endif
+                                    @endforeach
+                                    <tr>
+                                        <td colspan="1"><b>TOTAL</b></td>
+                                        @foreach($lotes_gavetas as $lote_gvacia)                                 
+                                        @if($lote->id == $lote_gvacia->id)
+                                            <td><b>{{ $lote_gvacia->total_cant_gavetas_vacias }}</b></td>
+                                            <td><b>{{ $lote_gvacia->total_peso_gavetas_vacias }}  </b></td>
+                                            <!--td><b>{{ $lote_gvacia->total_peso_gavetas }}</b></td!-->
+                                            <!--td><b>{{ $lote_gvacia->total_peso_final }}  </b></td!-->
+                                        @endif
+                                        @endforeach
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                         <!-- Peso gavetas !-->
+                        <div class="card-header mt-2">
+                                <div class="text-center">
+                                    <h4>Cantidad Ahogados </h4>
+                                 </div>
+                        </div> 
+
+                        <div class="table-responsive mt-3">
+                            <table border="1">
+                                <thead>
+                                    <tr>
+                                        <td>ID Lote</td>
+                                        <td>Cantidad de ahogados</td>
+                                        <td>Peso ahogados</td>
+                                        <!--td>Peso Final</td!-->
+                                        <td>Usuario</td>
+                                        <td>Fecha de Registro</td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($lotes as $lote_ahogados)
+                                   
+
+                                    @if($lote->id==$lote_ahogados->id)
+                                        <tr>
+                                            <td>{{ $lote_ahogados->id }}</td>
+                                            <td>{{ $lote_ahogados->cant_ahogados }}</td>
+                                            <td>{{ $lote_ahogados->peso_ahogados }}</td>
+                                            <!--td>{{ $gav_vacias->peso_final }}</td!-->
+                                            <td>{{ $lote_ahogados->usuario }}</td>
+                                            <td>{{ $lote_ahogados->updated_at }}</td>
+                                        </tr>
+                                        @endif
+                                    @endforeach
+                                    <!--tr>
+                                        <td colspan="1"><b>TOTAL</b></td>
+                                        @foreach($lotes_gavetas as $lote_gvacia)                                 
+                                        @if($lote->id == $lote_gvacia->id)
+                                            <td><b>{{ $lote_gvacia->total_cant_gavetas_vacias }}</b></td>
+                                            <td><b>{{ $lote_gvacia->total_peso_gavetas_vacias }}  </b></td>
+                                            <!--td><b>{{ $lote_gvacia->total_peso_gavetas }}</b></td!-->
+                                            <!--td><b>{{ $lote_gvacia->total_peso_final }}  </b></td>
+                                        @endif
+                                        @endforeach
+                                    </tr!-->
                                 </tbody>
                             </table>
                         </div>
                       
 
-                        <div class="card-header mt-2">
+                        <!--div class="card-header mt-2">
                                 <div class="text-center">
                               <h4>DETALLE VISCERAS LOTE N° {{ $lote->id }} </h4>
                            </div>
-                        </div> 
+                        </div!--> 
 
-                                        <div class="table-responsive mt-3">
+                        <!--div class="table-responsive mt-3">
                             <table  border="1" class="table table-striped table-bordered">
                                 <thead>
                                     <tr>
@@ -150,14 +256,14 @@
                                     </tr>
                                 </tbody>
                             </table>
-                        </div>
+                        </div!-->
 
 
 
 
                          <div class="card-header mt-2">
                                 <div class="text-center">
-                              <h4>DETALLE EGRESOS LOTE N° {{ $lote->id }} </h4>
+                              <h4>EGRESOS LOTE N° {{ $lote->id }} </h4>
                            </div>
                         </div> 
 
