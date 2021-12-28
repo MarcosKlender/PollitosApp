@@ -18,6 +18,7 @@ class CreateGavetasVaciasTable extends Migration
             $table->unsignedBigInteger('lotes_id');
             $table->integer('cant_gavetas_vacias');
             $table->decimal('peso_gavetas_vacias');
+            $table->decimal('peso_final_gavetas')->nullable();
             $table->string('tipo_peso', 2)->nullable();
             $table->string('usuario');
             $table->string('anulado', 1);
