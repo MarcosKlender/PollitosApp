@@ -28,10 +28,13 @@ class ReportesController extends Controller
     
     public function index(Request $request)
     {
+
         $lotes = Lotes::all_index()->orderBy('lotes.id', 'DESC')->paginate(4);
-       // $gavetas_vacias = GavetasVacias::all_index_gavetas()->paginate(4);
+        $gavetas_vacias = Lotes::gavetas_vacias()->orderBy('id')->get();
+         //$gavetas_vacias = GavetasVacias::orderBy('lotes_id','desc')->where('anulado', 0)->select('peso_gavetas_vacias')->sum('peso_gavetas_vacias');
+         //dd($gavetas_vacias);
         $count = count($lotes);
-        return view('reportes.index', compact('lotes', 'count'));
+        return view('reportes.index', compact('lotes', 'count','gavetas_vacias'));
     }
 
     public function show(Request $request)
@@ -64,7 +67,6 @@ class ReportesController extends Controller
 
         $count = count($lotes);
 
-        // return dd($request);
         return view('reportes.index', compact('lotes', 'count'));
     }
 
@@ -129,9 +131,20 @@ class ReportesController extends Controller
     {
         $id=Request()->id;
         $registros = Registros::where('lotes_id', $id)->orderBy('id')->get();
+       //dd($registros);
    
         
         return $registros;
+    }
+
+    public function detalle_gvacias()
+    {
+        $id=Request()->id;
+        $gvacias = GavetasVacias::where('lotes_id', $id)->orderBy('id')->get();
+
+   
+        
+        return $gvacias;
     }
 
 

@@ -116,7 +116,7 @@
                                         <td>Peso Animal Ahogado</td>
                                         <td>Tot. Peso Bruto</td>
                                         <td>Tot. Peso Gavetas Vacías</td>
-                                        <td>Tot. Peso Final</td>
+                                        <!--td>Tot. Peso Final</td!-->
                                         <td>Usuario</td>
                                         <td>Fecha de Registro</td>
                                         <td>Anulado</td>
@@ -140,8 +140,12 @@
                                             <td class="row_peso">{{ $lote->cant_ahogados }}</td>
                                             <td class="row_peso">{{ $lote->peso_ahogados }}</td>
                                             <td class="row_peso">{{ $lote->total_peso_bruto }}</td>
-                                            <td class="row_peso">{{ $lote->total_peso_gavetas_vacias }}</td>
-                                            <td class="row_peso">{{ $lote->total_peso_final }}</td>
+                                            @foreach ($gavetas_vacias as $gaveta_v)
+                                              @if( $lote->id == $gaveta_v->id )
+                                                <td class="row_peso">{{ $gaveta_v->total_peso_gavetas_vacias }}</td>
+                                                @endif
+                                            @endforeach   
+                                            <!--td class="row_peso">{{ $lote->total_peso_final }}</td!-->
                                             <td class="row_peso">{{ $lote->usuario }}</td>
                                             <td>{{ $lote->created_at }}</td>
                                             <td class="button">
@@ -213,38 +217,78 @@
                                 <h6>PESO NETO <label id="peso_neto"></label></h6>
                             </a>
                         </li>
-                    </ul>
+                    </ul>                    
 
                     <div class="tab-content" id="myTabContent">
+
                         <div class="tab-pane fade show active" id="lote" role="tabpanel" aria-labelledby="lote">
-                            <div class="table-responsive">
-                                <table class="table table-striped table-bordered">
-                                    <thead>
+                        <!-- Gavetas con pollos !-->
+                        <div class="row">  
+                            <div class="col-md-auto">
+                                <div class="table-responsive">
+                                    <table class="table table-striped table-bordered">
+                                        <thead>
+                                            <tr class="font-weight-bold">
+                                                <td>ID</td>
+                                                <td>Cantidad Gavetas</td>
+                                                <td>Peso Bruto</td>
+                                                <!--td>Peso Gavetas</td>
+                                                <td>Peso Final</td!-->
+                                                <td>Tipo Peso</td>
+                                                <td>Estado</td>
+                                                <td>Observación</td>
+                                                <td>Usuario</td>
+                                                <td>Fecha de Registro</td>
+                                            </tr>
+                                        </thead>
+                                        <!--tbody!-->
+                                        <tbody id="cuerpo_lote">
+                                        </tbody>
                                         <tr class="font-weight-bold">
-                                            <td>ID</td>
-                                            <td>Cantidad de Gavetas</td>
-                                            <td>Peso Bruto</td>
-                                            <td>Peso Gavetas</td>
-                                            <td>Peso Final</td>
-                                            <td>Tipo Peso</td>
-                                            <td>Estado</td>
-                                            <td>Observación</td>
-                                            <td>Usuario</td>
-                                            <td>Fecha de Registro</td>
+                                            <td colspan="1"><b>TOTAL</b></td>
+                                            <td id="total_cantidad"><b></b></td>
+                                            <td id="total_bruto"><b></b></td>
+                                            <!--td id="total_gavetas"><b></b></td>
+                                            <td id="total_final"><b></b></td!-->
                                         </tr>
-                                    </thead>
-                                    <tbody>
-                                    <tbody id="cuerpo_lote">
-                                    </tbody>
-                                    <tr class="font-weight-bold">
-                                        <td colspan="1"><b>TOTAL</b></td>
-                                        <td id="total_cantidad"><b></b></td>
-                                        <td id="total_bruto"><b></b></td>
-                                        <td id="total_gavetas"><b></b></td>
-                                        <td id="total_final"><b></b></td>
-                                    </tr>
-                                </table>
+                                    </table>
+                                </div>
                             </div>
+                            <!--div class="col-sm-1"></div!-->
+                            <!-- Gavetas vacías !-->
+                            <div class="col-md-auto">
+                                <div class="table-responsive">
+                                    <table class="table table-striped table-bordered">
+                                        <thead>
+                                            <tr class="font-weight-bold">
+                                                <td>ID</td>
+                                                <td>Cantidad Gavetas vacías</td>
+                                                <td>Peso gavetas vacías</td>
+                                                <!--td>Peso Gavetas</td>
+                                                <td>Peso Final</td!-->
+                                                <td>Tipo Peso</td>
+                                                <td>Estado</td>
+                                                <td>Observación</td>
+                                                <td>Usuario</td>
+                                                <td>Fecha de Registro</td>
+                                            </tr>
+                                        </thead>
+                                        <!--tbody!-->
+                                        <tbody id="cuerpo_gvacia">
+                                        </tbody>
+                                        <tr class="font-weight-bold">
+                                            <td colspan="1"><b>TOTAL</b></td>
+                                            <td id="total_cantidad_gvacias"><b></b></td>
+                                            <td id="total_peso_gvacias"><b></b></td>
+                                            <!--td id="total_gavetas"><b></b></td>
+                                            <td id="total_final"><b></b></td!-->
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+
                         </div>
 
                         <div class="tab-pane fade" id="visceras" role="tabpanel" aria-labelledby="visceras">
@@ -274,8 +318,7 @@
                                     </tr>
                                 </table>
                             </div>
-
-                            </table>
+                            <!--/table!-->
                         </div>
 
                         <div class="tab-pane fade" id="egresos" role="tabpanel" aria-labelledby="egresos">
@@ -350,6 +393,11 @@
                 var tbe = 0;
                 var tge = 0;
                 var tfe = 0;
+                var tcgv = 0;
+                var tpgv = 0;
+                var id_acum = 0;
+                var id_acumgv= 0;
+
 
                 console.log(id);
 
@@ -370,11 +418,11 @@
                             var fecha = fech.toLocaleString();
                             $("#cuerpo_lote").append(
                                 $('<tr>'),
-                                $('<td>').text(value.id),
+                                $('<td>').text(id_acum=id_acum+1),
                                 $('<td>').text(value.cant_gavetas),
                                 $('<td>').text(value.peso_bruto),
-                                $('<td>').text(value.peso_gavetas),
-                                $('<td>').text(value.peso_final),
+                                /*$('<td>').text(value.peso_gavetas),
+                                $('<td>').text(value.peso_final),*/
                                 $('<td>').text(value.tipo_peso),
                                 (value.anulado === '1') ? $('<td>').text(
                                     'Anulado') :
@@ -411,6 +459,66 @@
                     }
 
                 });
+
+
+                      $.ajax({
+                    data: {
+                        id: id
+                    },
+                    url: '/reportes/detalle_gvacias',
+                    type: 'post',
+                    //dataType:'json',
+                    success: function(response) {
+                        $("#cuerpo_gvacia").html("");
+                        //var obj = Object.values(response);
+                        $.each(response, function(index, value) {
+                            var fech = new Date(value.created_at);
+                            var fecha = fech.toLocaleString();
+                            $("#cuerpo_gvacia").append(
+                                $('<tr>'),
+                                $('<td>').text(id_acumgv=id_acumgv+1),
+                                $('<td>').text(value.cant_gavetas_vacias),
+                                $('<td>').text(value.peso_gavetas_vacias),
+                                /*$('<td>').text(value.peso_gavetas),
+                                $('<td>').text(value.peso_final),*/
+                                $('<td>').text(value.tipo_peso),
+                                (value.anulado === '1') ? $('<td>').text(
+                                    'Anulado') :
+                                $('<td>').text(''),
+                                $('<td>').text(value.observaciones),
+                                $('<td>').text(value.usuario),
+                                $('<td>').text(fecha),
+                                $('</tr>'));
+                            if (value.anulado === '0') {
+                                tcgv = tcgv + parseFloat(value.cant_gavetas_vacias);
+                                tpgv = tpgv + parseFloat(value.peso_gavetas_vacias);
+                                //tg = tg + parseFloat(value.peso_gavetas);
+                                //tf = tf + parseFloat(value.peso_final);
+                            }
+                        })
+
+                        document.querySelector('#total_cantidad_gvacias').innerText = tcgv;
+                        document.querySelector('#total_peso_gvacias').innerText = tpgv;
+                       // document.querySelector('#total_gavetas').innerText = tg;
+                       // document.querySelector('#total_final').innerText = tf;
+                        //  console.log(typeof(obj));
+                        //  console.log(response);
+                        //   alert(response);
+
+                    },
+
+                    statusCode: {
+                        404: function() {
+                            alert('web no encontrada');
+                        }
+                    },
+                    error: function(response) {
+                        alert(response);
+                    }
+
+                });
+
+
 
                 $.ajax({
                     data: {

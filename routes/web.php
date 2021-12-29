@@ -54,6 +54,7 @@ Route::get('/reportes/generar_pdf/{id}', 'ReportesController@generar_pdf')->name
 //rutas para generar pdf y detalla lotes
 Route::get('/reportes/generar_pdf_general/{lotes}', 'ReportesController@generar_pdf_general')->name('reportes.generar_pdf_general');
 Route::post('/reportes/detalle_lotes', 'ReportesController@detalle_lotes')->name('reportes.detalle_lotes');
+Route::post('/reportes/detalle_gvacias', 'ReportesController@detalle_gvacias')->name('reportes.detalle_gvacias');
 Route::post('/reportes/detalle_visceras', 'ReportesController@detalle_visceras')->name('reportes.detalle_visceras');
 Route::post('/reportes/detalle_egresos', 'ReportesController@detalle_egresos')->name('reportes.detalle_egresos');
 //Route::post('/reportes/show_detalle', 'ReportesController@show_detalle')->name('reportes.show_detalle');
