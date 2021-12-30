@@ -50,6 +50,7 @@ class ReportesController extends Controller
         $criterio_usuario = $request->get('criterio_usuario');
         $criterio_fecha_ini = $request->get('criterio_fecha_ini');
         $criterio_fecha_fin = $request->get('criterio_fecha_fin');
+        $gavetas_vacias = Lotes::gavetas_vacias()->orderBy('id')->get();
 
         $lotes = Lotes::all_index()
             ->lote($criterio_lote)
@@ -67,7 +68,7 @@ class ReportesController extends Controller
 
         $count = count($lotes);
 
-        return view('reportes.index', compact('lotes', 'count'));
+        return view('reportes.index', compact('lotes', 'gavetas_vacias', 'count'));
     }
 
     public function lotes_anulados()
@@ -140,10 +141,7 @@ class ReportesController extends Controller
     public function detalle_gvacias()
     {
         $id=Request()->id;
-        $gvacias = GavetasVacias::where('lotes_id', $id)->orderBy('id')->get();
-
-   
-        
+        $gvacias = GavetasVacias::where('lotes_id', $id)->orderBy('id')->get();        
         return $gvacias;
     }
 
