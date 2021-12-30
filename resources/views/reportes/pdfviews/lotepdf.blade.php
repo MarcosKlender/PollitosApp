@@ -183,8 +183,6 @@
                                 </thead>
                                 <tbody>
                                     @foreach ($lotes as $lote_ahogados)
-                                   
-
                                     @if($lote->id==$lote_ahogados->id)
                                         <tr>
                                             <td>{{ $lote_ahogados->id }}</td>
