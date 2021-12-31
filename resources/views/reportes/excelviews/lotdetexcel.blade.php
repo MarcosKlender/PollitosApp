@@ -4,15 +4,15 @@
     <tr>
          <td><b>N° Lote</b></td>
          <td><b>Tipo</b></td>
-         <td><b>Cantidad Animales</b></td>
-         <td><b>Proveedor</b></td>
-          <td><b>RUC/CI</b></td>
-         <td><b>Procedencia</b></td>                                       
+         <td width="15"><b>Cantidad Animales</b></td>
+         <td width="30"><b>Proveedor</b></td>
+          <td width="20"><b>RUC/CI</b></td>
+         <td width="20"><b>Procedencia</b></td>                                       
          <td><b>Placa</b></td>
-         <td><b>Conductor</b></td>
+         <td width="30"><b>Conductor</b></td>
          <td><b>Estado</b></td>
          <td><b>Usuario</b></td>
-         <td><b>Fecha de Registro</b></td>
+         <td width="30"><b>Fecha de Registro</b></td>
        </tr>
     </thead>
     <tbody>
@@ -38,13 +38,13 @@
     <thead>
         <tr align="center"><TH align="center" COLSPAN=5><strong> CANTIDAD AHOGADOS  </strong></TH></tr>
     <tr>
-        <td><b>ID Lote</b></td>
-        <td><b>Cantidad ahogados</b></td>
-        <td><b>Peso ahogados</b></td>
+        <td bgcolor="yellow"><b>ID Lote</b></td>
+        <td bgcolor="yellow"><b>Cantidad ahogados</b></td>
+        <td bgcolor="yellow"><b>Peso ahogados</b></td>
         <!--td><b>Peso Gavetas</b></td>
         <td><b>Peso Final</b></td!-->
-        <td><b>Usuario</b></td>
-        <td><b>Fecha de Registro</b></td>
+        <td bgcolor="yellow"><b>Usuario</b></td>
+        <td bgcolor="yellow"><b>Fecha de Registro</b></td>
     </tr>
     </thead>
     <tbody>
@@ -75,15 +75,15 @@
 
 <table border="1">
     <thead>
-        <tr align="center"><TH align="center" COLSPAN=5><strong>PESO BRUTO</strong></TH></tr>
+        <tr align="center"><TH align="center" COLSPAN=5 ><strong>PESO BRUTO</strong></TH></tr>
     <tr>
-        <td><b>ID Lote</b></td>
-        <td><b>Cantidad de Gavetas</b></td>
-        <td><b>Peso Bruto</b></td>
+        <td bgcolor="yellow"><b>ID Lote</b></td>
+        <td bgcolor="yellow"><b>Cantidad de Gavetas</b></td>
+        <td bgcolor="yellow"><b>Peso Bruto</b></td>
         <!--td><b>Peso Gavetas</b></td>
         <td><b>Peso Final</b></td!-->
-        <td><b>Usuario</b></td>
-        <td><b>Fecha de Registro</b></td>
+        <td bgcolor="yellow"><b>Usuario</b></td>
+        <td bgcolor="yellow"><b>Fecha de Registro</b></td>
     </tr>
     </thead>
     <tbody>
@@ -114,13 +114,13 @@
     <thead>
         <tr align="center"><TH align="center" COLSPAN=5><strong>PESO GAVETAS VACIAS</strong></TH></tr>
     <tr>
-        <td><b>ID Lote</b></td>
-        <td><b>Cantidad de Gavetas vacías</b></td>
-        <td><b>Peso gavetas vacías</b></td>
+        <td bgcolor="yellow"><b>ID Lote</b></td>
+        <td bgcolor="yellow"><b>Cantidad de Gavetas vacías</b></td>
+        <td bgcolor="yellow"><b>Peso gavetas vacías</b></td>
         <!--td><b>Peso Gavetas</b></td>
         <td><b>Peso Final</b></td!-->
-        <td><b>Usuario</b></td>
-        <td><b>Fecha de Registro</b></td>
+        <td bgcolor="yellow"><b>Usuario</b></td>
+        <td bgcolor="yellow"><b>Fecha de Registro</b></td>
     </tr>
     </thead>
     <tbody>
