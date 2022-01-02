@@ -4,8 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Lotes;
 use App\Egresos;
-use App\Registros;
 use App\Basculas;
+use App\Registros;
+use App\GavetasVaciasEgresos;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -47,11 +48,9 @@ class EgresosController extends Controller
             $res = curl_exec($ch);
             curl_close($ch);
         //$res="Con_accesoB001";
-        } else if( $busuario==="B002" && $e_automatico==="0") {
-
+        } elseif ($busuario==="B002" && $e_automatico==="0") {
             $res="0";
-
-        }else{
+        } else {
             $res="Sin_acceso";
         }
 
@@ -78,7 +77,11 @@ class EgresosController extends Controller
         $total_gavetas = Egresos::where('lotes_id', $id)->where('anulado', 0)->select('peso_gavetas')->sum('peso_gavetas');
         $total_final = Egresos::where('lotes_id', $id)->where('anulado', 0)->select('peso_final')->sum('peso_final');
 
-        return view('egresos.show', compact('lote', 'egresos', 'total_cantidad', 'total_bruto', 'total_gavetas', 'total_final'));
+        $gavetas = GavetasVaciasEgresos::where('lotes_id', $id)->where('anulado', 0)->orderBy('id')->get();
+        $cant_gav_vac = GavetasVaciasEgresos::where('lotes_id', $id)->where('anulado', 0)->select('cant_gavetas_vacias')->sum('cant_gavetas_vacias');
+        $peso_gav_vac = GavetasVaciasEgresos::where('lotes_id', $id)->where('anulado', 0)->select('peso_gavetas_vacias')->sum('peso_gavetas_vacias');
+
+        return view('egresos.show', compact('lote', 'egresos', 'total_cantidad', 'total_bruto', 'total_gavetas', 'total_final', 'gavetas', 'cant_gav_vac', 'peso_gav_vac'));
     }
 
     public function edit($id)
@@ -94,7 +97,11 @@ class EgresosController extends Controller
         $total_ingresos = Registros::where('lotes_id', $id)->where('anulado', 0)->select('peso_final')->sum('peso_final');
         $total_egresos = Egresos::where('lotes_id', $id)->where('anulado', 0)->select('peso_final')->sum('peso_final');
 
-        return view('egresos.edit', compact('lote', 'egresos', 'total_ingresos', 'total_egresos','e_automatico'));
+        $gavetas = GavetasVaciasEgresos::where('lotes_id', $id)->where('anulado', 0)->orderBy('id')->get();
+        $cant_gav = Registros::where('lotes_id', $id)->where('anulado', 0)->select('cant_gavetas')->sum('cant_gavetas');
+        $cant_gav_vac = GavetasVaciasEgresos::where('lotes_id', $id)->where('anulado', 0)->select('cant_gavetas_vacias')->sum('cant_gavetas_vacias');
+
+        return view('egresos.edit', compact('lote', 'egresos', 'total_ingresos', 'total_egresos', 'e_automatico', 'gavetas', 'cant_gav', 'cant_gav_vac'));
     }
 
     public function update(Request $request, $id)
@@ -132,6 +139,18 @@ class EgresosController extends Controller
         }
         
         return view('egresos.registros_anulados', compact('egresos', 'count'));
+    }
+
+    public function gavetas_anuladas()
+    {
+        $gavetas = GavetasVaciasEgresos::orderBy('id', 'desc')->where('anulado', 1)->paginate(10);
+        $count = count($gavetas);
+
+        if (Auth::user()->rol->key != 'admin') {
+            return redirect('/egresos');
+        }
+        
+        return view('egresos.gavetas_anuladas', compact('gavetas', 'count'));
     }
 
     public function anular_registro(Request $request)

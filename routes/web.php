@@ -68,6 +68,7 @@ Route::post('/visceras/liquidar_lote', 'ViscerasController@liquidar_lote')->name
 Route::resource('visceras', ViscerasController::class);
 
 Route::get('/egresos/registros_anulados', 'EgresosController@registros_anulados')->name('egresos.registros_anulados');
+Route::get('/egresos/gavetas_anuladas', 'EgresosController@gavetas_anuladas')->name('egresos.gavetas_anuladas');
 Route::post('/egresos/anular_registro', 'EgresosController@anular_registro')->name('egresos.anular_registro');
 Route::post('/egresos/registrar_gavetas', 'EgresosController@registrar_gavetas')->name('egresos.registrar_gavetas');
 Route::post('/egresos/liquidar_lote', 'EgresosController@liquidar_lote')->name('egresos.liquidar_lote');
@@ -84,3 +85,6 @@ Route::resource('basculas', BasculasController::class, ['except' => ['show']]);
 
 Route::post('/gavetas_vacias/anular', 'GavetasVaciasController@anular')->name('gavetas_vacias.anular');
 Route::resource('gavetas_vacias', GavetasVaciasController::class);
+
+Route::post('/gavetas_vacias_egresos/anular', 'GavetasVaciasEgresosController@anular')->name('gavetas_vacias_egresos.anular');
+Route::resource('gavetas_vacias_egresos', GavetasVaciasEgresosController::class);

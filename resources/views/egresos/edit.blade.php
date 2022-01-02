@@ -8,127 +8,263 @@
                 <div class="card-header mt-2 text-center">
                     <h4>LOTE {{ $lote->id }} - {{ $lote->tipo }} - EGRESOS</h4>
                 </div>
-                <div class="card-body">
-                    @if (session()->get('success'))
-                        <div class="alert alert-success">
-                            {{ session()->get('success') }}
-                        </div>
-                    @endif
 
-                    @if ($errors->any())
-                        <div class="alert alert-danger">
-                            <ul>
-                                @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    @endif
-                    <form method="post" action="{{ route('egresos.update', $lote->id) }}">
-                        @csrf
-                        @method('PATCH')
-                        <div class="row">
-                            <div class="form-group col-lg-6">
-                                <label for="cant_gavetas">Cantidad de Gavetas</label>
-                                <input type="number" class="form-control" id="cant_gavetas" name="cant_gavetas"
-                                    value="{{ old('cant_gavetas') }}" required autofocus />
-                            </div>
+                <ul class="nav nav-tabs nav-fill" id="myTab" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" id="home-tab" data-toggle="tab" href="#pesos" role="tab"
+                            aria-controls="pesos" aria-selected="true">
+                            <h6 class="font-weight-bold">REGISTRO DE PESOS<label id="nombre_pesos"></label></h6>
+                        </a>
+                    </li>
 
-                            <div class="form-group col-lg-6">
-                                <label for="peso_bruto">Peso Bruto</label>
+                    <li class="nav-item">
+                        <a class="nav-link" id="profile-tab" data-toggle="tab" href="#gavetas" role="tab"
+                            aria-controls="gavetas" aria-selected="false">
+                            <h6 class="font-weight-bold">GAVETAS VACÍAS<label id="nombre_gavetas"></label></h6>
+                        </a>
+                    </li>
+                </ul>
 
-                                @if($e_automatico)
-                                    <div id="recargar" name="recargar"></div>
-                                @else
-                                <input type="number" class="form-control" id="peso_bruto" name="peso_bruto"
+                <div class="tab-content" id="myTabContent">
+                    <div class="tab-pane fade show active" id="pesos" role="tabpanel" aria-labelledby="pesos">
+
+                        <div class="card-body">
+                            @if (session()->get('success'))
+                                <div class="alert alert-success">
+                                    {{ session()->get('success') }}
+                                </div>
+                            @endif
+
+                            @if ($errors->any())
+                                <div class="alert alert-danger">
+                                    <ul>
+                                        @foreach ($errors->all() as $error)
+                                            <li>{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            @endif
+
+                            <form method="post" action="{{ route('egresos.update', $lote->id) }}">
+                                @csrf
+                                @method('PATCH')
+                                <div class="row">
+                                    <div class="form-group col-lg-6">
+                                        <label for="cant_gavetas">Cantidad de Gavetas</label>
+                                        <input type="number" class="form-control" id="cant_gavetas" name="cant_gavetas"
+                                            value="{{ old('cant_gavetas') }}" required autofocus />
+                                    </div>
+
+                                    <div class="form-group col-lg-6">
+                                        <label for="peso_bruto">Peso Bruto</label>
+
+                                        @if ($e_automatico)
+                                            <div id="recargar" name="recargar"></div>
+                                        @else
+                                            <input type="number" class="form-control" id="peso_bruto" name="peso_bruto"
                                                 value="{{ old('peso_bruto') }}" step=".01" required />
-                                @endif
-
-                            </div>
-
-                            <!--div class="form-group col-lg-6">
-                                <label for="peso_bruto">Peso Bruto</label>
-                                <input type="number" class="form-control" id="peso_bruto" name="peso_bruto"
-                                    value="{{ old('peso_bruto') }}" step=".01" required />
-                            </div!-->
-
-                            <div class="form-group col-lg-12 text-center">
-                                <label for="tipo_peso" class="mr-5">Tipo de Peso:</label>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="tipo_peso" id="tipo_peso"
-                                        value="lb" checked>
-                                    <label class="form-check-label" for="libras">Libras</label>
-                                </div>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="tipo_peso" id="tipo_peso"
-                                        value="kg">
-                                    <label class="form-check-label" for="kilogramos">Kilogramos</label>
-                                </div>
-                            </div>
-                        </div>
-                        <input type="hidden" id="peso_gavetas_cero" name="peso_gavetas" value="0">
-                        <input type="hidden" id="peso_final_cero" name="peso_final" value="0">
-                        <input type="hidden" id="lotes_id" name="lotes_id" value="{{ $lote->id }}" required />
-                        <input type="hidden" id="usuario" name="usuario" value="{{ Auth::user()->username }}" required />
-                        <input type="hidden" id="anulado" name="anulado" value="0" required />
-                        <div class="row justify-content-around mt-2">
-                            <a href="{{ route('egresos.index') }}" class="btn btn-primary">Volver Atrás</a>
-                            <button type="submit" class="btn btn-success">Registrar Peso</button>
-                        </div>
-                    </form>
-
-                    @if (count($egresos) != 0)
-                        <div class="table-responsive mt-4">
-                            <table class="table table-striped table-bordered" id="tabla_egresos">
-                                <thead>
-                                    <tr class="font-weight-bold">
-                                        <td>#</td>
-                                        {{-- <td>ID Lote</td> --}}
-                                        <td>Cantidad Gavetas</td>
-                                        <td>Peso Bruto</td>
-                                        <td>Peso Gavetas</td>
-                                        <td>Peso Final</td>
-                                        <td>Tipo Peso</td>
-                                        @if (Auth::user()->rol->key == 'admin')
-                                            <td>Usuario</td>
                                         @endif
-                                        <td colspan="2" class="text-center">Acciones</td>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach ($egresos as $egreso)
-                                        <tr>
-                                            <td>{{ $loop->iteration }}</td>
-                                            {{-- <td>{{ $egreso->lotes_id }}</td> --}}
-                                            <td>{{ $egreso->cant_gavetas }}</td>
-                                            <td>{{ $egreso->peso_bruto }}</td>
-                                            <td>{{ $egreso->peso_gavetas }}</td>
-                                            <td>{{ $egreso->peso_final }}</td>
-                                            <td>{{ $egreso->tipo_peso }}</td>
-                                            @if (Auth::user()->rol->key == 'admin')
-                                                <td>{{ $egreso->usuario }}</td>
-                                            @endif
-                                            <td class="text-center"><button type="button"
-                                                    class="btn btn-sm btn-primary modal_gavetas" data-toggle="modal"
-                                                    data-target="#staticBackdrop1" data-id="{{ $egreso->id }}"
-                                                    data-cant-gavetas="{{ $egreso->cant_gavetas }}"
-                                                    data-peso-bruto="{{ $egreso->peso_bruto }}">Gavetas</button>
-                                            </td>
-                                            <td class="text-center"><button type="button"
-                                                    class="btn btn-sm btn-danger modal_anular" data-toggle="modal"
-                                                    data-target="#staticBackdrop2"
-                                                    data-id="{{ $egreso->id }}">Anular</button>
-                                            </td>
-                                        </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
+
+                                    </div>
+
+                                    <!--div class="form-group col-lg-6">
+                                            <label for="peso_bruto">Peso Bruto</label>
+                                            <input type="number" class="form-control" id="peso_bruto" name="peso_bruto"
+                                                value="{{ old('peso_bruto') }}" step=".01" required />
+                                        </div!-->
+
+                                    <div class="form-group col-lg-12 text-center">
+                                        <label for="tipo_peso" class="mr-5">Tipo de Peso:</label>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="tipo_peso" id="tipo_peso"
+                                                value="lb" checked>
+                                            <label class="form-check-label" for="libras">Libras</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="tipo_peso" id="tipo_peso"
+                                                value="kg">
+                                            <label class="form-check-label" for="kilogramos">Kilogramos</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <input type="hidden" id="peso_gavetas_cero" name="peso_gavetas" value="0">
+                                <input type="hidden" id="peso_final_cero" name="peso_final" value="0">
+                                <input type="hidden" id="lotes_id" name="lotes_id" value="{{ $lote->id }}" required />
+                                <input type="hidden" id="usuario" name="usuario" value="{{ Auth::user()->username }}"
+                                    required />
+                                <input type="hidden" id="anulado" name="anulado" value="0" required />
+                                <div class="row justify-content-around mt-2">
+                                    <a href="{{ route('egresos.index') }}" class="btn btn-primary">Volver Atrás</a>
+                                    <button type="submit" class="btn btn-success">Registrar Peso</button>
+                                </div>
+                            </form>
+
+                            @if (count($egresos) != 0)
+                                <div class="table-responsive mt-4">
+                                    <table class="table table-striped table-bordered" id="tabla_egresos">
+                                        <thead>
+                                            <tr class="font-weight-bold">
+                                                <td>#</td>
+                                                {{-- <td>ID Lote</td> --}}
+                                                <td>Cantidad Gavetas</td>
+                                                <td>Peso Bruto</td>
+                                                <td>Peso Gavetas</td>
+                                                <td>Peso Final</td>
+                                                <td>Tipo Peso</td>
+                                                @if (Auth::user()->rol->key == 'admin')
+                                                    <td>Usuario</td>
+                                                @endif
+                                                <td colspan="2" class="text-center">Acciones</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($egresos as $egreso)
+                                                <tr>
+                                                    <td>{{ $loop->iteration }}</td>
+                                                    {{-- <td>{{ $egreso->lotes_id }}</td> --}}
+                                                    <td>{{ $egreso->cant_gavetas }}</td>
+                                                    <td>{{ $egreso->peso_bruto }}</td>
+                                                    <td>{{ $egreso->peso_gavetas }}</td>
+                                                    <td>{{ $egreso->peso_final }}</td>
+                                                    <td>{{ $egreso->tipo_peso }}</td>
+                                                    @if (Auth::user()->rol->key == 'admin')
+                                                        <td>{{ $egreso->usuario }}</td>
+                                                    @endif
+                                                    <td class="text-center"><button type="button"
+                                                            class="btn btn-sm btn-primary modal_gavetas" data-toggle="modal"
+                                                            data-target="#staticBackdrop1" data-id="{{ $egreso->id }}"
+                                                            data-cant-gavetas="{{ $egreso->cant_gavetas }}"
+                                                            data-peso-bruto="{{ $egreso->peso_bruto }}">Gavetas</button>
+                                                    </td>
+                                                    <td class="text-center"><button type="button"
+                                                            class="btn btn-sm btn-danger modal_anular" data-toggle="modal"
+                                                            data-target="#staticBackdrop2"
+                                                            data-id="{{ $egreso->id }}">Anular</button>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
+                            @endif
+
                         </div>
-                    @endif
-                    <div class="text-center mt-3">
+                    </div>
+
+                    <div class="tab-pane fade" id="gavetas" role="tabpanel" aria-labelledby="gavetas">
+
+                        <div class="card-body">
+                            @if (session()->get('success'))
+                                <div class="alert alert-success">
+                                    {{ session()->get('success') }}
+                                </div>
+                            @endif
+
+                            @if ($errors->any())
+                                <div class="alert alert-danger">
+                                    <ul>
+                                        @foreach ($errors->all() as $error)
+                                            <li>{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            @endif
+
+                            <form method="post" action="{{ route('gavetas_vacias_egresos.update', $lote->id) }}">
+                                @csrf
+                                @method('PATCH')
+                                <div class="row">
+                                    <div class="form-group col-lg-6">
+                                        <label for="cant_gavetas_vacias">Cantidad de Gavetas Vacías</label>
+                                        <input type="number" class="form-control" id="cant_gavetas_vacias"
+                                            name="cant_gavetas_vacias" value="{{ old('cant_gavetas_vacias') }}"
+                                            required />
+                                    </div>
+
+                                    <div class="form-group col-lg-6">
+                                        <label for="peso_gavetas_vacias">Peso de Gavetas Vacías</label>
+                                        @if ($e_automatico)
+                                            <div id="recargar" name="recargar"></div>
+                                        @else
+                                            <input type="number" class="form-control" id="peso_gavetas_vacias"
+                                                name="peso_gavetas_vacias" value="{{ old('peso_gavetas_vacias') }}"
+                                                step=".01" required />
+                                        @endif
+                                    </div>
+
+                                    <div class="form-group col-lg-12 text-center">
+                                        <label for="tipo_peso" class="mr-5">Tipo de Peso:</label>
+                                        {{-- @if ($tipo_peso == 'lb')
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" id="tipo_peso" name="tipo_peso"
+                                                    value="lb" checked>
+                                                <label class="form-check-label" for="libras">Libras</label>
+                                            </div>
+                                        @elseif($tipo_peso == 'kg')
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" id="tipo_peso" name="tipo_peso"
+                                                    value="kg" checked="">
+                                                <label class="form-check-label" for="kilogramos">Kilogramos</label>
+                                            </div>
+                                        @endif --}}
+                                    </div>
+                                </div>
+                                <input type="hidden" id="lotes_id" name="lotes_id" value="{{ $lote->id }}">
+                                <input type="hidden" id="usuario" name="usuario" value="{{ Auth::user()->username }}"
+                                    required />
+                                <input type="hidden" id="anulado" name="anulado" value="0" required />
+
+                                <div class="row justify-content-around mt-2">
+                                    <a href="{{ route('pesobruto.index') }}" class="btn btn-primary">Volver Atrás</a>
+                                    <button type="submit" class="btn btn-success">Registrar Peso</button>
+                                </div>
+                            </form>
+
+                            @if (count($gavetas) != 0)
+                                <div class="table-responsive mt-4">
+                                    <table class="table table-striped table-bordered" id="tabla_pesobruto_gavetas">
+                                        <thead>
+                                            <tr class="font-weight-bold">
+                                                <td>#</td>
+                                                <td>Cantidad Gavetas Vacías</td>
+                                                <td>Peso Gavetas Vacías</td>
+                                                <td>Tipo Peso</td>
+                                                @if (Auth::user()->rol->key == 'admin')
+                                                    <td>Usuario</td>
+                                                @endif
+                                                <td class="text-center">Acciones</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($gavetas as $gaveta)
+                                                <tr>
+                                                    <td>{{ $loop->iteration }}</td>
+                                                    <td>{{ $gaveta->cant_gavetas_vacias }}</td>
+                                                    <td>{{ $gaveta->peso_gavetas_vacias }}</td>
+                                                    <td>{{ $gaveta->tipo_peso }}</td>
+                                                    @if (Auth::user()->rol->key == 'admin')
+                                                        <td>{{ $gaveta->usuario }}</td>
+                                                    @endif
+                                                    <td class="text-center"><button type="button"
+                                                            class="btn btn-sm btn-danger modal_anular_gavetas"
+                                                            data-toggle="modal" data-target="#staticBackdrop4"
+                                                            data-id="{{ $gaveta->id }}">Anular</button>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
+                            @endif
+                        </div>
+
+                    </div>
+
+                    <div class="text-center mb-4">
                         <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#staticBackdrop3"
                             id="liquidar" name="liquidar">Liquidar Lote</button>
                     </div>
+
                 </div>
             </div>
         </div>
@@ -228,8 +364,25 @@
     <script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>
     <script>
         $(document).ready(function() {
-            
-            var columna = $("#tabla_egresos td:nth-child(6)").map(function() { return $(this).text(); }).get();
+            // var usedTab = '{{ Session::get('usedTab') }}';
+
+            // function activeTab(tab) {
+            //     $('.nav-tabs a[href="#' + tab + '"]').tab('show');
+            // };
+
+            // activeTab(usedTab);
+
+            // if (usedTab == "gavetas") {
+            //     $("#gavetas").show();
+            //     $("#cant_gavetas_vacias").focus();
+            // }
+
+            // var ac_cant_gaveta = 0,
+            //     ac_cant_gaveta_vacia = 0;
+
+            var columna = $("#tabla_egresos td:nth-child(6)").map(function() {
+                return $(this).text();
+            }).get();
             if (jQuery.inArray('0.00', columna) != -1 || $("table").length == 0) {
                 $("#liquidar").prop('disabled', true);
             }
@@ -271,18 +424,11 @@
             });
         });
 
-
-
-         $(document).ready(function() {
-
-
-                    setInterval(function(){
-                        $('#recargar').load('/egresos/seccion');
-                    }, 2000
-                );
- 
+        $(document).ready(function() {
+            setInterval(function() {
+                $('#recargar').load('/egresos/seccion');
+            }, 2000);
         });
-
     </script>
 
 @endsection

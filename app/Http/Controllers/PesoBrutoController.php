@@ -157,17 +157,7 @@ class PesoBrutoController extends Controller
         $cant_gav_vac = GavetasVacias::where('lotes_id', $id)->where('anulado', 0)->select('cant_gavetas_vacias')->sum('cant_gavetas_vacias');
         $peso_gav_vac = GavetasVacias::where('lotes_id', $id)->where('anulado', 0)->select('peso_gavetas_vacias')->sum('peso_gavetas_vacias');
 
-        return view('pesobruto.show', compact(
-            'lote',
-            'registros',
-            'total_cantidad',
-            'total_bruto',
-            'total_gavetas',
-            'total_final',
-            'gavetas',
-            'cant_gav_vac',
-            'peso_gav_vac'
-        ));
+        return view('pesobruto.show', compact('lote', 'registros', 'total_cantidad', 'total_bruto', 'total_gavetas', 'total_final', 'gavetas', 'cant_gav_vac', 'peso_gav_vac'));
     }
 
     public function edit($id)

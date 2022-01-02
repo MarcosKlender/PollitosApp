@@ -21,6 +21,10 @@
                             <div class="mb-3">
                                 <a href="{{ route('egresos.registros_anulados') }}" class="btn btn-danger">Registros Anulados</a>
                             </div>
+                            <div class="mb-3">
+                                <a href="{{ route('egresos.gavetas_anuladas') }}" class="btn btn-danger">Gavetas
+                                    Anuladas</a>
+                            </div>
                         @endif
                     </div>
                     @if (session()->get('success'))
