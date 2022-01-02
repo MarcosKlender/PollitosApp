@@ -91,6 +91,10 @@ class EgresosController extends Controller
             ->where('nom_user', '=', "$user")
             ->value("automatico");
 
+            $tipo_peso = Basculas::select("tipo_peso")
+            ->where('nom_user', '=', "$user")
+            ->value("tipo_peso");
+
         $lote = Lotes::findOrFail($id);
         $egresos = Egresos::where('lotes_id', $id)->where('anulado', 0)->orderBy('id')->get();
 
@@ -101,7 +105,7 @@ class EgresosController extends Controller
         $cant_gav = Registros::where('lotes_id', $id)->where('anulado', 0)->select('cant_gavetas')->sum('cant_gavetas');
         $cant_gav_vac = GavetasVaciasEgresos::where('lotes_id', $id)->where('anulado', 0)->select('cant_gavetas_vacias')->sum('cant_gavetas_vacias');
 
-        return view('egresos.edit', compact('lote', 'egresos', 'total_ingresos', 'total_egresos', 'e_automatico', 'gavetas', 'cant_gav', 'cant_gav_vac'));
+        return view('egresos.edit', compact('lote', 'egresos', 'total_ingresos', 'total_egresos', 'e_automatico', 'gavetas','tipo_peso', 'cant_gav', 'cant_gav_vac'));
     }
 
     public function update(Request $request, $id)

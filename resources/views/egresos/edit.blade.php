@@ -75,17 +75,21 @@
 
                                     <div class="form-group col-lg-12 text-center">
                                         <label for="tipo_peso" class="mr-5">Tipo de Peso:</label>
+                                         @if ($tipo_peso == 'lb')
                                         <div class="form-check form-check-inline">
                                             <input class="form-check-input" type="radio" name="tipo_peso" id="tipo_peso"
                                                 value="lb" checked>
                                             <label class="form-check-label" for="libras">Libras</label>
                                         </div>
+                                        @elseif($tipo_peso == 'kg')
                                         <div class="form-check form-check-inline">
                                             <input class="form-check-input" type="radio" name="tipo_peso" id="tipo_peso"
                                                 value="kg">
                                             <label class="form-check-label" for="kilogramos">Kilogramos</label>
                                         </div>
+                                        @endif
                                     </div>
+
                                 </div>
                                 <input type="hidden" id="peso_gavetas_cero" name="peso_gavetas" value="0">
                                 <input type="hidden" id="peso_final_cero" name="peso_final" value="0">
@@ -194,7 +198,7 @@
 
                                     <div class="form-group col-lg-12 text-center">
                                         <label for="tipo_peso" class="mr-5">Tipo de Peso:</label>
-                                        {{-- @if ($tipo_peso == 'lb')
+                                        @if ($tipo_peso == 'lb')
                                             <div class="form-check form-check-inline">
                                                 <input class="form-check-input" type="radio" id="tipo_peso" name="tipo_peso"
                                                     value="lb" checked>
@@ -206,7 +210,7 @@
                                                     value="kg" checked="">
                                                 <label class="form-check-label" for="kilogramos">Kilogramos</label>
                                             </div>
-                                        @endif --}}
+                                        @endif
                                     </div>
                                 </div>
                                 <input type="hidden" id="lotes_id" name="lotes_id" value="{{ $lote->id }}">
