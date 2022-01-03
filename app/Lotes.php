@@ -59,6 +59,17 @@ class Lotes extends Model
         ->groupBy('gavetas_vacias.lotes_id', 'lotes.id');
     }
 
+    public function scopeGavetas_vacias_egresos($query)
+    {
+        return $query->leftJoin('gavetas_vacias_egresos', 'gavetas_vacias_egresos.lotes_id', '=', 'lotes.id')->select(
+            'lotes.*',
+            DB::raw('sum(gavetas_vacias_egresos.cant_gavetas_vacias) as total_cant_gavetas_vacias_egresos'),
+            DB::raw('sum(gavetas_vacias_egresos.peso_gavetas_vacias) as total_peso_gavetas_vacias_egresos')
+          //  DB::raw('sum(gavetas_vacias.peso_final_gavetas) as total_peso_final_vacias')
+        )->where('gavetas_vacias_egresos.anulado',0)
+        ->groupBy('gavetas_vacias_egresos.lotes_id', 'lotes.id');
+    }
+
     public function scopeLote($query, $lote)
     {
         if ($lote) {

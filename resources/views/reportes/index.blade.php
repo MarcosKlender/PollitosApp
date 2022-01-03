@@ -118,7 +118,7 @@
                                         <td>Tot. Peso Gavetas Vacías</td>
                                         <!--td>Tot. Peso Final</td!-->
                                         <td>Usuario</td>
-                                        <td>Fecha de Registro</td>
+                                        <td>Fecha Registro</td>
                                         <td>Anulado</td>
                                         <td>Liquidado ingreso</td>
                                         <td>Liquidado egreso</td>
@@ -204,12 +204,12 @@
                             </a>
                         </li>
 
-                        <li class="nav-item">
+                        <!--li class="nav-item">
                             <a class="nav-link" id="profile-tab" data-toggle="tab" href="#visceras" role="tab"
                                 aria-controls="visceras" aria-selected="false">
                                 <h6>VICERAS Y BUCHES <label id="viceras_buches"></label></h6>
                             </a>
-                        </li>
+                        </li!-->
 
                         <li class="nav-item">
                             <a class="nav-link" id="contact-tab" data-toggle="tab" href="#egresos" role="tab"
@@ -230,11 +230,11 @@
                                         <thead>
                                             <tr class="font-weight-bold">
                                                 <td>ID</td>
-                                                <td>Cantidad Gavetas</td>
-                                                <td>Peso Bruto</td>
+                                                <td width="20">Cantidad Gavetas</td>
+                                                <td width="5">Peso Bruto</td>
                                                 <!--td>Peso Gavetas</td>
                                                 <td>Peso Final</td!-->
-                                                <td>Tipo Peso</td>
+                                                <td width="5">Tipo Peso</td>
                                                 <td>Estado</td>
                                                 <td>Observación</td>
                                                 <td>Usuario</td>
@@ -262,11 +262,11 @@
                                         <thead>
                                             <tr class="font-weight-bold">
                                                 <td>ID</td>
-                                                <td>Cantidad Gavetas vacías</td>
-                                                <td>Peso gavetas vacías</td>
+                                                <td width="20">Cantidad Gavetas vacías</td>
+                                                <td width="20">Peso gavetas vacías</td>
                                                 <!--td>Peso Gavetas</td>
                                                 <td>Peso Final</td!-->
-                                                <td>Tipo Peso</td>
+                                                <td width="5">Tipo Peso</td>
                                                 <td>Estado</td>
                                                 <td>Observación</td>
                                                 <td>Usuario</td>
@@ -291,7 +291,7 @@
 
                         </div>
 
-                        <div class="tab-pane fade" id="visceras" role="tabpanel" aria-labelledby="visceras">
+                        <!--div class="tab-pane fade" id="visceras" role="tabpanel" aria-labelledby="visceras">
                             <div class="table-responsive">
                                 <table class="table table-striped table-bordered">
                                     <thead>
@@ -318,38 +318,77 @@
                                     </tr>
                                 </table>
                             </div>
-                            <!--/table!-->
-                        </div>
+                        </div!-->
 
                         <div class="tab-pane fade" id="egresos" role="tabpanel" aria-labelledby="egresos">
-                            <div class="table-responsive">
-                                <table class="table table-striped table-bordered">
-                                    <thead>
+                        <div class="row">  
+                            <!-- Tabla gavetas con pollos Egresos !-->
+                            <div class="col-md-auto">
+                                    <div class="table-responsive">
+                                        <table class="table table-striped table-bordered">
+                                            <thead>
+                                                <tr class="font-weight-bold">
+                                                    <td>ID Lote</td>
+                                                    <td width="20">Cantidad Gavetas</td>
+                                                    <td>Peso Bruto</td>
+                                                    <!--td>Peso Gavetas</td>
+                                                    <td>Peso Final</td!-->
+                                                    <td>Tipo Peso</td>
+                                                    <td>Estado</td>
+                                                    <td>Observación</td>
+                                                    <td>Usuario</td>
+                                                    <td>Fecha de Registro</td>
+                                                </tr>
+                                            </thead>
+                                            <!--tbody!-->
+                                            <tbody id="cuerpo_egresos">
+                                            </tbody>
+                                            <tr class="font-weight-bold">
+                                                <td colspan="1"><b>TOTAL</b></td>
+                                                <td id="total_cantidade"><b></b></td>
+                                                <td id="total_brutoe"><b></b></td>
+                                                <!--td id="total_gavetase"><b></b></td>
+                                                <td id="total_finale"><b></b></td!-->
+                                            </tr>
+                                        </table>
+                                    </div>
+                                 </div>
+
+                                <!-- tabla Gavetas vacías Egresos !-->
+                                <div class="col-md-auto">
+                                <div class="table-responsive">
+                                    <table class="table table-striped table-bordered">
+                                        <thead>
+                                            <tr class="font-weight-bold">
+                                                <td>ID</td>
+                                                <td width="20">Cantidad Gavetas vacías</td>
+                                                <td width="20">Peso gavetas vacías</td>
+                                                <!--td>Peso Gavetas</td>
+                                                <td>Peso Final</td!-->
+                                                <td width="5">Tipo Peso</td>
+                                                <td>Estado</td>
+                                                <td>Observación</td>
+                                                <td>Usuario</td>
+                                                <td>Fecha de Registro</td>
+                                            </tr>
+                                        </thead>
+                                        <!--tbody!-->
+                                        <tbody id="cuerpo_gvacia_egreso">
+                                        </tbody>
                                         <tr class="font-weight-bold">
-                                            <td>ID Lote</td>
-                                            <td>Cantidad de Gavetas</td>
-                                            <td>Peso Bruto</td>
-                                            <td>Peso Gavetas</td>
-                                            <td>Peso Final</td>
-                                            <td>Tipo Peso</td>
-                                            <td>Estado</td>
-                                            <td>Observación</td>
-                                            <td>Usuario</td>
-                                            <td>Fecha de Registro</td>
+                                            <td colspan="1"><b>TOTAL</b></td>
+                                            <td id="total_cantidad_gvacias_egresos"><b></b></td>
+                                            <td id="total_peso_gvacias_egresos"><b></b></td>
+                                            <!--td id="total_gavetas"><b></b></td>
+                                            <td id="total_final"><b></b></td!-->
                                         </tr>
-                                    </thead>
-                                    <tbody>
-                                    <tbody id="cuerpo_egresos">
-                                    </tbody>
-                                    <tr class="font-weight-bold">
-                                        <td colspan="1"><b>TOTAL</b></td>
-                                        <td id="total_cantidade"><b></b></td>
-                                        <td id="total_brutoe"><b></b></td>
-                                        <td id="total_gavetase"><b></b></td>
-                                        <td id="total_finale"><b></b></td>
-                                    </tr>
-                                </table>
+                                    </table>
+                                </div>
                             </div>
+
+
+                           </div>
+
                         </div>
                     </div>
 
@@ -395,11 +434,15 @@
                 var tfe = 0;
                 var tcgv = 0;
                 var tpgv = 0;
+                var tcgve = 0;
+                var tpgve = 0;
                 var id_acum = 0;
+                var id_acume = 0;
                 var id_acumgv= 0;
+                var id_acumgve= 0;
 
 
-                console.log(id);
+                //console.log(id);
 
                 document.querySelector('#nombre_lote').innerText = id;
 
@@ -438,6 +481,7 @@
                                 tf = tf + parseFloat(value.peso_final);
                             }
                         })
+
 
                         document.querySelector('#total_cantidad').innerText = tc;
                         document.querySelector('#total_bruto').innerText = tb;
@@ -520,7 +564,7 @@
 
 
 
-                $.ajax({
+                /*$.ajax({
                     data: {
                         id: id
                     },
@@ -567,7 +611,7 @@
                     error: function(response) {
                         alert(response);
                     }
-                });
+                }); */
 
                 $.ajax({
                     data: {
@@ -584,11 +628,12 @@
                             var fecha = fech.toLocaleString();
                             $("#cuerpo_egresos").append(
                                 $('<tr>'),
-                                $('<td>').text(value.lotes_id),
+                               //$('<td>').text(value.lotes_id),
+                               $('<td>').text(id_acume=id_acume+1),
                                 $('<td>').text(value.cant_gavetas),
                                 $('<td>').text(value.peso_bruto),
-                                $('<td>').text(value.peso_gavetas),
-                                $('<td>').text(value.peso_final),
+                               /* $('<td>').text(value.peso_gavetas),
+                                $('<td>').text(value.peso_final),*/
                                 $('<td>').text(value.tipo_peso),
                                 (value.anulado === '1') ? $('<td>').text(
                                     'Anulado') :
@@ -624,6 +669,67 @@
                         alert(response);
                     }
                 });
+
+
+                  $.ajax({
+                    data: {
+                        id: id
+                    },
+                    url: '/reportes/detalle_gvacias_egresos',
+                    type: 'post',
+                    //dataType:'json',
+                    success: function(response) {
+                        $("#cuerpo_gvacia_egreso").html("");
+                        //var obj = Object.values(response);
+                        $.each(response, function(index, value) {
+                            var fech = new Date(value.created_at);
+                            var fecha = fech.toLocaleString();
+                            $("#cuerpo_gvacia_egreso").append(
+                                $('<tr>'),
+                                $('<td>').text(id_acumgve=id_acumgve+1),
+                                $('<td>').text(value.cant_gavetas_vacias),
+                                $('<td>').text(value.peso_gavetas_vacias),
+                                /*$('<td>').text(value.peso_gavetas),
+                                $('<td>').text(value.peso_final),*/
+                                $('<td>').text(value.tipo_peso),
+                                (value.anulado === '1') ? $('<td>').text(
+                                    'Anulado') :
+                                $('<td>').text(''),
+                                $('<td>').text(value.observaciones),
+                                $('<td>').text(value.usuario),
+                                $('<td>').text(fecha),
+                                $('</tr>'));
+                            if (value.anulado === '0') {
+                                tcgve = tcgve + parseFloat(value.cant_gavetas_vacias);
+                                tpgve = tpgve + parseFloat(value.peso_gavetas_vacias);
+                                //tg = tg + parseFloat(value.peso_gavetas);
+                                //tf = tf + parseFloat(value.peso_final);
+                            }
+                        })
+
+                        document.querySelector('#total_cantidad_gvacias_egresos').innerText = tcgve;
+                        document.querySelector('#total_peso_gvacias_egresos').innerText = tpgve;
+                       // document.querySelector('#total_gavetas').innerText = tg;
+                       // document.querySelector('#total_final').innerText = tf;
+                        //  console.log(typeof(obj));
+                        //  console.log(response);
+                        //   alert(response);
+
+                    },
+
+                    statusCode: {
+                        404: function() {
+                            alert('web no encontrada');
+                        }
+                    },
+                    error: function(response) {
+                        alert(response);
+                    }
+
+                });
+
+
+
             });
         });
     </script>

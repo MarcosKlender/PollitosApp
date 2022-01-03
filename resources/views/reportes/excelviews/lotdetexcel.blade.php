@@ -3,8 +3,8 @@
         <tr ><TH align="center" COLSPAN=11><strong>CABECERA DEL LOTE N° {{$id}}</strong></TH></tr>
     <tr>
          <td><b>N° Lote</b></td>
-         <td><b>Tipo</b></td>
-         <td width="15"><b>Cantidad Animales</b></td>
+         <td width="25"><b>Tipo</b></td>
+         <td width="20"><b>Cantidad Animales</b></td>
          <td width="30"><b>Proveedor</b></td>
           <td width="20"><b>RUC/CI</b></td>
          <td width="20"><b>Procedencia</b></td>                                       
@@ -183,15 +183,15 @@
 
 <table border="1">
     <thead>
-        <tr align="center"><TH align="center" COLSPAN=7><strong>DETALLE EGRESOS</strong></TH></tr>
+        <tr align="center"><TH align="center" COLSPAN=5><strong>DETALLE EGRESOS</strong></TH></tr>
     <tr>
-        <td><b>ID Lote</b></td>
-        <td><b>Cantidad de Gavetas</b></td>
-        <td><b>Peso Bruto</b></td>
-        <td><b>Peso Gavetas</b></td>
-        <td><b>Peso Final</b></td>
-        <td><b>Usuario</b></td>
-        <td><b>Fecha de Registro</b></td>
+        <td bgcolor="#FCB2A2"><b>ID Lote</b></td>
+        <td bgcolor="#FCB2A2"><b>Cantidad Gavetas</b></td>
+        <td bgcolor="#FCB2A2"><b>Peso Bruto</b></td>
+        <!--td><b>Peso Gavetas</b></td>
+        <td><b>Peso Final</b></td!-->
+        <td bgcolor="#FCB2A2"><b>Usuario</b></td>
+        <td bgcolor="#FCB2A2"><b>Fecha de Registro</b></td>
     </tr>
     </thead>
     <tbody>
@@ -201,8 +201,8 @@
          <td>{{ $egr->lotes_id }}</td>
          <td>{{ $egr->cant_gavetas }}</td>
          <td>{{ $egr->peso_bruto }}</td>
-         <td>{{ $egr->peso_gavetas }}</td>
-         <td>{{ $egr->peso_final }}</td>
+         <!--td>{{-- $egr->peso_gavetas --}}</td>
+         <td>{{-- $egr->peso_final --}}</td!-->
          <td>{{ $egr->usuario }}</td>
          <td>{{ $egr->updated_at }}</td>
      </tr>
@@ -211,8 +211,45 @@
          <td colspan="1"><b>TOTAL</b></td>
          <td><b>{{ $totale_cantidad }}</b></td>
          <td><b>{{ $totale_bruto }}</b></td>
-         <td><b>{{ $totale_gavetas }}</b></td>
-         <td><b>{{ $totale_final }}</b></td>
+         <!--td><b>{{-- $totale_gavetas --}}</b></td>
+         <td><b>{{-- $totale_final --}}</b></td!-->
      </tr>
     </tbody>
 </table> 
+
+<table border="1">
+    <thead>
+        <tr align="center"><TH align="center" COLSPAN=5><strong>PESO GAVETAS VACIAS EGRESOS</strong></TH></tr>
+    <tr>
+        <td bgcolor="#FCB2A2"><b>ID Lote</b></td>
+        <td bgcolor="#FCB2A2"><b>Cantidad Gavetas vacías</b></td>
+        <td bgcolor="#FCB2A2"><b>Peso gavetas vacías</b></td>
+        <!--td><b>Peso Gavetas</b></td>
+        <td><b>Peso Final</b></td!-->
+        <td bgcolor="#FCB2A2"><b>Usuario</b></td>
+        <td bgcolor="#FCB2A2"><b>Fecha de Registro</b></td>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach ($gavetas_vacias_egresos as $gav_vacias)
+    @if( $gav_vacias->anulado == 0)
+     <tr>         
+         <td>{{ $gav_vacias->lotes_id }}</td>
+         <td>{{ $gav_vacias->cant_gavetas_vacias }}</td>
+         <td>{{ $gav_vacias->peso_gavetas_vacias }}</td>
+         <!--td>{{ $reg->peso_gavetas }}</td>
+         <td>{{ $reg->peso_final }}</td!-->
+         <td>{{ $gav_vacias->usuario }}</td>
+         <td>{{ $gav_vacias->updated_at }}</td>         
+     </tr>
+     @endif
+     @endforeach
+     <tr>
+         <td colspan="1"><b>TOTAL</b></td>
+         <td><b>{{ $total_can_gav_vacia_egreso }}</b></td>
+         <td><b>{{ $total_pes_gav_vacia_egreso }}</b></td>
+         <!--td><b>{{ $total_gavetas }}</b></td>
+         <td><b>{{ $total_final }}</b></td!-->
+     </tr>
+    </tbody>
+</table>

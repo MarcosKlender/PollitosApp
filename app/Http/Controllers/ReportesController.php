@@ -6,6 +6,7 @@ use App\Clientes;
 use App\Lotes;
 use App\Registros;
 use App\GavetasVacias;
+use App\GavetasVaciasEgresos;
 use App\Visceras;
 use App\Egresos;
 use App\Proveedores;
@@ -101,10 +102,12 @@ class ReportesController extends Controller
     
         $lotes = Lotes::all_index()->orderBy('lotes.id')->paginate(10000);
         $lotes_gavetas = Lotes::gavetas_vacias()->orderBy('id')->get();
+        $lotes_gavetas_egresos = Lotes::gavetas_vacias_egresos()->orderBy('id')->get();
         $registros = Registros::orderBy('id')->where('anulado', 0)->get();
         $gavetas_vacias = GavetasVacias::orderBy('id')->where('anulado', 0)->get();
         $visceras = Visceras::where('lotes_id', $id)->get();
         $egresos = Egresos::where('lotes_id', $id)->where('anulado',0)->get();
+        $gavetas_vacias_egresos = GavetasVaciasEgresos::orderBy('id')->where('anulado', 0)->get();
         $anulado = Lotes::where('id',$id)->select('anulado')->value('anulado');
         $liquidado = Lotes::where('id',$id)->select('liquidado')->value('liquidado');
         
@@ -115,7 +118,7 @@ class ReportesController extends Controller
         }
 
         $count = count($lotes);
-        $view = \View::make('reportes.pdfviews.lotepdf')->with('lotes', $lotes)->with('lotes_gavetas',$lotes_gavetas)->with('registros', $registros)->with('gavetas_vacias', $gavetas_vacias)->with('visceras', $visceras)->with('egresos', $egresos)->with('count', $count)->with('liquidado',$est_liquidado)->with('id_lote', $id)->render();
+        $view = \View::make('reportes.pdfviews.lotepdf')->with('lotes', $lotes)->with('lotes_gavetas',$lotes_gavetas)->with('lotes_gavetas_egresos',$lotes_gavetas_egresos)->with('registros', $registros)->with('gavetas_vacias', $gavetas_vacias)->with('visceras', $visceras)->with('egresos', $egresos)->with('gavetas_vacias_egresos', $gavetas_vacias_egresos)->with('count', $count)->with('liquidado',$est_liquidado)->with('id_lote', $id)->render();
 
         $pdf->loadHTML($view);
         //return dd($id);
@@ -160,6 +163,13 @@ class ReportesController extends Controller
         $egresos = Egresos::where('lotes_id', $id)->orderBy('id')->get();
 
         return $egresos;
+    }
+
+     public function detalle_gvacias_egresos()
+    {
+        $id=Request()->id;
+        $gvaciase = GavetasVaciasEgresos::where('lotes_id', $id)->orderBy('id')->get();        
+        return $gvaciase;
     }
 
     

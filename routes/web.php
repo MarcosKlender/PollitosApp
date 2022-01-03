@@ -57,6 +57,7 @@ Route::post('/reportes/detalle_lotes', 'ReportesController@detalle_lotes')->name
 Route::post('/reportes/detalle_gvacias', 'ReportesController@detalle_gvacias')->name('reportes.detalle_gvacias');
 Route::post('/reportes/detalle_visceras', 'ReportesController@detalle_visceras')->name('reportes.detalle_visceras');
 Route::post('/reportes/detalle_egresos', 'ReportesController@detalle_egresos')->name('reportes.detalle_egresos');
+Route::post('/reportes/detalle_gvacias_egresos', 'ReportesController@detalle_gvacias_egresos')->name('reportes.detalle_gvacias_egresos');
 //Route::post('/reportes/show_detalle', 'ReportesController@show_detalle')->name('reportes.show_detalle');
 
 Route::resource('pesobruto', PesoBrutoController::class);

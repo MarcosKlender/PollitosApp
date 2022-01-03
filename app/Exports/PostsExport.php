@@ -4,6 +4,7 @@ use App\Registros;
 use App\Visceras;
 use App\Egresos;
 use App\GavetasVacias;
+use App\GavetasVaciasEgresos;
 use App\Lotes;
 use Illuminate\Contracts\View\View;
 use Maatwebsite\Excel\Concerns\FromView;
@@ -43,8 +44,12 @@ class PostsExport implements FromView
         $total_can_gav_vacia = GavetasVacias::where('lotes_id', $datoid)->where('anulado', 0)->select('cant_gavetas_vacias')->sum('cant_gavetas_vacias');
         $total_pes_gav_vacia = GavetasVacias::where('lotes_id', $datoid)->where('anulado', 0)->select('peso_gavetas_vacias')->sum('peso_gavetas_vacias');
 
+        $total_can_gav_vacia_egreso = GavetasVaciasEgresos::where('lotes_id', $datoid)->where('anulado', 0)->select('cant_gavetas_vacias')->sum('cant_gavetas_vacias');
+        $total_pes_gav_vacia_egreso = GavetasVaciasEgresos::where('lotes_id', $datoid)->where('anulado', 0)->select('peso_gavetas_vacias')->sum('peso_gavetas_vacias');
+
 
         $gavetas_vacias = GavetasVacias::where('lotes_id', $this->id)->where('anulado', 0)->get();
+        $gavetas_vacias_egresos = GavetasVaciasEgresos::where('lotes_id', $this->id)->where('anulado', 0)->get();
         $viceras=   Visceras::where('lotes_id', $this->id)->get();
         $egresos=   Egresos::where('lotes_id', $this->id)->where('anulado',0)->get();
 
@@ -57,7 +62,7 @@ class PostsExport implements FromView
             $est_liquidado = 'Anulado';
         }
 
-        return view('reportes.excelviews.lotdetexcel',[ 'lotes' => Lotes::where('id', $this->id)->get()],['registros' => Registros::where('lotes_id', $this->id)->get()])->with('id',$datoid)->with('total_cantidad',$total_cantidad)->with('total_bruto',$total_bruto)->with('total_gavetas',$total_gavetas)->with('total_final',$total_final)->with('totalv_bruto',$totalv_bruto)->with('totalv_gavetas',$totalv_gavetas)->with('totalv_final',$totalv_final)->with('totale_cantidad',$totale_cantidad)->with('totale_bruto',$totale_bruto)->with('totale_gavetas',$totale_gavetas)->with('totale_final',$totale_final)->with('gavetas_vacias', $gavetas_vacias)->with('total_can_gav_vacia',$total_can_gav_vacia)->with('total_pes_gav_vacia',$total_pes_gav_vacia)->with('visceras',$viceras)->with('egresos',$egresos)->with('liquidado',$est_liquidado);
+        return view('reportes.excelviews.lotdetexcel',[ 'lotes' => Lotes::where('id', $this->id)->get()],['registros' => Registros::where('lotes_id', $this->id)->get()])->with('id',$datoid)->with('total_cantidad',$total_cantidad)->with('total_bruto',$total_bruto)->with('total_gavetas',$total_gavetas)->with('total_final',$total_final)->with('totalv_bruto',$totalv_bruto)->with('totalv_gavetas',$totalv_gavetas)->with('totalv_final',$totalv_final)->with('totale_cantidad',$totale_cantidad)->with('totale_bruto',$totale_bruto)->with('totale_gavetas',$totale_gavetas)->with('totale_final',$totale_final)->with('gavetas_vacias', $gavetas_vacias)->with('gavetas_vacias_egresos',$gavetas_vacias_egresos)->with('total_can_gav_vacia',$total_can_gav_vacia)->with('total_pes_gav_vacia',$total_pes_gav_vacia)->with('total_can_gav_vacia_egreso',$total_can_gav_vacia_egreso)->with('total_pes_gav_vacia_egreso',$total_pes_gav_vacia_egreso)->with('visceras',$viceras)->with('egresos',$egresos)->with('liquidado',$est_liquidado);
 
 
     }
