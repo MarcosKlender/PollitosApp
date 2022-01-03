@@ -68,25 +68,25 @@
                                     </div>
 
                                     <!--div class="form-group col-lg-6">
-                                            <label for="peso_bruto">Peso Bruto</label>
-                                            <input type="number" class="form-control" id="peso_bruto" name="peso_bruto"
-                                                value="{{ old('peso_bruto') }}" step=".01" required />
-                                        </div!-->
+                                                        <label for="peso_bruto">Peso Bruto</label>
+                                                        <input type="number" class="form-control" id="peso_bruto" name="peso_bruto"
+                                                            value="{{ old('peso_bruto') }}" step=".01" required />
+                                                    </div!-->
 
                                     <div class="form-group col-lg-12 text-center">
                                         <label for="tipo_peso" class="mr-5">Tipo de Peso:</label>
-                                         @if ($tipo_peso == 'lb')
-                                        <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="radio" name="tipo_peso" id="tipo_peso"
-                                                value="lb" checked>
-                                            <label class="form-check-label" for="libras">Libras</label>
-                                        </div>
+                                        @if ($tipo_peso == 'lb')
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="tipo_peso" id="tipo_peso"
+                                                    value="lb" checked>
+                                                <label class="form-check-label" for="libras">Libras</label>
+                                            </div>
                                         @elseif($tipo_peso == 'kg')
-                                        <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="radio" name="tipo_peso" id="tipo_peso"
-                                                value="kg">
-                                            <label class="form-check-label" for="kilogramos">Kilogramos</label>
-                                        </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="tipo_peso" id="tipo_peso"
+                                                    value="kg">
+                                                <label class="form-check-label" for="kilogramos">Kilogramos</label>
+                                            </div>
                                         @endif
                                     </div>
 
@@ -112,8 +112,8 @@
                                                 {{-- <td>ID Lote</td> --}}
                                                 <td>Cantidad Gavetas</td>
                                                 <td>Peso Bruto</td>
-                                                <td>Peso Gavetas</td>
-                                                <td>Peso Final</td>
+                                                {{-- <td>Peso Gavetas</td> --}}
+                                                {{-- <td>Peso Final</td> --}}
                                                 <td>Tipo Peso</td>
                                                 @if (Auth::user()->rol->key == 'admin')
                                                     <td>Usuario</td>
@@ -128,18 +128,18 @@
                                                     {{-- <td>{{ $egreso->lotes_id }}</td> --}}
                                                     <td>{{ $egreso->cant_gavetas }}</td>
                                                     <td>{{ $egreso->peso_bruto }}</td>
-                                                    <td>{{ $egreso->peso_gavetas }}</td>
-                                                    <td>{{ $egreso->peso_final }}</td>
+                                                    {{-- <td>{{ $egreso->peso_gavetas }}</td> --}}
+                                                    {{-- <td>{{ $egreso->peso_final }}</td> --}}
                                                     <td>{{ $egreso->tipo_peso }}</td>
                                                     @if (Auth::user()->rol->key == 'admin')
                                                         <td>{{ $egreso->usuario }}</td>
                                                     @endif
-                                                    <td class="text-center"><button type="button"
+                                                    {{-- <td class="text-center"><button type="button"
                                                             class="btn btn-sm btn-primary modal_gavetas" data-toggle="modal"
                                                             data-target="#staticBackdrop1" data-id="{{ $egreso->id }}"
                                                             data-cant-gavetas="{{ $egreso->cant_gavetas }}"
                                                             data-peso-bruto="{{ $egreso->peso_bruto }}">Gavetas</button>
-                                                    </td>
+                                                    </td> --}}
                                                     <td class="text-center"><button type="button"
                                                             class="btn btn-sm btn-danger modal_anular" data-toggle="modal"
                                                             data-target="#staticBackdrop2"
@@ -219,7 +219,7 @@
                                 <input type="hidden" id="anulado" name="anulado" value="0" required />
 
                                 <div class="row justify-content-around mt-2">
-                                    <a href="{{ route('pesobruto.index') }}" class="btn btn-primary">Volver Atrás</a>
+                                    <a href="{{ route('egresos.index') }}" class="btn btn-primary">Volver Atrás</a>
                                     <button type="submit" class="btn btn-success">Registrar Peso</button>
                                 </div>
                             </form>
@@ -342,16 +342,15 @@
                 <form action="{{ route('egresos.liquidar_lote') }}" method="post">
                     <div class="modal-body">
 
-                        @if ($total_egresos > $total_ingresos)
-                            <div class="alert alert-danger" role="alert">
-                                ¡Atención!<br>
-                                El peso total de egresos ({{ $total_egresos }}) es mayor que el de ingresos
-                                ({{ $total_ingresos }}).
-                                Por favor, revise los datos ingresados antes de continuar.
-                            </div>
-                        @endif
-
+                        @if ($cant_gav < $cant_gav_vac)
+                        <div class="alert alert-danger" role="alert">
+                            La cantidad de gavetas vacías ({{ $cant_gav_vac }}) es mayor a la cantidad de gavetas
+                            registradas ({{ $cant_gav }}), corrija esto antes de liquidar este lote.
+                        </div>
+                    @else
                         Una vez liquidado el lote no podrá registrar más pesos.
+                    @endif
+
                     </div>
                     <div class="modal-footer">
                         @csrf
@@ -365,24 +364,60 @@
         </div>
     </div>
 
+    <!-- Modal para GAVETAS VACÍAS -->
+    <div class="modal fade" id="staticBackdrop4" data-backdrop="static" data-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel4" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel4"></h5>
+                </div>
+                <div class="modal-body">
+                    Esta acción no se puede deshacer. <br><br>
+
+                    <form action="{{ route('gavetas_vacias_egresos.anular') }}" method="post">
+                        @csrf
+                        <div class="form-group">
+                            <label for="exampleFormControlTextarea1">Razones de la Anulación</label>
+                            <textarea class="form-control" id="observaciones" name="observaciones" rows="3"
+                                required></textarea>
+                        </div>
+                        <input type="hidden" id="id_anular_gavetas" name="id_anular_gavetas">
+                        <input type="hidden" id="anulado" name="anulado" value="1">
+                        <button type="button" id="cancelar_anular" class="btn btn-primary"
+                            data-dismiss="modal">Cancelar</button>
+                        <button type="submit" class="btn btn-danger">Anular</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>
     <script>
         $(document).ready(function() {
-            // var usedTab = '{{ Session::get('usedTab') }}';
+            var usedTab = '{{ Session::get('usedTab') }}';
 
-            // function activeTab(tab) {
-            //     $('.nav-tabs a[href="#' + tab + '"]').tab('show');
-            // };
+            function activeTab(tab) {
+                $('.nav-tabs a[href="#' + tab + '"]').tab('show');
+            };
 
-            // activeTab(usedTab);
+            activeTab(usedTab);
 
-            // if (usedTab == "gavetas") {
-            //     $("#gavetas").show();
-            //     $("#cant_gavetas_vacias").focus();
+            if (usedTab == "gavetas") {
+                $("#gavetas").show();
+                $("#cant_gavetas_vacias").focus();
+            }
+
+            var ac_cant_gaveta = 0,
+                ac_cant_gaveta_vacia = 0;
+
+            // var tbl_peso_bruto = $("#tabla_pesobruto").length;
+            // var tbl_gabeta_vacia = $("#tabla_pesobruto_gavetas").length;
+
+            // if (tbl_peso_bruto === 0 || tbl_gabeta_vacia === 0) {
+            //     $("#liquidar").prop('disabled', true);
             // }
-
-            // var ac_cant_gaveta = 0,
-            //     ac_cant_gaveta_vacia = 0;
 
             var columna = $("#tabla_egresos td:nth-child(6)").map(function() {
                 return $(this).text();
@@ -421,6 +456,16 @@
                 var registro_a = $(this).attr('data-id');
                 $(".modal-title").html('¿Está seguro de anular el registro #' + registro_a + '?');
                 $("#id_anular").val(registro_a);
+
+                $("#cancelar_anular").click(function() {
+                    $("#observaciones").val("");
+                });
+            });
+
+            $(".modal_anular_gavetas").click(function() {
+                var registro_gv = $(this).attr('data-id');
+                $(".modal-title").html('¿Está seguro de anular el registro #' + registro_gv + '?');
+                $("#id_anular_gavetas").val(registro_gv);
 
                 $("#cancelar_anular").click(function() {
                     $("#observaciones").val("");

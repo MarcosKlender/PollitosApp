@@ -30,12 +30,13 @@
                         <div class="table-responsive">
                             <table class="table table-striped table-bordered">
                                 <thead>
-                                    <tr>
+                                    <tr class="font-weight-bold">
                                         <td>ID Registro</td>
                                         <td>ID Lote</td>
+                                        <td>Cantidad Gavetas</td>
                                         <td>Peso Bruto</td>
-                                        <td>Peso Gavetas</td>
-                                        <td>Peso Final</td>
+                                        {{-- <td>Peso Gavetas</td> --}}
+                                        {{-- <td>Peso Final</td> --}}
                                         <td>Usuario</td>
                                         <td>Observaciones</td>
                                         <td>Fecha de Anulación</td>
@@ -46,9 +47,10 @@
                                         <tr>
                                             <td>{{ $egreso->id }}</td>
                                             <td>{{ $egreso->lotes_id }}</td>
+                                            <td>{{ $egreso->cant_gavetas }}</td>
                                             <td>{{ $egreso->peso_bruto }}</td>
-                                            <td>{{ $egreso->peso_gavetas }}</td>
-                                            <td>{{ $egreso->peso_final }}</td>
+                                            {{-- <td>{{ $egreso->peso_gavetas }}</td> --}}
+                                            {{-- <td>{{ $egreso->peso_final }}</td> --}}
                                             <td>{{ $egreso->usuario }}</td>
                                             <td>{{ $egreso->observaciones }}</td>
                                             <td>{{ $egreso->updated_at }}</td>
