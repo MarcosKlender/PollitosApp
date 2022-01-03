@@ -186,9 +186,17 @@ class EgresosController extends Controller
         $updateData = $request->validate([
             'egresos' => 'required|size:1',
         ]);
-        
-        Lotes::whereId($request->id_liquidar)->update($updateData);
 
-        return redirect('/egresos')->with('success', '¡Lote liquidado exitosamente!');
+        $estado_liquidado = Lotes::where('id',$request->id_liquidar)->where('anulado',0)->select('liquidado')->value('liquidado');
+        
+        if($estado_liquidado === '1'){
+             Lotes::whereId($request->id_liquidar)->update($updateData);
+             return redirect('/egresos')->with('success', '¡Lote liquidado exitosamente!');
+        }else{
+             return redirect('/egresos')->with('error', '¡Revisar que lote de ingresos este liquidado!');
+        }
+
+
+       
     }
 }
