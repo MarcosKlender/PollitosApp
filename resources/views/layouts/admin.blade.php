@@ -101,11 +101,11 @@
                     <span>{{ __('Ingresos') }}</span></a>
             </li>
 
-            <li class="nav-item {{ (request()->is('visceras')) ? 'active' : '' }}">
+            <!--li class="nav-item {{ (request()->is('visceras')) ? 'active' : '' }}">
                 <a class="nav-link" href="{{ route('visceras.index') }}">
                     <i class="fas fa-drumstick-bite"></i>
                     <span>{{ __('Vísceras y Buches') }}</span></a>
-            </li>
+            </li!-->
 
             <li class="nav-item {{ (request()->is('egresos')) ? 'active' : '' }}">
                 <a class="nav-link" href="{{ route('egresos.index') }}">
