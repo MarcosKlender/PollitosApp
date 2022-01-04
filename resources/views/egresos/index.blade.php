@@ -54,9 +54,9 @@
                                             <td>Usuario</td>
                                         @endif
                                         <td>Fecha de Registro</td>
-                                        @if (Auth::user()->rol->key == 'admin')
-                                            <td>Anulado</td>
-                                        @endif
+                                        {{-- @if (Auth::user()->rol->key == 'admin') --}}
+                                            <!--td>Anulado</td!-->
+                                        {{-- @endif --}}
                                         <td>Liquidado</td>
                                         <td>Acciones</td>
                                     </tr>
@@ -73,13 +73,13 @@
                                                 <td>{{ $lote->usuario }}</td>
                                             @endif
                                             <td>{{ $lote->created_at }}</td>
-                                            @if (Auth::user()->rol->key == 'admin')
-                                                <td>
+                                            {{-- @if (Auth::user()->rol->key == 'admin') --}}
+                                                <!--td>
                                                     <button type="button" class="btn btn-sm btn-primary modal_anular"
                                                         data-toggle="modal" data-id="{{ $lote->id }}"
                                                         data-target="#staticBackdrop1">NO</button>
-                                                </td>
-                                            @endif
+                                                </td!-->
+                                            {{-- @endif --}}
                                             <td>
                                                 @if ($lote->egresos == '0')
                                                     <button type="button" class="btn btn-sm btn-primary">NO</button>

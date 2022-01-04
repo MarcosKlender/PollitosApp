@@ -227,10 +227,25 @@ class PesoBrutoController extends Controller
             'anulado' => 'required|size:1',
             'observaciones' => 'max:191',
         ]);
-        
-        Lotes::whereId($request->id_anular)->update($updateData);
 
-        return back()->with('success', '¡Lote actualizado exitosamente!');
+        $registros = Registros::where('lotes_id', $request->id_anular)->where('anulado', 0)->get();
+        $gavetas_vacias = GavetasVacias::where('lotes_id', $request->id_anular)->where('anulado', 0)->get();
+
+        
+        if( count($registros) === 0 && count($gavetas_vacias) === 0 ){
+
+            Lotes::whereId($request->id_anular)->update($updateData);
+
+            return back()->with('success', '¡Lote anulado exitosamente!');
+
+        }else{
+
+            return back()->with('error_anular', '¡No se puede anular Lote, revisar que no tenga registros !');
+
+        }
+        
+
+       
     }
 
     public function registros_anulados()

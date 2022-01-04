@@ -31,9 +31,13 @@
                             </div>
                         @endif
                     </div>
-                    @if (session()->get('success'))
+                    @if(session()->get('success'))
                         <div class="alert alert-success">
                             {{ session()->get('success') }}
+                        </div>
+                    @elseif( session()->get('error_anular'))
+                        <div class="alert alert-danger">
+                            {{ session()->get('error_anular') }}
                         </div>
                     @endif
 
@@ -62,7 +66,7 @@
                                         @endif
                                         <td>Liquidado</td>
                                         <td>Acciones</td>
-                                        <td>PDF</td>
+                                        <!--td>PDF</td!-->
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -103,10 +107,10 @@
                                                         class="btn btn-sm btn-success">Ver Pesos</a>
                                                 @endif
                                             </td>
-                                            <td class="button">
+                                            <!--td class="button">
                                                 <a href="{{ route('reportes.generar_pdf', $lote->id) }}" target="_blank"
                                                     class="btn btn-lg btn-primary"><i class="far fa-file-pdf"></i></a>
-                                            </td>
+                                            </td!-->
                                         </tr>
                                     @endforeach
                                 </tbody>
