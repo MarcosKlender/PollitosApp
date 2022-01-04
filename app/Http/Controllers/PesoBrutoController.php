@@ -166,6 +166,9 @@ class PesoBrutoController extends Controller
         $e_automatico = Basculas::select("automatico")
             ->where('nom_user', '=', "$user")
             ->value("automatico");
+        $id_bascula = Basculas::select("id")
+            ->where('nom_user', '=', "$user")
+            ->value("id");    
         $tipo_peso = Basculas::select("tipo_peso")
             ->where('nom_user', '=', "$user")
             ->value("tipo_peso");
@@ -177,7 +180,7 @@ class PesoBrutoController extends Controller
         $cant_gav = Registros::where('lotes_id', $id)->where('anulado', 0)->select('cant_gavetas')->sum('cant_gavetas');
         $cant_gav_vac = GavetasVacias::where('lotes_id', $id)->where('anulado', 0)->select('cant_gavetas_vacias')->sum('cant_gavetas_vacias');
 
-        return view('pesobruto.edit', compact('lote', 'registros', 'gavetas', 'tipo_peso', 'e_automatico', 'cant_gav', 'cant_gav_vac'));
+        return view('pesobruto.edit', compact('lote', 'registros', 'gavetas', 'tipo_peso', 'e_automatico', 'id_bascula', 'cant_gav', 'cant_gav_vac'));
     }
 
     public function update(Request $request, $id)

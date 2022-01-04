@@ -67,13 +67,14 @@
                                     <div class="form-group col-lg-6">
                                         <!-- input automatico para recepción de peso de bascula!-->
                                         <label for="peso_bruto">Peso Bruto</label>
-
-                                        @if ($e_automatico)
+                                        @if ($e_automatico == '1' and $id_bascula == 'B001')
                                             <div id="recargar" name="recargar"></div>
-                                        @else
-
+                                        @elseif($e_automatico == '0' and $id_bascula == 'B001')
                                             <input type="number" class="form-control" id="peso_bruto" name="peso_bruto"
                                                 value="{{ old('peso_bruto') }}" step=".01" required />
+                                        @elseif($e_automatico == null)
+                                             <input type="number" class="form-control" id="peso_bruto" name="peso_bruto"
+                                              step=".01" required readonly />
                                         @endif
 
                                     </div>
