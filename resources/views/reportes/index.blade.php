@@ -444,7 +444,8 @@
 
                 //console.log(id);
 
-                document.querySelector('#nombre_lote').innerText = id;
+                //document.querySelector('#nombre_lote').innerText = id;
+                $('#nombre_lote').text(id);
 
                 $.ajax({
                     data: {
@@ -483,10 +484,10 @@
                         })
 
 
-                        document.querySelector('#total_cantidad').innerText = tc;
-                        document.querySelector('#total_bruto').innerText = tb;
-                        document.querySelector('#total_gavetas').innerText = tg;
-                        document.querySelector('#total_final').innerText = tf;
+                        $('#total_cantidad').text(tc);
+                        $('#total_bruto').text(tb);
+                        $('#total_gavetas').text(tg);
+                        $('#total_final').text(tf);
                         //  console.log(typeof(obj));
                         //  console.log(response);
                         //   alert(response);
@@ -541,8 +542,10 @@
                             }
                         })
 
-                        document.querySelector('#total_cantidad_gvacias').innerText = tcgv;
-                        document.querySelector('#total_peso_gvacias').innerText = tpgv;
+                        $('#total_cantidad_gvacias').text(tcgv);
+                        $('#total_peso_gvacias').text(tpgv);
+
+
                        // document.querySelector('#total_gavetas').innerText = tg;
                        // document.querySelector('#total_final').innerText = tf;
                         //  console.log(typeof(obj));
@@ -650,10 +653,10 @@
                             }
                         })
 
-                        document.querySelector('#total_cantidade').innerText = tce;
-                        document.querySelector('#total_brutoe').innerText = tbe;
-                        document.querySelector('#total_gavetase').innerText = tge;
-                        document.querySelector('#total_finale').innerText = tfe;
+                        $('#total_cantidade').text(tce);
+                        $('#total_brutoe').text(tbe);
+                        $('#total_gavetase').text(tge);
+                        $('#total_finale').text(tfe);
                         //  console.log(typeof(obj));
                         //  console.log(response);
                         //   alert(response);
@@ -707,8 +710,10 @@
                             }
                         })
 
-                        document.querySelector('#total_cantidad_gvacias_egresos').innerText = tcgve;
-                        document.querySelector('#total_peso_gvacias_egresos').innerText = tpgve;
+                        $('#total_cantidad_gvacias_egresos').text(tcgve);
+                        $('#total_peso_gvacias_egresos').text(tpgve);
+
+
                        // document.querySelector('#total_gavetas').innerText = tg;
                        // document.querySelector('#total_final').innerText = tf;
                         //  console.log(typeof(obj));
