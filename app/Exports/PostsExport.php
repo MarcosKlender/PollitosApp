@@ -7,11 +7,14 @@ use App\GavetasVacias;
 use App\GavetasVaciasEgresos;
 use App\Lotes;
 use Illuminate\Contracts\View\View;
+use PhpOffice\PhpSpreadsheet\Style\NumberFormat;
 use Maatwebsite\Excel\Concerns\FromView;
 use Maatwebsite\Excel\Concerns\Exportable;
+use Maatwebsite\Excel\Concerns\WithTitle;
+use Maatwebsite\Excel\Concerns\WithColumnFormatting;
 use App\Exports\PostsExport;
 
-class PostsExport implements FromView
+class PostsExport implements FromView, WithTitle, WithColumnFormatting
 {
 	use Exportable;
 
@@ -66,6 +69,22 @@ class PostsExport implements FromView
 
 
     }
+
+    public function title():string {
+        return 'Lotes y Pesos';
+
+    }
+
+    public function columnFormats(): array {
+
+        return [
+                'B'=>NumberFormat::FORMAT_NUMBER,
+            ];
+
+    }
+
+
+
 }
 
 
