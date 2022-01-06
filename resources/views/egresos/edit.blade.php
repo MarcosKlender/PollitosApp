@@ -234,7 +234,7 @@
 
                             @if (count($gavetas) != 0)
                                 <div class="table-responsive mt-4">
-                                    <table class="table table-striped table-bordered" id="tabla_pesobruto_gavetas">
+                                    <table class="table table-striped table-bordered" id="tabla_egresos_gavetas">
                                         <thead>
                                             <tr class="font-weight-bold">
                                                 <td>#</td>
@@ -420,19 +420,20 @@
             var ac_cant_gaveta = 0,
                 ac_cant_gaveta_vacia = 0;
 
-            // var tbl_peso_bruto = $("#tabla_pesobruto").length;
-            // var tbl_gabeta_vacia = $("#tabla_pesobruto_gavetas").length;
+            var tbl_egresos = $("#tabla_egresos").length;
+            var tbl_egresos_vacia = $("#tabla_egresos_gavetas").length;
 
-            // if (tbl_peso_bruto === 0 || tbl_gabeta_vacia === 0) {
-            //     $("#liquidar").prop('disabled', true);
-            // }
+            if (tbl_egresos === 0 || tbl_egresos_vacia === 0) {
+                 $("#liquidar").prop('disabled', true);
+             }
 
-            var columna = $("#tabla_egresos td:nth-child(6)").map(function() {
+            /*var columna = $("#tabla_egresos td:nth-child(6)").map(function() {
                 return $(this).text();
             }).get();
+            
             if (jQuery.inArray('0.00', columna) != -1 || $("table").length == 0) {
                 $("#liquidar").prop('disabled', true);
-            }
+            }*/
 
             $("#liquidar").click(function() {
                 $(".modal-title").html('¿Está seguro de liquidar el lote?');
