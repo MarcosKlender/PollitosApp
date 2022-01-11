@@ -81,6 +81,20 @@ class EgresosController extends Controller
         $cant_gav_vac = GavetasVaciasEgresos::where('lotes_id', $id)->where('anulado', 0)->select('cant_gavetas_vacias')->sum('cant_gavetas_vacias');
         $peso_gav_vac = GavetasVaciasEgresos::where('lotes_id', $id)->where('anulado', 0)->select('peso_gavetas_vacias')->sum('peso_gavetas_vacias');
 
+       /* $cant_ahogados  = Egresos::where('lotes_id', $id)->where('anulado', 0)->select('cant_ahogados')->sum('cant_ahogados');
+        $peso_ahogados  = Egresos::where('lotes_id', $id)->where('anulado', 0)->select('peso_ahogados')->sum('peso_ahogados');
+        $cant_gvacia_ahogados  = Egresos::where('lotes_id', $id)->where('anulado', 0)->select('cant_gvacia_ahogados')->sum('cant_gvacia_ahogados');
+
+
+        $cant_estropeados  = Egresos::where('lotes_id', $id)->where('anulado', 0)->select('cant_estropeados')->sum('cant_estropeados');
+        $peso_estropeados  = Egresos::where('lotes_id', $id)->where('anulado', 0)->select('peso_estropeados')->sum('peso_estropeados');
+        $cant_gvacia_estropeados  = Egresos::where('lotes_id', $id)->where('anulado', 0)->select('cant_gvacia_estropeados')->sum('cant_gvacia_estropeados');
+
+        $cant_mollejas  = Egresos::where('lotes_id', $id)->where('anulado', 0)->select('cant_mollejas')->sum('cant_mollejas');
+        $peso_mollejas  = Egresos::where('lotes_id', $id)->where('anulado', 0)->select('peso_mollejas')->sum('peso_mollejas');
+        $cant_gvacia_mollejas  = Egresos::where('lotes_id', $id)->where('anulado', 0)->select('cant_gvacia_mollejas')->sum('cant_gvacia_mollejas'); */
+
+
         return view('egresos.show', compact('lote', 'egresos', 'total_cantidad', 'total_bruto', 'total_gavetas', 'total_final', 'gavetas', 'cant_gav_vac', 'peso_gav_vac'));
     }
 
@@ -109,6 +123,8 @@ class EgresosController extends Controller
         $cant_gav = Egresos::where('lotes_id', $id)->where('anulado', 0)->select('cant_gavetas')->sum('cant_gavetas');
         $cant_gav_vac = GavetasVaciasEgresos::where('lotes_id', $id)->where('anulado', 0)->select('cant_gavetas_vacias')->sum('cant_gavetas_vacias');
 
+
+
         return view('egresos.edit', compact('lote', 'egresos', 'total_ingresos', 'total_egresos', 'e_automatico', 'id_bascula', 'gavetas','tipo_peso', 'cant_gav', 'cant_gav_vac'));
     }
 
@@ -122,6 +138,7 @@ class EgresosController extends Controller
             'peso_final' => '',
             'tipo_peso' => 'required|size:2',
             'usuario' => 'required|max:191',
+            'liquidado' => 'required|size:1',
             'anulado' => 'required|size:1',
         ]);
         
@@ -187,14 +204,39 @@ class EgresosController extends Controller
 
     public function liquidar_lote(Request $request)
     {
-        $updateData = $request->validate([
+
+       /* $updateLote = $request->validate([
             'egresos' => 'required|size:1',
+        ]);*/
+
+
+        $updateLote = $request->validate([
+            'egresos' => 'required|size:1',
+            'liquidado' => 'required|size:1',
+            'cant_ahogados_egresos' => 'required|numeric',
+            'peso_ahogados_egresos' => 'required|numeric',
+            'cant_gvacia_ahogados_egresos' => 'required|numeric',
+
+            'cant_estropeados_egresos' => 'required|numeric',
+            'peso_estropeados_egresos' => 'required|numeric',
+            'cant_gvacia_estropeados_egresos' => 'required|numeric',
+
+            'cant_mollejas_egresos' => 'required|numeric',
+            'peso_mollejas_egresos' => 'required|numeric',
+            'cant_gvacia_mollejas_egresos' => 'required|numeric',
+
         ]);
+
+
+
 
         $estado_liquidado = Lotes::where('id',$request->id_liquidar)->where('anulado',0)->select('liquidado')->value('liquidado');
         
         if($estado_liquidado === '1'){
-             Lotes::whereId($request->id_liquidar)->update($updateData);
+
+             Lotes::whereId($request->id_liquidar)->update($updateLote);
+             //Egresos::whereId($request->id_liquidar)->update($updateData);
+
              return redirect('/egresos')->with('success', '¡Lote liquidado exitosamente!');
         }else{
              return redirect('/egresos')->with('error', '¡Revisar que lote de ingresos este liquidado!');

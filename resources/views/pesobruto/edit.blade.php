@@ -354,6 +354,11 @@
                                 La cantidad de gavetas vacías ({{ $cant_gav_vac }}) es mayor a la cantidad de gavetas
                                 registradas ({{ $cant_gav }}), corrija esto antes de liquidar este lote.
                             </div>
+                        @elseif($cant_gav > $cant_gav_vac)
+                            <div class="alert alert-danger" role="alert">
+                                La cantidad de gavetas vacías ({{ $cant_gav }}) es mayor a la cantidad de gavetas
+                                registradas ({{ $cant_gav_vac }}), corrija esto antes de liquidar este lote.
+                            </div>
                         @else
                             Para liquidar el lote, agregue la siguiente información:<br><br>
                             <div class="form-group">

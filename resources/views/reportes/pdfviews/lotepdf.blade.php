@@ -69,7 +69,7 @@
                            </div>
                         </div> 
 
-                         <!-- Cantidad ahogados !-->
+                         <!-- Cantidad ahogados peso bruto !-->
                         <div class="card-header mt-2">
                                 <div class="text-center">
                                     <h4>Cantidad Ahogados </h4>
@@ -266,6 +266,120 @@
                               <h4>EGRESOS LOTE N° {{ $lote->id }} </h4>
                            </div>
                         </div> 
+
+
+
+                         <!-- Cantidad ahogados egresos !-->
+                        <div class="card-header mt-2">
+                                <div class="text-center">
+                                    <h4>Animales Ahogados </h4>
+                                 </div>
+                        </div> 
+
+                        <div class="table-responsive mt-3">
+                            <table border="1">
+                                <thead>
+                                    <tr>
+                                        <td>ID Lote</td>
+                                        <td>Cantidad ahogados</td>
+                                        <td>Peso ahogados</td>
+                                         <td>Cantidad gaventas vacias</td>
+                                        <!--td>Peso Final</td!-->
+                                        <td>Usuario</td>
+                                        <td>Fecha de Registro</td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($lotes as $lote_ahogados)
+                                    @if($lote->id==$lote_ahogados->id)
+                                        <tr>
+                                            <td>{{ $lote_ahogados->id }}</td>
+                                            <td>{{ $lote_ahogados->cant_ahogados_egresos }}</td>
+                                            <td>{{ $lote_ahogados->peso_ahogados_egresos }}</td>
+                                            <td> {{ $lote_ahogados->cant_gvacia_ahogados_egresos }} </td>
+                                            <td>{{ $lote_ahogados->usuario }}</td>
+                                            <td>{{ $lote_ahogados->updated_at }}</td>
+                                        </tr>
+                                        @endif
+                                    @endforeach
+                            </table>
+                        </div>
+
+                        <!-- Cantidad estropeados egresos !-->
+                        <div class="card-header mt-2">
+                                <div class="text-center">
+                                    <h4>Animales Estropeados </h4>
+                                 </div>
+                        </div> 
+
+                        <div class="table-responsive mt-3">
+                            <table border="1">
+                                <thead>
+                                    <tr>
+                                        <td>ID Lote</td>
+                                        <td>Cantidad estropeados</td>
+                                        <td>Peso estropeados</td>
+                                         <td>Cantidad gaventas vacias</td>
+                                        <td>Usuario</td>
+                                        <td>Fecha de Registro</td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($lotes as $lote_estropeados)
+                                    @if($lote->id==$lote_estropeados->id)
+                                        <tr>
+                                            <td>{{ $lote_estropeados->id }}</td>
+                                            <td>{{ $lote_estropeados->cant_estropeados_egresos }}</td>
+                                            <td>{{ $lote_estropeados->peso_estropeados_egresos }}</td>
+                                            <td> {{ $lote_estropeados->cant_gvacia_estropeados_egresos }} </td>
+                                            <td>{{ $lote_estropeados->usuario }}</td>
+                                            <td>{{ $lote_estropeados->updated_at }}</td>
+                                        </tr>
+                                        @endif
+                                    @endforeach
+                            </table>
+                        </div>
+
+
+                         <!-- Cantidad mollejas egresos !-->
+                        <div class="card-header mt-2">
+                                <div class="text-center">
+                                    <h4>Mollejas </h4>
+                                 </div>
+                        </div> 
+
+                        <div class="table-responsive mt-3">
+                            <table border="1">
+                                <thead>
+                                    <tr>
+                                        <td>ID Lote</td>
+                                        <td>Cantidad mollejas</td>
+                                        <td>Peso mollejas</td>
+                                         <td>Cantidad gaventas vacias</td>
+                                        <td>Usuario</td>
+                                        <td>Fecha de Registro</td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($lotes as $lote_mollejas)
+                                    @if($lote->id==$lote_mollejas->id)
+                                        <tr>
+                                            <td>{{ $lote_mollejas->id }}</td>
+                                            <td>{{ $lote_mollejas->cant_mollejas_egresos }}</td>
+                                            <td>{{ $lote_mollejas->peso_mollejas_egresos }}</td>
+                                            <td> {{ $lote_mollejas->cant_gvacia_mollejas_egresos }} </td>
+                                            <td>{{ $lote_mollejas->usuario }}</td>
+                                            <td>{{ $lote_mollejas->updated_at }}</td>
+                                        </tr>
+                                        @endif
+                                    @endforeach
+                            </table>
+                        </div>
+
+
+
+
+
 
                          <!-- Peso bruto Egresos !-->
                            <div class="card-header mt-2">

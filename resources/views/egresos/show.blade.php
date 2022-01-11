@@ -155,6 +155,69 @@
                         </table>
                     </div>
 
+                        <!-- Cantidad de ahogados !-->
+                        <div class="table-responsive mt-3">
+                        <h5 class="card-header"> Animales ahogados</h5>
+                        <table class="table table-striped table-bordered">
+                            <thead>
+                                <tr class="font-weight-bold">
+                                    <td class="col-4">Cantidad ahogados</td>
+                                    <td class="col-4">Peso ahogados</td>
+                                    <td class="col-4">Cantidad gavetas vacías ahogados</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>{{ $lote->cant_ahogados_egresos }}</td>
+                                    <td>{{ $lote->peso_ahogados_egresos }}</td>
+                                    <td>{{ $lote->cant_gvacia_ahogados_egresos }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                     <!-- Cantidad de Estropeados !-->
+                        <div class="table-responsive mt-3">
+                        <h5 class="card-header"> Animales Estropeados</h5>
+                        <table class="table table-striped table-bordered">
+                            <thead>
+                                <tr class="font-weight-bold">
+                                    <td class="col-4">Cantidad estropeados</td>
+                                    <td class="col-4">Peso estropeados</td>
+                                     <td class="col-4">Cantidad gavetas vacías estropeados</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>{{ $lote->cant_estropeados_egresos }}</td>
+                                    <td>{{ $lote->peso_estropeados_egresos }}</td>
+                                     <td>{{ $lote->cant_gvacia_estropeados_egresos }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                     <!-- Cantidad de mollejas !-->
+                        <div class="table-responsive mt-3">
+                        <h5 class="card-header"> Mollejas</h5>
+                        <table class="table table-striped table-bordered">
+                            <thead>
+                                <tr class="font-weight-bold">
+                                    <td class="col-4">Cantidad mollejas</td>
+                                    <td class="col-4">Peso mollejas</td>
+                                    <td class="col-4">Cantidad gavetas vacias mollejas</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>{{ $lote->cant_mollejas_egresos }}</td>
+                                    <td>{{ $lote->peso_mollejas_egresos }}</td>
+                                    <td>{{ $lote->cant_gvacia_mollejas_egresos }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
                 </div>
             </div>
         </div>

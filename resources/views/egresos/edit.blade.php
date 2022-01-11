@@ -9,16 +9,16 @@
                     <h4>LOTE {{ $lote->id }} - {{ $lote->tipo }} - EGRESOS</h4>
                 </div>
 
-                <ul class="nav nav-tabs nav-fill" id="myTab" role="tablist">
+                <ul class="nav nav-tabs nav-fill" id="myTab1" role="tablist">
                     <li class="nav-item">
-                        <a class="nav-link active" id="home-tab" data-toggle="tab" href="#pesos" role="tab"
+                        <a class="nav-link active" id="pesos-tab" data-toggle="tab" href="#pesos" role="tab"
                             aria-controls="pesos" aria-selected="true">
                             <h6 class="font-weight-bold">REGISTRO DE PESOS<label id="nombre_pesos"></label></h6>
                         </a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" id="profile-tab" data-toggle="tab" href="#gavetas" role="tab"
+                        <a class="nav-link" id="gavetas-tab" data-toggle="tab" href="#gavetas" role="tab"
                             aria-controls="gavetas" aria-selected="false">
                             <h6 class="font-weight-bold">GAVETAS VACÍAS<label id="nombre_gavetas"></label></h6>
                         </a>
@@ -99,6 +99,7 @@
                                 <input type="hidden" id="lotes_id" name="lotes_id" value="{{ $lote->id }}" required />
                                 <input type="hidden" id="usuario" name="usuario" value="{{ Auth::user()->username }}"
                                     required />
+                                <input type="hidden" id="liquidado" name="liquidado" value="0" required />
                                 <input type="hidden" id="anulado" name="anulado" value="0" required />
                                 <div class="row justify-content-around mt-2">
                                     <a href="{{ route('egresos.index') }}" class="btn btn-primary">Volver Atrás</a>
@@ -345,24 +346,127 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel3">¿Está seguro de liquidar el lote?</h5>
+                    <h5 class="modal-title" id="staticBackdropLabel3">¿Está seguro de liquidar el lote de egreso?</h5>
                 </div>
                 <form action="{{ route('egresos.liquidar_lote') }}" method="post">
                     <div class="modal-body">
 
                         @if ($cant_gav < $cant_gav_vac)
-                        <div class="alert alert-danger" role="alert">
-                            La cantidad de gavetas vacías ({{ $cant_gav_vac }}) es mayor a la cantidad de gavetas
-                            registradas ({{ $cant_gav }}), corrija esto antes de liquidar este lote.
-                        </div>
-                    @else
-                        Una vez liquidado el lote no podrá registrar más pesos.
+                            <div class="alert alert-danger" role="alert">
+                                La cantidad de gavetas vacías ({{ $cant_gav_vac }}) es mayor a la cantidad de gavetas
+                                registradas ({{ $cant_gav }}), corrija esto antes de liquidar este lote de egreso.
+                            </div>
+                        @elseif($cant_gav > $cant_gav_vac)
+                            <div class="alert alert-danger" role="alert">
+                                La cantidad de gavetas vacías ({{ $cant_gav }}) es mayor a la cantidad de gavetas
+                                registradas ({{ $cant_gav_vac }}), corrija esto antes de liquidar este lote de egreso.
+                            </div>
+
+                        @elseif( $cant_gav = $cant_gav_vac)
+                            Una vez liquidado el egreso no podrá registrar más pesos.<br><br>
+
+                            <ul class="nav nav-tabs nav-fill" id="myTab" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link active" id="ahogados-tab" data-toggle="tab" href="#ahogados" role="tab"
+                                        aria-controls="ahogados" aria-selected="true">
+                                        <h6 class="font-weight-bold">Ahogados<label id="nombre_ahogados"></label></h6>
+                                    </a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a class="nav-link" id="estropeados-tab" data-toggle="tab" href="#estropeados" role="tab"
+                                        aria-controls="estropeados" aria-selected="false">
+                                        <h6 class="font-weight-bold">Estropeados<label id="nombre_estropeados"></label></h6>
+                                    </a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a class="nav-link" id="mollejas-tab" data-toggle="tab" href="#mollejas" role="tab"
+                                        aria-controls="mollejas" aria-selected="false">
+                                        <h6 class="font-weight-bold">Mollejas<label id="nombre_mollejas"></label></h6>
+                                    </a>
+                                </li>
+
+                          </ul>
+
+                            <div class="tab-content" id="myTabContent">
+                            <!-- Tab animales Ahogados !-->
+                            <div class="tab-pane fade show active" id="ahogados" role="tabpanel" aria-labelledby="ahogados">
+                                
+                                <div class="form-group">
+                                        <label for="cant_ahogados">Cantidad Ahogados</label>
+                                        <input type="number" class="form-control" id="cant_ahogados_egresos" name="cant_ahogados_egresos"
+                                            value="{{ old('cant_ahogados_egresos') }}" required />
+                                </div>
+
+                                <div class="form-group">
+                                        <label for="peso_ahogados">Peso Ahogados</label>
+                                        <input type="number" class="form-control" id="peso_ahogados_egresos" name="peso_ahogados_egresos"
+                                            value="{{ old('peso_ahogados_egresos') }}" step=".01" required />
+                                </div>
+
+                                 <div class="form-group">
+                                        <label for="cant_gvacia_ahogados_egresos">Cantidad gavetas vacias Ahogados</label>
+                                        <input type="number" class="form-control" id="cant_gvacia_ahogados_egresos" name="cant_gvacia_ahogados_egresos"
+                                            value="{{ old('cant_gvacia_ahogados_egresos') }}" step=".01" required />
+                                </div>
+                            </div>
+
+
+                            <!-- animales Estropeados !-->
+                            <div class="tab-pane fade " id="estropeados" role="tabpanel" aria-labelledby="estropeados">
+                                <div class="form-group">
+                                        <label for="cant_estropeados">Cantidad Estropeados</label>
+                                        <input type="number" class="form-control" id="cant_estropeados_egresos" name="cant_estropeados_egresos"
+                                            value="{{ old('cant_estropeados_egresos') }}" required />
+                                </div>
+
+                                <div class="form-group">
+                                        <label for="peso_estropeados">Peso Estropeados</label>
+                                        <input type="number" class="form-control" id="peso_estropeados_egresos" name="peso_estropeados_egresos"
+                                            value="{{ old('peso_estropeados_egresos') }}" step=".01" required />
+                                </div>
+
+                                 <div class="form-group">
+                                        <label for="cant_gvacia_estropeados">Cantidad gavetas vacias Estropeados</label>
+                                        <input type="number" class="form-control" id="cant_gvacia_estropeados_egresos" name="cant_gvacia_estropeados_egresos"
+                                            value="{{ old('cant_gvacia_estropeados_egresos') }}" step=".01" required />
+                                </div>
+                            </div>
+
+
+                              <!-- animales Mollejas !-->
+                            <div class="tab-pane fade " id="mollejas" role="tabpanel" aria-labelledby="mollejas">
+                                <div class="form-group">
+                                        <label for="cant_mollejas">Cantidad Mollejas</label>
+                                        <input type="number" class="form-control" id="cant_mollejas_egresos" name="cant_mollejas_egresos"
+                                            value="{{ old('cant_mollejas_egresos') }}" required />
+                                </div>
+
+                                <div class="form-group">
+                                        <label for="peso_mollejas">Peso Mollejas</label>
+                                        <input type="number" class="form-control" id="peso_mollejas_egresos" name="peso_mollejas_egresos"
+                                            value="{{ old('peso_mollejas_egresos') }}" step=".01" required />
+                                </div>
+
+                                 <div class="form-group">
+                                        <label for="cant_gvacia_mollejas">Cantidad gavetas vacias Mollejas</label>
+                                        <input type="number" class="form-control" id="cant_gvacia_mollejas_egresos" name="cant_gvacia_mollejas_egresos"
+                                            value="{{ old('cant_gvacia_mollejas_egresos') }}" step=".01" required />
+                                </div>
+                            </div>
+
+                           </div>
+
+                                Una vez liquidado el lote de egreso no podrá registrar más pesos.
+
                     @endif
 
                     </div>
                     <div class="modal-footer">
                         @csrf
                         <input type="hidden" id="id_liquidar" name="id_liquidar" value="{{ $lote->id }}">
+                        <input type="hidden" id="liquidado" name="liquidado" value="1">
                         <input type="hidden" id="egresos" name="egresos" value="1">
                         <button type="button" class="btn btn-primary" data-dismiss="modal">Cancelar</button>
                         <button type="submit" class="btn btn-danger">Liquidar</button>
@@ -402,6 +506,9 @@
     </div>
 
     <script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>
+    <script src="//code.jquery.com/jquery-1.12.4.js"></script>
+     <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
     <script>
         $(document).ready(function() {
             var usedTab = '{{ Session::get('usedTab') }}';
@@ -416,6 +523,23 @@
                 $("#gavetas").show();
                 $("#cant_gavetas_vacias").focus();
             }
+
+          /* $(".nav-tabs").on("click",function (e){
+                e.preventDefault();
+
+               var n = $("#nav-tabs").tabs("option","active");
+               console.log(n);
+
+               // $(".nav-link").removeClass("active")
+                //$(".tab-pane").removeClass("show");
+
+                $(this).addClass("active");
+                $($(this).attr("href")).addClass("show");
+
+               // console.log(0);
+
+
+            });*/
 
             var ac_cant_gaveta = 0,
                 ac_cant_gaveta_vacia = 0;
@@ -436,7 +560,7 @@
             }*/
 
             $("#liquidar").click(function() {
-                $(".modal-title").html('¿Está seguro de liquidar el lote?');
+                $(".modal-title").html('¿Está seguro de liquidar el lote de egreso?');
             });
 
             $(".modal_gavetas").click(function() {

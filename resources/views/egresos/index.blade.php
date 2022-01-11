@@ -47,7 +47,7 @@
                                     <tr class="font-weight-bold">
                                         <td>ID</td>
                                         <td>Tipo</td>
-                                        <td>Cantidad</td>
+                                        <td>Cantidad Animales</td>
                                         <td>Proveedor</td>
                                         <td>RUC/CI</td>
                                         @if (Auth::user()->rol->key == 'admin')

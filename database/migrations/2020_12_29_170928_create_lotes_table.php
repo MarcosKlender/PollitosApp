@@ -30,6 +30,15 @@ class CreateLotesTable extends Migration
             $table->string('observaciones')->nullable();
             $table->integer('cant_ahogados')->nullable();
             $table->integer('peso_ahogados')->nullable();
+            $table->integer('cant_ahogados_egresos')->nullable();
+            $table->integer('peso_ahogados_egresos')->nullable();
+            $table->integer('cant_gvacia_ahogados_egresos')->nullable();
+            $table->integer('cant_estropeados_egresos')->nullable();
+            $table->integer('peso_estropeados_egresos')->nullable();
+            $table->integer('cant_gvacia_estropeados_egresos')->nullable();
+            $table->integer('cant_mollejas_egresos')->nullable();
+            $table->integer('peso_mollejas_egresos')->nullable();
+            $table->integer('cant_gvacia_mollejas_egresos')->nullable();
             $table->timestamps();
         });
     }

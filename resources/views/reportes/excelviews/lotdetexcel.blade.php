@@ -181,6 +181,101 @@
     </tbody>
 </table!-->
 
+
+<table border="1">
+    <thead>
+        <tr align="center"><TH align="center" COLSPAN=5><strong> ANIMALES AHOGADOS EGRESOS </strong></TH></tr>
+    <tr>
+        <td bgcolor="#FCB2A2"><b>ID Lote</b></td>
+        <td bgcolor="#FCB2A2"><b>Cantidad ahogados</b></td>
+        <td bgcolor="#FCB2A2"><b>Peso ahogados</b></td>
+        <td bgcolor="#FCB2A2"><b>Cantidad gavetas vacias</b></td>
+        <td bgcolor="#FCB2A2"><b>Usuario</b></td>
+        <td bgcolor="#FCB2A2"><b>Fecha de Registro</b></td>
+    </tr>
+    </thead>
+    <tbody>
+   @foreach ($lotes as $lote_ahogado_egreso)
+    @if( $lote_ahogado_egreso->anulado == 0)
+     <tr>         
+         <td>{{ $lote_ahogado_egreso->id }}</td>
+         <td>{{ $lote_ahogado_egreso->cant_ahogados_egresos }}</td>
+         <td>{{ $lote_ahogado_egreso->peso_ahogados_egresos }}</td>
+         <td>{{ $lote_ahogado_egreso->cant_gvacia_ahogados_egresos }}</td>
+         <td>{{ $lote_ahogado_egreso->usuario }}</td>
+         <td>{{ $lote_ahogado_egreso->updated_at }}</td>         
+     </tr>
+     @endif
+     @endforeach
+     <tr>
+     </tr>
+    </tbody>
+</table>
+
+<table border="1">
+    <thead>
+        <tr align="center"><TH align="center" COLSPAN=5><strong> ANIMALES ESTROPEADOS EGRESOS </strong></TH></tr>
+    <tr>
+        <td bgcolor="#FCB2A2"><b>ID Lote</b></td>
+        <td bgcolor="#FCB2A2"><b>Cantidad estropeados</b></td>
+        <td bgcolor="#FCB2A2"><b>Peso estropeados</b></td>
+        <td bgcolor="#FCB2A2"><b>Cantidad gavetas vacias</b></td>
+        <td bgcolor="#FCB2A2"><b>Usuario</b></td>
+        <td bgcolor="#FCB2A2"><b>Fecha de Registro</b></td>
+    </tr>
+    </thead>
+    <tbody>
+   @foreach ($lotes as $lote_estropeado_egreso)
+    @if( $lote_estropeado_egreso->anulado == 0)
+     <tr>         
+         <td>{{ $lote_estropeado_egreso->id }}</td>
+         <td>{{ $lote_estropeado_egreso->cant_estropeados_egresos }}</td>
+         <td>{{ $lote_estropeado_egreso->peso_estropeados_egresos }}</td>
+         <td>{{ $lote_estropeado_egreso->cant_gvacia_estropeados_egresos }}</td>
+         <td>{{ $lote_estropeado_egreso->usuario }}</td>
+         <td>{{ $lote_estropeado_egreso->updated_at }}</td>         
+     </tr>
+     @endif
+     @endforeach
+     <tr>
+     </tr>
+    </tbody>
+</table>
+
+
+<table border="1">
+    <thead>
+        <tr align="center"><TH align="center" COLSPAN=5><strong> MOLLEJAS EGRESOS </strong></TH></tr>
+    <tr>
+        <td bgcolor="#FCB2A2"><b>ID Lote</b></td>
+        <td bgcolor="#FCB2A2"><b>Cantidad mollejas</b></td>
+        <td bgcolor="#FCB2A2"><b>Peso mollejas</b></td>
+        <td bgcolor="#FCB2A2"><b>Cantidad gavetas vacias</b></td>
+        <td bgcolor="#FCB2A2"><b>Usuario</b></td>
+        <td bgcolor="#FCB2A2"><b>Fecha de Registro</b></td>
+    </tr>
+    </thead>
+    <tbody>
+   @foreach ($lotes as $lote_molleja_egreso)
+    @if( $lote_molleja_egreso->anulado == 0)
+     <tr>         
+         <td>{{ $lote_molleja_egreso->id }}</td>
+         <td>{{ $lote_molleja_egreso->cant_mollejas_egresos }}</td>
+         <td>{{ $lote_molleja_egreso->peso_mollejas_egresos }}</td>
+         <td>{{ $lote_molleja_egreso->cant_gvacia_mollejas_egresos }}</td>
+         <td>{{ $lote_molleja_egreso->usuario }}</td>
+         <td>{{ $lote_molleja_egreso->updated_at }}</td>         
+     </tr>
+     @endif
+     @endforeach
+     <tr>
+     </tr>
+    </tbody>
+</table>
+
+
+
+
 <table border="1">
     <thead>
         <tr align="center"><TH align="center" COLSPAN=5><strong>DETALLE EGRESOS</strong></TH></tr>

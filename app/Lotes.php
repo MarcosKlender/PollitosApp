@@ -18,7 +18,7 @@ class Lotes extends Model
         'tipo', 'cantidad', 'proveedor', 'ruc_ci', 'procedencia', 'placa', 'conductor', 'peso_bruto',
         'cant_gavetas', 'peso_gavetas', 'peso_final', 'usuario', 'anulado', 'liquidado', 'egresos','visceras',
         'egresos', 'id','lote_id', 'lotes_id','created_at', 'observaciones', 'cant_ahogados', 'peso_ahogados','cant_gavetas_vacias','peso_gavetas_vacias',
-        'peso_final_gavetas'
+        'peso_final_gavetas','cant_ahogados_egresos','peso_ahogados_egresos','cant_gvacia_ahogados_egresos','cant_estropeados_egresos','peso_estropeados_egresos','cant_gvacia_estropeados_egresos','cant_mollejas_egresos','peso_mollejas_egresos','cant_gvacia_mollejas_egresos'
     ];
 
     public function registros()

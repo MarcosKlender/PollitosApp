@@ -22,10 +22,10 @@ class CreateEgresosTable extends Migration
             $table->decimal('peso_final')->nullable();
             $table->string('tipo_peso', 2);
             $table->string('usuario');
+            $table->string('liquidado', 1)->nullable();
             $table->string('anulado', 1);
             $table->string('observaciones')->nullable();
             $table->timestamps();
-
             $table->foreign('lotes_id')->references('id')->on('lotes');
         });
     }
