@@ -376,11 +376,13 @@
                     </div>
                     <div class="modal-footer">
                         @csrf
+                        @if ($cant_gav == $cant_gav_vac)
                         <input type="hidden" id="id_liquidar" name="id_liquidar" value="{{ $lote->id }}">
                         <input type="hidden" id="liquidado" name="liquidado" value="1">
                         <button type="button" class="btn btn-primary" data-dismiss="modal">Cancelar</button>
-                        @if ($cant_gav >= $cant_gav_vac)
-                            <button type="submit" class="btn btn-danger">Liquidar</button>
+                        <button type="submit" class="btn btn-danger">Liquidar</button>
+                        @else
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">Cancelar</button>
                         @endif
                     </div>
                 </form>

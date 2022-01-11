@@ -365,111 +365,120 @@
                         @elseif( $cant_gav = $cant_gav_vac)
                             Una vez liquidado el egreso no podrá registrar más pesos.<br><br>
 
-                            <ul class="nav nav-tabs nav-fill" id="myTab" role="tablist">
-                                <li class="nav-item">
-                                    <a class="nav-link active" id="ahogados-tab" data-toggle="tab" href="#ahogados" role="tab"
-                                        aria-controls="ahogados" aria-selected="true">
-                                        <h6 class="font-weight-bold">Ahogados<label id="nombre_ahogados"></label></h6>
-                                    </a>
-                                </li>
+                           @if($estado_liquidado == 1) 
+                                <ul class="nav nav-tabs nav-fill" id="myTab" role="tablist">
+                                    <li class="nav-item">
+                                        <a class="nav-link active" id="ahogados-tab" data-toggle="tab" href="#ahogados" role="tab"
+                                            aria-controls="ahogados" aria-selected="true">
+                                            <h6 class="font-weight-bold">Ahogados<label id="nombre_ahogados"></label></h6>
+                                        </a>
+                                    </li>
 
-                                <li class="nav-item">
-                                    <a class="nav-link" id="estropeados-tab" data-toggle="tab" href="#estropeados" role="tab"
-                                        aria-controls="estropeados" aria-selected="false">
-                                        <h6 class="font-weight-bold">Estropeados<label id="nombre_estropeados"></label></h6>
-                                    </a>
-                                </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" id="estropeados-tab" data-toggle="tab" href="#estropeados" role="tab"
+                                            aria-controls="estropeados" aria-selected="false">
+                                            <h6 class="font-weight-bold">Estropeados<label id="nombre_estropeados"></label></h6>
+                                        </a>
+                                    </li>
 
-                                <li class="nav-item">
-                                    <a class="nav-link" id="mollejas-tab" data-toggle="tab" href="#mollejas" role="tab"
-                                        aria-controls="mollejas" aria-selected="false">
-                                        <h6 class="font-weight-bold">Mollejas<label id="nombre_mollejas"></label></h6>
-                                    </a>
-                                </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" id="mollejas-tab" data-toggle="tab" href="#mollejas" role="tab"
+                                            aria-controls="mollejas" aria-selected="false">
+                                            <h6 class="font-weight-bold">Mollejas<label id="nombre_mollejas"></label></h6>
+                                        </a>
+                                    </li>
 
-                          </ul>
+                              </ul>
 
-                            <div class="tab-content" id="myTabContent">
-                            <!-- Tab animales Ahogados !-->
-                            <div class="tab-pane fade show active" id="ahogados" role="tabpanel" aria-labelledby="ahogados">
-                                
-                                <div class="form-group">
-                                        <label for="cant_ahogados">Cantidad Ahogados</label>
-                                        <input type="number" class="form-control" id="cant_ahogados_egresos" name="cant_ahogados_egresos"
-                                            value="{{ old('cant_ahogados_egresos') }}" required />
+                                <div class="tab-content" id="myTabContent">
+                                <!-- Tab animales Ahogados !-->
+                                <div class="tab-pane fade show active" id="ahogados" role="tabpanel" aria-labelledby="ahogados">
+                                    
+                                    <div class="form-group">
+                                            <label for="cant_ahogados">Cantidad Ahogados</label>
+                                            <input type="number" class="form-control" id="cant_ahogados_egresos" name="cant_ahogados_egresos"
+                                                value="{{ old('cant_ahogados_egresos') }}" required />
+                                    </div>
+
+                                    <div class="form-group">
+                                            <label for="peso_ahogados">Peso Ahogados</label>
+                                            <input type="number" class="form-control" id="peso_ahogados_egresos" name="peso_ahogados_egresos"
+                                                value="{{ old('peso_ahogados_egresos') }}" step=".01" required />
+                                    </div>
+
+                                     <div class="form-group">
+                                            <label for="cant_gvacia_ahogados_egresos">Cantidad gavetas vacias Ahogados</label>
+                                            <input type="number" class="form-control" id="cant_gvacia_ahogados_egresos" name="cant_gvacia_ahogados_egresos"
+                                                value="{{ old('cant_gvacia_ahogados_egresos') }}" step=".01" required />
+                                    </div>
                                 </div>
 
-                                <div class="form-group">
-                                        <label for="peso_ahogados">Peso Ahogados</label>
-                                        <input type="number" class="form-control" id="peso_ahogados_egresos" name="peso_ahogados_egresos"
-                                            value="{{ old('peso_ahogados_egresos') }}" step=".01" required />
+
+                                <!-- animales Estropeados !-->
+                                <div class="tab-pane fade " id="estropeados" role="tabpanel" aria-labelledby="estropeados">
+                                    <div class="form-group">
+                                            <label for="cant_estropeados">Cantidad Estropeados</label>
+                                            <input type="number" class="form-control" id="cant_estropeados_egresos" name="cant_estropeados_egresos"
+                                                value="{{ old('cant_estropeados_egresos') }}" required />
+                                    </div>
+
+                                    <div class="form-group">
+                                            <label for="peso_estropeados">Peso Estropeados</label>
+                                            <input type="number" class="form-control" id="peso_estropeados_egresos" name="peso_estropeados_egresos"
+                                                value="{{ old('peso_estropeados_egresos') }}" step=".01" required />
+                                    </div>
+
+                                     <div class="form-group">
+                                            <label for="cant_gvacia_estropeados">Cantidad gavetas vacias Estropeados</label>
+                                            <input type="number" class="form-control" id="cant_gvacia_estropeados_egresos" name="cant_gvacia_estropeados_egresos"
+                                                value="{{ old('cant_gvacia_estropeados_egresos') }}" step=".01" required />
+                                    </div>
                                 </div>
 
-                                 <div class="form-group">
-                                        <label for="cant_gvacia_ahogados_egresos">Cantidad gavetas vacias Ahogados</label>
-                                        <input type="number" class="form-control" id="cant_gvacia_ahogados_egresos" name="cant_gvacia_ahogados_egresos"
-                                            value="{{ old('cant_gvacia_ahogados_egresos') }}" step=".01" required />
-                                </div>
-                            </div>
 
+                                  <!-- animales Mollejas !-->
+                                <div class="tab-pane fade " id="mollejas" role="tabpanel" aria-labelledby="mollejas">
+                                    <div class="form-group">
+                                            <label for="cant_mollejas">Cantidad Mollejas</label>
+                                            <input type="number" class="form-control" id="cant_mollejas_egresos" name="cant_mollejas_egresos"
+                                                value="{{ old('cant_mollejas_egresos') }}" required />
+                                    </div>
 
-                            <!-- animales Estropeados !-->
-                            <div class="tab-pane fade " id="estropeados" role="tabpanel" aria-labelledby="estropeados">
-                                <div class="form-group">
-                                        <label for="cant_estropeados">Cantidad Estropeados</label>
-                                        <input type="number" class="form-control" id="cant_estropeados_egresos" name="cant_estropeados_egresos"
-                                            value="{{ old('cant_estropeados_egresos') }}" required />
-                                </div>
+                                    <div class="form-group">
+                                            <label for="peso_mollejas">Peso Mollejas</label>
+                                            <input type="number" class="form-control" id="peso_mollejas_egresos" name="peso_mollejas_egresos"
+                                                value="{{ old('peso_mollejas_egresos') }}" step=".01" required />
+                                    </div>
 
-                                <div class="form-group">
-                                        <label for="peso_estropeados">Peso Estropeados</label>
-                                        <input type="number" class="form-control" id="peso_estropeados_egresos" name="peso_estropeados_egresos"
-                                            value="{{ old('peso_estropeados_egresos') }}" step=".01" required />
-                                </div>
-
-                                 <div class="form-group">
-                                        <label for="cant_gvacia_estropeados">Cantidad gavetas vacias Estropeados</label>
-                                        <input type="number" class="form-control" id="cant_gvacia_estropeados_egresos" name="cant_gvacia_estropeados_egresos"
-                                            value="{{ old('cant_gvacia_estropeados_egresos') }}" step=".01" required />
-                                </div>
-                            </div>
-
-
-                              <!-- animales Mollejas !-->
-                            <div class="tab-pane fade " id="mollejas" role="tabpanel" aria-labelledby="mollejas">
-                                <div class="form-group">
-                                        <label for="cant_mollejas">Cantidad Mollejas</label>
-                                        <input type="number" class="form-control" id="cant_mollejas_egresos" name="cant_mollejas_egresos"
-                                            value="{{ old('cant_mollejas_egresos') }}" required />
+                                     <div class="form-group">
+                                            <label for="cant_gvacia_mollejas">Cantidad gavetas vacias Mollejas</label>
+                                            <input type="number" class="form-control" id="cant_gvacia_mollejas_egresos" name="cant_gvacia_mollejas_egresos"
+                                                value="{{ old('cant_gvacia_mollejas_egresos') }}" step=".01" required />
+                                    </div>
                                 </div>
 
-                                <div class="form-group">
-                                        <label for="peso_mollejas">Peso Mollejas</label>
-                                        <input type="number" class="form-control" id="peso_mollejas_egresos" name="peso_mollejas_egresos"
-                                            value="{{ old('peso_mollejas_egresos') }}" step=".01" required />
-                                </div>
+                               </div>
+                                    Una vez liquidado el lote de egreso no podrá registrar más pesos.
+                            @else
+                                 <div class="alert alert-danger" role="alert">
+                                    Revisar que lote de INGRESOS este liquidado!
+                                 </div>
+                            @endif
 
-                                 <div class="form-group">
-                                        <label for="cant_gvacia_mollejas">Cantidad gavetas vacias Mollejas</label>
-                                        <input type="number" class="form-control" id="cant_gvacia_mollejas_egresos" name="cant_gvacia_mollejas_egresos"
-                                            value="{{ old('cant_gvacia_mollejas_egresos') }}" step=".01" required />
-                                </div>
-                            </div>
-
-                           </div>
-
-                                Una vez liquidado el lote de egreso no podrá registrar más pesos.
-
-                    @endif
-
+                  
+                        @endif
                     </div>
                     <div class="modal-footer">
                         @csrf
+                        @if($cant_gav == $cant_gav_vac && $estado_liquidado == 1 )
                         <input type="hidden" id="id_liquidar" name="id_liquidar" value="{{ $lote->id }}">
                         <input type="hidden" id="liquidado" name="liquidado" value="1">
                         <input type="hidden" id="egresos" name="egresos" value="1">
                         <button type="button" class="btn btn-primary" data-dismiss="modal">Cancelar</button>
                         <button type="submit" class="btn btn-danger">Liquidar</button>
+                        @else
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">Cancelar</button>
+                        @endif
                     </div>
                 </form>
             </div>
