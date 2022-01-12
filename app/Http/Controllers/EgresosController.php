@@ -123,9 +123,12 @@ class EgresosController extends Controller
         $cant_gav = Egresos::where('lotes_id', $id)->where('anulado', 0)->select('cant_gavetas')->sum('cant_gavetas');
         $cant_gav_vac = GavetasVaciasEgresos::where('lotes_id', $id)->where('anulado', 0)->select('cant_gavetas_vacias')->sum('cant_gavetas_vacias');
 
+        $lote_total_pbruto = Registros::where('lotes_id', $id)->where('anulado', 0)->select('peso_bruto')->sum('peso_bruto');
+        $egreso_total_pbruto = Egresos::where('lotes_id', $id)->where('anulado', 0)->select('peso_bruto')->sum('peso_bruto');
+
         $estado_liquidado = Lotes::where('id',$id)->where('anulado',0)->select('liquidado')->value('liquidado');
 
-        return view('egresos.edit', compact('lote', 'egresos', 'total_ingresos', 'total_egresos', 'e_automatico', 'id_bascula', 'gavetas','tipo_peso', 'cant_gav', 'cant_gav_vac','estado_liquidado'));
+        return view('egresos.edit', compact('lote', 'egresos', 'total_ingresos', 'total_egresos', 'e_automatico', 'id_bascula', 'gavetas','tipo_peso', 'cant_gav', 'cant_gav_vac','lote_total_pbruto','egreso_total_pbruto','estado_liquidado'));
     }
 
     public function update(Request $request, $id)
