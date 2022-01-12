@@ -153,6 +153,168 @@ class DatabaseSeeder extends Seeder
         ]);
 
 
+         DB::table('clientes')->insert([
+            'tipo' => 'RUC',
+            'ruc_ci' => '1723325443001',
+            'nombres' => 'MAYA PILATUÑA LUIS ALBERTO',
+            'razon_social' => 'MAYA PILATUÑA LUIS ALBERTO',
+            'direccion' => Str::random(10),
+            'telefono' => '0000000000',
+            'movil' => '0000000000',
+            'email' => Str::random(10).'@gmail.com',
+            'provincia' => 'SANTO DOMINGO',
+            'ciudad' => 'SANTO DOMINGO',
+            'parroquia' => 'SANTO DOMINGO',
+            'created_at' => Carbon::now()->toDateTimeString(),
+            'updated_at' => Carbon::now()->toDateTimeString(),
+        ]);
+
+         DB::table('clientes')->insert([
+            'tipo' => 'RUC',
+            'ruc_ci' => '1722280441001',
+            'nombres' => 'MAYA PILATUÑA MONICA YADIRA',
+            'razon_social' => 'MAYA PILATUÑA MONICA YADIRA',
+            'direccion' => Str::random(10),
+            'telefono' => '0000000000',
+            'movil' => '0000000000',
+            'email' => Str::random(10).'@gmail.com',
+            'provincia' => 'SANTO DOMINGO',
+            'ciudad' => 'SANTO DOMINGO',
+            'parroquia' => 'SANTO DOMINGO',
+            'created_at' => Carbon::now()->toDateTimeString(),
+            'updated_at' => Carbon::now()->toDateTimeString(),
+        ]);
+
+         DB::table('clientes')->insert([
+            'tipo' => 'CI',
+            'ruc_ci' => '1716095490',
+            'nombres' => 'PEREZ CAYANCELA PATRICIA PILAR',
+            'razon_social' => 'PEREZ CAYANCELA PATRICIA PILAR',
+            'direccion' => Str::random(10),
+            'telefono' => '0000000000',
+            'movil' => '0000000000',
+            'email' => Str::random(10).'@gmail.com',
+            'provincia' => 'SANTO DOMINGO',
+            'ciudad' => 'SANTO DOMINGO',
+            'parroquia' => 'SANTO DOMINGO',
+            'created_at' => Carbon::now()->toDateTimeString(),
+            'updated_at' => Carbon::now()->toDateTimeString(),
+        ]);
+
+         DB::table('clientes')->insert([
+            'tipo' => 'CI',
+            'ruc_ci' => '1720319803',
+            'nombres' => 'CARRASCO CARRASCO DARWIN JAVIER',
+            'razon_social' => 'CARRASCO CARRASCO DARWIN JAVIER',
+            'direccion' => Str::random(10),
+            'telefono' => '0000000000',
+            'movil' => '0000000000',
+            'email' => Str::random(10).'@gmail.com',
+            'provincia' => 'SANTO DOMINGO',
+            'ciudad' => 'SANTO DOMINGO',
+            'parroquia' => 'SANTO DOMINGO',
+            'created_at' => Carbon::now()->toDateTimeString(),
+            'updated_at' => Carbon::now()->toDateTimeString(),
+        ]);
+
+         DB::table('clientes')->insert([
+            'tipo' => 'CI',
+            'ruc_ci' => '1304951146',
+            'nombres' => 'VICTORES CHOEZ MARCIANO JHONNY',
+            'razon_social' => 'VICTORES CHOEZ MARCIANO JHONNY',
+            'direccion' => Str::random(10),
+            'telefono' => '0000000000',
+            'movil' => '0000000000',
+            'email' => Str::random(10).'@gmail.com',
+            'provincia' => 'SANTO DOMINGO',
+            'ciudad' => 'SANTO DOMINGO',
+            'parroquia' => 'SANTO DOMINGO',
+            'created_at' => Carbon::now()->toDateTimeString(),
+            'updated_at' => Carbon::now()->toDateTimeString(),
+        ]);
+
+         DB::table('clientes')->insert([
+            'tipo' => 'CI',
+            'ruc_ci' => '0704469071',
+            'nombres' => 'VELEZ PALADINES CARLOS RENE',
+            'razon_social' => 'VELEZ PALADINES CARLOS RENE',
+            'direccion' => Str::random(10),
+            'telefono' => '0000000000',
+            'movil' => '0000000000',
+            'email' => Str::random(10).'@gmail.com',
+            'provincia' => 'SANTO DOMINGO',
+            'ciudad' => 'SANTO DOMINGO',
+            'parroquia' => 'SANTO DOMINGO',
+            'created_at' => Carbon::now()->toDateTimeString(),
+            'updated_at' => Carbon::now()->toDateTimeString(),
+        ]);
+
+
+         DB::table('clientes')->insert([
+            'tipo' => 'CI',
+            'ruc_ci' => '1718800301',
+            'nombres' => 'MERIZALDE PAREDES ERIKA JOSSELYN',
+            'razon_social' => 'MERIZALDE PAREDES ERIKA JOSSELYN',
+            'direccion' => Str::random(10),
+            'telefono' => '0000000000',
+            'movil' => '0000000000',
+            'email' => Str::random(10).'@gmail.com',
+            'provincia' => 'SANTO DOMINGO',
+            'ciudad' => 'SANTO DOMINGO',
+            'parroquia' => 'SANTO DOMINGO',
+            'created_at' => Carbon::now()->toDateTimeString(),
+            'updated_at' => Carbon::now()->toDateTimeString(),
+        ]);
+
+            DB::table('clientes')->insert([
+            'tipo' => 'CI',
+            'ruc_ci' => '2300375777',
+            'nombres' => 'BRAVO DAVILA STEVEN JOVANNY',
+            'razon_social' => 'BRAVO DAVILA STEVEN JOVANNY',
+            'direccion' => Str::random(10),
+            'telefono' => '0000000000',
+            'movil' => '0000000000',
+            'email' => Str::random(10).'@gmail.com',
+            'provincia' => 'SANTO DOMINGO',
+            'ciudad' => 'SANTO DOMINGO',
+            'parroquia' => 'SANTO DOMINGO',
+            'created_at' => Carbon::now()->toDateTimeString(),
+            'updated_at' => Carbon::now()->toDateTimeString(),
+        ]);
+
+        DB::table('clientes')->insert([
+            'tipo' => 'CI',
+            'ruc_ci' => '1713397360',
+            'nombres' => 'CASTRO RODRIGUEZ JUANA MAGALY',
+            'razon_social' => 'CASTRO RODRIGUEZ JUANA MAGALY',
+            'direccion' => Str::random(10),
+            'telefono' => '0000000000',
+            'movil' => '0000000000',
+            'email' => Str::random(10).'@gmail.com',
+            'provincia' => 'SANTO DOMINGO',
+            'ciudad' => 'SANTO DOMINGO',
+            'parroquia' => 'SANTO DOMINGO',
+            'created_at' => Carbon::now()->toDateTimeString(),
+            'updated_at' => Carbon::now()->toDateTimeString(),
+        ]);
+
+        DB::table('clientes')->insert([
+            'tipo' => 'CI',
+            'ruc_ci' => '1715103345',
+            'nombres' => 'CASTRO RODRIGUEZ ROLANDO MARCELO',
+            'razon_social' => 'CASTRO RODRIGUEZ ROLANDO MARCELO',
+            'direccion' => Str::random(10),
+            'telefono' => '0000000000',
+            'movil' => '0000000000',
+            'email' => Str::random(10).'@gmail.com',
+            'provincia' => 'SANTO DOMINGO',
+            'ciudad' => 'SANTO DOMINGO',
+            'parroquia' => 'SANTO DOMINGO',
+            'created_at' => Carbon::now()->toDateTimeString(),
+            'updated_at' => Carbon::now()->toDateTimeString(),
+        ]);
+
+
 
         // TABLA LOTES
         DB::table('lotes')->truncate();
