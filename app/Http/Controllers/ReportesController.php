@@ -45,6 +45,7 @@ class ReportesController extends Controller
         $criterio_lote = $request->get('criterio_lote');
         $criterio_tipo = $request->get('criterio_tipo');
         $criterio_proveedor = $request->get('criterio_proveedor');
+        $criterio_ruc_ci = $request->get('criterio_ruc_ci');
         $criterio_procedencia = $request->get('criterio_procedencia');
         $criterio_placa = $request->get('criterio_placa');
         $criterio_conductor = $request->get('criterio_conductor');
@@ -57,6 +58,7 @@ class ReportesController extends Controller
             ->lote($criterio_lote)
             ->tipo($criterio_tipo)
             ->proveedor($criterio_proveedor)
+            ->identificacion($criterio_ruc_ci)
             ->procedencia($criterio_procedencia)
             ->placa($criterio_placa)
             ->conductor($criterio_conductor)

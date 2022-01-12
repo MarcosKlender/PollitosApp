@@ -91,6 +91,13 @@ class Lotes extends Model
         }
     }
 
+    public function scopeIdentificacion($query, $ruc_ci)
+    {
+        if ($ruc_ci) {
+            return $query->where('lotes.ruc_ci', 'ilike', "%$ruc_ci%");
+        }
+    }
+
     public function scopeProcedencia($query, $procedencia)
     {
         if ($procedencia) {
