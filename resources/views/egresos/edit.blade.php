@@ -474,13 +474,15 @@
                     </div>
                     <div class="modal-footer">
                         @csrf
-                        @if($cant_gav == $cant_gav_vac && $estado_liquidado == 1 && $lote_total_pbruto == $egreso_total_pbruto )
+                        @if($cant_gav == $cant_gav_vac && $estado_liquidado == 1 && $egreso_total_pbruto < $lote_total_pbruto )
+                            
                             <input type="hidden" id="id_liquidar" name="id_liquidar" value="{{ $lote->id }}">
                             <input type="hidden" id="liquidado" name="liquidado" value="1">
                             <input type="hidden" id="egresos" name="egresos" value="1">
                             <button type="button" class="btn btn-primary" data-dismiss="modal">Cancelar</button>
                             <button type="submit" class="btn btn-danger">Liquidar</button>
                         @else
+
                             <button type="button" class="btn btn-primary" data-dismiss="modal">Cancelar</button>
                         @endif
                     </div>
