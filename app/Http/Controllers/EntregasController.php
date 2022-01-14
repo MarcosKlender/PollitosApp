@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Entregas;
 use App\Clientes;
+use App\Entregas;
+use App\PresasEntregas;
+use App\RegistrosEntregas;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -38,13 +40,15 @@ class EntregasController extends Controller
     {
         $storeData = $request->validate([
             'tipo' => 'required|max:15',
-            'cliente' => 'required|max:191',
             'ruc_ci' => 'required|digits_between:10,13',
+            'cliente' => 'required|max:191',
             'placa' => 'required|regex:/^[\pL\pM\pN\s]+$/u|between:6,7',
             'conductor' => 'required|regex:/^[\pL\pM\pN\s]+$/u|max:191',
-            'peso_entrega' => 'required|numeric|min:1',
+            'destino' => 'required|regex:/^[\pL\pM\pN\s]+$/u|max:191',
+            'cant_animales' => 'required|numeric|min:1',
             'usuario' => 'required|max:191',
             'anulado' => 'required|size:1',
+            'liquidado' => 'required|size:1',
         ]);
 
         $entregas = Entregas::create($storeData);
@@ -54,7 +58,8 @@ class EntregasController extends Controller
         $request->old('cliente');
         $request->old('placa');
         $request->old('conductor');
-        $request->old('peso_entrega');
+        $request->old('destino');
+        $request->old('cant_animales');
 
         return redirect('/entregas')->with('success', '¡Entrega creada exitosamente!');
     }
@@ -66,12 +71,29 @@ class EntregasController extends Controller
 
     public function edit($id)
     {
-        //
+        $entregas = Entregas::findOrFail($id);
+        $registros = RegistrosEntregas::where('entregas_id', $id)->where('anulado', 0)->orderBy('id')->get();
+        $presas = PresasEntregas::where('entregas_id', $id)->where('anulado', 0)->orderBy('id')->get();
+     
+        return view('entregas.edit', compact('entregas', 'registros', 'presas'));
     }
 
     public function update(Request $request, $id)
     {
-        //
+        $updateData = $request->validate([
+            'entregas_id' => 'required|numeric',
+            'cant_gavetas' => 'required|numeric|min:1',
+            'peso_bruto' => 'required|numeric|min:1',
+            'tipo_peso' => 'required|size:2',
+            'usuario' => 'required|max:191',
+            'anulado' => 'required|size:1',
+        ]);
+
+        RegistrosEntregas::whereId($id)->create($updateData);
+
+        $entregas = Entregas::findOrFail($id);
+
+        return redirect()->route('entregas.edit', $id)->with('entregas');
     }
 
     public function destroy($id)
@@ -91,6 +113,18 @@ class EntregasController extends Controller
         }
 
         return response()->json($cliente);
+    }
+
+    public function presas_anuladas()
+    {
+        $presas = PresasEntregas::orderBy('id', 'desc')->where('anulado', 1)->paginate(10);
+        $count = count($presas);
+
+        if (Auth::user()->rol->key != 'admin') {
+            return redirect('/entregas');
+        }
+        
+        return view('entregas.presas_anuladas', compact('presas', 'count'));
     }
 
     public function entregas_anuladas()
@@ -115,5 +149,41 @@ class EntregasController extends Controller
         Entregas::whereId($request->id_anular)->update($updateData);
 
         return back()->with('success', '¡Entrega actualizada exitosamente!');
+    }
+
+    public function registros_anulados()
+    {
+        $registros = RegistrosEntregas::orderBy('id', 'desc')->where('anulado', 1)->paginate(10);
+        $count = count($registros);
+
+        if (Auth::user()->rol->key != 'admin') {
+            return redirect('/entregas');
+        }
+        
+        return view('entregas.registros_anulados', compact('registros', 'count'));
+    }
+
+    public function anular_registro(Request $request)
+    {
+        $updateData = $request->validate([
+            'anulado' => 'required|size:1',
+            'observaciones' => 'max:191',
+        ]);
+        
+        RegistrosEntregas::whereId($request->id_anular)->update($updateData);
+
+        return back()->with('success', '¡El registro ha sido anulado!');
+    }
+
+    public function liquidar_lote(Request $request)
+    {
+        dd($request);
+        $updateData = $request->validate([
+            'liquidado' => 'required|size:1',
+        ]);
+        
+        Entregas::whereId($request->id_liquidar)->update($updateData);
+
+        return redirect('/entregas')->with('success', '¡Lote liquidado exitosamente!');
     }
 }

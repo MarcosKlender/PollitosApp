@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateEntregasTable extends Migration
+class CreateRegistrosEntregasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,20 +13,18 @@ class CreateEntregasTable extends Migration
      */
     public function up()
     {
-        Schema::create('entregas', function (Blueprint $table) {
+        Schema::create('registros_entregas', function (Blueprint $table) {
             $table->id();
-            $table->string('tipo');
-            $table->string('ruc_ci');
-            $table->string('cliente');
-            $table->string('placa');
-            $table->string('conductor');
-            $table->string('destino');
-            $table->integer('cant_animales');
+            $table->unsignedBigInteger('entregas_id');
+            $table->integer('cant_gavetas');
+            $table->string('tipo_peso', 2);
+            $table->decimal('peso_bruto');
             $table->string('usuario');
             $table->string('anulado', 1);
-            $table->string('liquidado', 1);
             $table->string('observaciones')->nullable();
             $table->timestamps();
+
+            $table->foreign('entregas_id')->references('id')->on('entregas');
         });
     }
 
@@ -37,6 +35,6 @@ class CreateEntregasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('entregas');
+        Schema::dropIfExists('registros_entregas');
     }
 }

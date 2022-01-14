@@ -30,28 +30,32 @@
                         <div class="table-responsive">
                             <table class="table table-striped table-bordered">
                                 <thead>
-                                    <tr>
+                                    <tr class="font-weight-bold">
                                         <td>ID</td>
+                                        <td>Tipo Animal</td>
+                                        <td>RUC/CI</td>
                                         <td>Cliente</td>
                                         <td>Placa</td>
                                         <td>Conductor</td>
-                                        <td>Peso</td>
+                                        <td>Destino</td>
+                                        <td>Cantidad Animales</td>
                                         <td>Usuario</td>
-                                        <td>Observaciones</td>
-                                        <td>Fecha de Registro</td>
+                                        <td>Fecha de Anulación</td>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @foreach ($entregas as $entrega)
                                         <tr>
                                             <td>{{ $entrega->id }}</td>
+                                            <td>{{ $entrega->tipo }}</td>
+                                            <td>{{ $entrega->ruc_ci }}</td>
                                             <td>{{ $entrega->cliente }}</td>
                                             <td>{{ $entrega->placa }}</td>
                                             <td>{{ $entrega->conductor }}</td>
-                                            <td>{{ $entrega->peso_entrega }}</td>
+                                            <td>{{ $entrega->destino }}</td>
+                                            <td>{{ $entrega->cant_animales }}</td>
                                             <td>{{ $entrega->usuario }}</td>
-                                            <td>{{ $entrega->observaciones }}</td>
-                                            <td>{{ $entrega->created_at }}</td>
+                                            <td>{{ $entrega->updated_at }}</td>
                                         </tr>
                                     @endforeach
                                 </tbody>
@@ -63,7 +67,7 @@
                     <div class="row justify-content-around">
                         {{ $entregas->links() }}
                         {{-- <span>Total de Lotes:
-                            <b>{{ $count }}</b></span>--}}
+                            <b>{{ $count }}</b></span> --}}
                     </div>
 
                 </div>
