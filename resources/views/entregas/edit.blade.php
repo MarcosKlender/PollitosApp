@@ -291,6 +291,7 @@
                     <h5 class="modal-title" id="staticBackdropLabel3">¿Está seguro de liquidar el lote de entregas?</h5>
                 </div>
                 <form action="{{ route('entregas.liquidar_lote') }}" method="post">
+                    @csrf
                     <div class="modal-body">
                         Una vez liquidado el lote no podrá registrar más pesos.
                     </div>
@@ -364,7 +365,7 @@
             }
 
             $("#liquidar").click(function() {
-                $(".modal-title").html('¿Está seguro de liquidar el lote de egreso?');
+                $(".modal-title").html('¿Está seguro de liquidar el lote de entregas?');
             });
 
             $(".modal_gavetas").click(function() {

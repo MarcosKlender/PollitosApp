@@ -66,7 +66,11 @@ class EntregasController extends Controller
 
     public function show($id)
     {
-        //
+        $entregas = Entregas::findOrFail($id);
+        $registros = RegistrosEntregas::where('entregas_id', $id)->where('anulado', 0)->orderBy('id')->get();
+        $presas = PresasEntregas::where('entregas_id', $id)->where('anulado', 0)->orderBy('id')->get();
+
+        return view('entregas.show', compact('entregas', 'registros', 'presas'));
     }
 
     public function edit($id)
@@ -177,7 +181,6 @@ class EntregasController extends Controller
 
     public function liquidar_lote(Request $request)
     {
-        dd($request);
         $updateData = $request->validate([
             'liquidado' => 'required|size:1',
         ]);
