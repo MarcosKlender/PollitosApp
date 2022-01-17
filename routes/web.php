@@ -32,9 +32,11 @@ Route::put('/profile', 'ProfileController@update')->name('profile.update');
 Route::resource('admin', AdminController::class);
 Route::resource('proveedores', ProveedoresController::class);
 Route::resource('clientes', ClientesController::class);
+Route::resource('basculaconfiguracion', BasculaConfiguracionController::class);
 
 Route::get('/ajax-autocomplete-search', 'PesoBrutoController@selectSearch')->name('selectSearch');
 Route::get('/ajax-autocomplete-search2', 'BasculasController@selectSearch')->name('selectSearch2');
+Route::get('/ajax-autocomplete-search4', 'BasculasController@selectSearchBascula')->name('selectSearchBascula');
 Route::get('/ajax-autocomplete-search3', 'EntregasController@selectSearch')->name('selectSearch3');
 Route::get('/pesobruto/peso_bascula','PesoBrutoController@pesobascula')->name('pesobascula');
 

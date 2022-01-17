@@ -670,6 +670,7 @@ class ComposerStaticInitfba83e6cfee4c1f2dc06ef0fe6046ae7
     );
 
     public static $classMap = array (
+        'App\\BasculaConfiguracion' => __DIR__ . '/../..' . '/app/BasculaConfiguracion.php',
         'App\\Basculas' => __DIR__ . '/../..' . '/app/Basculas.php',
         'App\\Clientes' => __DIR__ . '/../..' . '/app/Clientes.php',
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
@@ -679,7 +680,6 @@ class ComposerStaticInitfba83e6cfee4c1f2dc06ef0fe6046ae7
         'App\\Exports\\PostsExport' => __DIR__ . '/../..' . '/app/Exports/PostsExport.php',
         'App\\GavetasVacias' => __DIR__ . '/../..' . '/app/GavetasVacias.php',
         'App\\GavetasVaciasEgresos' => __DIR__ . '/../..' . '/app/GavetasVaciasEgresos.php',
-        'App\\GavetasVaciasEntregas' => __DIR__ . '/../..' . '/app/GavetasVaciasEntregas.php',
         'App\\Http\\Controllers\\AdminController' => __DIR__ . '/../..' . '/app/Http/Controllers/AdminController.php',
         'App\\Http\\Controllers\\Auth\\ConfirmPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ConfirmPasswordController.php',
         'App\\Http\\Controllers\\Auth\\ForgotPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ForgotPasswordController.php',
@@ -687,6 +687,7 @@ class ComposerStaticInitfba83e6cfee4c1f2dc06ef0fe6046ae7
         'App\\Http\\Controllers\\Auth\\RegisterController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/RegisterController.php',
         'App\\Http\\Controllers\\Auth\\ResetPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ResetPasswordController.php',
         'App\\Http\\Controllers\\Auth\\VerificationController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/VerificationController.php',
+        'App\\Http\\Controllers\\BasculaConfiguracionController' => __DIR__ . '/../..' . '/app/Http/Controllers/BasculaConfiguracionController.php',
         'App\\Http\\Controllers\\BasculasController' => __DIR__ . '/../..' . '/app/Http/Controllers/BasculasController.php',
         'App\\Http\\Controllers\\ClientesController' => __DIR__ . '/../..' . '/app/Http/Controllers/ClientesController.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
@@ -694,9 +695,9 @@ class ComposerStaticInitfba83e6cfee4c1f2dc06ef0fe6046ae7
         'App\\Http\\Controllers\\EntregasController' => __DIR__ . '/../..' . '/app/Http/Controllers/EntregasController.php',
         'App\\Http\\Controllers\\GavetasVaciasController' => __DIR__ . '/../..' . '/app/Http/Controllers/GavetasVaciasController.php',
         'App\\Http\\Controllers\\GavetasVaciasEgresosController' => __DIR__ . '/../..' . '/app/Http/Controllers/GavetasVaciasEgresosController.php',
-        'App\\Http\\Controllers\\GavetasVaciasEntregasController' => __DIR__ . '/../..' . '/app/Http/Controllers/GavetasVaciasEntregasController.php',
         'App\\Http\\Controllers\\HomeController' => __DIR__ . '/../..' . '/app/Http/Controllers/HomeController.php',
         'App\\Http\\Controllers\\PesoBrutoController' => __DIR__ . '/../..' . '/app/Http/Controllers/PesoBrutoController.php',
+        'App\\Http\\Controllers\\PresasEntregasController' => __DIR__ . '/../..' . '/app/Http/Controllers/PresasEntregasController.php',
         'App\\Http\\Controllers\\ProfileController' => __DIR__ . '/../..' . '/app/Http/Controllers/ProfileController.php',
         'App\\Http\\Controllers\\ProveedoresController' => __DIR__ . '/../..' . '/app/Http/Controllers/ProveedoresController.php',
         'App\\Http\\Controllers\\RegistrosEntregasController' => __DIR__ . '/../..' . '/app/Http/Controllers/RegistrosEntregasController.php',

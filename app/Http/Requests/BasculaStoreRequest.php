@@ -24,16 +24,18 @@ class BasculaStoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'id' => ['required','unique:bascula'],
-            'nom_user' => ['required','unique:bascula'],
+           // 'id' => ['required','unique:bascula'],
+            //'nom_user' => ['required','unique:bascula'],
+            'nom_menu' => ['required', 'unique:bascula'],
         ];
     }
 
     public function messages()
     {
         return[
-            'id.unique' => 'Báscula en uso',
-            'nom_user.unique' => 'El usuario ya tiene una báscula asignada'
+            //'id.unique' => 'Báscula en uso',
+            //'nom_user.unique' => 'El usuario ya tiene una báscula asignada'
+            'nom_menu.unique' => 'Ya existe un usuario asignado al mismo menu'
         ];
     }
 }

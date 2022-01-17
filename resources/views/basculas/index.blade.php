@@ -25,15 +25,27 @@
                         <!--form method="POST" action=""!-->
                         <form method="POST" action="{{ route('basculas.store') }}">
                             @csrf
-                            <select class="form-control" id="id" name="id" required onchange="javascript:prueba()">
+                            <!--select class="form-control" id="cod_bascula" name="cod_bascula" required onchange="javascript:prueba()">
                                 <option value="" selected disabled>Seleccione una báscula</option>
                                 <option value="B001">Báscula 1</option>
                                 <option value="B002">Báscula 2</option>
-                            </select>
-                            <br>
-                            <div>
-                                <select class="nom_user form-control" id="nom_user" name="nom_user" required></select>
+                            </select!-->
+
+                            <div class="mb-3">
+                                <select class="form-control" id="cod_bascula" name="cod_bascula" required></select>
                             </div>
+
+                            <div class="mb-3">
+                                <select class="form-control" id="nom_user" name="nom_user" required></select>
+                            </div>
+
+                            <select class="form-control" id="nom_menu" name="nom_menu" required onchange="javascript:prueba()">
+                                <option value="" selected disabled>Seleccione menú</option>
+                                <option value="INGRESOS">Ingresos</option>
+                                <option value="EGRESOS">Egresos</option>
+                                <option value="ENTREGAS">Entregas</option>
+                            </select>
+                           
                             <br>
                             <input type="hidden" id="tipo_peso" name="tipo_peso" value="lb">
                             <input type="hidden" id="automatico" name="automatico" value="0">
@@ -63,7 +75,9 @@
                             <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>ID Báscula</th>
+                                    <!--th>ID Báscula</th!-->
+                                    <th>Cod Báscula </th>
+                                    <th>Menú</th>
                                     <th>Usuario</th>
                                     <th>Tipo Peso ( Lb / Kg )</th>
                                     <th>Automático</th>
@@ -74,7 +88,9 @@
                                 @foreach ($basculas as $bascula)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $bascula->id }}</td>
+                                        <!--td>{{ $bascula->id }}</td!-->
+                                        <td> {{ $bascula->cod_bascula }} </td>
+                                        <td>{{ $bascula->nom_menu }}</td>
                                         <td>{{ $bascula->nom_user }}</td>
                                         {{-- <td>{{ $bascula->tipo_peso }}</td> --}}
                                         <td>
@@ -131,7 +147,7 @@
     </div>
 
     <script type="text/javascript">
-        $('.nom_user').select2({
+        $('#nom_user').select2({
             placeholder: 'Seleccione el usuario',
             ajax: {
                 url: '/ajax-autocomplete-search2',
@@ -151,5 +167,28 @@
                 cache: true
             }
         });
+
+
+        $('#cod_bascula').select2({
+            placeholder: 'Seleccione bascula',
+            ajax: {
+                url: '/ajax-autocomplete-search4',
+                dataType: 'json',
+                delay: 5,
+                processResults: function(data) {
+                    return {
+                        results: $.map(data, function(item) {
+                            return {
+                                text: item.cod_bascula,
+                                id: item.cod_bascula,
+                                value: item.cod_bascula
+                            }
+                        })
+                    };
+                },
+                cache: true
+            }
+        });
+
     </script>
 @endsection

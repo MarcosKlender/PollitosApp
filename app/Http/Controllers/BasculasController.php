@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\BasculaConfiguracion;
 use App\Basculas;
 use App\User;
 use App\Http\Controllers\Controller;
@@ -41,6 +42,20 @@ class BasculasController extends Controller
         }
 
         return response()->json($usuario);
+    }
+
+    public function selectSearchBascula(Request $request)
+    {
+        $user = [];
+
+        if ($request->has('q')) {
+            $search = $request->q;
+            $bascula =BasculaConfiguracion::select("cod_bascula")
+                    ->where('cod_bascula', 'iLIKE', "%$search%")
+                    ->get();
+        }
+
+        return response()->json($bascula);
     }
 
     public function update(Request $request, $id)

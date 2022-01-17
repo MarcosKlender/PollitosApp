@@ -6,6 +6,7 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'App\\BasculaConfiguracion' => $baseDir . '/app/BasculaConfiguracion.php',
     'App\\Basculas' => $baseDir . '/app/Basculas.php',
     'App\\Clientes' => $baseDir . '/app/Clientes.php',
     'App\\Console\\Kernel' => $baseDir . '/app/Console/Kernel.php',
@@ -15,7 +16,6 @@ return array(
     'App\\Exports\\PostsExport' => $baseDir . '/app/Exports/PostsExport.php',
     'App\\GavetasVacias' => $baseDir . '/app/GavetasVacias.php',
     'App\\GavetasVaciasEgresos' => $baseDir . '/app/GavetasVaciasEgresos.php',
-    'App\\GavetasVaciasEntregas' => $baseDir . '/app/GavetasVaciasEntregas.php',
     'App\\Http\\Controllers\\AdminController' => $baseDir . '/app/Http/Controllers/AdminController.php',
     'App\\Http\\Controllers\\Auth\\ConfirmPasswordController' => $baseDir . '/app/Http/Controllers/Auth/ConfirmPasswordController.php',
     'App\\Http\\Controllers\\Auth\\ForgotPasswordController' => $baseDir . '/app/Http/Controllers/Auth/ForgotPasswordController.php',
@@ -23,6 +23,7 @@ return array(
     'App\\Http\\Controllers\\Auth\\RegisterController' => $baseDir . '/app/Http/Controllers/Auth/RegisterController.php',
     'App\\Http\\Controllers\\Auth\\ResetPasswordController' => $baseDir . '/app/Http/Controllers/Auth/ResetPasswordController.php',
     'App\\Http\\Controllers\\Auth\\VerificationController' => $baseDir . '/app/Http/Controllers/Auth/VerificationController.php',
+    'App\\Http\\Controllers\\BasculaConfiguracionController' => $baseDir . '/app/Http/Controllers/BasculaConfiguracionController.php',
     'App\\Http\\Controllers\\BasculasController' => $baseDir . '/app/Http/Controllers/BasculasController.php',
     'App\\Http\\Controllers\\ClientesController' => $baseDir . '/app/Http/Controllers/ClientesController.php',
     'App\\Http\\Controllers\\Controller' => $baseDir . '/app/Http/Controllers/Controller.php',
@@ -30,9 +31,9 @@ return array(
     'App\\Http\\Controllers\\EntregasController' => $baseDir . '/app/Http/Controllers/EntregasController.php',
     'App\\Http\\Controllers\\GavetasVaciasController' => $baseDir . '/app/Http/Controllers/GavetasVaciasController.php',
     'App\\Http\\Controllers\\GavetasVaciasEgresosController' => $baseDir . '/app/Http/Controllers/GavetasVaciasEgresosController.php',
-    'App\\Http\\Controllers\\GavetasVaciasEntregasController' => $baseDir . '/app/Http/Controllers/GavetasVaciasEntregasController.php',
     'App\\Http\\Controllers\\HomeController' => $baseDir . '/app/Http/Controllers/HomeController.php',
     'App\\Http\\Controllers\\PesoBrutoController' => $baseDir . '/app/Http/Controllers/PesoBrutoController.php',
+    'App\\Http\\Controllers\\PresasEntregasController' => $baseDir . '/app/Http/Controllers/PresasEntregasController.php',
     'App\\Http\\Controllers\\ProfileController' => $baseDir . '/app/Http/Controllers/ProfileController.php',
     'App\\Http\\Controllers\\ProveedoresController' => $baseDir . '/app/Http/Controllers/ProveedoresController.php',
     'App\\Http\\Controllers\\RegistrosEntregasController' => $baseDir . '/app/Http/Controllers/RegistrosEntregasController.php',

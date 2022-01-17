@@ -29,7 +29,7 @@ class EgresosController extends Controller
     public function index2()
     {
         $user=auth()->user()->username;
-        $busuario =Basculas::select("id")
+        $busuario =Basculas::select("cod_bascula")
             ->where('nom_user', '=', "$user")
             ->get();
         $e_automatico = Basculas::select("automatico")
@@ -38,9 +38,9 @@ class EgresosController extends Controller
    
 
         if (count($busuario)>0) {
-            $busuario=$busuario[0]['id'];
+            $busuario=$busuario[0]['cod_bascula'];
         }
-        if ($busuario==="B002" && $e_automatico==="1") {
+        if ($busuario==="B00-2" && $e_automatico==="1") {
             $ch = curl_init("http://192.168.100.12/ws.php?opcion=get");
             curl_setopt($ch, CURLOPT_URL, "http://192.168.100.12/ws.php?opcion=get");
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -48,7 +48,7 @@ class EgresosController extends Controller
             $res = curl_exec($ch);
             curl_close($ch);
         //$res="Con_accesoB001";
-        } elseif ($busuario==="B002" && $e_automatico==="0") {
+        } elseif ($busuario==="B00-2" && $e_automatico==="0") {
             $res="0";
         } else {
             $res="Sin_acceso";
@@ -105,9 +105,9 @@ class EgresosController extends Controller
             ->where('nom_user', '=', "$user")
             ->value("automatico");
 
-        $id_bascula = Basculas::select("id")
+        $id_bascula = Basculas::select("cod_bascula")
             ->where('nom_user', '=', "$user")
-            ->value("id");
+            ->value("cod_bascula");
 
         $tipo_peso = Basculas::select("tipo_peso")
             ->where('nom_user', '=', "$user")

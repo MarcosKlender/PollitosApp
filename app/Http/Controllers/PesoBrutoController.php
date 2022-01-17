@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Lotes;
+use App\BasculaConfiguracion;
 use App\Basculas;
 use App\Registros;
 use App\Proveedores;
@@ -61,6 +62,9 @@ class PesoBrutoController extends Controller
         $busuario =Basculas::select("id")
             ->where('nom_user', '=', "$user")
             ->get();
+        $cod_bascula =Basculas::select("id")
+            ->where('nom_user', '=', "$user")
+            ->get();
         $e_automatico = Basculas::select("automatico")
             ->where('nom_user', '=', "$user")
             ->value("automatico");
@@ -69,9 +73,9 @@ class PesoBrutoController extends Controller
             ->value("tipo_peso");
 
         if (count($busuario)>0) {
-            $busuario=$busuario[0]['id'];
+            $busuario=$busuario[0]['cod_bascula'];
         }
-        if ($busuario==="B001" && $e_automatico==="1") {
+        if ($busuario==="B00-1" && $e_automatico==="1") {
             $ch = curl_init("http://192.168.100.241/ws.php?opcion=get");
             curl_setopt($ch, CURLOPT_URL, "http://192.168.100.11/ws.php?opcion=get");
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -82,7 +86,7 @@ class PesoBrutoController extends Controller
         //$res = cacular_kilos($tipo_peso, $resultado);
 
         //$res="Con_accesoB001";
-        } elseif ($busuario==="B001" && $e_automatico==="0") {
+        } elseif ($busuario==="B00-1" && $e_automatico==="0") {
             $res="0";
         } else {
             $res="Sin_acceso";
@@ -166,9 +170,9 @@ class PesoBrutoController extends Controller
         $e_automatico = Basculas::select("automatico")
             ->where('nom_user', '=', "$user")
             ->value("automatico");
-        $id_bascula = Basculas::select("id")
+        $id_bascula = Basculas::select("cod_bascula")
             ->where('nom_user', '=', "$user")
-            ->value("id");    
+            ->value("cod_bascula");    
         $tipo_peso = Basculas::select("tipo_peso")
             ->where('nom_user', '=', "$user")
             ->value("tipo_peso");

@@ -17,9 +17,9 @@ class Basculas extends Model
 
     protected $primaryKey = 'id';
 
-    public $incrementing = false;
+   // public $incrementing = false;
 
-    protected $fillable = [ 'id', 'nom_user','tipo_peso','automatico'];
+    protected $fillable = [ 'id', 'cod_bascula', 'nom_user','tipo_peso','automatico', 'nom_menu'];
 
 
 } 
