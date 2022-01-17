@@ -60,6 +60,22 @@
                     </a>
                 </li>
 
+                <!-- Divider -->
+            <hr class="sidebar-divider">
+
+            <!-- Heading -->
+            <div class="sidebar-heading">
+                {{ __('Configuración') }}
+            </div>
+
+                 <!-- Nav configuracion bascula - Admin -->
+                <li class="nav-item {{ (request()->is('basculaconfiguracion')) ? 'active' : '' }}">
+                    <a class="nav-link" href="{{ route('basculaconfiguracion.index') }}">
+                        <i class="fas fa-weight"></i>
+                        <span>{{ __('Básculas Configuracion') }}</span>
+                    </a>
+                </li>
+
                 <!-- Nav Item - Admin -->
                 <li class="nav-item {{ (request()->is('basculas')) ? 'active' : '' }}">
                     <a class="nav-link" href="{{ route('basculas.index') }}">
@@ -67,6 +83,9 @@
                         <span>{{ __('Básculas') }}</span>
                     </a>
                 </li>
+
+                     <!-- Divider -->
+            <hr class="sidebar-divider">
 
             @endif
 
