@@ -67,7 +67,7 @@
                                 <tbody>
                                     @foreach ($entregas as $entrega)
                                         <tr>
-                                            <td>{{ $loop->iteration }} </td>
+                                            <td>{{ $entrega->id}}</td>
                                             <td>{{ $entrega->tipo }}</td>
                                             <td>{{ $entrega->ruc_ci }}</td>
                                             <td>{{ $entrega->cliente }}</td>

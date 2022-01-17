@@ -6,7 +6,7 @@
         <div class="col-lg-9">
             <div class="card shadow mb-4">
                 <div class="card-header mt-2 text-center">
-                    <h4>LOTE {{ $entregas->id }} - {{ $entregas->tipo }} - ENTREGAS</h4>
+                    <h4> {{ $entregas->id }} - {{ $entregas->tipo }} - ENTREGAS</h4>
                 </div>
 
                 <ul class="nav nav-tabs nav-fill" id="myTab" role="tablist">
@@ -40,10 +40,9 @@
                                         <thead>
                                             <tr class="font-weight-bold">
                                                 <td>N°</td>
-                                                <td>ID Lote</td>
                                                 <td>Cantidad de Gavetas</td>
+                                                <td>Peso Neto</td>
                                                 <td>Tipo Peso</td>
-                                                <td>Peso Bruto</td>
                                                 <td>Usuario</td>
                                                 <td>Fecha de Registro</td>
                                             </tr>
@@ -52,14 +51,18 @@
                                             @foreach ($registros as $registro)
                                                 <tr>
                                                     <td>{{ $loop->iteration }}</td>
-                                                    <td>{{ $registro->entregas_id }}</td>
-                                                    <td>{{ $registro->cant_gavetas }}</td>
-                                                    <td>{{ $registro->tipo_peso }}</td>
+                                                    <td>{{ $registro->cant_gavetas }}</td>                                                    
                                                     <td>{{ $registro->peso_bruto }}</td>
+                                                    <td>{{ $registro->tipo_peso }}</td>
                                                     <td>{{ $registro->usuario }}</td>
                                                     <td>{{ $registro->updated_at }}</td>
                                                 </tr>
                                             @endforeach
+                                             <tr>
+                                                <td colspan="1"><b>TOTAL</b></td>
+                                                <td><b>{{ $total_gavetas }}</b></td>
+                                                <td><b>{{ $total_pneto }}</b></td>
+                                            </tr>
                                         </tbody>
                                     </table>
                                 </div>
@@ -79,11 +82,10 @@
                                         <thead>
                                             <tr class="font-weight-bold">
                                                 <td>N°</td>
-                                                <td>ID Lote</td>
                                                 <td>Tipo Entrega</td>
                                                 <td>Cantidad Gavetas</td>
-                                                <td>Tipo Peso</td>
                                                 <td>Peso Bruto</td>
+                                                <td>Tipo Peso</td>
                                                 <td>Usuario</td>
                                                 <td>Fecha de Registro</td>
                                             </tr>
@@ -92,15 +94,19 @@
                                             @foreach ($presas as $presa)
                                                 <tr>
                                                     <td>{{ $loop->iteration }}</td>
-                                                    <td>{{ $presa->entregas_id }}</td>
                                                     <td>{{ $presa->tipo_entrega }}</td>
                                                     <td>{{ $presa->cant_gavetas }}</td>
-                                                    <td>{{ $presa->tipo_peso }}</td>
                                                     <td>{{ $presa->peso_bruto }}</td>
+                                                    <td>{{ $presa->tipo_peso }}</td>
                                                     <td>{{ $presa->usuario }}</td>
                                                     <td>{{ $presa->updated_at }}</td>
                                                 </tr>
                                             @endforeach
+                                                <tr>
+                                                <td colspan="2"><b>TOTAL</b></td>
+                                                <td><b>{{ $total_presa_gavetas }}</b></td>
+                                                <td><b>{{ $total_presa_pneto }}</b></td>
+                                            </tr>
                                         </tbody>
                                     </table>
                                 </div>

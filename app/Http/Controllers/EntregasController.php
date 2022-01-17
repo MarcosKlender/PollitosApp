@@ -70,7 +70,13 @@ class EntregasController extends Controller
         $registros = RegistrosEntregas::where('entregas_id', $id)->where('anulado', 0)->orderBy('id')->get();
         $presas = PresasEntregas::where('entregas_id', $id)->where('anulado', 0)->orderBy('id')->get();
 
-        return view('entregas.show', compact('entregas', 'registros', 'presas'));
+        $total_gavetas = RegistrosEntregas::where('entregas_id',$id)->where('anulado', 0)->select('cant_gavetas')->sum('cant_gavetas');
+        $total_pneto = RegistrosEntregas::where('entregas_id',$id)->where('anulado', 0)->select('peso_bruto')->sum('peso_bruto');
+
+        $total_presa_gavetas = PresasEntregas::where('entregas_id',$id)->where('anulado', 0)->select('cant_gavetas')->sum('cant_gavetas');
+        $total_presa_pneto = PresasEntregas::where('entregas_id',$id)->where('anulado', 0)->select('peso_bruto')->sum('peso_bruto');
+
+        return view('entregas.show', compact('entregas', 'registros','total_gavetas','total_pneto','total_presa_gavetas','total_presa_pneto' ,'presas'));
     }
 
     public function edit($id)
