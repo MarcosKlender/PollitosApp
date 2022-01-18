@@ -8,7 +8,7 @@
 
                 <div class="card-header mt-2">
                     <div class="text-center">
-                        <h4>Reportes PESO EN BRUTO</h4>
+                        <h4>REPORTES INGRESOS Y EGRESOS</h4>
                     </div>
                 </div>
 
@@ -110,53 +110,52 @@
                             <table class="table table-striped table-bordered" id="reportes_peso">
                                 <thead>
                                     <tr class="font-weight-bold">
-                                        <td>N° Lote</td>
-                                        <td>Tipo</td>
-                                        <td>CI / RUC</td>
-                                        <td>Proveedor</td>
-                                        <td>Procedencia</td>
-                                        <td>Placa</td>
-                                        <td>Conductor</td>
-                                        <td>Cantidad Total Animal</td>
-                                        <td>Tot. Cant. Gavetas</td>
-                                        <td>Cantidad Animal Ahogado</td>
-                                        <td>Peso Animal Ahogado</td>
-                                        <td>Tot. Peso Bruto</td>
-                                        <td>Tot. Peso Gavetas Vacías</td>
-                                        <!--td>Tot. Peso Final</td!-->
-                                        <td>Usuario</td>
-                                        <td>Fecha Registro</td>
-                                        <td>Anulado</td>
-                                        <td>Liquidado ingreso</td>
-                                        <td>Liquidado egreso</td>
-                                        <td>Reporte pdf</td>
-                                        <td>Reporte excel</td>
+                                        <td align="center">N° Lote</td>
+                                        <td align="center">Tipo</td>
+                                        <td align="center">CI/RUC</td>
+                                        <td align="center">Proveedor</td>
+                                        <td align="center">Procedencia</td>
+                                        <td align="center">Placa</td>
+                                        <td align="center">Conductor</td>
+                                        <td align="center">Cantidad Total Animal</td>
+                                        <td align="center">Tot. Cant. Gavetas</td>
+                                        <td align="center">Cantidad Animal Ahogado</td>
+                                        <td align="center">Peso Animal Ahogado</td>
+                                        <td align="center">Tot. Peso Bruto</td>
+                                        <td align="center">Tot. Peso Gavetas Vacías</td>
+                                        <td align="center">Usuario</td>
+                                        <td align="center">Fecha Registro</td>
+                                        <td align="center">Anulado</td>
+                                        <td align="center">Liquidado ingreso</td>
+                                        <td align="center">Liquidado egreso</td>
+                                        <td align="center">Reporte pdf</td>
+                                        <td align="center">Reporte excel</td>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @foreach ($lotes as $lote)
                                         <tr>
-                                            <td class="numero_id" id="{{ $lote->id }}">{{ $lote->id }}</td>
-                                            <td class="row_peso">{{ $lote->tipo }}</td>
-                                            <td class="row_peso">{{ $lote->ruc_ci }}</td>
-                                            <td class="row_peso">{{ $lote->proveedor }}</td>
-                                            <td class="row_peso">{{ $lote->procedencia }}</td>
-                                            <td class="row_peso">{{ $lote->placa }}</td>
-                                            <td class="row_peso">{{ $lote->conductor }}</td>                                            
-                                            <td class="row_peso">{{ $lote->cantidad }}</td>
-                                            <td class="row_peso">{{ $lote->total_cant_gavetas }}</td>
-                                            <td class="row_peso">{{ $lote->cant_ahogados }}</td>
-                                            <td class="row_peso">{{ $lote->peso_ahogados }}</td>
-                                            <td class="row_peso">{{ $lote->total_peso_bruto }}</td>
+                                            <td align="center" class="numero_id" id="{{ $lote->id }}">{{ $lote->id }}</td>
+                                            <td align="center" class="row_peso">{{ $lote->tipo }}</td>
+                                            <td align="center" class="row_peso">{{ $lote->ruc_ci }}</td>
+                                            <td align="center" class="row_peso">{{ $lote->proveedor }}</td>
+                                            <td align="center" class="row_peso">{{ $lote->procedencia }}</td>
+                                            <td align="center" class="row_peso">{{ $lote->placa }}</td>
+                                            <td align="center" class="row_peso">{{ $lote->conductor }}</td>                                            
+                                            <td align="center" class="row_peso">{{ $lote->cantidad }}</td>
+                                            <td align="center" class="row_peso">{{ $lote->total_cant_gavetas }}</td>
+                                            <td align="center" class="row_peso">{{ $lote->cant_ahogados }}</td>
+                                            <td align="center" class="row_peso">{{ $lote->peso_ahogados }}</td>
+                                            <td align="center" class="row_peso">{{ $lote->total_peso_bruto }}</td>
                                             @foreach ($gavetas_vacias as $gaveta_v)
                                               @if( $lote->id == $gaveta_v->id )
-                                                <td class="row_peso">{{ $gaveta_v->total_peso_gavetas_vacias }}</td>
+                                                <td align="center" class="row_peso">{{ $gaveta_v->total_peso_gavetas_vacias }}</td>
                                                 @endif
                                             @endforeach   
                                             <!--td class="row_peso">{{ $lote->total_peso_final }}</td!-->
-                                            <td class="row_peso">{{ $lote->usuario }}</td>
+                                            <td align="center" class="row_peso">{{ $lote->usuario }}</td>
                                             <td>{{ $lote->created_at }}</td>
-                                            <td class="button">
+                                            <td align="center" class="button">
                                                 @if ($lote->anulado == '0')
                                                     <button id="btn_prueba" class="btn btn-sm btn-primary"
                                                         type="submit">NO</button>
@@ -165,7 +164,7 @@
                                                 @endif
                                             </td>
 
-                                            <td class="button">
+                                            <td align="center" class="button">
                                                 @if ($lote->liquidado == '0')
                                                     <button type="button" class="btn btn-sm btn-danger">NO</button>
                                                 @else
@@ -173,18 +172,18 @@
                                                 @endif
                                             </td>
 
-                                            <td class="button">
+                                            <td align="center" class="button">
                                                 @if ($lote->egresos == '0')
                                                     <button type="button" class="btn btn-sm btn-danger">NO</button>
                                                 @else
                                                     <button type="button" class="btn btn-sm btn-warning">SI</button>
                                                 @endif
                                             </td>
-                                            <td class="button">
+                                            <td align="center" class="button">
                                                 <a href="{{ route('reportes.generar_pdf', $lote->id) }}" target="_blank"
                                                     class="btn btn-lg btn-primary"><i class="far fa-file-pdf"></i></a>
                                             </td>
-                                            <td class="button">
+                                            <td align="center" class="button">
                                                 <a href="{{ route('reportes.generar_excel', $lote->id) }}"
                                                     target="_blank" class="btn btn-lg btn-primary"><i
                                                         class="far fa-file-excel"></i></a>
@@ -237,25 +236,23 @@
                                     <table class="table table-striped table-bordered">
                                         <thead>
                                             <tr class="font-weight-bold">
-                                                <td>ID</td>
-                                                <td width="20">Cantidad Gavetas</td>
-                                                <td width="5">Peso Bruto</td>
-                                                <!--td>Peso Gavetas</td>
-                                                <td>Peso Final</td!-->
-                                                <td width="5">Tipo Peso</td>
-                                                <td>Estado</td>
-                                                <td>Observación</td>
-                                                <td>Usuario</td>
-                                                <td>Fecha de Registro</td>
+                                                <td align="center">ID</td>
+                                                <td align="center" width="20">Cantidad Gavetas</td>
+                                                <td align="center" width="5">Peso Bruto</td>
+                                                <td align="center" width="5">Tipo Peso</td>
+                                                <td align="center">Estado</td>
+                                                <td align="center">Observación</td>
+                                                <td align="center">Usuario</td>
+                                                <td align="center">Fecha de Registro</td>
                                             </tr>
                                         </thead>
                                         <!--tbody!-->
                                         <tbody id="cuerpo_lote">
                                         </tbody>
                                         <tr class="font-weight-bold">
-                                            <td colspan="1"><b>TOTAL</b></td>
-                                            <td id="total_cantidad"><b></b></td>
-                                            <td id="total_bruto"><b></b></td>
+                                            <td align="center" colspan="1"><b>TOTAL</b></td>
+                                            <td align="center" id="total_cantidad"><b></b></td>
+                                            <td align="center" id="total_bruto"><b></b></td>
                                             <!--td id="total_gavetas"><b></b></td>
                                             <td id="total_final"><b></b></td!-->
                                         </tr>
@@ -269,25 +266,25 @@
                                     <table class="table table-striped table-bordered">
                                         <thead>
                                             <tr class="font-weight-bold">
-                                                <td>ID</td>
-                                                <td width="20">Cantidad Gavetas vacías</td>
-                                                <td width="20">Peso gavetas vacías</td>
+                                                <td align="center">ID</td>
+                                                <td align="center" width="20">Cantidad Gavetas vacías</td>
+                                                <td align="center" width="20">Peso gavetas vacías</td>
                                                 <!--td>Peso Gavetas</td>
                                                 <td>Peso Final</td!-->
-                                                <td width="5">Tipo Peso</td>
-                                                <td>Estado</td>
-                                                <td>Observación</td>
-                                                <td>Usuario</td>
-                                                <td>Fecha de Registro</td>
+                                                <td align="center" width="5">Tipo Peso</td>
+                                                <td align="center">Estado</td>
+                                                <td align="center">Observación</td>
+                                                <td align="center">Usuario</td>
+                                                <td align="center">Fecha de Registro</td>
                                             </tr>
                                         </thead>
                                         <!--tbody!-->
                                         <tbody id="cuerpo_gvacia">
                                         </tbody>
                                         <tr class="font-weight-bold">
-                                            <td colspan="1"><b>TOTAL</b></td>
-                                            <td id="total_cantidad_gvacias"><b></b></td>
-                                            <td id="total_peso_gvacias"><b></b></td>
+                                            <td align="center" colspan="1"><b>TOTAL</b></td>
+                                            <td align="center" id="total_cantidad_gvacias"><b></b></td>
+                                            <td align="center" id="total_peso_gvacias"><b></b></td>
                                             <!--td id="total_gavetas"><b></b></td>
                                             <td id="total_final"><b></b></td!-->
                                         </tr>
@@ -336,25 +333,25 @@
                                         <table class="table table-striped table-bordered">
                                             <thead>
                                                 <tr class="font-weight-bold">
-                                                    <td>ID Lote</td>
-                                                    <td width="20">Cantidad Gavetas</td>
-                                                    <td>Peso Bruto</td>
+                                                    <td align="center">ID Lote</td>
+                                                    <td align="center" width="20">Cantidad Gavetas</td>
+                                                    <td align="center">Peso Bruto</td>
                                                     <!--td>Peso Gavetas</td>
                                                     <td>Peso Final</td!-->
-                                                    <td>Tipo Peso</td>
-                                                    <td>Estado</td>
-                                                    <td>Observación</td>
-                                                    <td>Usuario</td>
-                                                    <td>Fecha de Registro</td>
+                                                    <td align="center">Tipo Peso</td>
+                                                    <td align="center">Estado</td>
+                                                    <td align="center">Observación</td>
+                                                    <td align="center">Usuario</td>
+                                                    <td align="center">Fecha de Registro</td>
                                                 </tr>
                                             </thead>
                                             <!--tbody!-->
                                             <tbody id="cuerpo_egresos">
                                             </tbody>
                                             <tr class="font-weight-bold">
-                                                <td colspan="1"><b>TOTAL</b></td>
-                                                <td id="total_cantidade"><b></b></td>
-                                                <td id="total_brutoe"><b></b></td>
+                                                <td align="center" colspan="1"><b>TOTAL</b></td>
+                                                <td align="center" id="total_cantidade"><b></b></td>
+                                                <td align="center" id="total_brutoe"><b></b></td>
                                                 <!--td id="total_gavetase"><b></b></td>
                                                 <td id="total_finale"><b></b></td!-->
                                             </tr>
@@ -368,25 +365,25 @@
                                     <table class="table table-striped table-bordered">
                                         <thead>
                                             <tr class="font-weight-bold">
-                                                <td>ID</td>
-                                                <td width="20">Cantidad Gavetas vacías</td>
-                                                <td width="20">Peso gavetas vacías</td>
+                                                <td align="center">ID</td>
+                                                <td align="center" width="20">Cantidad Gavetas vacías</td>
+                                                <td align="center" width="20">Peso gavetas vacías</td>
                                                 <!--td>Peso Gavetas</td>
                                                 <td>Peso Final</td!-->
-                                                <td width="5">Tipo Peso</td>
-                                                <td>Estado</td>
-                                                <td>Observación</td>
-                                                <td>Usuario</td>
-                                                <td>Fecha de Registro</td>
+                                                <td align="center" width="5">Tipo Peso</td>
+                                                <td align="center">Estado</td>
+                                                <td align="center">Observación</td>
+                                                <td align="center">Usuario</td>
+                                                <td align="center">Fecha de Registro</td>
                                             </tr>
                                         </thead>
                                         <!--tbody!-->
                                         <tbody id="cuerpo_gvacia_egreso">
                                         </tbody>
                                         <tr class="font-weight-bold">
-                                            <td colspan="1"><b>TOTAL</b></td>
-                                            <td id="total_cantidad_gvacias_egresos"><b></b></td>
-                                            <td id="total_peso_gvacias_egresos"><b></b></td>
+                                            <td align="center" colspan="1"><b>TOTAL</b></td>
+                                            <td align="center" id="total_cantidad_gvacias_egresos"><b></b></td>
+                                            <td align="center" id="total_peso_gvacias_egresos"><b></b></td>
                                             <!--td id="total_gavetas"><b></b></td>
                                             <td id="total_final"><b></b></td!-->
                                         </tr>
@@ -470,18 +467,18 @@
                             var fecha = fech.toLocaleString();
                             $("#cuerpo_lote").append(
                                 $('<tr>'),
-                                $('<td>').text(id_acum=id_acum+1),
-                                $('<td>').text(value.cant_gavetas),
-                                $('<td>').text(value.peso_bruto),
+                                $('<td align="center">').text(id_acum=id_acum+1),
+                                $('<td align="center">').text(value.cant_gavetas),
+                                $('<td align="center">').text(value.peso_bruto),
                                 /*$('<td>').text(value.peso_gavetas),
                                 $('<td>').text(value.peso_final),*/
-                                $('<td>').text(value.tipo_peso),
+                                $('<td align="center">').text(value.tipo_peso),
                                 (value.anulado === '1') ? $('<td>').text(
                                     'Anulado') :
-                                $('<td>').text(''),
-                                $('<td>').text(value.observaciones),
-                                $('<td>').text(value.usuario),
-                                $('<td>').text(fecha),
+                                $('<td align="center">').text(''),
+                                $('<td align="center">').text(value.observaciones),
+                                $('<td align="center">').text(value.usuario),
+                                $('<td align="center">').text(fecha),
                                 $('</tr>'));
                             if (value.anulado === '0') {
                                 tc = tc + parseFloat(value.cant_gavetas);
@@ -496,9 +493,7 @@
                         $('#total_bruto').text(tb);
                         $('#total_gavetas').text(tg);
                         $('#total_final').text(tf);
-                        //  console.log(typeof(obj));
-                        //  console.log(response);
-                        //   alert(response);
+
 
                     },
 
@@ -529,18 +524,18 @@
                             var fecha = fech.toLocaleString();
                             $("#cuerpo_gvacia").append(
                                 $('<tr>'),
-                                $('<td>').text(id_acumgv=id_acumgv+1),
-                                $('<td>').text(value.cant_gavetas_vacias),
-                                $('<td>').text(value.peso_gavetas_vacias),
+                                $('<td align="center">').text(id_acumgv=id_acumgv+1),
+                                $('<td align="center">').text(value.cant_gavetas_vacias),
+                                $('<td align="center">').text(value.peso_gavetas_vacias),
                                 /*$('<td>').text(value.peso_gavetas),
                                 $('<td>').text(value.peso_final),*/
-                                $('<td>').text(value.tipo_peso),
+                                $('<td align="center">').text(value.tipo_peso),
                                 (value.anulado === '1') ? $('<td>').text(
                                     'Anulado') :
-                                $('<td>').text(''),
-                                $('<td>').text(value.observaciones),
-                                $('<td>').text(value.usuario),
-                                $('<td>').text(fecha),
+                                $('<td align="center">').text(''),
+                                $('<td align="center">').text(value.observaciones),
+                                $('<td align="center">').text(value.usuario),
+                                $('<td align="center">').text(fecha),
                                 $('</tr>'));
                             if (value.anulado === '0') {
                                 tcgv = tcgv + parseFloat(value.cant_gavetas_vacias);
@@ -640,18 +635,18 @@
                             $("#cuerpo_egresos").append(
                                 $('<tr>'),
                                //$('<td>').text(value.lotes_id),
-                               $('<td>').text(id_acume=id_acume+1),
-                                $('<td>').text(value.cant_gavetas),
-                                $('<td>').text(value.peso_bruto),
+                               $('<td align="center">').text(id_acume=id_acume+1),
+                                $('<td align="center">').text(value.cant_gavetas),
+                                $('<td align="center">').text(value.peso_bruto),
                                /* $('<td>').text(value.peso_gavetas),
                                 $('<td>').text(value.peso_final),*/
-                                $('<td>').text(value.tipo_peso),
+                                $('<td align="center">').text(value.tipo_peso),
                                 (value.anulado === '1') ? $('<td>').text(
                                     'Anulado') :
-                                $('<td>').text(''),
-                                $('<td>').text(value.observaciones),
-                                $('<td>').text(value.usuario),
-                                $('<td>').text(fecha),
+                                $('<td align="center">').text(''),
+                                $('<td align="center">').text(value.observaciones),
+                                $('<td align="center">').text(value.usuario),
+                                $('<td align="center">').text(fecha),
                                 $('</tr>'));
                             if (value.anulado === '0') {
                                 tce = tce + parseFloat(value.cant_gavetas);
@@ -697,18 +692,18 @@
                             var fecha = fech.toLocaleString();
                             $("#cuerpo_gvacia_egreso").append(
                                 $('<tr>'),
-                                $('<td>').text(id_acumgve=id_acumgve+1),
-                                $('<td>').text(value.cant_gavetas_vacias),
-                                $('<td>').text(value.peso_gavetas_vacias),
+                                $('<td align="center">').text(id_acumgve=id_acumgve+1),
+                                $('<td align="center">').text(value.cant_gavetas_vacias),
+                                $('<td align="center">').text(value.peso_gavetas_vacias),
                                 /*$('<td>').text(value.peso_gavetas),
                                 $('<td>').text(value.peso_final),*/
-                                $('<td>').text(value.tipo_peso),
+                                $('<td align="center">').text(value.tipo_peso),
                                 (value.anulado === '1') ? $('<td>').text(
                                     'Anulado') :
-                                $('<td>').text(''),
-                                $('<td>').text(value.observaciones),
-                                $('<td>').text(value.usuario),
-                                $('<td>').text(fecha),
+                                $('<td align="center">').text(''),
+                                $('<td align="center">').text(value.observaciones),
+                                $('<td align="center">').text(value.usuario),
+                                $('<td align="center">').text(fecha),
                                 $('</tr>'));
                             if (value.anulado === '0') {
                                 tcgve = tcgve + parseFloat(value.cant_gavetas_vacias);
