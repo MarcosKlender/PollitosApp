@@ -114,7 +114,7 @@
                                                     <td class="text-center"><button type="button"
                                                             class="btn btn-sm btn-danger modal_anular" data-toggle="modal"
                                                             data-target="#staticBackdrop2"
-                                                            data-id="{{ $registro->id }}">Anular</button>
+                                                            data-id="{{ $registro->id }}"><i class="far fa-trash-alt fa-lg"></i></button>
                                                     </td>
                                                 </tr>
                                             @endforeach
@@ -231,7 +231,7 @@
                                                     <td class="text-center"><button type="button"
                                                             class="btn btn-sm btn-danger modal_anular_gavetas"
                                                             data-toggle="modal" data-target="#staticBackdrop4"
-                                                            data-id="{{ $presa->id }}">Anular</button>
+                                                            data-id="{{ $presa->id }}"><i class="far fa-trash-alt fa-lg"></i></button>
                                                     </td>
                                                 </tr>
                                             @endforeach

@@ -93,7 +93,7 @@
                                         <td>{{ $cliente->parroquia }}</td>
                                         <td class="text-center">
                                             <a href="{{ route('clientes.edit', $cliente->id) }}"
-                                                class="btn btn-primary">Editar</a>
+                                                class="btn btn-primary"><i class="far fa-edit"></i></a>
                                         </td>
                                     </tr>
                                 @endforeach

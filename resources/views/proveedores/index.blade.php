@@ -86,7 +86,7 @@
 
                                         <td class="text-center">
                                             <a href="{{ route('proveedores.edit', $proveedor->id) }}"
-                                                class="btn btn-primary">Editar</a>
+                                                class="btn btn-primary"><i class="far fa-edit"></i></a>
                                         </td>
 
                                     </tr>

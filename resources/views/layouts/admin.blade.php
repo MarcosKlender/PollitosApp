@@ -65,14 +65,14 @@
 
             <!-- Heading -->
             <div class="sidebar-heading">
-                {{ __('Configuración') }}
+                {{ __('Básculas') }}
             </div>
 
                  <!-- Nav configuracion bascula - Admin -->
                 <li class="nav-item {{ (request()->is('basculaconfiguracion')) ? 'active' : '' }}">
                     <a class="nav-link" href="{{ route('basculaconfiguracion.index') }}">
                         <i class="fas fa-weight"></i>
-                        <span>{{ __('Básculas Configuracion') }}</span>
+                        <span>{{ __('Configurar') }}</span>
                     </a>
                 </li>
 
@@ -80,7 +80,7 @@
                 <li class="nav-item {{ (request()->is('basculas')) ? 'active' : '' }}">
                     <a class="nav-link" href="{{ route('basculas.index') }}">
                         <i class="fas fa-weight"></i>
-                        <span>{{ __('Básculas') }}</span>
+                        <span>{{ __('Asignar') }}</span>
                     </a>
                 </li>
 

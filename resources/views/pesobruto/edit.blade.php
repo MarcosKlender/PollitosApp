@@ -112,7 +112,7 @@
                                     <table class="table table-striped table-bordered" id="tabla_pesobruto">
                                         <thead>
                                             <tr class="font-weight-bold">
-                                                <td>#</td>
+                                                <td>N°</td>
                                                 <!--td >ID Lote</td!-->
                                                 <td>Cantidad Gavetas</td>
                                                 <!-- <td>Cantidad {{ $lote->tipo }}</td> -->
@@ -151,7 +151,7 @@
                                                     <td class="text-center"><button type="button"
                                                             class="btn btn-sm btn-danger modal_anular" data-toggle="modal"
                                                             data-target="#staticBackdrop2"
-                                                            data-id="{{ $registro->id }}">Anular</button>
+                                                            data-id="{{ $registro->id }}"><i class="far fa-trash-alt fa-lg"></i></button>
                                                     </td>
                                                 </tr>
                                             @endforeach
@@ -237,7 +237,7 @@
                                     <table class="table table-striped table-bordered" id="tabla_pesobruto_gavetas">
                                         <thead>
                                             <tr class="font-weight-bold">
-                                                <td>#</td>
+                                                <td>N°</td>
                                                 <td>Cantidad Gavetas Vacías</td>
                                                 <td>Peso Gavetas Vacías</td>
                                                 <td>Tipo Peso</td>
@@ -260,7 +260,7 @@
                                                     <td class="text-center"><button type="button"
                                                             class="btn btn-sm btn-danger modal_anular_gavetas"
                                                             data-toggle="modal" data-target="#staticBackdrop4"
-                                                            data-id="{{ $gaveta->id }}">Anular</button>
+                                                            data-id="{{ $gaveta->id }}"><i class="far fa-trash-alt fa-lg"></i></button>
                                                     </td>
                                                 </tr>
                                             @endforeach

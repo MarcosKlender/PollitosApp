@@ -16,7 +16,7 @@
             <div class="card shadow mb-4">
                 <div class="card-header mt-2">
                     <div class="text-center">
-                        <h4>Administración de Básculas</h4>
+                        <h4>Asignación de Básculas</h4>
                     </div>
                 </div>
 
@@ -40,10 +40,10 @@
                             </div>
 
                             <select class="form-control" id="nom_menu" name="nom_menu" required onchange="javascript:prueba()">
-                                <option value="" selected disabled>Seleccione menú</option>
-                                <option value="INGRESOS">Ingresos</option>
-                                <option value="EGRESOS">Egresos</option>
-                                <option value="ENTREGAS">Entregas</option>
+                                <option value="" selected disabled>Seleccione módulo</option>
+                                <option value="INGRESOS">INGRESOS</option>
+                                <option value="EGRESOS">EGRESOS</option>
+                                <option value="ENTREGAS">ENTREGAS</option>
                             </select>
                            
                             <br>
@@ -74,12 +74,12 @@
                         <table class="table table-striped table-bordered">
                             <thead>
                                 <tr>
-                                    <th>#</th>
+                                    <th>N°</th>
                                     <!--th>ID Báscula</th!-->
-                                    <th>Cod Báscula </th>
-                                    <th>Menú</th>
+                                    <th>Código Báscula</th>
+                                    <th>Módulo</th>
                                     <th>Usuario</th>
-                                    <th>Tipo Peso ( Lb / Kg )</th>
+                                    <th>Tipo Peso (Libras/Kilogramos)</th>
                                     <th>Automático</th>
                                     <th>Acciones</th>
                                 </tr>
@@ -133,7 +133,7 @@
                                                 {{ csrf_field() }}
                                                 {{ method_field('DELETE') }}
                                                 <button class="btn btn-danger" type="submit"
-                                                    onclick="return confirm('¿Desea eliminar?');">Eliminar</button>
+                                                    onclick="return confirm('¿Desea eliminar?');"><i class="far fa-trash-alt"></i></button>
                                             </form>
                                         </td>
                                     </tr>
@@ -148,7 +148,7 @@
 
     <script type="text/javascript">
         $('#nom_user').select2({
-            placeholder: 'Seleccione el usuario',
+            placeholder: 'Seleccione usuario',
             ajax: {
                 url: '/ajax-autocomplete-search2',
                 dataType: 'json',
@@ -170,7 +170,7 @@
 
 
         $('#cod_bascula').select2({
-            placeholder: 'Seleccione bascula',
+            placeholder: 'Seleccione báscula',
             ajax: {
                 url: '/ajax-autocomplete-search4',
                 dataType: 'json',

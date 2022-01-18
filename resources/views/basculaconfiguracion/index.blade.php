@@ -28,14 +28,16 @@
 
                             <div class="mb-3">
                                 <label class="form-label">Nombre Báscula</label>
-                                <input type="text" class="form-control" id="nom_bascula" name="nom_bascula" value="{{ old('nom_bascula') }}" required />
+                                <input type="text" class="form-control" id="nom_bascula" name="nom_bascula"
+                                    value="{{ old('nom_bascula') }}" required />
                             </div>
                             <div class="mb-3">
-                                <label class="form-label"> Dirección Ip </label>
-                                <input type="text" class="form-control" id="ipx_bascula" name="ipx_bascula"  placeholder = "000.000.000.000" value="{{ old('ipx_bascula') }}" required />
+                                <label class="form-label"> Dirección IP</label>
+                                <input type="text" class="form-control" id="ipx_bascula" name="ipx_bascula"
+                                    placeholder="000.000.000.000" value="{{ old('ipx_bascula') }}" required />
                             </div>
 
-                            <input type="hidden" id="est_bascula" name="est_bascula" value="0" /> 
+                            <input type="hidden" id="est_bascula" name="est_bascula" value="0" />
 
                             <button type="submit" class="btn btn-primary">Guardar</button>
                         </form>
@@ -62,11 +64,11 @@
                         <table class="table table-striped table-bordered">
                             <thead>
                                 <tr>
-                                    <th>#</th>
+                                    <th>N°</th>
                                     <!--th>ID Báscula</th!-->
-                                    <th>Cod Báscula </th>
+                                    <th>Código Báscula </th>
                                     <th>Nombre</th>
-                                    <th>IP Local</th>
+                                    <th>Dirección IP</th>
                                     <!--th>Estado</th!-->
                                     <th>Acciones</th>
                                 </tr>
@@ -81,11 +83,13 @@
                                         <td> {{ $bascula->ipx_bascula }}</td>
                                         <!--td> {{-- $bascula->est_bascula --}}</td!-->
                                         <td>
-                                            <form method="post" action="{{url('/basculaconfiguracion/' . $bascula->id) }}">
+                                            <form method="post"
+                                                action="{{ url('/basculaconfiguracion/' . $bascula->id) }}">
                                                 {{ csrf_field() }}
                                                 {{ method_field('DELETE') }}
                                                 <button class="btn btn-danger" type="submit"
-                                                    onclick="return confirm('¿Desea eliminar?');">Eliminar</button>
+                                                    onclick="return confirm('¿Desea eliminar?');"><i
+                                                        class="far fa-trash-alt"></i></button>
                                             </form>
                                         </td>
                                     </tr>

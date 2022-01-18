@@ -33,7 +33,7 @@ class EntregasController extends Controller
     {
         $clientes = Clientes::select('nombres', 'ruc_ci')->get();
 
-        return view('entregas.create',compact('clientes'));
+        return view('entregas.create', compact('clientes'));
     }
 
     public function store(Request $request)

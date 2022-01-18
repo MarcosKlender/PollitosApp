@@ -67,7 +67,7 @@
                                         <td>{{ $user->updated_at }}</td>
                                         <td class="text-center">
                                             <a href="{{ route('admin.edit', $user->id) }}"
-                                                class="btn btn-primary">Editar</a>
+                                                class="btn btn-primary"><i class="far fa-edit"></i></a>
                                             {{-- <form
                                                 action=" {{ route('admin.destroy', $user->id) }}" method="post"
                                                 style="display: inline-block">
