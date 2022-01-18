@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Exports\PostsExport;
+use App\Exports\PostsExportEntrega;
 use Maatwebsite\Excel\Facades\Excel;
 
 /*
@@ -17,7 +18,7 @@ use Maatwebsite\Excel\Facades\Excel;
 
 //EXPORTAR A EXCEL
 Route::get('/reportes/generar_excel/{lotes}', 'ReportesController@generar_excel')->name('reportes.generar_excel');
-Route::get('/reportesentregas/generar_excel/{lotes}', 'ReporteEntregaController@generar_excel')->name('reportesentregas.generar_excel');
+Route::get('/reportesentregas/generar_excel_entrega/{entregas}', 'ReporteEntregaController@generar_excel_entrega')->name('reportesentregas.generar_excel_entrega');
 
 Route::get('/', function () {
     return view('welcome');

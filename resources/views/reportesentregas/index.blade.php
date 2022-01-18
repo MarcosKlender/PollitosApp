@@ -8,7 +8,7 @@
 
                 <div class="card-header mt-2">
                     <div class="text-center">
-                        <h4>Reportes ENTREGAS</h4>
+                        <h4>REPORTES ENTREGAS</h4>
                     </div>
                 </div>
 
@@ -100,40 +100,40 @@
                             <table class="table table-striped table-bordered" id="reportes_peso">
                                 <thead>
                                     <tr class="font-weight-bold">
-                                        <td>N°</td>
-                                        <td>Tipo</td>
-                                        <td>CI / RUC</td>
-                                        <td>Clientes</td>
-                                        <td>Placa</td>
-                                        <td>Conductor</td>
-                                        <td>Destino</td>
-                                        <td>Cantidad Total Animal</td>
-                                        <td>Tot. Cant. Gavetas</td>
-                                        <td>Tot. Peso Bruto</td>
-                                        <td>Usuario</td>
-                                        <td>Fecha Registro</td>
-                                        <td>Anulado</td>
-                                        <td>Liquidado</td>
-                                        <td>Reporte pdf</td>
-                                        <td>Reporte excel</td>
+                                        <td align="center">N°</td>
+                                        <td align="center">Tipo</td>
+                                        <td align="center">CI / RUC</td>
+                                        <td align="center">Clientes</td>
+                                        <td align="center">Placa</td>
+                                        <td align="center">Conductor</td>
+                                        <td align="center">Destino</td>
+                                        <td align="center">Cantidad Total Animal</td>
+                                        <td align="center">Tot. Cant. Gavetas</td>
+                                        <td align="center">Tot. Peso Bruto</td>
+                                        <td align="center">Usuario</td>
+                                        <td align="center">Fecha Registro</td>
+                                        <td align="center">Anulado</td>
+                                        <td align="center">Liquidado</td>
+                                        <td align="center">Reporte pdf</td>
+                                        <td align="center">Reporte excel</td>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @foreach ($entregas as $entrega)
                                         <tr>
-                                            <td class="numero_id" id="{{ $entrega->id }}">{{ $entrega->id }}</td>
-                                            <td class="row_peso">{{ $entrega->tipo }}</td>
-                                            <td class="row_peso">{{ $entrega->ruc_ci }}</td>
-                                            <td class="row_peso">{{ $entrega->cliente }}</td>
-                                            <td class="row_peso">{{ $entrega->placa }}</td>
-                                            <td class="row_peso">{{ $entrega->conductor }}</td>
-                                            <td class="row_peso">{{ $entrega->destino }}</td>                                            
-                                            <td class="row_peso">{{ $entrega->cantidad }}</td>
-                                            <td class="row_peso">{{ $entrega->total_cant_gavetas }}</td>
-                                            <td class="row_peso">{{ $entrega->total_peso_bruto }}</td>
-                                            <td class="row_peso">{{ $entrega->usuario }}</td>
-                                            <td class="row_peso">{{ $entrega->created_at }}</td>
-                                            <td class="button">
+                                            <td align="center" class="numero_id" id="{{ $entrega->id }}">{{ $entrega->id }}</td>
+                                            <td align="center" class="row_peso">{{ $entrega->tipo }}</td>
+                                            <td align="center" class="row_peso">{{ $entrega->ruc_ci }}</td>
+                                            <td align="center" class="row_peso">{{ $entrega->cliente }}</td>
+                                            <td align="center" class="row_peso">{{ $entrega->placa }}</td>
+                                            <td align="center" class="row_peso">{{ $entrega->conductor }}</td>
+                                            <td align="center" class="row_peso">{{ $entrega->destino }}</td>                                            
+                                            <td align="center" class="row_peso">{{ $entrega->cantidad }}</td>
+                                            <td align="center" class="row_peso">{{ $entrega->total_cant_gavetas }}</td>
+                                            <td align="center" class="row_peso">{{ $entrega->total_peso_bruto }}</td>
+                                            <td align="center" class="row_peso">{{ $entrega->usuario }}</td>
+                                            <td align="center" class="row_peso">{{ $entrega->created_at }}</td>
+                                            <td align="center" class="button">
                                                 @if ($entrega->anulado == '0')
                                                     <button id="btn_prueba" class="btn btn-sm btn-primary"
                                                         type="submit">NO</button>
@@ -142,19 +142,19 @@
                                                 @endif
                                             </td>
 
-                                            <td class="button">
+                                            <td align="center" class="button">
                                                 @if ($entrega->liquidado == '0')
                                                     <button type="button" class="btn btn-sm btn-danger">NO</button>
                                                 @else
                                                     <button type="button" class="btn btn-sm btn-warning">SI</button>
                                                 @endif
                                             </td>
-                                            <td class="button">
+                                            <td align="center" class="button">
                                                 <a href="{{ route('reportesentregas.generar_pdf', $entrega->id) }}" target="_blank"
                                                     class="btn btn-lg btn-primary"><i class="far fa-file-pdf"></i></a>
                                             </td>
-                                            <td class="button">
-                                                <a href="{{ route('reportesentregas.generar_excel', $entrega->id) }}"
+                                            <td align="center" class="button">
+                                                <a href="{{ route('reportesentregas.generar_excel_entrega', $entrega->id) }}"
                                                     target="_blank" class="btn btn-lg btn-primary"><i
                                                         class="far fa-file-excel"></i></a>
                                             </td>
@@ -198,23 +198,23 @@
                                     <table class="table table-striped table-bordered">
                                         <thead>
                                             <tr class="font-weight-bold">
-                                                <td>ID</td>
-                                                <td>Cantidad Gavetas</td>
-                                                <td>Peso Bruto</td>
-                                                <td>Tipo Peso</td>
-                                                <td>Estado</td>
-                                                <td>Observación</td>
-                                                <td>Usuario</td>
-                                                <td>Fecha de Registro</td>
+                                                <td align="center">ID</td>
+                                                <td align="center">Cantidad Gavetas</td>
+                                                <td align="center">Peso Bruto</td>
+                                                <td align="center">Tipo Peso</td>
+                                                <td align="center">Estado</td>
+                                                <td align="center">Observación</td>
+                                                <td align="center">Usuario</td>
+                                                <td align="center">Fecha de Registro</td>
                                             </tr>
                                         </thead>
                                         <!--tbody!-->
                                         <tbody id="cuerpo_entrega">
                                         </tbody>
                                         <tr class="font-weight-bold">
-                                            <td colspan="1"><b>TOTAL</b></td>
-                                            <td id="total_cantidad"><b></b></td>
-                                            <td id="total_bruto"><b></b></td>
+                                            <td align="center" colspan="1"><b>TOTAL</b></td>
+                                            <td align="center" id="total_cantidad"><b></b></td>
+                                            <td align="center" id="total_bruto"><b></b></td>
                                         </tr>
                                     </table>
                                 </div>
@@ -229,24 +229,24 @@
                                         <table class="table table-striped table-bordered">
                                             <thead>
                                                 <tr class="font-weight-bold">
-                                                    <td>ID</td>
-                                                    <td >Tipos Entregas</td>
-                                                    <td >Cantidad Gavetas</td>
-                                                    <td>Peso Neto</td>
-                                                    <td>Tipo Peso</td>
-                                                    <td>Estado</td>
-                                                    <td>Observación</td>
-                                                    <td>Usuario</td>
-                                                    <td>Fecha de Registro</td>
+                                                    <td align="center">ID</td>
+                                                    <td align="center">Tipos Entregas</td>
+                                                    <td align="center">Cantidad Gavetas</td>
+                                                    <td align="center">Peso Neto</td>
+                                                    <td align="center">Tipo Peso</td>
+                                                    <td align="center">Estado</td>
+                                                    <td align="center">Observación</td>
+                                                    <td align="center">Usuario</td>
+                                                    <td align="center">Fecha de Registro</td>
                                                 </tr>
                                             </thead>
                                             <!--tbody!-->
                                             <tbody id="cuerpo_presa">
                                             </tbody>
                                             <tr class="font-weight-bold">
-                                                <td colspan="2"><b>TOTAL</b></td>
-                                                <td id="total_cantidad_presas"><b></b></td>
-                                                <td id="total_bruto_presas"><b></b></td>
+                                                <td align="center" colspan="2"><b>TOTAL</b></td>
+                                                <td align="center" id="total_cantidad_presas"><b></b></td>
+                                                <td align="center" id="total_bruto_presas"><b></b></td>
                                             </tr>
                                         </table>
                                     </div>
@@ -304,22 +304,20 @@
                             var fecha = fech.toLocaleString();
                             $("#cuerpo_entrega").append(
                                 $('<tr>'),
-                                $('<td>').text(id_acum=id_acum+1),
-                                $('<td>').text(value.cant_gavetas),
-                                $('<td>').text(value.peso_bruto),
-                                $('<td>').text(value.tipo_peso),
+                                $('<td align="center">').text(id_acum=id_acum+1),
+                                $('<td align="center">').text(value.cant_gavetas),
+                                $('<td align="center">').text(value.peso_bruto),
+                                $('<td align="center">').text(value.tipo_peso),
                                 (value.anulado === '1') ? $('<td>').text(
                                     'Anulado') :
-                                $('<td>').text(''),
-                                $('<td>').text(value.observaciones),
-                                $('<td>').text(value.usuario),
-                                $('<td>').text(fecha),
+                                $('<td align="center">').text(''),
+                                $('<td align="center">').text(value.observaciones),
+                                $('<td align="center">').text(value.usuario),
+                                $('<td align="center">').text(fecha),
                                 $('</tr>'));
                             if (value.anulado === '0') {
                                 tc = tc + parseFloat(value.cant_gavetas);
                                 tb = tb + parseFloat(value.peso_bruto);
-                               // tg = tg + parseFloat(value.peso_gavetas);
-                               // tf = tf + parseFloat(value.peso_final);
                             }
                         })
                         $('#total_cantidad').text(tc);
@@ -348,23 +346,22 @@
                     //dataType:'json',
                     success: function(response) {
                         $("#cuerpo_presa").html("");
-                        //var obj = Object.values(response);
                         $.each(response, function(index, value) {
                             var fech = new Date(value.created_at);
                             var fecha = fech.toLocaleString();
                             $("#cuerpo_presa").append(
                                 $('<tr>'),
-                                $('<td>').text(id_acumgv=id_acumgv+1),
-                                $('<td>').text(value.tipo_entrega),
-                                $('<td>').text(value.cant_gavetas),
-                                $('<td>').text(value.peso_bruto),
-                                $('<td>').text(value.tipo_peso),
+                                $('<td align="center">').text(id_acumgv=id_acumgv+1),
+                                $('<td align="center">').text(value.tipo_entrega),
+                                $('<td align="center">').text(value.cant_gavetas),
+                                $('<td align="center">').text(value.peso_bruto),
+                                $('<td align="center">').text(value.tipo_peso),
                                 (value.anulado === '1') ? $('<td>').text(
                                     'Anulado') :
-                                $('<td>').text(''),
-                                $('<td>').text(value.observaciones),
-                                $('<td>').text(value.usuario),
-                                $('<td>').text(fecha),
+                                $('<td align="center">').text(''),
+                                $('<td align="center">').text(value.observaciones),
+                                $('<td align="center">').text(value.usuario),
+                                $('<td align="center">').text(fecha),
                                 $('</tr>'));
                             if (value.anulado === '0') {
                                 tcgv = tcgv + parseFloat(value.cant_gavetas);

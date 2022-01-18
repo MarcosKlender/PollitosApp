@@ -26,6 +26,16 @@ class Entregas extends Model
         ->groupBy('registros_entregas.entregas_id', 'entregas.id');
     }
 
+    public function scopePresas_entregas($query)
+    {
+        return $query->leftJoin('presas_entregas', 'presas_entregas.entregas_id', '=', 'entregas.id')->select(
+            'entregas.*',
+            DB::raw('sum(presas_entregas.cant_gavetas) as total_cant_gavetas'),
+            DB::raw('sum(presas_entregas.peso_bruto) as total_peso_gavetas')
+        )->where('presas_entregas.anulado',0)
+        ->groupBy('presas_entregas.entregas_id', 'entregas.id');
+    }
+
 
      public function scopeIdEntregas($query, $entregas)
     {

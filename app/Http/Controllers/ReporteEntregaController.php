@@ -7,6 +7,10 @@ use App\RegistrosEntregas;
 use App\PresasEntregas;
 use App\Clientes;
 use Illuminate\Http\Request;
+use Illuminate\Contracts\View\View;
+use Maatwebsite\Excel\Concerns\FromView;
+use Maatwebsite\Excel\Concerns\Exportable;
+use App\Exports\PostsExportEntrega;
 
 
 class ReporteEntregaController extends Controller
@@ -63,12 +67,23 @@ class ReporteEntregaController extends Controller
         $pdf = \App::make('dompdf.wrapper');
     
         $entregas = Entregas::all_index()->orderBy('entregas.id')->paginate(10000);
+        $entregas_presas = Entregas::presas_entregas()->orderBy('id')->get();
+        $registros_entregas = RegistrosEntregas::orderBy('id')->where('anulado', 0)->get();
+        $presas_entregas = PresasEntregas::orderBy('id')->where('anulado', 0)->get();
+
+        $anulado = Entregas::where('id',$id)->select('anulado')->value('anulado');
+        $liquidado = Entregas::where('id',$id)->select('liquidado')->value('liquidado');
+
+        if($anulado != '1') {
+            if($liquidado === '1') {$est_liquidado = 'Liquidado';}else{$est_liquidado = 'Abierto'; }  
+        }else{
+            $est_liquidado = 'Anulado';
+        }
       
         $count = count($entregas);
-        $view = \View::make('reportes.pdfviews.entregapdf')->with('entregas', $entregas)->with('count', $count)->with('id', $id)->render();
+        $view = \View::make('reportesentregas.pdfviews.entregapdf')->with('entregas', $entregas)->with('entregas_presas', $entregas_presas)->with('registros_entregas', $registros_entregas)->with('presas_entregas', $presas_entregas)->with('liquidado', $est_liquidado)->with('count', $count)->with('id_entrega', $id)->render();
 
         $pdf->loadHTML($view);
-        //return dd($id);
         return $pdf->stream();
     }
 
@@ -91,4 +106,10 @@ class ReporteEntregaController extends Controller
         $presas = PresasEntregas::where('entregas_id', $id)->orderBy('id')->get();
         return $presas;
     }
+
+    public function generar_excel_entrega($id)
+    {
+        return (new PostsExportEntrega($id))->download('entregas.xlsx');
+    }
+
 }
