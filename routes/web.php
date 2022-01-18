@@ -17,6 +17,7 @@ use Maatwebsite\Excel\Facades\Excel;
 
 //EXPORTAR A EXCEL
 Route::get('/reportes/generar_excel/{lotes}', 'ReportesController@generar_excel')->name('reportes.generar_excel');
+Route::get('/reportesentregas/generar_excel/{lotes}', 'ReporteEntregaController@generar_excel')->name('reportesentregas.generar_excel');
 
 Route::get('/', function () {
     return view('welcome');
@@ -52,6 +53,8 @@ Route::post('/pesobruto/anular_registro', 'PesoBrutoController@anular_registro')
 Route::post('/pesobruto/registrar_gavetas', 'PesoBrutoController@registrar_gavetas')->name('pesobruto.registrar_gavetas');
 Route::post('/pesobruto/liquidar_lote', 'PesoBrutoController@liquidar_lote')->name('pesobruto.liquidar_lote');
 Route::get('/reportes/generar_pdf/{id}', 'ReportesController@generar_pdf')->name('reportes.generar_pdf');
+Route::get('/reportesentregas/generar_pdf/{id}', 'ReporteEntregaController@generar_pdf')->name('reportesentregas.generar_pdf');
+
 //Route::post('/basculas/')
 //rutas para generar pdf y detalla lotes
 Route::get('/reportes/generar_pdf_general/{lotes}', 'ReportesController@generar_pdf_general')->name('reportes.generar_pdf_general');
@@ -60,6 +63,9 @@ Route::post('/reportes/detalle_gvacias', 'ReportesController@detalle_gvacias')->
 Route::post('/reportes/detalle_visceras', 'ReportesController@detalle_visceras')->name('reportes.detalle_visceras');
 Route::post('/reportes/detalle_egresos', 'ReportesController@detalle_egresos')->name('reportes.detalle_egresos');
 Route::post('/reportes/detalle_gvacias_egresos', 'ReportesController@detalle_gvacias_egresos')->name('reportes.detalle_gvacias_egresos');
+
+Route::post('/reportesentregas/detalle_entrega', 'ReporteEntregaController@detalle_entrega')->name('reportesentregas.detalle_entrega');
+Route::post('/reportesentregas/detalle_presas', 'ReporteEntregaController@detalle_presas')->name('reportesentregas.detalle_presas');
 //Route::post('/reportes/show_detalle', 'ReportesController@show_detalle')->name('reportes.show_detalle');
 
 Route::resource('pesobruto', PesoBrutoController::class);
@@ -88,6 +94,7 @@ Route::post('/entregas/liquidar_lote', 'EntregasController@liquidar_lote')->name
 Route::resource('entregas', EntregasController::class);
 
 Route::resource('reportes', ReportesController::class);
+Route::resource('reportesentregas', ReporteEntregaController::class);
 Route::resource('basculas', BasculasController::class, ['except' => ['show']]);
 
 Route::post('/gavetas_vacias/anular', 'GavetasVaciasController@anular')->name('gavetas_vacias.anular');

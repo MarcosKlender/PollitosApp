@@ -149,24 +149,30 @@
              <li class="nav-item {{ (request()->is('reportes')) ? 'active' : '' }}">
                 <a class="nav-link" href="{{ route('reportes.index') }}">
                     <i class="fas fa-fw fa-copy"></i>
-                    <span>{{ __('Reportes') }}</span></a>
+                    <span>{{ __('Lotes') }}</span></a>
+            </li>
+
+             <li class="nav-item {{ (request()->is('reportesentregas')) ? 'active' : '' }}">
+                <a class="nav-link" href="{{ route('reportesentregas.index') }}">
+                    <i class="fas fa-fw fa-copy"></i>
+                    <span>{{ __('Entregas') }}</span></a>
             </li>
 
             <!-- Divider -->
-            <hr class="sidebar-divider">
+            <!--hr class="sidebar-divider">
 
             <!-- Heading -->
-            <div class="sidebar-heading">
+            <!--div class="sidebar-heading">
                 {{ __('Ajustes') }}
             </div>
 
             <!-- Nav Item - Profile -->
-            <li class="nav-item {{ Nav::isRoute('profile') }}">
+            <!--li class="nav-item {{ Nav::isRoute('profile') }}">
                 <a class="nav-link" href="{{ route('profile') }}">
                     <i class="fas fa-fw fa-user"></i>
                     <span>{{ __('Perfil') }}</span>
                 </a>
-            </li>
+            </li!--> 
 
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
