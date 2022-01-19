@@ -6,6 +6,7 @@ use App\Clientes;
 use App\Entregas;
 use App\PresasEntregas;
 use App\RegistrosEntregas;
+use App\Basculas;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -27,6 +28,41 @@ class EntregasController extends Controller
         
         $count = count($entregas);
         return view('entregas.index', compact('entregas', 'count'));
+    }
+
+
+    public function index2()
+    {
+        $user=auth()->user()->username;
+        $busuario =Basculas::select("cod_bascula")
+            ->where('nom_user', '=', "$user")
+            ->get();
+        $e_automatico = Basculas::select("automatico")
+            ->where('nom_user', '=', "$user")
+            ->value("automatico");
+   
+        $menu = Basculas::select("nom_menu")
+            ->where("nom_menu", '=', 'ENTREGAS')
+            ->get();
+
+        if (count($busuario)>0) {
+            $busuario=$busuario[0]['cod_bascula'];
+        }
+        if ($menu==="ENTREGAS" && $e_automatico==="1") {
+            $ch = curl_init("http://192.168.100.12/ws.php?opcion=get");
+            curl_setopt($ch, CURLOPT_URL, "http://192.168.100.12/ws.php?opcion=get");
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($ch, CURLOPT_TIMEOUT_MS, 3000);
+            $res = curl_exec($ch);
+            curl_close($ch);
+        //$res="Con_accesoB001";
+        } elseif ($menu==="EGRESOS" && $e_automatico==="0") {
+            $res="0";
+        } else {
+            $res="Sin_acceso";
+        }
+
+        return view('entregas.seccion_entregas', compact('res'));
     }
 
     public function create()
@@ -81,11 +117,29 @@ class EntregasController extends Controller
 
     public function edit($id)
     {
+        $user=auth()->user()->username;
+
+        $e_automatico = Basculas::select("automatico")
+            ->where('nom_user', '=', "$user")
+            ->value("automatico");
+
+        $id_bascula = Basculas::select("cod_bascula")
+            ->where('nom_user', '=', "$user")
+            ->value("cod_bascula");
+
+        $tipo_peso = Basculas::select("tipo_peso")
+            ->where('nom_user', '=', "$user")
+            ->value("tipo_peso");
+
+        $menu = Basculas::select("nom_menu")
+            ->where("nom_menu", '=', 'ENTREGAS')
+            ->value("nom_menu");
+
         $entregas = Entregas::findOrFail($id);
         $registros = RegistrosEntregas::where('entregas_id', $id)->where('anulado', 0)->orderBy('id')->get();
         $presas = PresasEntregas::where('entregas_id', $id)->where('anulado', 0)->orderBy('id')->get();
      
-        return view('entregas.edit', compact('entregas', 'registros', 'presas'));
+        return view('entregas.edit', compact('entregas', 'registros', 'presas', 'e_automatico', 'menu', 'tipo_peso'));
     }
 
     public function update(Request $request, $id)

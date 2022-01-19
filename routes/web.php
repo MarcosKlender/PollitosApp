@@ -92,6 +92,7 @@ Route::get('/entregas/entregas_anuladas', 'EntregasController@entregas_anuladas'
 Route::post('/entregas/anular_entrega', 'EntregasController@anular_entrega')->name('entregas.anular_entrega');
 Route::post('/entregas/anular_registro', 'EntregasController@anular_registro')->name('entregas.anular_registro');
 Route::post('/entregas/liquidar_lote', 'EntregasController@liquidar_lote')->name('entregas.liquidar_lote');
+Route::get('/entregas/seccion_entregas', 'EntregasController@index2')->name('seccion_entregas');
 Route::resource('entregas', EntregasController::class);
 
 Route::resource('reportes', ReportesController::class);

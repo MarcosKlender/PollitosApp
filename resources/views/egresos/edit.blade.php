@@ -57,9 +57,9 @@
 
                                     <div class="form-group col-lg-6">
                                         <label for="peso_bruto">Peso Bruto</label>
-                                        @if ($e_automatico == '1' and $id_bascula == 'B00-2')
+                                        @if ($e_automatico == '1' and $menu == 'EGRESOS')
                                             <div id="recargar" name="recargar"></div>
-                                        @elseif($e_automatico == '0' and $id_bascula == 'B00-2')
+                                        @elseif($e_automatico == '0' and $menu == 'EGRESOS')
                                             <input type="number" class="form-control" id="peso_bruto" name="peso_bruto"
                                                 value="{{ old('peso_bruto') }}" step=".01" required />
                                         @elseif($e_automatico == null)

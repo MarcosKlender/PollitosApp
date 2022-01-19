@@ -36,11 +36,14 @@ class EgresosController extends Controller
             ->where('nom_user', '=', "$user")
             ->value("automatico");
    
+        $menu = Basculas::select("nom_menu")
+            ->where("nom_menu", '=', 'EGRESOS')
+            ->get();
 
         if (count($busuario)>0) {
             $busuario=$busuario[0]['cod_bascula'];
         }
-        if ($busuario==="B00-2" && $e_automatico==="1") {
+        if ($menu==="EGRESOS" && $e_automatico==="1") {
             $ch = curl_init("http://192.168.100.12/ws.php?opcion=get");
             curl_setopt($ch, CURLOPT_URL, "http://192.168.100.12/ws.php?opcion=get");
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -48,7 +51,7 @@ class EgresosController extends Controller
             $res = curl_exec($ch);
             curl_close($ch);
         //$res="Con_accesoB001";
-        } elseif ($busuario==="B00-2" && $e_automatico==="0") {
+        } elseif ($menu==="EGRESOS" && $e_automatico==="0") {
             $res="0";
         } else {
             $res="Sin_acceso";
@@ -113,6 +116,10 @@ class EgresosController extends Controller
             ->where('nom_user', '=', "$user")
             ->value("tipo_peso");
 
+        $menu = Basculas::select("nom_menu")
+            ->where("nom_menu", '=', 'EGRESOS')
+            ->value("nom_menu");
+
         $lote = Lotes::findOrFail($id);
         $egresos = Egresos::where('lotes_id', $id)->where('anulado', 0)->orderBy('id')->get();
 
@@ -128,7 +135,7 @@ class EgresosController extends Controller
 
         $estado_liquidado = Lotes::where('id', $id)->where('anulado', 0)->select('liquidado')->value('liquidado');
 
-        return view('egresos.edit', compact('lote', 'egresos', 'total_ingresos', 'total_egresos', 'e_automatico', 'id_bascula', 'gavetas', 'tipo_peso', 'cant_gav', 'cant_gav_vac', 'lote_total_pbruto', 'egreso_total_pbruto', 'estado_liquidado'));
+        return view('egresos.edit', compact('lote', 'egresos', 'total_ingresos', 'total_egresos', 'e_automatico', 'id_bascula','menu', 'gavetas', 'tipo_peso', 'cant_gav', 'cant_gav_vac', 'lote_total_pbruto', 'egreso_total_pbruto', 'estado_liquidado'));
     }
 
     public function update(Request $request, $id)

@@ -62,12 +62,19 @@ class PesoBrutoController extends Controller
         $busuario =Basculas::select("id")
             ->where('nom_user', '=', "$user")
             ->get();
+
+        $menu = Basculas::select("nom_menu")
+            ->where("nom_menu", '=', 'INGRESOS')
+            ->get();
+
         $cod_bascula =Basculas::select("id")
             ->where('nom_user', '=', "$user")
             ->get();
+
         $e_automatico = Basculas::select("automatico")
             ->where('nom_user', '=', "$user")
             ->value("automatico");
+        
         $tipo_peso = Basculas::select("tipo_peso")
             ->where('nom_user', '=', "$user")
             ->value("tipo_peso");
@@ -75,7 +82,8 @@ class PesoBrutoController extends Controller
         if (count($busuario)>0) {
             $busuario=$busuario[0]['cod_bascula'];
         }
-        if ($busuario==="B00-1" && $e_automatico==="1") {
+
+        if ( $menu==="INGRESOS"  && $e_automatico==="1") {
             $ch = curl_init("http://192.168.100.241/ws.php?opcion=get");
             curl_setopt($ch, CURLOPT_URL, "http://192.168.100.11/ws.php?opcion=get");
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -86,7 +94,7 @@ class PesoBrutoController extends Controller
         //$res = cacular_kilos($tipo_peso, $resultado);
 
         //$res="Con_accesoB001";
-        } elseif ($busuario==="B00-1" && $e_automatico==="0") {
+        } elseif ( $menu === "INGRESOS" && $e_automatico ==="0") {
             $res="0";
         } else {
             $res="Sin_acceso";
@@ -177,6 +185,10 @@ class PesoBrutoController extends Controller
             ->where('nom_user', '=', "$user")
             ->value("tipo_peso");
 
+        $menu = Basculas::select("nom_menu")
+            ->where("nom_menu", '=', "INGRESOS")
+            ->value("nom_menu");
+
         $lote = Lotes::findOrFail($id);
         $registros = Registros::where('lotes_id', $id)->where('anulado', 0)->orderBy('id')->get();
         
@@ -184,7 +196,7 @@ class PesoBrutoController extends Controller
         $cant_gav = Registros::where('lotes_id', $id)->where('anulado', 0)->select('cant_gavetas')->sum('cant_gavetas');
         $cant_gav_vac = GavetasVacias::where('lotes_id', $id)->where('anulado', 0)->select('cant_gavetas_vacias')->sum('cant_gavetas_vacias');
 
-        return view('pesobruto.edit', compact('lote', 'registros', 'gavetas', 'tipo_peso', 'e_automatico', 'id_bascula', 'cant_gav', 'cant_gav_vac'));
+        return view('pesobruto.edit', compact('lote', 'registros', 'gavetas', 'tipo_peso', 'e_automatico', 'id_bascula', 'menu','cant_gav', 'cant_gav_vac'));
     }
 
     public function update(Request $request, $id)

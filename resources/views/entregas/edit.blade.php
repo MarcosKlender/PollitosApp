@@ -57,22 +57,32 @@
 
                                     <div class="form-group col-lg-6">
                                         <label for="peso_bruto">Peso Bruto</label>
-                                        <input type="number" class="form-control" id="peso_bruto" name="peso_bruto"
-                                            value="{{ old('peso_bruto') }}" required autofocus />
+                                         @if ($e_automatico == '1' and $menu == 'ENTREGAS')
+                                            <div id="recargar" name="recargar"></div>
+                                         @elseif($e_automatico == '0' and $menu == 'ENTREGAS')
+                                            <input type="number" class="form-control" id="peso_bruto" name="peso_bruto"
+                                            value="{{ old('peso_bruto') }}" required  />
+                                        @elseif($e_automatico == null)
+                                             <input type="number" class="form-control" id="peso_bruto" name="peso_bruto"
+                                                  step=".01" required readonly />
+                                            @endif
                                     </div>
 
                                     <div class="form-group col-lg-12 text-center">
                                         <label for="tipo_peso" class="mr-5">Tipo de Peso:</label>
-                                        <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="radio" name="tipo_peso" id="tipo_peso"
-                                                value="lb" checked>
-                                            <label class="form-check-label" for="libras">Libras</label>
-                                        </div>
-                                        <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="radio" name="tipo_peso" id="tipo_peso"
-                                                value="kg">
-                                            <label class="form-check-label" for="kilogramos">Kilogramos</label>
-                                        </div>
+                                        @if ($tipo_peso == 'lb')
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="tipo_peso" id="tipo_peso"
+                                                    value="lb" checked>
+                                                <label class="form-check-label" for="libras">Libras</label>
+                                            </div>
+                                        @elseif($tipo_peso == 'kg')
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="tipo_peso" id="tipo_peso"
+                                                    value="kg">
+                                                <label class="form-check-label" for="kilogramos">Kilogramos</label>
+                                            </div>
+                                         @endif
                                     </div>
                                 </div>
                                 <input type="hidden" id="entregas_id" name="entregas_id" value="{{ $entregas->id }}"
@@ -413,7 +423,7 @@
 
         $(document).ready(function() {
             setInterval(function() {
-                $('#recargar').load('/egresos/seccion');
+                $('#recargar').load('/entregas/seccion_entregas');
             }, 2000);
         });
     </script>
