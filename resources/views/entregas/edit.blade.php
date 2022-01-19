@@ -189,16 +189,19 @@
 
                                     <div class="form-group col-lg-12 text-center">
                                         <label for="tipo_peso" class="mr-5">Tipo de Peso:</label>
-                                        <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="radio" name="tipo_peso" id="tipo_peso"
-                                                value="lb" checked>
-                                            <label class="form-check-label" for="libras">Libras</label>
-                                        </div>
-                                        <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="radio" name="tipo_peso" id="tipo_peso"
-                                                value="kg">
-                                            <label class="form-check-label" for="kilogramos">Kilogramos</label>
-                                        </div>
+                                        @if ($tipo_peso == 'lb')
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="tipo_peso" id="tipo_peso"
+                                                    value="lb" checked>
+                                                <label class="form-check-label" for="libras">Libras</label>
+                                            </div>
+                                        @elseif($tipo_peso == 'kg')
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="tipo_peso" id="tipo_peso"
+                                                    value="kg">
+                                                <label class="form-check-label" for="kilogramos">Kilogramos</label>
+                                            </div>
+                                         @endif
                                     </div>
                                 </div>
                                 <input type="hidden" id="entregas_id" name="entregas_id" value="{{ $entregas->id }}">
