@@ -444,11 +444,11 @@
 
                                   <!-- animales Mollejas !-->
                                 <div class="tab-pane fade " id="mollejas" role="tabpanel" aria-labelledby="mollejas">
-                                    <div class="form-group">
+                                    <!--div class="form-group">
                                             <label for="cant_mollejas">Cantidad Mollejas</label>
                                             <input type="number" class="form-control" id="cant_mollejas_egresos" name="cant_mollejas_egresos"
                                                 value="{{ old('cant_mollejas_egresos') }}" required />
-                                    </div>
+                                    </div!-->
 
                                     <div class="form-group">
                                             <label for="peso_mollejas">Peso Mollejas</label>

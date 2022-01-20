@@ -248,7 +248,7 @@
         <tr align="center"><TH align="center" COLSPAN=5><strong> MOLLEJAS EGRESOS </strong></TH></tr>
     <tr>
         <td bgcolor="#FCB2A2"><b>ID Lote</b></td>
-        <td bgcolor="#FCB2A2"><b>Cantidad mollejas</b></td>
+        <!--td bgcolor="#FCB2A2"><b>Cantidad mollejas</b></td!-->
         <td bgcolor="#FCB2A2"><b>Peso mollejas</b></td>
         <td bgcolor="#FCB2A2"><b>Cantidad gavetas vacias</b></td>
         <td bgcolor="#FCB2A2"><b>Usuario</b></td>
@@ -260,7 +260,7 @@
     @if( $lote_molleja_egreso->anulado == 0)
      <tr>         
          <td>{{ $lote_molleja_egreso->id }}</td>
-         <td>{{ $lote_molleja_egreso->cant_mollejas_egresos }}</td>
+         <!--td>{{ $lote_molleja_egreso->cant_mollejas_egresos }}</td!-->
          <td>{{ $lote_molleja_egreso->peso_mollejas_egresos }}</td>
          <td>{{ $lote_molleja_egreso->cant_gvacia_mollejas_egresos }}</td>
          <td>{{ $lote_molleja_egreso->usuario }}</td>

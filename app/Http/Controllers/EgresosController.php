@@ -236,7 +236,7 @@ class EgresosController extends Controller
             'peso_estropeados_egresos' => 'required|numeric',
             'cant_gvacia_estropeados_egresos' => 'required|numeric',
 
-            'cant_mollejas_egresos' => 'required|numeric',
+            //'cant_mollejas_egresos' => 'required|numeric',
             'peso_mollejas_egresos' => 'required|numeric',
             'cant_gvacia_mollejas_egresos' => 'required|numeric',
 

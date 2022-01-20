@@ -349,7 +349,7 @@
                                 <thead>
                                     <tr>
                                         <td align="center">ID Lote</td>
-                                        <td align="center">Cantidad mollejas</td>
+                                        <!--td align="center">Cantidad mollejas</td!-->
                                         <td align="center">Peso mollejas</td>
                                         <td align="center">Cantidad gaventas vacias</td>
                                         <td align="center">Usuario</td>
@@ -361,7 +361,7 @@
                                     @if($lote->id==$lote_mollejas->id)
                                         <tr>
                                             <td align="center">{{ $lote_mollejas->id }}</td>
-                                            <td align="center">{{ $lote_mollejas->cant_mollejas_egresos }}</td>
+                                            <!--td align="center">{{-- $lote_mollejas->cant_mollejas_egresos --}}</td!-->
                                             <td align="center">{{ $lote_mollejas->peso_mollejas_egresos }}</td>
                                             <td align="center"> {{ $lote_mollejas->cant_gvacia_mollejas_egresos }} </td>
                                             <td align="center">{{ $lote_mollejas->usuario }}</td>

@@ -203,14 +203,14 @@
                         <table class="table table-striped table-bordered">
                             <thead>
                                 <tr class="font-weight-bold">
-                                    <td class="col-4">Cantidad mollejas</td>
-                                    <td class="col-4">Peso mollejas</td>
-                                    <td class="col-4">Cantidad gavetas vacias mollejas</td>
+                                    <!--td class="col-4">Cantidad mollejas</td!-->
+                                    <td class="col-6">Peso mollejas</td>
+                                    <td class="col-6">Cantidad gavetas vacias mollejas</td>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>{{ $lote->cant_mollejas_egresos }}</td>
+                                    <!--td>{{-- $lote->cant_mollejas_egresos --}}</td!-->
                                     <td>{{ $lote->peso_mollejas_egresos }}</td>
                                     <td>{{ $lote->cant_gvacia_mollejas_egresos }}</td>
                                 </tr>
