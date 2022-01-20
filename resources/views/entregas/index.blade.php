@@ -51,10 +51,10 @@
                                         <td>Tipo Animal</td>
                                         <td>RUC/CI</td>
                                         <td>Cliente</td>
+                                        <td>Cantidad animales</td>
                                         <td>Placa</td>
                                         <td>Conductor</td>
-                                        <td>Destino</td>
-                                        {{-- <td>Cantidad Animales</td> --}}
+                                        <td>Destino</td>                                        
                                         <td>Usuario</td>
                                         <td>Fecha de Registro</td>
                                         @if (Auth::user()->rol->key == 'admin')
@@ -71,10 +71,10 @@
                                             <td>{{ $entrega->tipo }}</td>
                                             <td>{{ $entrega->ruc_ci }}</td>
                                             <td>{{ $entrega->cliente }}</td>
+                                            <td>{{ $entrega->cant_animales }}</td>
                                             <td>{{ $entrega->placa }}</td>
                                             <td>{{ $entrega->conductor }}</td>
-                                            <td>{{ $entrega->destino }}</td>
-                                            {{-- <td>{{ $entrega->cant_animales }}</td> --}}
+                                            <td>{{ $entrega->destino }}</td>                                            
                                             <td>{{ $entrega->usuario }}</td>
                                             <td>{{ $entrega->created_at }}</td>
                                             @if (Auth::user()->rol->key == 'admin')

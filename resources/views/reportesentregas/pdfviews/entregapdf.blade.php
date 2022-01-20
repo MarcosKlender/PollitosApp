@@ -45,7 +45,7 @@
                             <div>   <strong>N°: </strong>           <label>{{ $entrega->id }}                </label></div>
                         <div style="position:absolute; left:0pt; width:192pt;">   
                          <div>   <strong>Tipo: </strong>            <label>{{ $entrega->tipo }}                    </label></div>
-                         <div>   <strong>Cantidad: </strong>            <label>{{ $entrega->cantidad }}            </label></div>
+                         <div>   <strong>Cantidad Animales: </strong>            <label>{{ $entrega->cant_animales }}            </label></div>
                          <div>   <strong>Cliente:</strong>         <label>{{ $entrega->cliente }}              </label></div>
                          <div>   <strong>RUC / C.I:</strong>         <label>{{ $entrega->ruc_ci }}                 </label></div>   
                          <div>   <strong>Destino: </strong>       <label>{{ $entrega->destino }}           </label></div>                       

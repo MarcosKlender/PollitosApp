@@ -20,7 +20,7 @@
         <tr>
             <td align="center">{{ $entrega->id }}</td>
             <td align="center">{{ $entrega->tipo }}</td>
-            <td align="center">{{ $entrega->cantidad }}</td>
+            <td align="center">{{ $entrega->cant_animales }}</td>
             <td align="center">{{ $entrega->cliente }}</td>
             <td align="center">{{ $entrega->ruc_ci }}</td>
             <td align="center">{{ $entrega->destino }}</td>                                           

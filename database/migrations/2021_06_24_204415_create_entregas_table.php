@@ -18,10 +18,10 @@ class CreateEntregasTable extends Migration
             $table->string('tipo');
             $table->string('ruc_ci');
             $table->string('cliente');
-            $table->string('placa');
-            $table->string('conductor');
-            $table->string('destino');
-            $table->integer('cant_animales');
+            $table->string('placa')->nullable();
+            $table->string('conductor')->nullable();
+            $table->string('destino')->nullable();
+            $table->integer('cant_animales')->nullable();
             $table->string('usuario');
             $table->string('anulado', 1);
             $table->string('liquidado', 1);

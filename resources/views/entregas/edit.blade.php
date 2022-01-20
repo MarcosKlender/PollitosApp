@@ -301,13 +301,19 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel3">¿Está seguro de liquidar el lote de entregas?</h5>
+                    <h5 class="modal-title" id="staticBackdropLabel3">¿Está seguro de liquidar la entrega?</h5>
                 </div>
                 <form action="{{ route('entregas.liquidar_lote') }}" method="post">
                     @csrf
                     <div class="modal-body">
-                        Una vez liquidado el lote no podrá registrar más pesos.
+                        <div class="form-group">
+                            <label for="cant_animales">Cantidad Animales</label>
+                            <input type="number" class="form-control" id="cant_animales" name="cant_animales"
+                                        value="{{ old('cant_animales') }}" required />
+                        </div>
+                          Una vez liquidada la entrega no podrá registrar más pesos. </br> </br>
                     </div>
+
                     <div class="modal-footer">
                         <input type="hidden" id="id_liquidar" name="id_liquidar" value="{{ $entregas->id }}">
                         <input type="hidden" id="liquidado" name="liquidado" value="1">
@@ -378,7 +384,7 @@
             }
 
             $("#liquidar").click(function() {
-                $(".modal-title").html('¿Está seguro de liquidar el lote de entregas?');
+                $(".modal-title").html('¿Está seguro de liquidar la entrega?');
             });
 
             $(".modal_gavetas").click(function() {

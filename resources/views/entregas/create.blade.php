@@ -48,23 +48,19 @@
                         <div class="form-group">
                             <label for="placa">Placa del Vehículo</label>
                             <input type="text" class="form-control" id="placa" name="placa" value="{{ old('placa') }}"
-                                maxlength="7" required />
+                                maxlength="7"  />
                         </div>
                         <div class="form-group">
                             <label for="conductor">Conductor del Vehículo</label>
                             <input type="text" class="form-control" id="conductor" name="conductor"
-                                value="{{ old('conductor') }}" required />
+                                value="{{ old('conductor') }}"  />
                         </div>
                         <div class="form-group">
                             <label for="destino">Destino</label>
                             <input type="text" class="form-control" id="destino" name="destino"
-                                value="{{ old('destino') }}" required />
+                                value="{{ old('destino') }}"  />
                         </div>
-                        <div class="form-group">
-                            <label for="cant_animales">Cantidad de Animales</label>
-                            <input type="number" class="form-control" id="cant_animales" name="cant_animales"
-                                value="{{ old('cant_animales') }}" step=".01" required />
-                        </div>
+
                         <input type="hidden" id="usuario" name="usuario" value="{{ Auth::user()->username }}" required />
                         <input type="hidden" id="anulado" name="anulado" value="0" required />
                         <input type="hidden" id="liquidado" name="liquidado" value="0" required />

@@ -128,7 +128,7 @@
                                             <td align="center" class="row_peso">{{ $entrega->placa }}</td>
                                             <td align="center" class="row_peso">{{ $entrega->conductor }}</td>
                                             <td align="center" class="row_peso">{{ $entrega->destino }}</td>                                            
-                                            <td align="center" class="row_peso">{{ $entrega->cantidad }}</td>
+                                            <td align="center" class="row_peso">{{ $entrega->cant_animales }}</td>
                                             <td align="center" class="row_peso">{{ $entrega->total_cant_gavetas }}</td>
                                             <td align="center" class="row_peso">{{ $entrega->total_peso_bruto }}</td>
                                             <td align="center" class="row_peso">{{ $entrega->usuario }}</td>
