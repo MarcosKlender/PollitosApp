@@ -34,16 +34,22 @@ class EntregasController extends Controller
     public function index2()
     {
         $user=auth()->user()->username;
-        $busuario =Basculas::select("cod_bascula")
-            ->where('nom_user', '=', "$user")
-            ->get();
-        $e_automatico = Basculas::select("automatico")
-            ->where('nom_user', '=', "$user")
+
+        $busuario =Basculas::select("id")->where('nom_user', '=', "$user")->where('nom_menu', '=', 'ENTREGAS')->get();
+
+        $menu = Basculas::select("nom_menu")->where('nom_user', '=', "$user")->where('nom_menu', '=', 'ENTREGAS')
+        ->value('nom_menu');
+
+        $cod_bascula =Basculas::select("id")->where('nom_user', '=', "$user")->where('nom_menu', '=', 'ENTREGAS')->get();
+
+        $e_automatico = Basculas::select("automatico")->where('nom_user', '=', "$user")->where('nom_menu', '=', 'ENTREGAS')
             ->value("automatico");
-   
-        $menu = Basculas::select("nom_menu")
-            ->where("nom_menu", '=', 'ENTREGAS')
-            ->get();
+        
+        $tipo_peso = Basculas::select("tipo_peso")->where('nom_user', '=', "$user")->where('nom_menu', '=', 'ENTREGAS')
+            ->value("tipo_peso");
+
+        $ipx_bascula = Basculas::select("ipx_bascula")->where('nom_user', '=', "$user")->where('nom_menu', '=', 'ENTREGAS')
+            ->value("ipx_bascula");
 
         if (count($busuario)>0) {
             $busuario=$busuario[0]['cod_bascula'];
@@ -56,7 +62,7 @@ class EntregasController extends Controller
             $res = curl_exec($ch);
             curl_close($ch);
         //$res="Con_accesoB001";
-        } elseif ($menu==="EGRESOS" && $e_automatico==="0") {
+        } elseif ($menu==="ENTREGAS" && $e_automatico==="0") {
             $res="0";
         } else {
             $res="Sin_acceso";

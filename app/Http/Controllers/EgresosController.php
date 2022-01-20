@@ -29,16 +29,22 @@ class EgresosController extends Controller
     public function index2()
     {
         $user=auth()->user()->username;
-        $busuario =Basculas::select("cod_bascula")
-            ->where('nom_user', '=', "$user")
-            ->get();
-        $e_automatico = Basculas::select("automatico")
-            ->where('nom_user', '=', "$user")
+        
+        $busuario =Basculas::select("id")->where('nom_user', '=', "$user")->where('nom_menu', '=', 'EGRESOS')->get();
+
+        $menu = Basculas::select("nom_menu")->where('nom_user', '=', "$user")->where('nom_menu', '=', 'EGRESOS')
+        ->value('nom_menu');
+
+        $cod_bascula =Basculas::select("id")->where('nom_user', '=', "$user")->where('nom_menu', '=', 'EGRESOS')->get();
+
+        $e_automatico = Basculas::select("automatico")->where('nom_user', '=', "$user")->where('nom_menu', '=', 'EGRESOS')
             ->value("automatico");
-   
-        $menu = Basculas::select("nom_menu")
-            ->where("nom_menu", '=', 'EGRESOS')
-            ->get();
+        
+        $tipo_peso = Basculas::select("tipo_peso")->where('nom_user', '=', "$user")->where('nom_menu', '=', 'EGRESOS')
+            ->value("tipo_peso");
+
+        $ipx_bascula = Basculas::select("ipx_bascula")->where('nom_user', '=', "$user")->where('nom_menu', '=', 'EGRESOS')
+            ->value("ipx_bascula");
 
         if (count($busuario)>0) {
             $busuario=$busuario[0]['cod_bascula'];

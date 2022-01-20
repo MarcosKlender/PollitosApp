@@ -59,37 +59,29 @@ class PesoBrutoController extends Controller
     {
         $user=auth()->user()->username;
 
-        $busuario =Basculas::select("id")
-            ->where('nom_user', '=', "$user")
-            ->get();
+        $busuario =Basculas::select("id")->where('nom_user', '=', "$user")->where('nom_menu', '=', 'INGRESOS')->get();
 
-        $menu = Basculas::select("nom_menu")
-            ->where("nom_menu", '=', 'INGRESOS')
-            ->get();
+        $menu = Basculas::select("nom_menu")->where('nom_user', '=', "$user")->where('nom_menu', '=', 'INGRESOS')
+        ->value('nom_menu');
 
-        $cod_bascula =Basculas::select("id")
-            ->where('nom_user', '=', "$user")
-            ->get();
+        $cod_bascula =Basculas::select("id")->where('nom_user', '=', "$user")->where('nom_menu', '=', 'INGRESOS')->get();
 
-        $e_automatico = Basculas::select("automatico")
-            ->where('nom_user', '=', "$user")
+        $e_automatico = Basculas::select("automatico")->where('nom_user', '=', "$user")->where('nom_menu', '=', 'INGRESOS')
             ->value("automatico");
         
-        $tipo_peso = Basculas::select("tipo_peso")
-            ->where('nom_user', '=', "$user")
+        $tipo_peso = Basculas::select("tipo_peso")->where('nom_user', '=', "$user")->where('nom_menu', '=', 'INGRESOS')
             ->value("tipo_peso");
 
-        $ipx_bascula = Basculas::select("ipx_bascula")
-            ->where('nom_menu', '=', "INGRESOS")
+        $ipx_bascula = Basculas::select("ipx_bascula")->where('nom_user', '=', "$user")->where('nom_menu', '=', 'INGRESOS')
             ->value("ipx_bascula");
 
         if (count($busuario)>0) {
             $busuario=$busuario[0]['cod_bascula'];
         }
 
+
         if ( $menu==="INGRESOS"  && $e_automatico==="1") {
             $ch = curl_init("http://192.168.100.241/ws.php?opcion=get");
-            //dd($ch);
             curl_setopt($ch, CURLOPT_URL, "http://192.168.100.11/ws.php?opcion=get");
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
             curl_setopt($ch, CURLOPT_TIMEOUT_MS, 3000);
