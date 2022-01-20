@@ -34,6 +34,7 @@
                             <div class="mb-3">
                                 <select class="form-control" id="cod_bascula" name="cod_bascula" required></select>
                             </div>
+                            <input name="ipx_bascula" id="ipx_bascula" type="hidden" >
 
                             <div class="mb-3">
                                 <select class="form-control" id="nom_user" name="nom_user" required></select>
@@ -181,7 +182,7 @@
                             return {
                                 text: item.cod_bascula,
                                 id: item.cod_bascula,
-                                value: item.cod_bascula
+                                value: item.ipx_bascula
                             }
                         })
                     };
@@ -189,6 +190,10 @@
                 cache: true
             }
         });
+
+        $('#cod_bascula').on('select2:select',function(e){
+             $('#ipx_bascula').val(e.params.data.value);
+        })
 
     </script>
 @endsection

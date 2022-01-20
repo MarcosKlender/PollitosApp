@@ -104,20 +104,21 @@ class EgresosController extends Controller
     public function edit($id)
     {
         $user=auth()->user()->username;
+
         $e_automatico = Basculas::select("automatico")
-            ->where('nom_user', '=', "$user")
+            ->where('nom_user', '=', "$user")->where('nom_menu', '=', 'EGRESOS')
             ->value("automatico");
 
         $id_bascula = Basculas::select("cod_bascula")
-            ->where('nom_user', '=', "$user")
-            ->value("cod_bascula");
-
-        $tipo_peso = Basculas::select("tipo_peso")
+            ->where('nom_user', '=', "$user")->where('nom_menu', '=', 'EGRESOS')
+            ->value("cod_bascula");    
+        
+        $tipo_peso = Basculas::select("tipo_peso")->where('nom_menu', '=', 'EGRESOS')
             ->where('nom_user', '=', "$user")
             ->value("tipo_peso");
 
-        $menu = Basculas::select("nom_menu")
-            ->where("nom_menu", '=', 'EGRESOS')
+        $menu = Basculas::select("nom_menu")->where("nom_menu", '=', "EGRESOS")
+            ->where('nom_user', '=', "$user")
             ->value("nom_menu");
 
         $lote = Lotes::findOrFail($id);

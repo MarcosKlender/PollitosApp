@@ -79,12 +79,17 @@ class PesoBrutoController extends Controller
             ->where('nom_user', '=', "$user")
             ->value("tipo_peso");
 
+        $ipx_bascula = Basculas::select("ipx_bascula")
+            ->where('nom_menu', '=', "INGRESOS")
+            ->value("ipx_bascula");
+
         if (count($busuario)>0) {
             $busuario=$busuario[0]['cod_bascula'];
         }
 
         if ( $menu==="INGRESOS"  && $e_automatico==="1") {
             $ch = curl_init("http://192.168.100.241/ws.php?opcion=get");
+            //dd($ch);
             curl_setopt($ch, CURLOPT_URL, "http://192.168.100.11/ws.php?opcion=get");
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
             curl_setopt($ch, CURLOPT_TIMEOUT_MS, 3000);
@@ -175,25 +180,31 @@ class PesoBrutoController extends Controller
     public function edit($id)
     {
         $user=auth()->user()->username;
+        
         $e_automatico = Basculas::select("automatico")
-            ->where('nom_user', '=', "$user")
+            ->where('nom_user', '=', "$user")->where('nom_menu', '=', 'INGRESOS')
             ->value("automatico");
+
         $id_bascula = Basculas::select("cod_bascula")
-            ->where('nom_user', '=', "$user")
+            ->where('nom_user', '=', "$user")->where('nom_menu', '=', 'INGRESOS')
             ->value("cod_bascula");    
-        $tipo_peso = Basculas::select("tipo_peso")
+        
+        $tipo_peso = Basculas::select("tipo_peso")->where('nom_menu', '=', 'INGRESOS')
             ->where('nom_user', '=', "$user")
             ->value("tipo_peso");
 
-        $menu = Basculas::select("nom_menu")
-            ->where("nom_menu", '=', "INGRESOS")
+        $menu = Basculas::select("nom_menu")->where("nom_menu", '=', "INGRESOS")
+            ->where('nom_user', '=', "$user")
             ->value("nom_menu");
 
         $lote = Lotes::findOrFail($id);
+        
         $registros = Registros::where('lotes_id', $id)->where('anulado', 0)->orderBy('id')->get();
         
         $gavetas = GavetasVacias::where('lotes_id', $id)->where('anulado', 0)->orderBy('id')->get();
+        
         $cant_gav = Registros::where('lotes_id', $id)->where('anulado', 0)->select('cant_gavetas')->sum('cant_gavetas');
+        
         $cant_gav_vac = GavetasVacias::where('lotes_id', $id)->where('anulado', 0)->select('cant_gavetas_vacias')->sum('cant_gavetas_vacias');
 
         return view('pesobruto.edit', compact('lote', 'registros', 'gavetas', 'tipo_peso', 'e_automatico', 'id_bascula', 'menu','cant_gav', 'cant_gav_vac'));

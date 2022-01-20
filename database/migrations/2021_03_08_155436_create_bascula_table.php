@@ -17,6 +17,7 @@ class CreateBasculaTable extends Migration
             $table->increments('id');
             $table->string('cod_bascula');
             $table->string('nom_user');
+            $table->string('ipx_bascula')->nullable();
             $table->string('tipo_peso', 2);
             $table->string('automatico', 1);
             $table->string('nom_menu');

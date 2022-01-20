@@ -19,7 +19,7 @@ class Basculas extends Model
 
    // public $incrementing = false;
 
-    protected $fillable = [ 'id', 'cod_bascula', 'nom_user','tipo_peso','automatico', 'nom_menu'];
+    protected $fillable = [ 'id', 'cod_bascula', 'ipx_bascula','nom_user','tipo_peso','automatico', 'nom_menu'];
 
 
 } 

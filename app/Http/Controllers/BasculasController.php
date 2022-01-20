@@ -50,7 +50,7 @@ class BasculasController extends Controller
 
         if ($request->has('q')) {
             $search = $request->q;
-            $bascula =BasculaConfiguracion::select("cod_bascula")
+            $bascula =BasculaConfiguracion::select("cod_bascula", "ipx_bascula")
                     ->where('cod_bascula', 'iLIKE', "%$search%")
                     ->get();
         }

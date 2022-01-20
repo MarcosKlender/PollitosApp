@@ -195,12 +195,15 @@
 
                                     <div class="form-group col-lg-6">
                                         <label for="peso_gavetas_vacias">Peso de Gavetas Vacías</label>
-                                        @if ($e_automatico)
-                                            <div id="recargar" name="recargar"></div>
-                                        @else
+                                        @if ($e_automatico == '1' and $menu == 'INGRESOS')                                        
+                                            <div id="recargargv" name="recargargv"></div>
+                                        @elseif($e_automatico == '0' and $menu == 'INGRESOS')
                                             <input type="number" class="form-control" id="peso_gavetas_vacias"
                                                 name="peso_gavetas_vacias" value="{{ old('peso_gavetas_vacias') }}"
                                                 step=".01" required />
+                                        @elseif($e_automatico == null)
+                                             <input type="number" class="form-control" id="peso_gavetas_vacias" name="peso_gavetas_vacias"
+                                              step=".01" required readonly />
                                         @endif
                                     </div>
 
@@ -510,6 +513,17 @@
 
             var readonly = $("#peso_bruto").is('[readonly]');
         });
+
+
+        $(document).ready(function() {
+            setInterval(function() {
+                $('#recargargv').load('/pesobruto/seccion');
+            }, 2000);
+
+           var readonly = $("#peso_gavetas_vacias").is('[readonly]');
+        });
+
+
     </script>
 
 @endsection
