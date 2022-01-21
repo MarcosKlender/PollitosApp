@@ -13,12 +13,7 @@ class BasculaConfiguracion extends Model
 
     protected $table = 'bascula_configuracion';
 
-     public $timestamps = false;
-
     protected $primaryKey = 'id';
 
-    protected $fillable = ['id','cod_bascula', 'nom_bascula', 'ipx_bascula', 'est_bascula'];
-
-    
-
+    protected $fillable = ['id','cod_bascula', 'nom_bascula', 'ipx_bascula', 'est_bascula', 'usuario'];
 }

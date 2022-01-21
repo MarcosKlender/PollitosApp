@@ -24,12 +24,12 @@
 
                                     <div class="col-auto input-group-append">
                                         <input type="search" id="criterio_modulo" name="criterio_modulo"
-                                            class="form-control" placeholder="Buscar módulo">
+                                            class="form-control" placeholder="Buscar Módulo">
                                     </div>
 
                                     <div class="col-auto input-group-append">
                                         <input type="search" id="criterio_descripcion" name="criterio_descripcion"
-                                            class="form-control" placeholder="Buscar descripción">
+                                            class="form-control" placeholder="Buscar Descripción">
                                     </div>
 
                                     <div class="input-group-append">
@@ -49,13 +49,13 @@
                             <table class="table table-striped table-bordered">
                                 <thead>
                                     <tr class="font-weight-bold">
-                                    <td align="center">ID</td>
-                                    <td align="center">Módulo</td>
-                                    <td align="center">Descripción</td>
-                                    <td align="center">Elemento</td>
-                                    <td align="center">Valor</td>
-                                    <td align="center">Estado</td>
-                                </tr>
+                                        <td align="center">ID</td>
+                                        <td align="center">Módulo</td>
+                                        <td align="center">Descripción</td>
+                                        <td align="center">Elemento</td>
+                                        <td align="center">Valor</td>
+                                        <td align="center">Estado</td>
+                                    </tr>
                                 </thead>
                                 <tbody>
                                     @foreach ($searches as $search)
@@ -65,7 +65,11 @@
                                             <td align="center">{{ $search->des_conf }}</td>
                                             <td align="center">{{ $search->ele_conf }}</td>
                                             <td align="center">{{ $search->val_conf }}</td>
-                                            <td align="center">{{ $search->est_conf }}</td>
+                                            @if ($search->est_conf == 0)
+                                                <td align="center">ACTIVO</td>
+                                            @else
+                                                <td align="center">INACTIVO</td>
+                                            @endif
                                         </tr>
                                     @endforeach
                                 </tbody>

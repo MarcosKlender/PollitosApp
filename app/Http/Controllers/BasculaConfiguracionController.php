@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\BasculaConfiguracion;
 use App\User;
 use App\Http\Controllers\Controller;
@@ -10,8 +11,7 @@ use App\Http\Requests\BasculaConfiguracionStoreRequest;
 
 class BasculaConfiguracionController extends Controller
 {
- 
-	public function __construct()
+    public function __construct()
     {
         $this->middleware(['auth', 'rol']);
     }
@@ -25,38 +25,44 @@ class BasculaConfiguracionController extends Controller
 
     public function store(BasculaConfiguracionStoreRequest $request)
     {
-    	$max = BasculaConfiguracion::count('id');
-    	$codigo =  'B00-' . ($max + 1);
+        $max = BasculaConfiguracion::count('id');
+        $codigo =  'B00-' . ($max + 1);
 
         $bascula = BasculaConfiguracion::create([
-        	'cod_bascula' => $codigo,
-        	'nom_bascula' => $request->nom_bascula,
-        	'ipx_bascula' => $request->ipx_bascula,
-        	'est_bascula' => $request->est_bascula, 
-        	]);
+            'cod_bascula' => $codigo,
+            'nom_bascula' => $request->nom_bascula,
+            'ipx_bascula' => $request->ipx_bascula,
+            'est_bascula' => $request->est_bascula,
+            'usuario' => $request->usuario,
+            ]);
 
-        return redirect()->route('basculaconfiguracion.index');
+        return redirect()->route('basculaconfiguracion.index')->with('success', '¡Báscula creada exitosamente!');
+    }
+
+    public function edit($id)
+    {
+        $editar = BasculaConfiguracion::findOrFail($id);
+
+        return view('basculaconfiguracion.edit', compact('editar'));
     }
 
     public function update(Request $request, $id)
     {
         $updateData = $request->validate([
-            'tipo_peso' =>'size:2',
-            'automatico'=>'size:1'
-            
+            'cod_bascula' => 'required',
+            'nom_bascula' => 'required',
+            'ipx_bascula' => 'required',
+            'est_bascula' => 'required'
         ]);
 
         BasculaConfiguracion::whereId($id)->update($updateData);
 
-        return back()->with('success', '¡Báscula actualizada exitosamente!');
+        return redirect('/basculaconfiguracion')->with('success', '¡Báscula actualizada exitosamente!');
     }
 
-     public function destroy($id_basc)
+    public function destroy($id_basc)
     {
-
         BasculaConfiguracion::destroy($id_basc);
         return redirect('basculaconfiguracion');
     }
-
-
 }

@@ -34,19 +34,20 @@
                             <div class="mb-3">
                                 <select class="form-control" id="cod_bascula" name="cod_bascula" required></select>
                             </div>
-                            <input name="ipx_bascula" id="ipx_bascula" type="hidden" >
+                            <input name="ipx_bascula" id="ipx_bascula" type="hidden">
 
                             <div class="mb-3">
                                 <select class="form-control" id="nom_user" name="nom_user" required></select>
                             </div>
 
-                            <select class="form-control" id="nom_menu" name="nom_menu" required onchange="javascript:prueba()">
+                            <select class="form-control" id="nom_menu" name="nom_menu" required
+                                onchange="javascript:prueba()">
                                 <option value="" selected disabled>Seleccione módulo</option>
                                 <option value="INGRESOS">INGRESOS</option>
                                 <option value="EGRESOS">EGRESOS</option>
                                 <option value="ENTREGAS">ENTREGAS</option>
                             </select>
-                           
+
                             <br>
                             <input type="hidden" id="tipo_peso" name="tipo_peso" value="lb">
                             <input type="hidden" id="automatico" name="automatico" value="0">
@@ -96,45 +97,52 @@
                                         {{-- <td>{{ $bascula->tipo_peso }}</td> --}}
                                         <td>
                                             @if ($bascula->tipo_peso == 'lb')
-                                            <form method="post" action="{{ route('basculas.update', $bascula->id) }}">
-                                                {{ csrf_field() }}
-                                                {{ method_field('PATCH') }}
-                                                <input type="hidden" id="tipo_peso" name="tipo_peso" value="kg">
-                                                <button type="submit" class="btn btn-sm btn-primary">Libras</button>
-                                            </form>
-                                            @else
                                                 <form method="post" action="{{ route('basculas.update', $bascula->id) }}">
-                                                {{ csrf_field() }}
-                                                {{ method_field('PATCH') }}
-                                                <input type="hidden" id="tipo_peso" name="tipo_peso" value="lb">
-                                                <button type="submit" class="btn btn-sm btn-success">Kilogramos</button>
-                                            </form>
+                                                    {{ csrf_field() }}
+                                                    {{ method_field('PATCH') }}
+                                                    <input type="hidden" id="tipo_peso" name="tipo_peso" value="kg">
+                                                    <button type="submit" class="btn btn-sm btn-primary">Libras</button>
+                                                </form>
+                                            @else
+                                                <form method="post"
+                                                    action="{{ route('basculas.update', $bascula->id) }}">
+                                                    {{ csrf_field() }}
+                                                    {{ method_field('PATCH') }}
+                                                    <input type="hidden" id="tipo_peso" name="tipo_peso" value="lb">
+                                                    <button type="submit" class="btn btn-sm btn-success">Kilogramos</button>
+                                                </form>
                                             @endif
                                         </td>
                                         {{-- <td>{{ $bascula->automatico }}</td> --}}
                                         <td>
                                             @if ($bascula->automatico == '0')
-                                            <form method="post" action="{{ route('basculas.update', $bascula->id) }}">
-                                                {{ csrf_field() }}
-                                                {{ method_field('PATCH') }}
-                                                <input type="hidden" id="automatico" name="automatico" value="1">
-                                                <button type="submit" class="btn btn-sm btn-primary">NO</button>
-                                            </form>
+                                                <form method="post"
+                                                    action="{{ route('basculas.update', $bascula->id) }}">
+                                                    {{ csrf_field() }}
+                                                    {{ method_field('PATCH') }}
+                                                    <input type="hidden" id="automatico" name="automatico" value="1">
+                                                    <button type="submit" class="btn btn-sm btn-primary">NO</button>
+                                                </form>
                                             @else
-                                                <form method="post" action="{{ route('basculas.update', $bascula->id) }}">
-                                                {{ csrf_field() }}
-                                                {{ method_field('PATCH') }}
-                                                <input type="hidden" id="automatico" name="automatico" value="0">
-                                                <button type="submit" class="btn btn-sm btn-success">SI</button>
-                                            </form>
+                                                <form method="post"
+                                                    action="{{ route('basculas.update', $bascula->id) }}">
+                                                    {{ csrf_field() }}
+                                                    {{ method_field('PATCH') }}
+                                                    <input type="hidden" id="automatico" name="automatico" value="0">
+                                                    <button type="submit" class="btn btn-sm btn-success">SI</button>
+                                                </form>
                                             @endif
                                         </td>
                                         <td>
                                             <form method="post" action="{{ url('/basculas/' . $bascula->id) }}">
+                                                <a href="{{ route('basculas.edit', $bascula->id) }}"
+                                                    class="btn btn-primary"><i class="far fa-edit"></i></a>
+
                                                 {{ csrf_field() }}
                                                 {{ method_field('DELETE') }}
                                                 <button class="btn btn-danger" type="submit"
-                                                    onclick="return confirm('¿Desea eliminar?');"><i class="far fa-trash-alt"></i></button>
+                                                    onclick="return confirm('¿Está seguro de eliminar esta báscula?');"><i
+                                                        class="far fa-trash-alt"></i></button>
                                             </form>
                                         </td>
                                     </tr>
@@ -169,7 +177,6 @@
             }
         });
 
-
         $('#cod_bascula').select2({
             placeholder: 'Seleccione báscula',
             ajax: {
@@ -191,9 +198,8 @@
             }
         });
 
-        $('#cod_bascula').on('select2:select',function(e){
-             $('#ipx_bascula').val(e.params.data.value);
+        $('#cod_bascula').on('select2:select', function(e) {
+            $('#ipx_bascula').val(e.params.data.value);
         })
-
     </script>
 @endsection

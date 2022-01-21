@@ -53,9 +53,9 @@
                         <div class="form-group">
                             <label for="valor">Estado</label>
                             <select class="custom-select" id="est_conf" name="est_conf" required>
-                                <option value="" selected disabled>Elije un estado </option>
-                                <option value="0">Activo</option>
-                                <option value="1">Inactivo</option>
+                                <option value="" selected disabled>Elije un estado</option>
+                                <option value="0">ACTIVO</option>
+                                <option value="1">INACTIVO</option>
                             </select>
                         </div>
 

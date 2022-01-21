@@ -387,7 +387,7 @@
             var tbl_egresos = $("#tabla_egresos").length;
             var tbl_egresos_vacia = $("#tabla_egresos_gavetas").length;
 
-            if (tbl_egresos === 0 || tbl_egresos_vacia === 0) {
+            if (tbl_egresos === 0) {
                 $("#liquidar").prop('disabled', true);
             }
 

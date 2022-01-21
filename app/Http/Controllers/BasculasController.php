@@ -58,17 +58,25 @@ class BasculasController extends Controller
         return response()->json($bascula);
     }
 
+    public function edit($id)
+    {
+        $editar = Basculas::findOrFail($id);
+
+        return view('basculas.edit', compact('editar'));
+    }
+
     public function update(Request $request, $id)
     {
         $updateData = $request->validate([
-            'tipo_peso' =>'size:2',
-            'automatico'=>'size:1'
-            
+            'cod_bascula' => 'max:10',
+            'nom_menu'    => 'max:10',
+            'tipo_peso'  => 'nullable|size:2',
+            'automatico' => 'nullable|size:1' 
         ]);
 
         Basculas::whereId($id)->update($updateData);
 
-        return back()->with('success', '¡Báscula actualizada exitosamente!');
+        return redirect('/basculas')->with('success', '¡Báscula actualizada exitosamente!');
     }
 
     public function destroy($id_basc)

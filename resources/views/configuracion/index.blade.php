@@ -24,14 +24,13 @@
                                 <div class="input-group">
                                     <div class="col-auto input-group-append">
                                         <input type="search" id="criterio_modulo" name="criterio_modulo"
-                                            class="form-control" placeholder="Buscar módulo">
+                                            class="form-control" placeholder="Buscar Módulo">
                                     </div>
 
                                     <div class="col-auto input-group-append">
                                         <input type="search" id="criterio_descripcion" name="criterio_descripcion"
                                             class="form-control" placeholder="Buscar Descripción">
                                     </div>
-
 
                                     <div class="input-group-append">
                                         <button class="btn btn-outline-primary border" type="submit">
@@ -70,9 +69,13 @@
                                         <td align="center">{{ $configurar->des_conf }}</td>
                                         <td align="center">{{ $configurar->ele_conf }}</td>
                                         <td align="center">{{ $configurar->val_conf }}</td>
-                                        <td align="center">{{ $configurar->est_conf }}</td>
+                                        @if ($configurar->est_conf == 0)
+                                            <td align="center">ACTIVO</td>
+                                        @else
+                                            <td align="center">INACTIVO</td>
+                                        @endif
                                         <td class="text-center">
-                                            <a href="{{ route('configuracion.edit', $configurar->id)}}"
+                                            <a href="{{ route('configuracion.edit', $configurar->id) }}"
                                                 class="btn btn-primary"><i class="far fa-edit"></i></a>
                                         </td>
 
