@@ -35,6 +35,7 @@ Route::resource('admin', AdminController::class);
 Route::resource('proveedores', ProveedoresController::class);
 Route::resource('clientes', ClientesController::class);
 Route::resource('basculaconfiguracion', BasculaConfiguracionController::class);
+Route::resource('configuracion', ConfiguracionController::class);
 
 Route::get('/ajax-autocomplete-search', 'PesoBrutoController@selectSearch')->name('selectSearch');
 Route::get('/ajax-autocomplete-search2', 'BasculasController@selectSearch')->name('selectSearch2');

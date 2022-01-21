@@ -159,12 +159,19 @@
             </li>
 
             <!-- Divider -->
-            <!--hr class="sidebar-divider">
+            <hr class="sidebar-divider">
 
-            <!-- Heading -->
-            <!--div class="sidebar-heading">
+            <!--Heading -->
+            <div class="sidebar-heading">
                 {{ __('Ajustes') }}
             </div>
+
+            <!-- Nav Item - Profile -->
+             <li class="nav-item {{ (request()->is('configuracion')) ? 'active' : '' }}">
+                <a class="nav-link" href="{{ route('configuracion.index') }}">
+                    <i class="fas fa-fw fa-copy"></i>
+                    <span>{{ __('Configuracion') }}</span></a>
+            </li>
 
             <!-- Nav Item - Profile -->
             <!--li class="nav-item {{ Nav::isRoute('profile') }}">
