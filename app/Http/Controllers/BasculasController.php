@@ -69,9 +69,10 @@ class BasculasController extends Controller
     {
         $updateData = $request->validate([
             'cod_bascula' => 'max:10',
+            'nom_user'    => 'max:25',
             'nom_menu'    => 'max:10',
-            'tipo_peso'  => 'nullable|size:2',
-            'automatico' => 'nullable|size:1' 
+            'tipo_peso'   => 'nullable|size:2',
+            'automatico'  => 'nullable|size:1' 
         ]);
 
         Basculas::whereId($id)->update($updateData);

@@ -30,6 +30,12 @@
                         </div>
 
                         <div class="form-group">
+                            <label for="nom_user">Usuario</label>
+                            <input type="text" class="form-control" id="nom_user" name="nom_user"
+                                value="{{ $editar->nom_user }}" required />
+                        </div>
+
+                        <div class="form-group">
                             <label for="nom_menu">Módulo</label>
                             <select class="custom-select" id="nom_menu" name="nom_menu" required>
                                 <option value="" selected disabled>Seleccione módulo</option>
