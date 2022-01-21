@@ -6,6 +6,7 @@ use App\Clientes;
 use App\Entregas;
 use App\PresasEntregas;
 use App\RegistrosEntregas;
+use App\Configuracion;
 use App\Basculas;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -124,6 +125,10 @@ class EntregasController extends Controller
     {
         $user=auth()->user()->username;
 
+        $valor_cant_gavetas = Configuracion::select('val_conf')->where('ele_conf',"VALOR_CANT_GAVETAS")->where('mod_conf', "ENTREGAS")->where('est_conf', 0)->value('val_conf');
+
+
+
         $e_automatico = Basculas::select("automatico")
             ->where('nom_user', '=', "$user")
             ->value("automatico");
@@ -144,7 +149,7 @@ class EntregasController extends Controller
         $registros = RegistrosEntregas::where('entregas_id', $id)->where('anulado', 0)->orderBy('id')->get();
         $presas = PresasEntregas::where('entregas_id', $id)->where('anulado', 0)->orderBy('id')->get();
      
-        return view('entregas.edit', compact('entregas', 'registros', 'presas', 'e_automatico', 'menu', 'tipo_peso'));
+        return view('entregas.edit', compact('entregas', 'registros', 'presas', 'e_automatico', 'menu', 'tipo_peso', 'valor_cant_gavetas'));
     }
 
     public function update(Request $request, $id)

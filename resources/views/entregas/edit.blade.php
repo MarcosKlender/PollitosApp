@@ -51,8 +51,16 @@
                                 <div class="row">
                                     <div class="form-group col-lg-6">
                                         <label for="cant_gavetas">Cantidad de Gavetas</label>
-                                        <input type="number" class="form-control" id="cant_gavetas" name="cant_gavetas"
-                                            value="{{ old('cant_gavetas') }}" required autofocus />
+
+                                        @if( $valor_cant_gavetas > "0"  )
+
+                                            <input type="number" class="form-control" id="cant_gavetas" name="cant_gavetas"
+                                                value="{{ $valor_cant_gavetas }}" required readonly />
+                                        @elseif( $valor_cant_gavetas == "0"  ||  $valor_cant_gavetas == null )
+                                         <input type="number" class="form-control" id="cant_gavetas" name="cant_gavetas"
+                                                value="{{ old('cant_gavetas') }}" required autofocus />
+
+                                        @endif
                                     </div>
 
                                     <div class="form-group col-lg-6">
