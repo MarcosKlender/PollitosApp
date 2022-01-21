@@ -51,9 +51,7 @@
                                 <div class="row">
                                     <div class="form-group col-lg-6">
                                         <label for="cant_gavetas">Cantidad de Gavetas</label>
-
                                         @if( $valor_cant_gavetas > "0"  )
-
                                             <input type="number" class="form-control" id="cant_gavetas" name="cant_gavetas"
                                                 value="{{ $valor_cant_gavetas }}" required readonly />
                                         @elseif( $valor_cant_gavetas == "0"  ||  $valor_cant_gavetas == null )
@@ -109,12 +107,12 @@
                                     <table class="table table-striped table-bordered" id="tabla_egresos">
                                         <thead>
                                             <tr class="font-weight-bold">
-                                                <td>N°</td>
-                                                <td>Cantidad Gavetas</td>
-                                                <td>Peso Bruto</td>
-                                                <td>Tipo Peso</td>
+                                                <td class="text-center">N°</td>
+                                                <td class="text-center">Cantidad Gavetas</td>
+                                                <td class="text-center">Peso Bruto</td>
+                                                <td class="text-center">Tipo Peso</td>
                                                 @if (Auth::user()->rol->key == 'admin')
-                                                    <td>Usuario</td>
+                                                    <td class="text-center">Usuario</td>
                                                 @endif
                                                 <td class="text-center">Acciones</td>
                                             </tr>
@@ -122,12 +120,12 @@
                                         <tbody>
                                             @foreach ($registros as $registro)
                                                 <tr>
-                                                    <td>{{ $loop->iteration }}</td>
-                                                    <td>{{ $registro->cant_gavetas }}</td>
-                                                    <td>{{ $registro->peso_bruto }}</td>
-                                                    <td>{{ $registro->tipo_peso }}</td>
+                                                    <td class="text-center">{{ $loop->iteration }}</td>
+                                                    <td class="text-center">{{ $registro->cant_gavetas }}</td>
+                                                    <td class="text-center">{{ $registro->peso_bruto }}</td>
+                                                    <td class="text-center">{{ $registro->tipo_peso }}</td>
                                                     @if (Auth::user()->rol->key == 'admin')
-                                                        <td>{{ $registro->usuario }}</td>
+                                                        <td class="text-center">{{ $registro->usuario }}</td>
                                                     @endif
                                                     <td class="text-center"><button type="button"
                                                             class="btn btn-sm btn-danger modal_anular" data-toggle="modal"
@@ -227,13 +225,13 @@
                                     <table class="table table-striped table-bordered" id="tabla_egresos_gavetas">
                                         <thead>
                                             <tr class="font-weight-bold">
-                                                <td>N°</td>
-                                                <td>Tipo de Entrega</td>
-                                                <td>Cantidad Gavetas</td>
-                                                <td>Peso Bruto</td>
-                                                <td>Tipo Peso</td>
+                                                <td class="text-center">N°</td>
+                                                <td class="text-center">Tipo de Entrega</td>
+                                                <td class="text-center">Cantidad Gavetas</td>
+                                                <td class="text-center">Peso Bruto</td>
+                                                <td class="text-center">Tipo Peso</td>
                                                 @if (Auth::user()->rol->key == 'admin')
-                                                    <td>Usuario</td>
+                                                    <td class="text-center">Usuario</td>
                                                 @endif
                                                 <td class="text-center">Acciones</td>
                                             </tr>
@@ -241,13 +239,13 @@
                                         <tbody>
                                             @foreach ($presas as $presa)
                                                 <tr>
-                                                    <td>{{ $loop->iteration }}</td>
-                                                    <td>{{ $presa->tipo_entrega }}</td>
-                                                    <td>{{ $presa->cant_gavetas }}</td>
-                                                    <td>{{ $presa->peso_bruto }}</td>
-                                                    <td>{{ $presa->tipo_peso }}</td>
+                                                    <td class="text-center">{{ $loop->iteration }}</td>
+                                                    <td class="text-center">{{ $presa->tipo_entrega }}</td>
+                                                    <td class="text-center">{{ $presa->cant_gavetas }}</td>
+                                                    <td class="text-center">{{ $presa->peso_bruto }}</td>
+                                                    <td class="text-center">{{ $presa->tipo_peso }}</td>
                                                     @if (Auth::user()->rol->key == 'admin')
-                                                        <td>{{ $presa->usuario }}</td>
+                                                        <td class="text-center">{{ $presa->usuario }}</td>
                                                     @endif
                                                     <td class="text-center"><button type="button"
                                                             class="btn btn-sm btn-danger modal_anular_gavetas"

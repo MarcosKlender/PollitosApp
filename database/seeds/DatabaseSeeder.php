@@ -22,6 +22,17 @@ class DatabaseSeeder extends Seeder
             ['key' => 'oper', 'name' => 'Operador', 'description' => 'Este rol tiene privilegios adicionales sobre el sistema.', 'created_at' => Carbon::now()->toDateTimeString(), 'updated_at' => Carbon::now()->toDateTimeString()],
         ]);
 
+        //TABLA CONFIGURACION
+        DB::table('configuracion')->truncate();
+
+        DB::table('configuracion')->insert([
+            'mod_conf' => 'ENTREGAS', 
+            'des_conf' => 'PARAMETRO PARA DEFINIR POR DEFAULT UN VALOR',
+            'ele_conf' => 'VALOR_CANT_GAVETAS',
+            'val_conf' => '2',
+            'est_conf' => 0,
+        ]);
+
         // TABLA USUARIOS
         DB::table('users')->truncate();
         
