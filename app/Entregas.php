@@ -1,6 +1,7 @@
 <?php
 
 namespace App;
+
 use App\PresasEntregas;
 use App\RegistrosEntregas;
 use Illuminate\Support\Facades\DB;
@@ -22,7 +23,7 @@ class Entregas extends Model
             'entregas.*',
             DB::raw('sum(registros_entregas.cant_gavetas) as total_cant_gavetas'),
             DB::raw('sum(registros_entregas.peso_bruto) as total_peso_bruto')
-        )->where('registros_entregas.anulado',0)
+        )->where('registros_entregas.anulado', 0)
         ->groupBy('registros_entregas.entregas_id', 'entregas.id');
     }
 
@@ -32,12 +33,12 @@ class Entregas extends Model
             'entregas.*',
             DB::raw('sum(presas_entregas.cant_gavetas) as total_cant_gavetas'),
             DB::raw('sum(presas_entregas.peso_bruto) as total_peso_gavetas')
-        )->where('presas_entregas.anulado',0)
+        )->where('presas_entregas.anulado', 0)
         ->groupBy('presas_entregas.entregas_id', 'entregas.id');
     }
 
 
-     public function scopeIdEntregas($query, $entregas)
+    public function scopeIdEntregas($query, $entregas)
     {
         if ($entregas) {
             return $query->where('entregas.id', 'ilike', "%$entregas%");
@@ -72,7 +73,6 @@ class Entregas extends Model
         }
     }
 
-
     public function scopeUsuario($query, $usuario)
     {
         if ($usuario) {
@@ -96,11 +96,8 @@ class Entregas extends Model
 
     public function scopeFecha($query, $fechaini, $fechafin)
     {
-
         if ($fechaini && $fechafin) {
-             return $query->whereDate('entregas.created_at', '>=', [$fechaini])->whereDate('entregas.created_at', '<=', [$fechafin]);
-            }
+            return $query->whereDate('entregas.created_at', '>=', [$fechaini])->whereDate('entregas.created_at', '<=', [$fechafin]);
+        }
     }
-
-
 }

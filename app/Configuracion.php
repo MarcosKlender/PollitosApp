@@ -31,7 +31,7 @@ class Configuracion extends Model
 
    public function ScopeDescripcion($query, $descripcion){
 		   	if($descripcion){
-		   			return $query->where('des_conf','ilike',"%$descripcion");
+		   			return $query->where('des_conf','ilike',"%$descripcion%");
 		   	}
    }
 

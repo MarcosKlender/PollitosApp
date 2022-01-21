@@ -23,9 +23,6 @@ class CreateBasculaTable extends Migration
             $table->string('nom_menu');
             $table->timestamps();
         });
-
-   
-    
     }
 
 

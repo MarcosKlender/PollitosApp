@@ -41,7 +41,7 @@
                 </div>
                 <div class="sidebar-brand-text mx-3">Pollitos App</div>
             </a>
-            
+
             <!-- Divider -->
             <hr class="sidebar-divider mt-3">
 
@@ -51,25 +51,32 @@
             </div>
 
             @if (Auth::user()->rol->key == 'admin')
-            
+
                 <!-- Nav Item - Usuarios -->
-                <li class="nav-item {{ (request()->is('admin')) ? 'active' : '' }}">
+                <li class="nav-item {{ request()->is('admin') ? 'active' : '' }}">
                     <a class="nav-link" href="{{ route('admin.index') }}">
                         <i class="fas fa-fw fa-users"></i>
                         <span>{{ __('Usuarios') }}</span>
                     </a>
                 </li>
 
+                <!-- Nav Item - Profile -->
+                <li class="nav-item {{ request()->is('configuracion') ? 'active' : '' }}">
+                    <a class="nav-link" href="{{ route('configuracion.index') }}">
+                        <i class="fas fa-code"></i>
+                        <span>{{ __('Configuracion') }}</span></a>
+                </li>
+
                 <!-- Divider -->
-            <hr class="sidebar-divider">
+                <hr class="sidebar-divider">
 
-            <!-- Heading -->
-            <div class="sidebar-heading">
-                {{ __('Básculas') }}
-            </div>
+                <!-- Heading -->
+                <div class="sidebar-heading">
+                    {{ __('Básculas') }}
+                </div>
 
-                 <!-- Nav configuracion bascula - Admin -->
-                <li class="nav-item {{ (request()->is('basculaconfiguracion')) ? 'active' : '' }}">
+                <!-- Nav configuracion bascula - Admin -->
+                <li class="nav-item {{ request()->is('basculaconfiguracion') ? 'active' : '' }}">
                     <a class="nav-link" href="{{ route('basculaconfiguracion.index') }}">
                         <i class="fas fa-weight"></i>
                         <span>{{ __('Configurar') }}</span>
@@ -77,33 +84,33 @@
                 </li>
 
                 <!-- Nav Item - Admin -->
-                <li class="nav-item {{ (request()->is('basculas')) ? 'active' : '' }}">
+                <li class="nav-item {{ request()->is('basculas') ? 'active' : '' }}">
                     <a class="nav-link" href="{{ route('basculas.index') }}">
                         <i class="fas fa-weight"></i>
                         <span>{{ __('Asignar') }}</span>
                     </a>
                 </li>
 
-                     <!-- Divider -->
-            <hr class="sidebar-divider">
+                <!-- Divider -->
+                <hr class="sidebar-divider">
 
             @endif
 
-                <!-- Nav Item - Admin -->
-                <li class="nav-item {{ (request()->is('proveedores')) ? 'active' : '' }}">
-                    <a class="nav-link" href="{{ route('proveedores.index') }}">
-                        <i class="fas fa-fw fa-warehouse"></i>
-                        <span>{{ __('Proveedores') }}</span>
-                    </a>
-                </li>
+            <!-- Nav Item - Admin -->
+            <li class="nav-item {{ request()->is('proveedores') ? 'active' : '' }}">
+                <a class="nav-link" href="{{ route('proveedores.index') }}">
+                    <i class="fas fa-fw fa-warehouse"></i>
+                    <span>{{ __('Proveedores') }}</span>
+                </a>
+            </li>
 
-                 <!-- Nav Item - Admin -->
-                <li class="nav-item {{ (request()->is('clientes')) ? 'active' : '' }}">
-                    <a class="nav-link" href="{{ route('clientes.index') }}">
-                        <i class="fas fa-fw fa-address-card"></i>
-                        <span>{{ __('Clientes') }}</span>
-                    </a>
-                </li>
+            <!-- Nav Item - Admin -->
+            <li class="nav-item {{ request()->is('clientes') ? 'active' : '' }}">
+                <a class="nav-link" href="{{ route('clientes.index') }}">
+                    <i class="fas fa-fw fa-address-card"></i>
+                    <span>{{ __('Clientes') }}</span>
+                </a>
+            </li>
 
             <!-- Divider -->
             <hr class="sidebar-divider">
@@ -114,25 +121,25 @@
             </div>
 
             <!-- Nav Item - Dashboard -->
-            <li class="nav-item {{ (request()->is('pesobruto')) ? 'active' : '' }}">
+            <li class="nav-item {{ request()->is('pesobruto') ? 'active' : '' }}">
                 <a class="nav-link" href="{{ route('pesobruto.index') }}">
                     <i class="fas fa-arrow-circle-right"></i>
                     <span>{{ __('Ingresos') }}</span></a>
             </li>
 
-            <!--li class="nav-item {{ (request()->is('visceras')) ? 'active' : '' }}">
+            <!--li class="nav-item {{ request()->is('visceras') ? 'active' : '' }}">
                 <a class="nav-link" href="{{ route('visceras.index') }}">
                     <i class="fas fa-drumstick-bite"></i>
                     <span>{{ __('Vísceras y Buches') }}</span></a>
             </li!-->
 
-            <li class="nav-item {{ (request()->is('egresos')) ? 'active' : '' }}">
+            <li class="nav-item {{ request()->is('egresos') ? 'active' : '' }}">
                 <a class="nav-link" href="{{ route('egresos.index') }}">
                     <i class="fas fa-arrow-circle-left"></i>
                     <span>{{ __('Egresos') }}</span></a>
             </li>
 
-            <li class="nav-item {{ (request()->is('entregas')) ? 'active' : '' }}">
+            <li class="nav-item {{ request()->is('entregas') ? 'active' : '' }}">
                 <a class="nav-link" href="{{ route('entregas.index') }}">
                     <i class="fas fa-fw fa-truck"></i>
                     <span>{{ __('Entregas') }}</span></a>
@@ -145,32 +152,17 @@
             <div class="sidebar-heading">
                 {{ __('Reportería') }}
             </div>
-            
-             <li class="nav-item {{ (request()->is('reportes')) ? 'active' : '' }}">
+
+            <li class="nav-item {{ request()->is('reportes') ? 'active' : '' }}">
                 <a class="nav-link" href="{{ route('reportes.index') }}">
                     <i class="fas fa-fw fa-copy"></i>
                     <span>{{ __('Lotes') }}</span></a>
             </li>
 
-             <li class="nav-item {{ (request()->is('reportesentregas')) ? 'active' : '' }}">
+            <li class="nav-item {{ request()->is('reportesentregas') ? 'active' : '' }}">
                 <a class="nav-link" href="{{ route('reportesentregas.index') }}">
                     <i class="fas fa-fw fa-copy"></i>
                     <span>{{ __('Entregas') }}</span></a>
-            </li>
-
-            <!-- Divider -->
-            <hr class="sidebar-divider">
-
-            <!--Heading -->
-            <div class="sidebar-heading">
-                {{ __('Ajustes') }}
-            </div>
-
-            <!-- Nav Item - Profile -->
-             <li class="nav-item {{ (request()->is('configuracion')) ? 'active' : '' }}">
-                <a class="nav-link" href="{{ route('configuracion.index') }}">
-                    <i class="fas fa-fw fa-copy"></i>
-                    <span>{{ __('Configuracion') }}</span></a>
             </li>
 
             <!-- Nav Item - Profile -->
@@ -179,7 +171,7 @@
                     <i class="fas fa-fw fa-user"></i>
                     <span>{{ __('Perfil') }}</span>
                 </a>
-            </li!--> 
+            </li!-->
 
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
@@ -222,85 +214,86 @@
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                            aria-labelledby="userDropdown">
-                            <a class="dropdown-item" href="{{ route('profile') }}">
-                                <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                                {{ __('Perfil') }}
-                            </a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
-                                <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                {{ __('Cerrar Sesión') }}
-                            </a>
-                        </div>
-                    </li>
-                    
-                </ul>
-                
-            </nav>
-            <!-- End of Topbar -->
-            
-            <!-- Begin Page Content -->
-            <div class="container-fluid">
-                
-                @yield('main-content')
-                
+                                aria-labelledby="userDropdown">
+                                <a class="dropdown-item" href="{{ route('profile') }}">
+                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    {{ __('Perfil') }}
+                                </a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    {{ __('Cerrar Sesión') }}
+                                </a>
+                            </div>
+                        </li>
+
+                    </ul>
+
+                </nav>
+                <!-- End of Topbar -->
+
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+
+                    @yield('main-content')
+
+                </div>
+                <!-- /.container-fluid -->
+
             </div>
-            <!-- /.container-fluid -->
-            
+            <!-- End of Main Content -->
+
         </div>
-        <!-- End of Main Content -->
-        
+        <!-- End of Content Wrapper -->
+
     </div>
-    <!-- End of Content Wrapper -->
-    
-</div>
 
-<!-- Scroll to Top Button-->
-<a class="scroll-to-top rounded" href="#page-top">
-    <i class="fas fa-angle-up"></i>
-</a>
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
 
 
-<!-- Logout Modal-->
-<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-aria-hidden="true">
-<div class="modal-dialog" role="document">
-    <div class="modal-content">
-        <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">{{ __('¿Está seguro?') }}</h5>
-            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">×</span>
-            </button>
-        </div>
-        <div class="modal-body">Por favor, confirme si está listo para cerrar sesión.</div>
-        <div class="modal-footer">
-            <button class="btn btn-primary" type="button" data-dismiss="modal">{{ __('Cancelar') }}</button>
-            <a class="btn btn-danger" href="{{ route('logout') }}"
-            onclick="event.preventDefault(); document.getElementById('logout-form').submit();">{{ __('Cerrar Sesión') }}</a>
-            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                @csrf
-            </form>
-        </div>
-    </div>
-</div>
-</div>
-
-<!-- Scripts -->
-<script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>
-<script src="{{ asset('vendor/bootstrap/js/bootstrap.min.js') }}"></script>
-<script src="{{ asset('vendor/jquery-easing/jquery.easing.min.js') }}"></script>
-<script src="{{ asset('js/sb-admin-2.min.js') }}"></script>
-
-<!-- Footer -->
-<footer class="sticky-footer bg-white ">
-    <div class="container" >
-        <div class="copyright text-center mx-auto">
-            <span>Copyright &copy; <a href="https://ilinser.com/" target="_blank">iLinser</a> 2021</span>
+    <!-- Logout Modal-->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">{{ __('¿Está seguro?') }}</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">Por favor, confirme si está listo para cerrar sesión.</div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary" type="button" data-dismiss="modal">{{ __('Cancelar') }}</button>
+                    <a class="btn btn-danger" href="{{ route('logout') }}"
+                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();">{{ __('Cerrar Sesión') }}</a>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        @csrf
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
-</footer>
-<!-- End of Footer -->
+
+    <!-- Scripts -->
+    <script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>
+    <script src="{{ asset('vendor/bootstrap/js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('vendor/jquery-easing/jquery.easing.min.js') }}"></script>
+    <script src="{{ asset('js/sb-admin-2.min.js') }}"></script>
+
+    <!-- Footer -->
+    <footer class="sticky-footer bg-white ">
+        <div class="container">
+            <div class="copyright text-center mx-auto">
+                <span>Copyright &copy; <a href="https://ilinser.com/" target="_blank">iLinser</a> 2022</span>
+            </div>
+        </div>
+    </footer>
+    <!-- End of Footer -->
 
 </body>
+
 </html>

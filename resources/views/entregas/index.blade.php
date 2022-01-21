@@ -51,7 +51,7 @@
                                         <td>Tipo Animal</td>
                                         <td>RUC/CI</td>
                                         <td>Cliente</td>
-                                        <td>Cantidad animales</td>
+                                        <td>Cantidad Animales</td>
                                         <td>Placa</td>
                                         <td>Conductor</td>
                                         <td>Destino</td>                                        

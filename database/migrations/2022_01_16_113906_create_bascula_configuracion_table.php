@@ -19,6 +19,7 @@ class CreateBasculaConfiguracionTable extends Migration
             $table->string('nom_bascula');
             $table->string('ipx_bascula', 15);
             $table->string('est_bascula');
+            $table->string('usuario');
             $table->timestamps();
         });
     }

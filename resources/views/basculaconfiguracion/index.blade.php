@@ -38,6 +38,7 @@
                             </div>
 
                             <input type="hidden" id="est_bascula" name="est_bascula" value="0" />
+                            <input type="hidden" id="usuario" name="usuario" value="{{ Auth::user()->username }}" required />
 
                             <button type="submit" class="btn btn-primary">Guardar</button>
                         </form>
@@ -69,7 +70,9 @@
                                     <th>Código Báscula </th>
                                     <th>Nombre</th>
                                     <th>Dirección IP</th>
-                                    <!--th>Estado</th!-->
+                                    <th>Estado</th>
+                                    <th>Usuario</th>
+                                    <th>Fecha de Creación</th>
                                     <th>Acciones</th>
                                 </tr>
                             </thead>
@@ -78,11 +81,21 @@
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
                                         <!--td>{{-- $bascula->id --}}</td!-->
-                                        <td> {{ $bascula->cod_bascula }} </td>
+                                        <td>{{ $bascula->cod_bascula }} </td>
                                         <td>{{ $bascula->nom_bascula }}</td>
-                                        <td> {{ $bascula->ipx_bascula }}</td>
-                                        <!--td> {{-- $bascula->est_bascula --}}</td!-->
+                                        <td>{{ $bascula->ipx_bascula }}</td>
+                                        @if ($bascula->est_bascula == 0)
+                                            <td>ACTIVO</td>
+                                        @else
+                                            <td>INACTIVO</td>
+                                        @endif
+                                        <td>{{ $bascula->usuario }}</td>
+                                        <td>{{ $bascula->created_at }}</td>
                                         <td>
+                                            <a href="{{ route('basculaconfiguracion.edit', $bascula->id) }}"
+                                                class="btn btn-primary"><i class="far fa-edit"></i></a>
+                                        </td>
+                                        {{-- <td>
                                             <form method="post"
                                                 action="{{ url('/basculaconfiguracion/' . $bascula->id) }}">
                                                 {{ csrf_field() }}
@@ -91,7 +104,7 @@
                                                     onclick="return confirm('¿Desea eliminar?');"><i
                                                         class="far fa-trash-alt"></i></button>
                                             </form>
-                                        </td>
+                                        </td> --}}
                                     </tr>
                                 @endforeach
                             </tbody>
@@ -122,6 +135,12 @@
                 },
                 cache: true
             }
+        });
+
+        $(document).ready(function() {
+            $('#nom_bascula').keyup(function() {
+                $(this).val($(this).val().toUpperCase());
+            });
         });
     </script>
 @endsection
