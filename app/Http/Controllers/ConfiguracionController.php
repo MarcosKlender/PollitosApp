@@ -3,9 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Configuracion;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class ConfiguracionController extends Controller
 {
@@ -29,9 +30,23 @@ class ConfiguracionController extends Controller
 
     public function store(Request $request)
     {
-        $configuracion = Configuracion::create($request->all());
+        $storeData = $request->validate(
+            [
+                'mod_conf' => ['required', Rule::unique('configuracion')->where('ele_conf', $request->ele_conf)],
+                'des_conf' => 'required|max:200',
+                'ele_conf' => ['required', Rule::unique('configuracion')->where('mod_conf', $request->mod_conf)],
+                'val_conf' => 'required|max:10',
+                'est_conf' => 'required|max:1',
+            ],
+            [
+                'mod_conf.unique' => 'El elemento ingresado ya existe en ese módulo.',
+                'ele_conf.unique' => 'Elija un módulo diferente o cambie el nombre del elemento.',
+            ]
+        );
 
-        return redirect()->route('configuracion.index');
+        $configuracion = Configuracion::create($storeData);
+
+        return redirect()->route('configuracion.index')->with('success', '¡Configuración creada exitosamente!');
     }
 
     public function edit($id)
@@ -41,16 +56,21 @@ class ConfiguracionController extends Controller
         return view('configuracion.edit', compact('configuracion'));
     }
 
-
     public function update(Request $request, $id)
     {
-        $updateData = $request->validate([
-            'mod_conf' =>'required|max:15',
-            'des_conf'=>'required|max:200',
-            'ele_conf'=> 'required|max:50',
-            'val_conf'=>'required|max:10',
-            'est_conf'=>'required|max:1'
-        ]);
+        $updateData = $request->validate(
+            [
+                'mod_conf' => ['required', Rule::unique('configuracion')->where('ele_conf', $request->ele_conf)->ignore($id)],
+                'des_conf' => 'required|max:200',
+                'ele_conf' => ['required', Rule::unique('configuracion')->where('mod_conf', $request->mod_conf)->ignore($id)],
+                'val_conf' => 'required|max:10',
+                'est_conf' => 'required|max:1',
+            ],
+            [
+                'mod_conf.unique' => 'El elemento ingresado ya existe en ese módulo.',
+                'ele_conf.unique' => 'Elija un módulo diferente o cambie el nombre del elemento.',
+            ]
+        );
 
         Configuracion::whereId($id)->update($updateData);
 

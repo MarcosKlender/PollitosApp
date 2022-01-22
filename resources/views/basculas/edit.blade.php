@@ -38,7 +38,6 @@
                         <div class="form-group">
                             <label for="nom_menu">Módulo</label>
                             <select class="custom-select" id="nom_menu" name="nom_menu" required>
-                                <option value="" selected disabled>Seleccione módulo</option>
                                 <option value="INGRESOS">INGRESOS</option>
                                 <option value="EGRESOS">EGRESOS</option>
                                 <option value="ENTREGAS">ENTREGAS</option>

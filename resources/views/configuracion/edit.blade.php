@@ -25,7 +25,6 @@
                         <div class="form-group">
                             <label for="valor">Módulo</label>
                             <select class="custom-select" id="mod_conf" name="mod_conf" required>
-                                <option value="" selected disabled>Elije módulo</option>
                                 <option value="INGRESOS">INGRESOS</option>
                                 <option value="EGRESOS">EGRESOS</option>
                                 <option value="ENTREGAS">ENTREGAS</option>
@@ -53,7 +52,6 @@
                         <div class="form-group">
                             <label for="valor">Estado</label>
                             <select class="custom-select" id="est_conf" name="est_conf" required>
-                                <option value="" selected disabled>Elije un estado</option>
                                 <option value="0">ACTIVO</option>
                                 <option value="1">INACTIVO</option>
                             </select>

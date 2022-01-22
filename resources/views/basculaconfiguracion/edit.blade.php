@@ -26,7 +26,7 @@
                         <div class="form-group">
                             <label for="cod_bascula">Código Báscula</label>
                             <input type="text" class="form-control" id="cod_bascula" name="cod_bascula"
-                                value="{{ $editar->cod_bascula }}" required />
+                                value="{{ $editar->cod_bascula }}" required readonly />
                         </div>
 
                         <div class="form-group">
@@ -42,7 +42,6 @@
                         <div class="form-group">
                             <label for="est_bascula">Estado</label>
                             <select class="custom-select" id="est_bascula" name="est_bascula" required>
-                                <option value="" selected disabled>Elije un estado </option>
                                 <option value="0">ACTIVO</option>
                                 <option value="1">INACTIVO</option>
                             </select>
