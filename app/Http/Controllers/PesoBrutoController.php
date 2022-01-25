@@ -81,8 +81,8 @@ class PesoBrutoController extends Controller
 
 
         if ( $menu==="INGRESOS"  && $e_automatico==="1") {
-            $ch = curl_init("http://192.168.100.241/ws.php?opcion=get");
-            curl_setopt($ch, CURLOPT_URL, "http://192.168.100.11/ws.php?opcion=get");
+            $ch = curl_init("http://$ipx_bascula/ws.php?opcion=get");
+            curl_setopt($ch, CURLOPT_URL, "http://$ipx_bascula/ws.php?opcion=get");
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
             curl_setopt($ch, CURLOPT_TIMEOUT_MS, 3000);
             $res = curl_exec($ch);
