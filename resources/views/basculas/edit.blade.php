@@ -3,6 +3,13 @@
 @section('main-content')
     <!-- Page Heading -->
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
+
+
+
+
     <div class="row justify-content-center">
         <div class="col-lg-4">
             <div class="card shadow mb-4">
@@ -23,17 +30,17 @@
                         @csrf
                         @method('PATCH')
 
-                        <div class="form-group">
-                            <label for="cod_bascula">Código Báscula</label>
-                            <input type="text" class="form-control" id="cod_bascula" name="cod_bascula"
-                                value="{{ $editar->cod_bascula }}" required />
-                        </div>
 
-                        <div class="form-group">
-                            <label for="nom_user">Usuario</label>
-                            <input type="text" class="form-control" id="nom_user" name="nom_user"
-                                value="{{ $editar->nom_user }}" required />
+                        <div class="mb-3">
+                            <select class="form-control" id="cod_bascula" name="cod_bascula" required>      
+                            </select>
                         </div>
+                        <input name="ipx_bascula" id="ipx_bascula" type="hidden">
+
+
+                        <div class="mb-3">
+                                <select class="form-control" id="nom_user" name="nom_user" required></select>
+                            </div>
 
                         <div class="form-group">
                             <label for="nom_menu">Módulo</label>
@@ -54,15 +61,72 @@
         </div>
     </div>
 
-    <script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>
-    <script>
-        $(document).ready(function() {
-            $("#nom_menu").val("{{ $editar->nom_menu }}");
+    <!--script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script!-->
+    <script type="text/javascript">
+        //$(document).ready(function(){
 
             $('#cod_bascula').keyup(function() {
                 $(this).val($(this).val().toUpperCase());
-            });
+            }); 
+
+            $("#nom_menu").val("{{ $editar->nom_menu }}");
+            $("#ipx_bascula").val("{{ $editar->ipx_bascula }}");
+           
+            $("#nom_user").append('<option value={{ $editar->nom_user }}> {{ $editar->nom_user }} </option>')
+
+             $("#cod_bascula").append('<option value={{ $editar->cod_bascula }}> {{ $editar->cod_bascula }} </option>')
+
+            $('#cod_bascula').select2({
+                placeholder: 'Seleccione báscula',
+                allowClear: true,
+                minimumInputLenght: 1,
+                ajax: {
+                    url: '/ajax-autocomplete-search4',
+                    dataType: 'json',
+                    delay: 5,
+                    processResults: function(data) {
+                        return {
+                            results: $.map(data, function(item) {
+                                return {
+                                    text: item.cod_bascula,
+                                    id: item.cod_bascula,
+                                    value: item.ipx_bascula
+                                }
+                            })
+                        };
+                    },
+                    cache: true
+                }
+        }); 
+
+        $('#cod_bascula').on('select2:select', function(e) {
+            $('#ipx_bascula').val(e.params.data.value);
+        })
+
+
+        $('#nom_user').select2({
+            placeholder: 'Seleccione usuario',
+            ajax: {
+                url: '/ajax-autocomplete-search2',
+                dataType: 'json',
+                delay: 5,
+                processResults: function(data) {
+                    return {
+                        results: $.map(data, function(item) {
+                            return {
+                                text: item.username,
+                                id: item.username,
+                                value: item.username
+                            }
+                        })
+                    };
+                },
+                cache: true
+            }
         });
+
+
+
     </script>
 
 @endsection

@@ -69,6 +69,7 @@ class BasculasController extends Controller
     {
         $updateData = $request->validate([
             'cod_bascula' => 'max:10',
+            'ipx_bascula' => 'max:15',
             'nom_user'    => 'max:25',
             'nom_menu'    => 'max:10',
             'tipo_peso'   => 'nullable|size:2',
