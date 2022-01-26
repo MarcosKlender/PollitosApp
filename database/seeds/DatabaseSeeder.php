@@ -18,8 +18,9 @@ class DatabaseSeeder extends Seeder
 
         DB::table('rols')->insert([
             ['key' => 'admin', 'name' => 'Administrador', 'description' => 'Este rol tiene todos los privilegios sobre el sistema.', 'created_at' => Carbon::now()->toDateTimeString(), 'updated_at' => Carbon::now()->toDateTimeString()],
-            ['key' => 'user', 'name' => 'Usuario Regular', 'description' => 'Este rol tiene privilegios limitados sobre el sistema.', 'created_at' => Carbon::now()->toDateTimeString(), 'updated_at' => Carbon::now()->toDateTimeString()],
-            ['key' => 'oper', 'name' => 'Operador', 'description' => 'Este rol tiene privilegios adicionales sobre el sistema.', 'created_at' => Carbon::now()->toDateTimeString(), 'updated_at' => Carbon::now()->toDateTimeString()],
+            ['key' => 'ingresos', 'name' => 'Ingresos', 'description' => 'Este rol tiene acceso a PROVEEDORES e INGRESOS.', 'created_at' => Carbon::now()->toDateTimeString(), 'updated_at' => Carbon::now()->toDateTimeString()],
+            ['key' => 'egresos', 'name' => 'Egresos', 'description' => 'Este rol tiene acceso a PROVEEDORES, EGRESOS y REPORTES.', 'created_at' => Carbon::now()->toDateTimeString(), 'updated_at' => Carbon::now()->toDateTimeString()],
+            ['key' => 'entregas', 'name' => 'Entregas', 'description' => 'Este rol tiene acceso a CLIENTES, ENTREGAS y REPORTES.', 'created_at' => Carbon::now()->toDateTimeString(), 'updated_at' => Carbon::now()->toDateTimeString()],
         ]);
 
         //TABLA CONFIGURACION

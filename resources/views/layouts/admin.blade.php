@@ -95,22 +95,26 @@
                 <hr class="sidebar-divider">
 
             @endif
+            
+            @if (Auth::user()->rol->key == 'ingresos' OR Auth::user()->rol->key == 'egresos' OR Auth::user()->rol->key == 'admin')
+                <!-- Nav Item - Admin -->
+                <li class="nav-item {{ request()->is('proveedores') ? 'active' : '' }}">
+                    <a class="nav-link" href="{{ route('proveedores.index') }}">
+                        <i class="fas fa-fw fa-warehouse"></i>
+                        <span>{{ __('Proveedores') }}</span>
+                    </a>
+                </li>
+            @endif
 
-            <!-- Nav Item - Admin -->
-            <li class="nav-item {{ request()->is('proveedores') ? 'active' : '' }}">
-                <a class="nav-link" href="{{ route('proveedores.index') }}">
-                    <i class="fas fa-fw fa-warehouse"></i>
-                    <span>{{ __('Proveedores') }}</span>
-                </a>
-            </li>
-
-            <!-- Nav Item - Admin -->
-            <li class="nav-item {{ request()->is('clientes') ? 'active' : '' }}">
-                <a class="nav-link" href="{{ route('clientes.index') }}">
-                    <i class="fas fa-fw fa-address-card"></i>
-                    <span>{{ __('Clientes') }}</span>
-                </a>
-            </li>
+            @if (Auth::user()->rol->key == 'entregas' OR Auth::user()->rol->key == 'admin')
+                <!-- Nav Item - Admin -->
+                <li class="nav-item {{ request()->is('clientes') ? 'active' : '' }}">
+                    <a class="nav-link" href="{{ route('clientes.index') }}">
+                        <i class="fas fa-fw fa-address-card"></i>
+                        <span>{{ __('Clientes') }}</span>
+                    </a>
+                </li>
+            @endif
 
             <!-- Divider -->
             <hr class="sidebar-divider">
@@ -120,50 +124,58 @@
                 {{ __('Registros') }}
             </div>
 
-            <!-- Nav Item - Dashboard -->
-            <li class="nav-item {{ request()->is('pesobruto') ? 'active' : '' }}">
-                <a class="nav-link" href="{{ route('pesobruto.index') }}">
-                    <i class="fas fa-arrow-circle-right"></i>
-                    <span>{{ __('Ingresos') }}</span></a>
-            </li>
+            @if (Auth::user()->rol->key == 'ingresos' OR Auth::user()->rol->key == 'admin')
+                <!-- Nav Item - Dashboard -->
+                <li class="nav-item {{ request()->is('pesobruto') ? 'active' : '' }}">
+                    <a class="nav-link" href="{{ route('pesobruto.index') }}">
+                        <i class="fas fa-arrow-circle-right"></i>
+                        <span>{{ __('Ingresos') }}</span></a>
+                </li>
 
-            <!--li class="nav-item {{ request()->is('visceras') ? 'active' : '' }}">
-                <a class="nav-link" href="{{ route('visceras.index') }}">
-                    <i class="fas fa-drumstick-bite"></i>
-                    <span>{{ __('Vísceras y Buches') }}</span></a>
-            </li!-->
+                <!--li class="nav-item {{ request()->is('visceras') ? 'active' : '' }}">
+                    <a class="nav-link" href="{{ route('visceras.index') }}">
+                        <i class="fas fa-drumstick-bite"></i>
+                        <span>{{ __('Vísceras y Buches') }}</span></a>
+                </li!-->
+            @endif
 
-            <li class="nav-item {{ request()->is('egresos') ? 'active' : '' }}">
-                <a class="nav-link" href="{{ route('egresos.index') }}">
-                    <i class="fas fa-arrow-circle-left"></i>
-                    <span>{{ __('Egresos') }}</span></a>
-            </li>
+            @if (Auth::user()->rol->key == 'egresos' OR Auth::user()->rol->key == 'admin')
+                <li class="nav-item {{ request()->is('egresos') ? 'active' : '' }}">
+                    <a class="nav-link" href="{{ route('egresos.index') }}">
+                        <i class="fas fa-arrow-circle-left"></i>
+                        <span>{{ __('Egresos') }}</span></a>
+                </li>
+            @endif
 
-            <li class="nav-item {{ request()->is('entregas') ? 'active' : '' }}">
-                <a class="nav-link" href="{{ route('entregas.index') }}">
-                    <i class="fas fa-fw fa-truck"></i>
-                    <span>{{ __('Entregas') }}</span></a>
-            </li>
+            @if (Auth::user()->rol->key == 'entregas' OR Auth::user()->rol->key == 'admin')
+                <li class="nav-item {{ request()->is('entregas') ? 'active' : '' }}">
+                    <a class="nav-link" href="{{ route('entregas.index') }}">
+                        <i class="fas fa-fw fa-truck"></i>
+                        <span>{{ __('Entregas') }}</span></a>
+                </li>
+            @endif
 
+            @if (Auth::user()->rol->key == 'egresos' OR Auth::user()->rol->key == 'entregas' OR Auth::user()->rol->key == 'admin')
             <!-- Divider -->
             <hr class="sidebar-divider">
 
             <!-- Heading -->
-            <div class="sidebar-heading">
-                {{ __('Reportería') }}
-            </div>
+                <div class="sidebar-heading">
+                    {{ __('Reportería') }}
+                </div>
 
-            <li class="nav-item {{ request()->is('reportes') ? 'active' : '' }}">
-                <a class="nav-link" href="{{ route('reportes.index') }}">
-                    <i class="fas fa-fw fa-copy"></i>
-                    <span>{{ __('Lotes') }}</span></a>
-            </li>
+                <li class="nav-item {{ request()->is('reportes') ? 'active' : '' }}">
+                    <a class="nav-link" href="{{ route('reportes.index') }}">
+                        <i class="fas fa-fw fa-copy"></i>
+                        <span>{{ __('Lotes') }}</span></a>
+                </li>
 
-            <li class="nav-item {{ request()->is('reportesentregas') ? 'active' : '' }}">
-                <a class="nav-link" href="{{ route('reportesentregas.index') }}">
-                    <i class="fas fa-fw fa-copy"></i>
-                    <span>{{ __('Entregas') }}</span></a>
-            </li>
+                <li class="nav-item {{ request()->is('reportesentregas') ? 'active' : '' }}">
+                    <a class="nav-link" href="{{ route('reportesentregas.index') }}">
+                        <i class="fas fa-fw fa-copy"></i>
+                        <span>{{ __('Entregas') }}</span></a>
+                </li>
+            @endif
 
             <!-- Nav Item - Profile -->
             <!--li class="nav-item {{ Nav::isRoute('profile') }}">
