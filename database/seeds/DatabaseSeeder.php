@@ -72,6 +72,68 @@ class DatabaseSeeder extends Seeder
             'active' => 1,
         ]);
 
+        DB::table('users')->insert([
+            'rol_id' => 2,
+            'username' => 'rzambrano',
+            'name' => 'Ramon',
+            'last_name' => 'Zambrano',
+            'email' => 'rzambrano@pollovencedor.com',
+            'password' => Hash::make('rzambrano123'),
+            'created_at' => Carbon::now()->toDateTimeString(),
+            'updated_at' => Carbon::now()->toDateTimeString(),
+            'active' => 1,
+        ]);
+
+
+        DB::table('users')->insert([
+            'rol_id' => 2,
+            'username' => 'jmarcillo',
+            'name' => 'Jhonnatan',
+            'last_name' => 'Marcillo',
+            'email' => 'jmarcillo@pollovencedor.com',
+            'password' => Hash::make('jmarcillo123'),
+            'created_at' => Carbon::now()->toDateTimeString(),
+            'updated_at' => Carbon::now()->toDateTimeString(),
+            'active' => 1,
+        ]);
+
+        DB::table('users')->insert([
+            'rol_id' => 2,
+            'username' => 'dconforme',
+            'name' => 'Daniel',
+            'last_name' => 'Conforme',
+            'email' => 'dconforme@pollovencedor.com',
+            'password' => Hash::make('dconforme123'),
+            'created_at' => Carbon::now()->toDateTimeString(),
+            'updated_at' => Carbon::now()->toDateTimeString(),
+            'active' => 1,
+        ]);
+
+
+        DB::table('users')->insert([
+            'rol_id' => 2,
+            'username' => 'scayo',
+            'name' => 'Sidney',
+            'last_name' => 'Cayo',
+            'email' => 'scayo@pollovencedor.com',
+            'password' => Hash::make('scayo123'),
+            'created_at' => Carbon::now()->toDateTimeString(),
+            'updated_at' => Carbon::now()->toDateTimeString(),
+            'active' => 1,
+        ]);
+
+        DB::table('users')->insert([
+            'rol_id' => 2,
+            'username' => 'razambrano',
+            'name' => 'Rafael',
+            'last_name' => 'Zambrano',
+            'email' => 'razambrano@pollovencedor.com',
+            'password' => Hash::make('razambrano123'),
+            'created_at' => Carbon::now()->toDateTimeString(),
+            'updated_at' => Carbon::now()->toDateTimeString(),
+            'active' => 1,
+        ]);
+
         // TABLA PROVEEDORES
         DB::table('proveedores')->truncate();
 
