@@ -28,11 +28,11 @@
                                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
                                     <div class="form-group">
-                                        <input type="email" class="form-control form-control-user" name="email" placeholder="{{ __('Correo Electrónico') }}" value="{{ old('email') }}" required autofocus>
+                                        <input type="text" class="form-control form-control-user" name="username" placeholder="{{ __('Nombre de Usuario') }}" value="{{ old('username') }}" required autofocus>
                                     </div>
 
                                     <div class="form-group">
-                                        <input type="password" class="form-control form-control-user" name="password" placeholder="{{ __('Contaseña') }}" required>
+                                        <input type="password" class="form-control form-control-user" name="password" placeholder="{{ __('Contraseña') }}" required>
                                     </div>
 
                                     <!-- <div class="form-group">
