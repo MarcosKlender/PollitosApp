@@ -30,15 +30,18 @@
                         @csrf
                         @method('PATCH')
 
-
+                        
                         <div class="mb-3">
+                            <label for="cod_bascula">Báscula</label>
                             <select class="form-control" id="cod_bascula" name="cod_bascula" required>      
                             </select>
                         </div>
                         <input name="ipx_bascula" id="ipx_bascula" type="hidden">
 
 
-                        <div class="mb-3">
+
+                        <div class="mb-3">  
+                        <label for="nom_menu">Usuario</label>                          
                                 <select class="form-control" id="nom_user" name="nom_user" required></select>
                             </div>
 
