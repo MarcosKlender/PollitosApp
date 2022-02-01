@@ -210,8 +210,8 @@ class PostsExport implements FromView, WithTitle, WithColumnFormatting, WithEven
 
 
                 //animales mollejas -  EGRESOS
+                $m = $contador_gv + 13;
                 $celda_ah = $m;
-
                 $eCeldaMollejas = $event->sheet->getCellByColumnAndRow(4, $m+2)->getParent()->getCurrentCoordinate();
 
                 $event->sheet->getStyle('A'.$celda_ah.':'.$eCeldaMollejas )->ApplyFromArray($borderMedium);
