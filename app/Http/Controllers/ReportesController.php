@@ -19,6 +19,7 @@ use Illuminate\Contracts\View\View;
 use Maatwebsite\Excel\Concerns\FromView;
 use Maatwebsite\Excel\Concerns\Exportable;
 use App\Exports\PostsExport;
+use App\Exports\PostExportloteConsolidado;
 
 class ReportesController extends Controller
 {
@@ -30,9 +31,10 @@ class ReportesController extends Controller
     public function index(Request $request)
     {
 
+
         $lotes = Lotes::all_index()->orderBy('lotes.id', 'DESC')->paginate(4);
         $gavetas_vacias = Lotes::gavetas_vacias()->orderBy('id')->get();
-         //$gavetas_vacias = GavetasVacias::orderBy('lotes_id','desc')->where('anulado', 0)->select('peso_gavetas_vacias')->sum('peso_gavetas_vacias');
+         //$gavetas_vacias = GavetasVacias::where('lotes_id',$request->id)->orderBy('lotes_id','desc')->where('anulado', 0)->select('peso_gavetas_vacias')->sum('peso_gavetas_vacias');
          //dd($gavetas_vacias);
         $count = count($lotes);
         return view('reportes.index', compact('lotes', 'count','gavetas_vacias'));
@@ -179,4 +181,6 @@ class ReportesController extends Controller
     {
         return (new PostsExport($id))->download('lotes.xlsx');
     }
+
+
 }

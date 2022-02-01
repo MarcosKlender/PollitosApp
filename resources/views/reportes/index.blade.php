@@ -89,9 +89,20 @@
                                         <button class="btn btn-outline-primary border" type="submit">
                                             <i class="fas fa-search"></i>
                                         </button>
-                                    </div>
+                                    </div>    
+
+                                    <div class="col"></div>
+
+                                     <div  id="excel-consolidado" class=" form-check-inline">
+                                        @foreach ($lotes as $lote)
+                                        <a href="{{ route('reportes.generar_excel_consolidado', $lote->id) }}"
+                                                        target="_blank" class="btn btn-lg btn-info"><i
+                                                            class="far fa-file-excel "></i></a>
+                                        @endforeach                    
+                                    </div>                                
 
                                 </div>
+
                             </form>
                         </div>
 
@@ -108,7 +119,7 @@
 
                         <div class="table-responsive">
                             <table class="table table-striped table-bordered" id="reportes_peso">
-                                <thead>
+                                <thead class="table-secondary">
                                     <tr class="font-weight-bold">
                                         <td align="center">N° Lote</td>
                                         <td align="center">Tipo</td>
@@ -141,20 +152,19 @@
                                             <td align="center" class="row_peso">{{ $lote->proveedor }}</td>
                                             <td align="center" class="row_peso">{{ $lote->procedencia }}</td>
                                             <td align="center" class="row_peso">{{ $lote->placa }}</td>
-                                            <td align="center" class="row_peso">{{ $lote->conductor }}</td>                                            
+                                            <td align="center" class="row_peso">{{ $lote->conductor }}</td>
                                             <td align="center" class="row_peso">{{ $lote->cantidad }}</td>
                                             <td align="center" class="row_peso">{{ $lote->total_cant_gavetas }}</td>
                                             <td align="center" class="row_peso">{{ $lote->cant_ahogados }}</td>
                                             <td align="center" class="row_peso">{{ $lote->peso_ahogados }}</td>
                                             <td align="center" class="row_peso">{{ $lote->total_peso_bruto }}</td>
-                                            @foreach ($gavetas_vacias as $gaveta_v)
-                                              @if( $lote->id == $gaveta_v->id )
-                                                <td align="center" class="row_peso">{{ $gaveta_v->total_peso_gavetas_vacias }}</td>
+                                            @foreach ($gavetas_vacias as $gaveta_v)                                               
+                                                @if( $lote->id == $gaveta_v->id )
+                                                    <td align="center" class="row_peso">{{ $gaveta_v->total_peso_gavetas_vacias }}</td>
                                                 @endif
                                             @endforeach   
-                                            <!--td class="row_peso">{{ $lote->total_peso_final }}</td!-->
                                             <td align="center" class="row_peso">{{ $lote->usuario }}</td>
-                                            <td>{{ $lote->created_at }}</td>
+                                            <td align="center" class="row_peso">{{ $lote->created_at }}</td>
                                             <td align="center" class="button">
                                                 @if ($lote->anulado == '0')
                                                     <button id="btn_prueba" class="btn btn-sm btn-primary"
@@ -183,6 +193,7 @@
                                                 <a href="{{ route('reportes.generar_pdf', $lote->id) }}" target="_blank"
                                                     class="btn btn-lg btn-primary"><i class="far fa-file-pdf"></i></a>
                                             </td>
+
                                             <td align="center" class="button">
                                                 <a href="{{ route('reportes.generar_excel', $lote->id) }}"
                                                     target="_blank" class="btn btn-lg btn-primary"><i
@@ -207,21 +218,15 @@
                         <li class="nav-item">
                             <a class="nav-link active" id="home-tab" data-toggle="tab" href="#lote" role="tab"
                                 aria-controls="lote" aria-selected="true">
-                                <h6>REGISTROS / LOTE # <label id="nombre_lote"></label></h6>
+                                <h6>INGRESOS / LOTE # <label id="nombre_lote"></label></h6>
                             </a>
                         </li>
 
-                        <!--li class="nav-item">
-                            <a class="nav-link" id="profile-tab" data-toggle="tab" href="#visceras" role="tab"
-                                aria-controls="visceras" aria-selected="false">
-                                <h6>VICERAS Y BUCHES <label id="viceras_buches"></label></h6>
-                            </a>
-                        </li!-->
 
                         <li class="nav-item">
                             <a class="nav-link" id="contact-tab" data-toggle="tab" href="#egresos" role="tab"
                                 aria-controls="egresos" aria-selected="false">
-                                <h6>PESO NETO <label id="peso_neto"></label></h6>
+                                <h6>EGRESOS # <label id="peso_neto"></label></h6>
                             </a>
                         </li>
                     </ul>                    
@@ -234,7 +239,7 @@
                             <div class="col-md-auto">
                                 <div class="table-responsive">
                                     <table class="table table-striped table-bordered">
-                                        <thead>
+                                        <thead class="table-secondary">
                                             <tr class="font-weight-bold">
                                                 <td align="center">ID</td>
                                                 <td align="center" width="20">Cantidad Gavetas</td>
@@ -264,7 +269,7 @@
                             <div class="col-md-auto">
                                 <div class="table-responsive">
                                     <table class="table table-striped table-bordered">
-                                        <thead>
+                                        <thead class="table-secondary">
                                             <tr class="font-weight-bold">
                                                 <td align="center">ID</td>
                                                 <td align="center" width="20">Cantidad Gavetas vacías</td>
@@ -331,7 +336,7 @@
                             <div class="col-md-auto">
                                     <div class="table-responsive">
                                         <table class="table table-striped table-bordered">
-                                            <thead>
+                                            <thead class="table-secondary">
                                                 <tr class="font-weight-bold">
                                                     <td align="center">ID Lote</td>
                                                     <td align="center" width="20">Cantidad Gavetas</td>
@@ -363,7 +368,7 @@
                                 <div class="col-md-auto">
                                 <div class="table-responsive">
                                     <table class="table table-striped table-bordered">
-                                        <thead>
+                                        <thead class="table-secondary">
                                             <tr class="font-weight-bold">
                                                 <td align="center">ID</td>
                                                 <td align="center" width="20">Cantidad Gavetas vacías</td>
@@ -406,6 +411,13 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script type="text/javascript">
         $(document).ready(function() {
+
+
+            $('#excel-consolidado').hover(function(){
+                $(this).css('cursor','pointer').attr('title','Reporte Consolidado');
+            },function(){
+                $(this).css('cursor','auto');
+            })
 
             $(".row_peso").on('click', function(e) {
                 // $("#reportes_peso tbody tr").click(function(e){
@@ -451,6 +463,7 @@
 
                 //document.querySelector('#nombre_lote').innerText = id;
                 $('#nombre_lote').text(id);
+                $('#peso_neto').text(id);
 
                 $.ajax({
                     data: {

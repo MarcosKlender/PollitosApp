@@ -54,7 +54,6 @@ class Lotes extends Model
             'lotes.*',
             DB::raw('sum(gavetas_vacias.cant_gavetas_vacias) as total_cant_gavetas_vacias'),
             DB::raw('sum(gavetas_vacias.peso_gavetas_vacias) as total_peso_gavetas_vacias')
-          //  DB::raw('sum(gavetas_vacias.peso_final_gavetas) as total_peso_final_vacias')
         )->where('gavetas_vacias.anulado',0)
         ->groupBy('gavetas_vacias.lotes_id', 'lotes.id');
     }
