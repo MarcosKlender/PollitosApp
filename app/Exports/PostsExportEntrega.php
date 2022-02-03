@@ -9,9 +9,11 @@ use Maatwebsite\Excel\Concerns\FromView;
 use Maatwebsite\Excel\Concerns\Exportable;
 use Maatwebsite\Excel\Concerns\WithTitle;
 use Maatwebsite\Excel\Concerns\WithColumnFormatting;
+use Maatwebsite\Excel\Concerns\WithMultipleSheets;
 use App\Exports\PostsExportEntrega;
+use App\Exports\PostExportEntregaConsolidado;
 
-class PostsExportEntrega implements FromView, WithTitle, WithColumnFormatting
+class PostsExportEntrega implements FromView, WithTitle, WithColumnFormatting, WithMultipleSheets
 {
 	use Exportable;
 
@@ -50,6 +52,14 @@ class PostsExportEntrega implements FromView, WithTitle, WithColumnFormatting
     public function title():string {
         return 'Entregas y Presas';
 
+    }
+
+    public function sheets(): array
+    {
+        $sheets = [];
+        array_push($sheets, new PostsExportEntrega($this->id) );
+        array_push($sheets, new PostExportEntregaConsolidado($this->id) );
+        return $sheets;
     }
 
     public function columnFormats(): array {

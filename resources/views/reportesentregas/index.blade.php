@@ -98,7 +98,7 @@
 
                         <div class="table-responsive">
                             <table class="table table-striped table-bordered" id="reportes_peso">
-                                <thead>
+                                <thead class="table-secondary">
                                     <tr class="font-weight-bold">
                                         <td align="center">N°</td>
                                         <td align="center">Tipo</td>
@@ -196,9 +196,9 @@
                         <div class="row">  
                                 <div class="table-responsive">
                                     <table class="table table-striped table-bordered">
-                                        <thead>
+                                        <thead class="table-secondary">
                                             <tr class="font-weight-bold">
-                                                <td align="center">ID</td>
+                                                <td align="center">N°</td>
                                                 <td align="center">Cantidad Gavetas</td>
                                                 <td align="center">Peso Bruto</td>
                                                 <td align="center">Tipo Peso</td>
@@ -227,9 +227,9 @@
                             <!-- Registro presas !-->
                                     <div class="table-responsive">
                                         <table class="table table-striped table-bordered">
-                                            <thead>
+                                            <thead class="table-secondary">
                                                 <tr class="font-weight-bold">
-                                                    <td align="center">ID</td>
+                                                    <td align="center">N°</td>
                                                     <td align="center">Tipos Entregas</td>
                                                     <td align="center">Cantidad Gavetas</td>
                                                     <td align="center">Peso Neto</td>
