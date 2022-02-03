@@ -25,11 +25,6 @@
                         <!--form method="POST" action=""!-->
                         <form method="POST" action="{{ route('basculas.store') }}">
                             @csrf
-                            <!--select class="form-control" id="cod_bascula" name="cod_bascula" required onchange="javascript:prueba()">
-                                <option value="" selected disabled>Seleccione una báscula</option>
-                                <option value="B001">Báscula 1</option>
-                                <option value="B002">Báscula 2</option>
-                            </select!-->
 
                             <div class="mb-3">
                                 <select class="form-control" id="cod_bascula" name="cod_bascula" required></select>
