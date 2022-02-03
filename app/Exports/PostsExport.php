@@ -1,7 +1,7 @@
 <?php
 namespace App\Exports;
 use App\Registros;
-use App\Visceras;
+//use App\Visceras;
 use App\Egresos;
 use App\GavetasVacias;
 use App\GavetasVaciasEgresos;
@@ -13,11 +13,12 @@ use Maatwebsite\Excel\Concerns\FromView;
 use Maatwebsite\Excel\Concerns\Exportable;
 use Maatwebsite\Excel\Concerns\WithTitle;
 use Maatwebsite\Excel\Concerns\WithColumnFormatting;
+use Maatwebsite\Excel\Concerns\WithMultipleSheets;
 use Maatwebsite\Excel\Concerns\WithEvents;
 use Maatwebsite\Excel\Events\AfterSheet;
 use App\Exports\PostsExport;
 
-class PostsExport implements FromView, WithTitle, WithColumnFormatting, WithEvents
+class PostsExport implements FromView, WithTitle, WithColumnFormatting, WithEvents, WithMultipleSheets
 {
 	use Exportable;
 
@@ -72,9 +73,6 @@ class PostsExport implements FromView, WithTitle, WithColumnFormatting, WithEven
         $this->registro_faenados = Egresos::where('lotes_id', $this->id)->where('anulado', 0)->get();
 
         $this->gavetas_vacias_egresos = GavetasVaciasEgresos::where('lotes_id', $this->id)->where('anulado', 0)->get();
-
-        //$gavetas_vacias_egresos = GavetasVaciasEgresos::where('lotes_id', $this->id)->where('anulado', 0)->get();
-
 
         $egresos=   Egresos::where('lotes_id', $this->id)->where('anulado',0)->get();
 
@@ -264,8 +262,21 @@ class PostsExport implements FromView, WithTitle, WithColumnFormatting, WithEven
 
     }
 
+    public function sheets(): array
+    {
+
+        $sheets = [];
+        array_push($sheets, new PostsExport($this->id) );
+        array_push($sheets, new PostExportLoteConsolidado($this->id) );
+
+        return $sheets;
+
+
+
+    }
+
     public function title():string {
-        return 'Lotes y Pesos';
+        return 'Detalle Ingresos y Egresos';
 
     }
 
