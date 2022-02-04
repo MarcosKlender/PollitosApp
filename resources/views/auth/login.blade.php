@@ -52,7 +52,11 @@
 
                                 <hr>
 
-                                @if (Route::has('password.request'))
+                                <div class="text-center mb-3">
+                                        <p class="text-danger small">*Si no puede iniciar sesión contacte con el administrador.</p>
+                                    </div>
+
+                                <!-- @if (Route::has('password.request'))
                                     <div class="text-center mb-3">
                                         <a class="small" href="{{ route('password.request') }}">
                                             {{ __('Olvidé mi contraseña') }}
@@ -64,7 +68,7 @@
                                     <div class="text-center">
                                         <a class="small" href="{{ route('register') }}">{{ __('¿No tienes una cuenta? ¡Regístrate!') }}</a>
                                     </div>
-                                @endif
+                                @endif -->
                             </div>
                         </div>
                     </div>

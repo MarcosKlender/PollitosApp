@@ -111,7 +111,7 @@
                             </div>
                         </div>
 
-                        <h6 class="text-danger mt-2 mb-4"><strong>* Para editar sólo la "Información de Usuario", deja en blanco el "Cambio de Contraseña"</strong></h6>
+                        <h6 class="text-danger mt-2 mb-4"><strong>*Para editar sólo la "Información de Usuario", deja en blanco el "Cambio de Contraseña"</strong></h6>
 
                         <!-- Button -->
                         <div class="pl-lg-4">

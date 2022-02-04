@@ -16,7 +16,7 @@ class AdminController extends Controller
 
     public function index()
     {
-        $users = User::orderBy('id')->paginate(8);
+        $users = User::orderBy('id')->whereNotIn('username', ['superadmin'])->paginate(8);
         $count = count(User::all());
         
         return view('admin.index', compact('users', 'count'));

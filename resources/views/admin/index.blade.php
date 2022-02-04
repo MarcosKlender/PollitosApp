@@ -37,7 +37,7 @@
                         <table class="table table-striped table-bordered">
                             <thead>
                                 <tr class="font-weight-bold">
-                                    <td>ID</td>
+                                    <td>N°</td>
                                     <td>Rol</td>
                                     <td>Nombre de Usuario</td>
                                     <td>Nombres</td>
@@ -52,7 +52,7 @@
                             <tbody>
                                 @foreach ($users as $user)
                                     <tr>
-                                        <td>{{ $user->id }}</td>
+                                        <td>{{ $loop->iteration }}</td>
                                         <td>{{ $user->rol->name }}</td>
                                         <td>{{ $user->username }}</td>
                                         <td>{{ $user->name }}</td>

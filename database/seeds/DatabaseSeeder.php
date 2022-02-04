@@ -39,10 +39,10 @@ class DatabaseSeeder extends Seeder
         
         DB::table('users')->insert([
             'rol_id' => 1,
-            'username' => 'mcarrasco',
-            'name' => 'Marcos',
-            'last_name' => 'Carrasco',
-            'email' => 'marcos@gmail.com',
+            'username' => 'superadmin',
+            'name' => 'Súper',
+            'last_name' => 'Administrador',
+            'email' => 'admin@pollovencedor.com',
             'password' => Hash::make('Ecuador2020'),
             'created_at' => Carbon::now()->toDateTimeString(),
             'updated_at' => Carbon::now()->toDateTimeString(),

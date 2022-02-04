@@ -23,12 +23,9 @@
                         @csrf
                         @method('PATCH')
                         <div class="form-group">
-                            <label for="valor">Módulo</label>
-                            <select class="custom-select" id="mod_conf" name="mod_conf" required>
-                                <option value="INGRESOS">INGRESOS</option>
-                                <option value="EGRESOS">EGRESOS</option>
-                                <option value="ENTREGAS">ENTREGAS</option>
-                            </select>
+                            <label for="mod_conf">Módulo</label>
+                            <input type="text" class="form-control" id="mod_conf" name="mod_conf"
+                                value="{{ $configuracion->mod_conf }}" required readonly/>
                         </div>
 
                         <div class="form-group">
