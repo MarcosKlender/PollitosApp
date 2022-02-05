@@ -57,7 +57,6 @@
                                         @elseif( $valor_cant_gavetas == "0"  ||  $valor_cant_gavetas == null )
                                          <input type="number" class="form-control" id="cant_gavetas" name="cant_gavetas"
                                                 value="{{ old('cant_gavetas') }}" required autofocus />
-
                                         @endif
                                     </div>
 
