@@ -18,7 +18,8 @@ class EgresosController extends Controller
         if (Auth::user()->rol_id == 1) {
             $lotes = Lotes::orderBy('id', 'desc')->where('anulado', 0)->paginate(8);
         } else {
-            $lotes = Lotes::orderBy('id', 'desc')->where('anulado', 0)->where('usuario', Auth::user()->username)->paginate(8);
+            //$lotes = Lotes::orderBy('id', 'desc')->where('anulado', 0)->where('usuario', Auth::user()->username)->paginate(8);
+            $lotes = Lotes::orderBy('id', 'desc')->where('anulado', 0)->paginate(8);
         }
 
         $count = count($lotes);
@@ -65,6 +66,48 @@ class EgresosController extends Controller
 
         return view('egresos.seccion', compact('res'));
     }
+
+
+    public function ws_gaveta_vacia()
+    {
+        $user=auth()->user()->username;
+        
+        $busuario =Basculas::select("id")->where('nom_user', '=', "$user")->where('nom_menu', '=', 'EGRESOS')->get();
+
+        $menu = Basculas::select("nom_menu")->where('nom_user', '=', "$user")->where('nom_menu', '=', 'EGRESOS')
+        ->value('nom_menu');
+
+        $cod_bascula =Basculas::select("id")->where('nom_user', '=', "$user")->where('nom_menu', '=', 'EGRESOS')->get();
+
+        $e_automatico = Basculas::select("automatico")->where('nom_user', '=', "$user")->where('nom_menu', '=', 'EGRESOS')
+            ->value("automatico");
+        
+        $tipo_peso = Basculas::select("tipo_peso")->where('nom_user', '=', "$user")->where('nom_menu', '=', 'EGRESOS')
+            ->value("tipo_peso");
+
+        $ipx_bascula = Basculas::select("ipx_bascula")->where('nom_user', '=', "$user")->where('nom_menu', '=', 'EGRESOS')
+            ->value("ipx_bascula");
+
+        if (count($busuario)>0) {
+            $busuario=$busuario[0]['cod_bascula'];
+        }
+        if ($menu==="EGRESOS" && $e_automatico==="1") {
+            $ch = curl_init("http://$ipx_bascula/ws.php?opcion=get");
+            curl_setopt($ch, CURLOPT_URL, "http://$ipx_bascula/ws.php?opcion=get");
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($ch, CURLOPT_TIMEOUT_MS, 3000);
+            $res = curl_exec($ch);
+            curl_close($ch);
+        //$res="Con_accesoB001";
+        } elseif ($menu==="EGRESOS" && $e_automatico==="0") {
+            $res="0";
+        } else {
+            $res="Sin_acceso";
+        }
+
+        return view('egresos.seccion_gvacia', compact('res'));
+    }
+
 
     public function create()
     {

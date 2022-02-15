@@ -99,6 +99,53 @@ class PesoBrutoController extends Controller
 
         return view('pesobruto.seccion', compact('res'));
     }
+
+
+    public function ws_gaveta_vacia()
+    {
+        $user=auth()->user()->username;
+
+        $busuario =Basculas::select("id")->where('nom_user', '=', "$user")->where('nom_menu', '=', 'INGRESOS')->get();
+
+        $menu = Basculas::select("nom_menu")->where('nom_user', '=', "$user")->where('nom_menu', '=', 'INGRESOS')
+        ->value('nom_menu');
+
+        $cod_bascula =Basculas::select("id")->where('nom_user', '=', "$user")->where('nom_menu', '=', 'INGRESOS')->get();
+
+        $e_automatico = Basculas::select("automatico")->where('nom_user', '=', "$user")->where('nom_menu', '=', 'INGRESOS')
+            ->value("automatico");
+        
+        $tipo_peso = Basculas::select("tipo_peso")->where('nom_user', '=', "$user")->where('nom_menu', '=', 'INGRESOS')
+            ->value("tipo_peso");
+
+        $ipx_bascula = Basculas::select("ipx_bascula")->where('nom_user', '=', "$user")->where('nom_menu', '=', 'INGRESOS')
+            ->value("ipx_bascula");
+
+        if (count($busuario)>0) {
+            $busuario=$busuario[0]['cod_bascula'];
+        }
+
+
+        if ( $menu==="INGRESOS"  && $e_automatico==="1") {
+            $ch = curl_init("http://$ipx_bascula/ws.php?opcion=get");
+            curl_setopt($ch, CURLOPT_URL, "http://$ipx_bascula/ws.php?opcion=get");
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($ch, CURLOPT_TIMEOUT_MS, 3000);
+            $res = curl_exec($ch);
+            curl_close($ch);
+
+        //$res = cacular_kilos($tipo_peso, $resultado);
+
+        //$res="Con_accesoB001";
+        } elseif ( $menu === "INGRESOS" && $e_automatico ==="0") {
+            $res="0";
+        } else {
+            $res="Sin_acceso";
+        }
+
+        return view('pesobruto.seccion_gvacia', compact('res'));
+    }
+
     
     public function create()
     {
