@@ -31,7 +31,7 @@
                 <td align="right"> {{ $lote->ruc_ci }} </td>
             </tr>
             <tr>
-                <th align="left">Cantidad Animales Vivos: </th>
+                <th align="left">Cantidad Animales: </th>
                 <td align="right"> {{ $lote->cantidad }} </td>
             </tr>
             <tr>
