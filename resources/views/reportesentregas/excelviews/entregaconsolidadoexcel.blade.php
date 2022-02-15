@@ -57,7 +57,7 @@
                     <th align="center" ><b>Cantidad Gavetas</b></th>
                     <th align="center" ><b>Peso (PP)</b></th>  
                 </tr>
-            @foreach( $presas as $presa)
+            @foreach( $grupo_presas as $presa)
                 <tr>                
                     <td align="left">{{ $presa->tipo_entrega }}</td>
                     <td align="center">{{ $presa->cant_gavetas }}</td>

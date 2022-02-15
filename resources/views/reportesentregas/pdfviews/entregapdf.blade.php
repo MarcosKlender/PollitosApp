@@ -80,7 +80,7 @@
                             <table border="1">
                                 <thead>
                                     <tr>
-                                        <td align="center">ID</td>
+                                        <td align="center">N°</td>
                                         <td align="center">Cantidad de Gavetas</td>
                                         <td align="center">Peso Neto</td>
                                         <td align="center">Usuario</td>
@@ -89,15 +89,13 @@
                                 </thead>
                                 <tbody>
                                     @foreach ($registros_entregas as $registros)
-                                    @if($entrega->id==$registros->entregas_id)
                                         <tr>
-                                            <td align="center">{{ $registros->entregas_id }}</td>
+                                            <td align="center">{{ $loop->iteration }}</td>
                                             <td align="center">{{ $registros->cant_gavetas }}</td>
                                             <td align="center">{{ $registros->peso_bruto }}</td>
                                             <td align="center">{{ $registros->usuario }}</td>
                                             <td align="center">{{ $registros->updated_at }}</td>
                                         </tr>
-                                        @endif
                                     @endforeach
                                     <tr>
                                         <td colspan="1"><b>TOTAL</b></td>
@@ -120,7 +118,7 @@
                                 <thead>
                                     <tr>
                                         <td align="center">N°</td>
-                                        <td align="center"> Tipo Entregas </td>
+                                        <td align="center"> Tipo presas</td>
                                         <td align="center">Cantidad de Gavetas</td>
                                         <td align="center">Peso Gavetas</td>
                                         <td align="center">Usuario</td>
@@ -129,16 +127,14 @@
                                 </thead>
                                 <tbody>
                                     @foreach ($presas_entregas as $presas)
-                                    @if($entrega->id==$presas->entregas_id)
                                         <tr>
-                                            <td align="center">{{ $presas->entregas_id }}</td>
+                                            <td align="center">{{ $loop->iteration }}</td>
                                             <td align="center">{{ $presas->tipo_entrega }}</td>
                                             <td align="center">{{ $presas->cant_gavetas }}</td>
                                             <td align="center">{{ $presas->peso_bruto }}</td>
                                             <td align="center">{{ $presas->usuario }}</td>
                                             <td align="center">{{ $presas->updated_at }}</td>
                                         </tr>
-                                        @endif
                                     @endforeach
                                     <tr>
                                         <td colspan="2" align="center"><b>TOTAL</b></td>
