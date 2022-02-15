@@ -45,6 +45,7 @@ Route::get('/ajax-autocomplete-search3', 'EntregasController@selectSearch')->nam
 Route::get('/pesobruto/peso_bascula','PesoBrutoController@pesobascula')->name('pesobascula');
 
 Route::get('/pesobruto/seccion', 'PesoBrutoController@index2')->name('seccion');
+Route::get('/pesobruto/seccion_gvacia', 'PesoBrutoController@ws_gaveta_vacia')->name('seccion_gvacia');
 
 //Route::post('/reportes/ajaxshowdetallepesobruto','ReportesController@index');
 
@@ -86,6 +87,7 @@ Route::post('/egresos/registrar_gavetas', 'EgresosController@registrar_gavetas')
 Route::post('/egresos/liquidar_lote', 'EgresosController@liquidar_lote')->name('egresos.liquidar_lote');
 Route::get('/egresos/peso_bascula_egreso','EgresosController@pesobascula')->name('pesobasculaegreso');
 Route::get('/egresos/seccion', 'EgresosController@index2')->name('seccion_egreso');
+Route::get('/egresos/seccion_gvacia', 'EgresosController@ws_gaveta_vacia')->name('seccion_gvacia');
 Route::resource('egresos', EgresosController::class);
 
 Route::get('/entregas/presas_anuladas', 'EntregasController@presas_anuladas')->name('entregas.presas_anuladas');

@@ -629,7 +629,7 @@
             }, 2000);
 
             setInterval(function() {
-                $('#recargargve').load('/egresos/seccion');
+                $('#recargargve').load('/egresos/seccion_gvacia');
             }, 2000);
 
         });
