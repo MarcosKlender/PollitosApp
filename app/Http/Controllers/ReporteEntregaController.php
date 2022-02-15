@@ -68,8 +68,8 @@ class ReporteEntregaController extends Controller
     
         $entregas = Entregas::all_index()->orderBy('entregas.id')->paginate(10000);
         $entregas_presas = Entregas::presas_entregas()->orderBy('id')->get();
-        $registros_entregas = RegistrosEntregas::orderBy('id')->where('anulado', 0)->get();
-        $presas_entregas = PresasEntregas::orderBy('id')->where('anulado', 0)->get();
+        $registros_entregas = RegistrosEntregas::where('entregas_id', $id)->orderBy('id')->where('anulado', 0)->get();
+        $presas_entregas = PresasEntregas::where('entregas_id', $id)->orderBy('id')->where('anulado', 0)->get();
 
         $anulado = Entregas::where('id',$id)->select('anulado')->value('anulado');
         $liquidado = Entregas::where('id',$id)->select('liquidado')->value('liquidado');
