@@ -66,7 +66,7 @@
                                             <div id="recargar" name="recargar"></div>
                                          @elseif($e_automatico == '0' and $menu == 'ENTREGAS')
                                             <input type="number" class="form-control" id="peso_bruto" name="peso_bruto"
-                                            value="{{ old('peso_bruto') }}" required  />
+                                            value="{{ old('peso_bruto') }}" required  autofocus/>
                                         @elseif($e_automatico == null)
                                              <input type="number" class="form-control" id="peso_bruto" name="peso_bruto"
                                                   step=".01" required readonly />
