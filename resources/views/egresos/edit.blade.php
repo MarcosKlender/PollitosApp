@@ -205,6 +205,7 @@
                                         @elseif($e_automatico == null)
                                             <input type="number" class="form-control" id="peso_gavetas_vacias" name="peso_gavetas_vacias"
                                                   step=".01" required readonly />
+                                             <span  class="help-inline btn-danger">Báscula no asignada</span> 
                                         @endif
                                     </div>
 
