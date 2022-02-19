@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Lotes;
 use App\BasculaConfiguracion;
+use App\Configuracion;
 use App\Basculas;
 use App\Registros;
 use App\Proveedores;
@@ -75,6 +76,9 @@ class PesoBrutoController extends Controller
         $ipx_bascula = Basculas::select("ipx_bascula")->where('nom_user', '=', "$user")->where('nom_menu', '=', 'INGRESOS')
             ->value("ipx_bascula");
 
+        $cant_decimal_gv = Configuracion::select('val_conf')->where('ele_conf',"CANT_DEC_PB")->where('mod_conf', "INGRESOS")->where('est_conf', 0)->value('val_conf');
+
+
         if (count($busuario)>0) {
             $busuario=$busuario[0]['cod_bascula'];
         }
@@ -87,6 +91,7 @@ class PesoBrutoController extends Controller
             curl_setopt($ch, CURLOPT_TIMEOUT_MS, 3000);
             $res = curl_exec($ch);
             curl_close($ch);
+            $res = truncar_peso($res,$cant_decimal_gv);
 
         //$res = cacular_kilos($tipo_peso, $resultado);
 
@@ -121,6 +126,8 @@ class PesoBrutoController extends Controller
         $ipx_bascula = Basculas::select("ipx_bascula")->where('nom_user', '=', "$user")->where('nom_menu', '=', 'INGRESOS')
             ->value("ipx_bascula");
 
+        $cant_decimal_gv = Configuracion::select('val_conf')->where('ele_conf',"CANT_DEC_GV")->where('mod_conf', "INGRESOS")->where('est_conf', 0)->value('val_conf');
+
         if (count($busuario)>0) {
             $busuario=$busuario[0]['cod_bascula'];
         }
@@ -133,6 +140,7 @@ class PesoBrutoController extends Controller
             curl_setopt($ch, CURLOPT_TIMEOUT_MS, 3000);
             $res = curl_exec($ch);
             curl_close($ch);
+            $res = truncar_peso($res,$cant_decimal_gv);
 
         //$res = cacular_kilos($tipo_peso, $resultado);
 

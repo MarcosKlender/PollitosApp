@@ -6,6 +6,7 @@ use App\Lotes;
 use App\Egresos;
 use App\Basculas;
 use App\Registros;
+use App\Configuracion;
 use App\GavetasVaciasEgresos;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -47,6 +48,8 @@ class EgresosController extends Controller
         $ipx_bascula = Basculas::select("ipx_bascula")->where('nom_user', '=', "$user")->where('nom_menu', '=', 'EGRESOS')
             ->value("ipx_bascula");
 
+        $cant_decimal_gv = Configuracion::select('val_conf')->where('ele_conf',"CANT_DEC_PB")->where('mod_conf', "EGRESOS")->where('est_conf', 0)->value('val_conf');
+
         if (count($busuario)>0) {
             $busuario=$busuario[0]['cod_bascula'];
         }
@@ -57,7 +60,8 @@ class EgresosController extends Controller
             curl_setopt($ch, CURLOPT_TIMEOUT_MS, 3000);
             $res = curl_exec($ch);
             curl_close($ch);
-        //$res="Con_accesoB001";
+            $res = truncar_peso($res,$cant_decimal_gv);
+
         } elseif ($menu==="EGRESOS" && $e_automatico==="0") {
             $res="0";
         } else {
@@ -88,6 +92,8 @@ class EgresosController extends Controller
         $ipx_bascula = Basculas::select("ipx_bascula")->where('nom_user', '=', "$user")->where('nom_menu', '=', 'EGRESOS')
             ->value("ipx_bascula");
 
+        $cant_decimal_gv = Configuracion::select('val_conf')->where('ele_conf',"CANT_DEC_GV")->where('mod_conf', "EGRESOS")->where('est_conf', 0)->value('val_conf');
+
         if (count($busuario)>0) {
             $busuario=$busuario[0]['cod_bascula'];
         }
@@ -98,7 +104,8 @@ class EgresosController extends Controller
             curl_setopt($ch, CURLOPT_TIMEOUT_MS, 3000);
             $res = curl_exec($ch);
             curl_close($ch);
-        //$res="Con_accesoB001";
+            $res = truncar_peso($res,$cant_decimal_gv);
+
         } elseif ($menu==="EGRESOS" && $e_automatico==="0") {
             $res="0";
         } else {
