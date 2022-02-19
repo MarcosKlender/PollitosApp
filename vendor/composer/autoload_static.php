@@ -98,6 +98,7 @@ class ComposerStaticInitfba83e6cfee4c1f2dc06ef0fe6046ae7
         '46441ce319666e68ac0d753056faa9f4' => __DIR__ . '/..' . '/devmarketer/easynav/src/DevMarketer/EasyNav/functions.php',
         'ed962a97bd972bc82007176b647d4e36' => __DIR__ . '/..' . '/facade/ignition/src/helpers.php',
         'a1af1fc0cffb5f61cbaf64dbe030fdb9' => __DIR__ . '/..' . '/laravel/legacy-factories/helpers.php',
+        'd21d43db5f6e840ee7b10744ec7fdf66' => __DIR__ . '/../..' . '/app/Helpers/helpers.php',
     );
 
     public static $prefixLengthsPsr4 = array (
@@ -678,6 +679,8 @@ class ComposerStaticInitfba83e6cfee4c1f2dc06ef0fe6046ae7
         'App\\Egresos' => __DIR__ . '/../..' . '/app/Egresos.php',
         'App\\Entregas' => __DIR__ . '/../..' . '/app/Entregas.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
+        'App\\Exports\\PostExportEntregaConsolidado' => __DIR__ . '/../..' . '/app/Exports/PostExportEntregaConsolidado.php',
+        'App\\Exports\\PostExportLoteConsolidado' => __DIR__ . '/../..' . '/app/Exports/PostExportLoteConsolidado.php',
         'App\\Exports\\PostsExport' => __DIR__ . '/../..' . '/app/Exports/PostsExport.php',
         'App\\Exports\\PostsExportEntrega' => __DIR__ . '/../..' . '/app/Exports/PostsExportEntrega.php',
         'App\\GavetasVacias' => __DIR__ . '/../..' . '/app/GavetasVacias.php',
@@ -705,6 +708,7 @@ class ComposerStaticInitfba83e6cfee4c1f2dc06ef0fe6046ae7
         'App\\Http\\Controllers\\ProveedoresController' => __DIR__ . '/../..' . '/app/Http/Controllers/ProveedoresController.php',
         'App\\Http\\Controllers\\RegistrosEntregasController' => __DIR__ . '/../..' . '/app/Http/Controllers/RegistrosEntregasController.php',
         'App\\Http\\Controllers\\ReporteEntregaController' => __DIR__ . '/../..' . '/app/Http/Controllers/ReporteEntregaController.php',
+        'App\\Http\\Controllers\\ReporteLoteGeneralController' => __DIR__ . '/../..' . '/app/Http/Controllers/ReporteLoteGeneralController.php',
         'App\\Http\\Controllers\\ReportesController' => __DIR__ . '/../..' . '/app/Http/Controllers/ReportesController.php',
         'App\\Http\\Controllers\\ViscerasController' => __DIR__ . '/../..' . '/app/Http/Controllers/ViscerasController.php',
         'App\\Http\\Kernel' => __DIR__ . '/../..' . '/app/Http/Kernel.php',
@@ -1564,7 +1568,6 @@ class ComposerStaticInitfba83e6cfee4c1f2dc06ef0fe6046ae7
         'Faker\\Provider\\nl_BE\\Payment' => __DIR__ . '/..' . '/fakerphp/faker/src/Faker/Provider/nl_BE/Payment.php',
         'Faker\\Provider\\nl_BE\\Person' => __DIR__ . '/..' . '/fakerphp/faker/src/Faker/Provider/nl_BE/Person.php',
         'Faker\\Provider\\nl_BE\\PhoneNumber' => __DIR__ . '/..' . '/fakerphp/faker/src/Faker/Provider/nl_BE/PhoneNumber.php',
-        'Faker\\Provider\\nl_BE\\Text' => __DIR__ . '/..' . '/fakerphp/faker/src/Faker/Provider/nl_BE/Text.php',
         'Faker\\Provider\\nl_NL\\Address' => __DIR__ . '/..' . '/fakerphp/faker/src/Faker/Provider/nl_NL/Address.php',
         'Faker\\Provider\\nl_NL\\Color' => __DIR__ . '/..' . '/fakerphp/faker/src/Faker/Provider/nl_NL/Color.php',
         'Faker\\Provider\\nl_NL\\Company' => __DIR__ . '/..' . '/fakerphp/faker/src/Faker/Provider/nl_NL/Company.php',

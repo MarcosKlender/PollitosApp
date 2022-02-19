@@ -97,4 +97,5 @@ return array(
     '46441ce319666e68ac0d753056faa9f4' => $vendorDir . '/devmarketer/easynav/src/DevMarketer/EasyNav/functions.php',
     'ed962a97bd972bc82007176b647d4e36' => $vendorDir . '/facade/ignition/src/helpers.php',
     'a1af1fc0cffb5f61cbaf64dbe030fdb9' => $vendorDir . '/laravel/legacy-factories/helpers.php',
+    'd21d43db5f6e840ee7b10744ec7fdf66' => $baseDir . '/app/Helpers/helpers.php',
 );
