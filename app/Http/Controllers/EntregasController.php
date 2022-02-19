@@ -21,11 +21,11 @@ class EntregasController extends Controller
     
     public function index()
     {
-        if (Auth::user()->rol_id == 1) {
+        //if (Auth::user()->rol_id == 1) {
             $entregas = Entregas::orderBy('id', 'desc')->where('anulado', 0)->paginate(10);
-        }else{
+        /*}else{
             $entregas = Entregas::orderBy('id', 'desc')->where('anulado', 0)->where('usuario', Auth::user()->username)->paginate(10);
-        }
+        }*/
         
         $count = count($entregas);
         return view('entregas.index', compact('entregas', 'count'));

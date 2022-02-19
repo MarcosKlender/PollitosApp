@@ -21,11 +21,11 @@ class PesoBrutoController extends Controller
     
     public function index()
     {
-        if (Auth::user()->rol_id == 1) {
+       //if (Auth::user()->rol_id == 1) {
             $lotes = Lotes::orderBy('id', 'desc')->where('anulado', 0)->paginate(8);
-        } else {
+       /* } else {
             $lotes = Lotes::orderBy('id', 'desc')->where('anulado', 0)->where('usuario', Auth::user()->username)->paginate(8);
-        }
+        } */
 
         $count = count($lotes);
         
