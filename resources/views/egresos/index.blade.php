@@ -87,13 +87,13 @@
                                                     <button type="button" class="btn btn-sm btn-success">SI</button>
                                                 @endif
                                             </td>
-                                            <td>
+                                            <td align="center">
                                                 @if ($lote->egresos == '0')
                                                     <a href="{{ route('egresos.edit', $lote->id) }}"
                                                         class="btn btn-sm btn-primary">Registrar Pesos</a>
                                                 @else
                                                     <a href="{{ route('egresos.show', $lote->id) }}"
-                                                        class="btn btn-sm btn-success">Ver Registros</a>
+                                                       ><i class="fas fa-eye fa-2x"></i></a>
                                                 @endif
                                             </td>
                                         </tr>

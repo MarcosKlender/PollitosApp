@@ -58,7 +58,7 @@
                                         <td>Placa</td>
                                         <td>Conductor</td>
                                         @if (Auth::user()->rol->key == 'admin')
-                                            <td>Usuario</td>
+                                            <td>Usuario Creación</td>
                                         @endif
                                         <td>Fecha de Registro</td>
                                         @if (Auth::user()->rol->key == 'admin')
@@ -98,13 +98,13 @@
                                                     <button type="button" class="btn btn-sm btn-success">SI</button>
                                                 @endif
                                             </td>
-                                            <td>
+                                            <td align="center">
                                                 @if ($lote->liquidado == '0')
                                                     <a href="{{ route('pesobruto.edit', $lote->id) }}"
                                                         class="btn btn-sm btn-primary">Registrar Pesos</a>
                                                 @else
                                                     <a href="{{ route('pesobruto.show', $lote->id) }}"
-                                                        class="btn btn-sm btn-success">Ver Pesos</a>
+                                                        ><i class="fas fa-eye fa-2x"></i> </a>
                                                 @endif
                                             </td>
                                             <!--td class="button">

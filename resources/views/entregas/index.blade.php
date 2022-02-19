@@ -91,13 +91,13 @@
                                                     <button type="button" class="btn btn-sm btn-success">SI</button>
                                                 @endif
                                             </td>
-                                            <td>
+                                            <td align="center">
                                                 @if ($entrega->liquidado == '0')
                                                     <a href="{{ route('entregas.edit', $entrega->id) }}"
                                                         class="btn btn-sm btn-primary">Registrar Pesos</a>
                                                 @else
                                                     <a href="{{ route('entregas.show', $entrega->id) }}"
-                                                        class="btn btn-sm btn-success">Ver Pesos</a>
+                                                        ><i class="fas fa-eye fa-2x"></i> </a>
                                                 @endif
                                             </td>
                                         </tr>
