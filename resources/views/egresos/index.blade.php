@@ -50,10 +50,8 @@
                                         <td>Cantidad Animales</td>
                                         <td>Proveedor</td>
                                         <td>RUC/CI</td>
-                                        @if (Auth::user()->rol->key == 'admin')
-                                            <td>Usuario</td>
-                                        @endif
-                                        <td>Fecha de Registro</td>
+                                        <td>Usuario creación</td>
+                                        <td>Fecha creación</td>
                                         {{-- @if (Auth::user()->rol->key == 'admin') --}}
                                             <!--td>Anulado</td!-->
                                         {{-- @endif --}}
@@ -69,9 +67,7 @@
                                             <td>{{ $lote->cantidad }}</td>
                                             <td>{{ $lote->proveedor }}</td>
                                             <td>{{ $lote->ruc_ci }}</td>
-                                            @if (Auth::user()->rol->key == 'admin')
-                                                <td>{{ $lote->usuario }}</td>
-                                            @endif
+                                            <td>{{ $lote->usuario }}</td>
                                             <td>{{ $lote->created_at }}</td>
                                             {{-- @if (Auth::user()->rol->key == 'admin') --}}
                                                 <!--td>

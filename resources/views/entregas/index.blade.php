@@ -55,8 +55,8 @@
                                         <td>Placa</td>
                                         <td>Conductor</td>
                                         <td>Destino</td>                                        
-                                        <td>Usuario</td>
-                                        <td>Fecha de Registro</td>
+                                        <td>Usuario creación</td>
+                                        <td>Fecha creación</td>
                                         @if (Auth::user()->rol->key == 'admin')
                                             <td>Anulado</td>
                                         @endif
