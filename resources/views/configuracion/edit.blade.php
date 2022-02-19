@@ -37,7 +37,7 @@
                         <div class="form-group">
                             <label for="ele_conf">Elemento</label>
                             <input type="text" class="form-control" id="ele_conf" name="ele_conf"
-                                value="{{ $configuracion->ele_conf }}" required />
+                                value="{{ $configuracion->ele_conf }}" required readonly />
                         </div>
 
                         <div class="form-group">
