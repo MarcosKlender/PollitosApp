@@ -407,19 +407,19 @@
                                 <div class="tab-pane fade show active" id="ahogados" role="tabpanel" aria-labelledby="ahogados">
                                     
                                     <div class="form-group">
-                                            <label for="cant_ahogados">Cantidad Ahogados</label>
+                                            <label for="cant_ahogados">Cantidad animales ahogados</label>
                                             <input type="number" class="form-control" id="cant_ahogados_egresos" name="cant_ahogados_egresos"
                                                 value="{{ old('cant_ahogados_egresos') }}" required />
                                     </div>
 
                                     <div class="form-group">
-                                            <label for="peso_ahogados">Peso Ahogados</label>
+                                            <label for="peso_ahogados">Peso animales ahogados</label>
                                             <input type="number" class="form-control" id="peso_ahogados_egresos" name="peso_ahogados_egresos"
                                                 value="{{ old('peso_ahogados_egresos') }}" step=".01" required />
                                     </div>
 
                                      <div class="form-group">
-                                            <label for="cant_gvacia_ahogados_egresos">Cantidad gavetas vacias Ahogados</label>
+                                            <label for="cant_gvacia_ahogados_egresos">Cantidad gavetas vacias ahogados</label>
                                             <input type="number" class="form-control" id="cant_gvacia_ahogados_egresos" name="cant_gvacia_ahogados_egresos"
                                                 value="{{ old('cant_gvacia_ahogados_egresos') }}" step=".01" required />
                                     </div>
@@ -429,19 +429,19 @@
                                 <!-- animales Estropeados !-->
                                 <div class="tab-pane fade " id="estropeados" role="tabpanel" aria-labelledby="estropeados">
                                     <div class="form-group">
-                                            <label for="cant_estropeados">Cantidad Estropeados</label>
+                                            <label for="cant_estropeados">Cantidad animales estropeados</label>
                                             <input type="number" class="form-control" id="cant_estropeados_egresos" name="cant_estropeados_egresos"
                                                 value="{{ old('cant_estropeados_egresos') }}" required />
                                     </div>
 
                                     <div class="form-group">
-                                            <label for="peso_estropeados">Peso Estropeados</label>
+                                            <label for="peso_estropeados">Peso animales estropeados</label>
                                             <input type="number" class="form-control" id="peso_estropeados_egresos" name="peso_estropeados_egresos"
                                                 value="{{ old('peso_estropeados_egresos') }}" step=".01" required />
                                     </div>
 
                                      <div class="form-group">
-                                            <label for="cant_gvacia_estropeados">Cantidad gavetas vacias Estropeados</label>
+                                            <label for="cant_gvacia_estropeados">Cantidad gavetas vacias estropeados</label>
                                             <input type="number" class="form-control" id="cant_gvacia_estropeados_egresos" name="cant_gvacia_estropeados_egresos"
                                                 value="{{ old('cant_gvacia_estropeados_egresos') }}" step=".01" required />
                                     </div>
@@ -463,7 +463,7 @@
                                     </div>
 
                                      <div class="form-group">
-                                            <label for="cant_gvacia_mollejas">Cantidad gavetas vacias Mollejas</label>
+                                            <label for="cant_gvacia_mollejas">Cantidad gavetas vacias mollejas</label>
                                             <input type="number" class="form-control" id="cant_gvacia_mollejas_egresos" name="cant_gvacia_mollejas_egresos"
                                                 value="{{ old('cant_gvacia_mollejas_egresos') }}" step=".01" required />
                                     </div>

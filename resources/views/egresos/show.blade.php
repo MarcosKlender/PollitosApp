@@ -31,7 +31,7 @@
                         <div class="tab-pane fade show active" id="pesos" role="tabpanel" aria-labelledby="pesos">
 
                             <div class="row justify-content-around">
-                                <a href="{{ route('egresos.index') }}" class="btn btn-primary">Volver Atrás</a>
+                                <a href="{{ route('egresos.index') }}" class="btn btn-primary"><i class="fa fa-arrow-circle-left" aria-hidden="true"> Regresar</i></a>
                             </div>
 
                             @if (count($egresos) != 0)
@@ -45,7 +45,7 @@
                                                 <td>Peso Bruto</td>
                                                 {{-- <td>Peso Gavetas</td> --}}
                                                 {{-- <td>Peso Final</td> --}}
-                                                <td>Usuario</td>
+                                                <td>Usuario creación</td>
                                                 <td>Fecha de Registro</td>
                                             </tr>
                                         </thead>
@@ -79,7 +79,7 @@
                         <div class="tab-pane fade" id="gavetas" role="tabpanel" aria-labelledby="gavetas">
 
                             <div class="row justify-content-around">
-                                <a href="{{ route('egresos.index') }}" class="btn btn-primary">Volver Atrás</a>
+                                <a href="{{ route('egresos.index') }}" class="btn btn-primary"><i class="fa fa-arrow-circle-left" aria-hidden="true"> Regresar</i></a>
                             </div>
 
                             @if (count($gavetas) != 0)
@@ -92,7 +92,7 @@
                                                 <td>Cantidad Gavetas Vacías</td>
                                                 <td>Peso Gavetas Vacías</td>
                                                 {{-- <td>Tipo Peso</td> --}}
-                                                <td>Usuario</td>
+                                                <td>Usuario creacion</td>
                                                 <td>Fecha de Registro</td>
                                             </tr>
                                         </thead>

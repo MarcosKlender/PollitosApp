@@ -371,12 +371,12 @@
                         @else
                             Para liquidar el lote, agregue la siguiente información:<br><br>
                             <div class="form-group">
-                                <label for="cant_ahogados">Cantidad Ahogados</label>
+                                <label for="cant_ahogados">Cantidad animales ahogados</label>
                                 <input type="number" class="form-control" id="cant_ahogados" name="cant_ahogados"
                                     value="{{ old('cant_ahogados') }}" required />
                             </div>
                             <div class="form-group">
-                                <label for="peso_ahogados">Peso Ahogados</label>
+                                <label for="peso_ahogados">Peso animales ahogados</label>
                                 <input type="number" class="form-control" id="peso_ahogados" name="peso_ahogados"
                                     value="{{ old('peso_ahogados') }}" step=".01" required />
                             </div>

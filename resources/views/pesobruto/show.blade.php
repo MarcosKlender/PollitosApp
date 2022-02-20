@@ -31,7 +31,7 @@
                         <div class="tab-pane fade show active" id="pesos" role="tabpanel" aria-labelledby="pesos">
 
                             <div class="row justify-content-around">
-                                <a href="{{ route('pesobruto.index') }}" class="btn btn-primary">Volver Atrás</a>
+                                <a href="{{ route('pesobruto.index') }}" class="btn btn-primary"><i class="fa fa-arrow-circle-left" aria-hidden="true"> Regresar</i></a>
                             </div>
 
                             @if (count($registros) != 0)
@@ -79,7 +79,7 @@
                         <div class="tab-pane fade" id="gavetas" role="tabpanel" aria-labelledby="gavetas">
 
                             <div class="row justify-content-around">
-                                <a href="{{ route('pesobruto.index') }}" class="btn btn-primary">Volver Atrás</a>
+                                <a href="{{ route('pesobruto.index') }}" class="btn btn-primary"><i class="fa fa-arrow-circle-left" aria-hidden="true"> Regresar</i></a>
                             </div>
 
                             @if (count($gavetas) != 0)
@@ -159,8 +159,8 @@
                         <table class="table table-striped table-bordered">
                             <thead>
                                 <tr class="font-weight-bold">
-                                    <td class="col-6">Cantidad Ahogados</td>
-                                    <td class="col-6">Peso Ahogados</td>
+                                    <td class="col-6">Cantidad animales ahogados</td>
+                                    <td class="col-6">Peso animales ahogados</td>
                                 </tr>
                             </thead>
                             <tbody>

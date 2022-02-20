@@ -57,9 +57,7 @@
                                         <td>Procedencia</td>
                                         <td>Placa</td>
                                         <td>Conductor</td>
-                                        @if (Auth::user()->rol->key == 'admin')
-                                            <td>Usuario creación</td>
-                                        @endif
+                                        <td>Usuario creación</td>
                                         <td>Fecha creación</td>
                                         @if (Auth::user()->rol->key == 'admin')
                                             <td>Anulado</td>
@@ -80,9 +78,7 @@
                                             <td>{{ $lote->procedencia }}</td>
                                             <td>{{ $lote->placa }}</td>
                                             <td>{{ $lote->conductor }}</td>
-                                            @if (Auth::user()->rol->key == 'admin')
-                                                <td>{{ $lote->usuario }}</td>
-                                            @endif
+                                            <td>{{ $lote->usuario }}</td>
                                             <td>{{ $lote->created_at }}</td>
                                             @if (Auth::user()->rol->key == 'admin')
                                                 <td>
