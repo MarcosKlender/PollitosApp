@@ -37,6 +37,7 @@ class BasculasController extends Controller
         if ($request->has('q')) {
             $search = $request->q;
             $usuario =user::select("username")
+                    ->where('username','<>','superadmin')
                     ->where('username', 'iLIKE', "%$search%")
                     ->get();
         }
