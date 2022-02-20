@@ -517,17 +517,12 @@
                 $('#recargar').load('/pesobruto/seccion');
             }, 2000);
 
-            var readonly = $("#peso_bruto").is('[readonly]');
-        });
-
-
-        $(document).ready(function() {
             setInterval(function() {
                 $('#recargargv').load('/pesobruto/seccion_gvacia');
             }, 2000);
 
-           var readonly = $("#peso_gavetas_vacias").is('[readonly]');
         });
+
 
 
     </script>
