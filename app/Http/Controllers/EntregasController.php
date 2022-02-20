@@ -133,16 +133,15 @@ class EntregasController extends Controller
         $valor_cant_gavetas = Configuracion::select('val_conf')->where('ele_conf',"VALOR_CANT_GAVETAS")->where('mod_conf', "ENTREGAS")->where('est_conf', 0)->value('val_conf');
 
 
-
-        $e_automatico = Basculas::select("automatico")
+        $e_automatico = Basculas::select("automatico")->where('nom_menu', '=', 'ENTREGAS')
             ->where('nom_user', '=', "$user")
             ->value("automatico");
 
-        $id_bascula = Basculas::select("cod_bascula")
+        $id_bascula = Basculas::select("cod_bascula")->where('nom_menu', '=', 'ENTREGAS')
             ->where('nom_user', '=', "$user")
             ->value("cod_bascula");
 
-        $tipo_peso = Basculas::select("tipo_peso")
+        $tipo_peso = Basculas::select("tipo_peso")->where('nom_menu', '=', 'ENTREGAS')
             ->where('nom_user', '=', "$user")
             ->value("tipo_peso");
 
