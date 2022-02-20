@@ -99,7 +99,7 @@
                                     required />
                                 <input type="hidden" id="anulado" name="anulado" value="0" required />
                                 <div class="row justify-content-around mt-2">
-                                    <a href="{{ route('entregas.index') }}" class="btn btn-primary">Volver Atrás</a>
+                                    <a href="{{ route('entregas.index') }}" class="btn btn-primary"><i class="fa fa-arrow-circle-left" aria-hidden="true"> Regresar</i></a>
                                     <button type="submit" class="btn btn-success">Registrar Peso</button>
                                 </div>
                             </form>
@@ -217,7 +217,7 @@
                                     required />
                                 <input type="hidden" id="anulado" name="anulado" value="0" required />
                                 <div class="row justify-content-around mt-2">
-                                    <a href="{{ route('entregas.index') }}" class="btn btn-primary">Volver Atrás</a>
+                                    <a href="{{ route('entregas.index') }}" class="btn btn-primary"><i class="fa fa-arrow-circle-left" aria-hidden="true"> Regresar</i></a>
                                     <button type="submit" class="btn btn-success">Registrar Peso</button>
                                 </div>
                             </form>
