@@ -112,7 +112,7 @@ class EgresosController extends Controller
             $res="Sin_acceso";
         }
 
-        return view('egresos.seccion_gvacia', compact('res'));
+        return view('egresos.seccion_gvacia_egreso', compact('res'));
     }
 
 
