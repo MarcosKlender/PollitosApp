@@ -62,16 +62,18 @@
 
                                     <div class="form-group col-lg-6">
                                         <label for="peso_bruto">Peso Bruto</label>
-                                         @if ($e_automatico == '1' and $menu == 'ENTREGAS')
+                                         @if($e_automatico == '1' and $menu == 'ENTREGAS')
                                             <div id="recargar" name="recargar"></div>
+                                            <span  class="help-inline text-success">Báscula peso automático</span>
                                          @elseif($e_automatico == '0' and $menu == 'ENTREGAS')
                                             <input type="number" class="form-control" id="peso_bruto" name="peso_bruto"
                                             value="{{ old('peso_bruto') }}" required  autofocus/>
+                                            <span  class="help-inline text-success">Registro de peso manual</span>
                                         @elseif($e_automatico == null)
                                              <input type="number" class="form-control" id="peso_bruto" name="peso_bruto"
                                                   step=".01" required readonly />
                                               <span  class="help-inline btn-danger">Báscula no asignada</span>     
-                                            @endif
+                                        @endif
                                     </div>
 
                                     <div class="form-group col-lg-12 text-center">

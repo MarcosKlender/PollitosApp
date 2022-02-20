@@ -59,9 +59,11 @@
                                         <label for="peso_bruto">Peso Bruto</label>
                                         @if ($e_automatico == '1' and $menu == 'EGRESOS')
                                             <div id="recargar" name="recargar"></div>
+                                            <span  class="help-inline text-success">Báscula peso automático</span>
                                         @elseif($e_automatico == '0' and $menu == 'EGRESOS')
                                             <input type="number" class="form-control" id="peso_bruto" name="peso_bruto"
                                                 value="{{ old('peso_bruto') }}" step=".01" required />
+                                            <span  class="help-inline text-success">Registro de peso manual</span>
                                         @elseif($e_automatico == null)
                                             <input type="number" class="form-control" id="peso_bruto" name="peso_bruto"
                                                   step=".01" required readonly />
@@ -198,10 +200,12 @@
                                         <label for="peso_gavetas_vacias">Peso de Gavetas Vacías</label>
                                         @if ($e_automatico == '1' and $menu == 'EGRESOS')
                                             <div id="recargargve" name="recargargve"></div>
+                                            <span  class="help-inline text-success">Báscula peso automático</span>
                                         @elseif($e_automatico == '0' and $menu == 'EGRESOS')
                                             <input type="number" class="form-control" id="peso_gavetas_vacias"
                                                 name="peso_gavetas_vacias" value="{{ old('peso_gavetas_vacias') }}"
                                                 step=".01" required />
+                                            <span  class="help-inline text-success">Registro de peso manual</span>
                                         @elseif($e_automatico == null)
                                             <input type="number" class="form-control" id="peso_gavetas_vacias" name="peso_gavetas_vacias"
                                                   step=".01" required readonly />
