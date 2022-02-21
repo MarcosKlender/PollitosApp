@@ -96,7 +96,7 @@
 
             @endif
             
-            @if (Auth::user()->rol->key == 'ingresos' OR Auth::user()->rol->key == 'egresos' OR Auth::user()->rol->key == 'admin')
+            @if (Auth::user()->rol->key == 'ingresos' OR Auth::user()->rol->key == 'egresos' OR Auth::user()->rol->key == 'admin' OR Auth::user()->rol->key == 'egre_entr')
                 <!-- Nav Item - Admin -->
                 <li class="nav-item {{ request()->is('proveedores') ? 'active' : '' }}">
                     <a class="nav-link" href="{{ route('proveedores.index') }}">
@@ -106,7 +106,7 @@
                 </li>
             @endif
 
-            @if (Auth::user()->rol->key == 'entregas' OR Auth::user()->rol->key == 'admin')
+            @if (Auth::user()->rol->key == 'entregas' OR Auth::user()->rol->key == 'admin' OR Auth::user()->rol->key == 'egre_entr')
                 <!-- Nav Item - Admin -->
                 <li class="nav-item {{ request()->is('clientes') ? 'active' : '' }}">
                     <a class="nav-link" href="{{ route('clientes.index') }}">
@@ -139,7 +139,7 @@
                 </li!-->
             @endif
 
-            @if (Auth::user()->rol->key == 'egresos' OR Auth::user()->rol->key == 'admin')
+            @if (Auth::user()->rol->key == 'egresos' OR Auth::user()->rol->key == 'admin' OR Auth::user()->rol->key == 'egre_entr')
                 <li class="nav-item {{ request()->is('egresos') ? 'active' : '' }}">
                     <a class="nav-link" href="{{ route('egresos.index') }}">
                         <i class="fas fa-arrow-circle-left"></i>
@@ -147,7 +147,7 @@
                 </li>
             @endif
 
-            @if (Auth::user()->rol->key == 'entregas' OR Auth::user()->rol->key == 'admin')
+            @if (Auth::user()->rol->key == 'entregas' OR Auth::user()->rol->key == 'admin' OR Auth::user()->rol->key == 'egre_entr')
                 <li class="nav-item {{ request()->is('entregas') ? 'active' : '' }}">
                     <a class="nav-link" href="{{ route('entregas.index') }}">
                         <i class="fas fa-fw fa-truck"></i>
@@ -155,7 +155,7 @@
                 </li>
             @endif
 
-            @if (Auth::user()->rol->key == 'egresos' OR Auth::user()->rol->key == 'entregas' OR Auth::user()->rol->key == 'admin')
+            @if (Auth::user()->rol->key == 'egresos' OR Auth::user()->rol->key == 'entregas' OR Auth::user()->rol->key == 'admin' OR Auth::user()->rol->key == 'egre_entr')
             <!-- Divider -->
             <hr class="sidebar-divider">
 

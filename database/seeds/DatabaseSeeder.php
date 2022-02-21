@@ -21,6 +21,7 @@ class DatabaseSeeder extends Seeder
             ['key' => 'ingresos', 'name' => 'Ingresos', 'description' => 'Este rol tiene acceso a PROVEEDORES e INGRESOS.', 'created_at' => Carbon::now()->toDateTimeString(), 'updated_at' => Carbon::now()->toDateTimeString()],
             ['key' => 'egresos', 'name' => 'Egresos', 'description' => 'Este rol tiene acceso a PROVEEDORES, EGRESOS y REPORTES.', 'created_at' => Carbon::now()->toDateTimeString(), 'updated_at' => Carbon::now()->toDateTimeString()],
             ['key' => 'entregas', 'name' => 'Entregas', 'description' => 'Este rol tiene acceso a CLIENTES, ENTREGAS y REPORTES.', 'created_at' => Carbon::now()->toDateTimeString(), 'updated_at' => Carbon::now()->toDateTimeString()],
+            ['key' => 'egre_entr', 'name' => 'Egresos y Entregas', 'description' => 'Este rol tiene acceso a PROVEEDORES, CLIENTES, EGRESOS, ENTREGAS y REPORTES.', 'created_at' => Carbon::now()->toDateTimeString(), 'updated_at' => Carbon::now()->toDateTimeString()],
         ]);
 
         //TABLA CONFIGURACION
