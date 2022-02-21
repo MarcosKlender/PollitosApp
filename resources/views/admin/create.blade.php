@@ -36,6 +36,7 @@
                                 <option value="2">Ingresos</option>
                                 <option value="3">Egresos</option>
                                 <option value="4">Entregas</option>
+                                <option value="5">Egresos y Entregas</option>
                             </select>
                         </div>
                         <div class="form-group">
