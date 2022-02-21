@@ -64,9 +64,9 @@ class EntregasController extends Controller
             curl_setopt($ch, CURLOPT_URL, "http://$ipx_bascula/ws.php?opcion=get");
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
             curl_setopt($ch, CURLOPT_TIMEOUT_MS, 3000);
-            $res = curl_exec($ch);
+            $respuesta = curl_exec($ch);
             curl_close($ch);
-            $res = truncar_peso($res,$cant_decimal_gv);
+            $res = truncar_peso($respuesta,$cant_decimal_gv);
 
         } elseif ($menu==="ENTREGAS" && $e_automatico==="0") {
             $res="0";
