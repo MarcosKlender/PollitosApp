@@ -38,7 +38,7 @@
                                         <td>Procedencia</td>
                                         <td>Placa</td>
                                         <td>Conductor</td>
-                                        <td>Usuario</td>
+                                        <td>Usuario creación</td>
                                         <td>Observaciones</td>
                                         <td>Fecha de Registro</td>
                                     </tr>
@@ -53,7 +53,7 @@
                                             <td>{{ $lote->procedencia }}</td>
                                             <td>{{ $lote->placa }}</td>
                                             <td>{{ $lote->conductor }}</td>
-                                            <td>{{ $lote->usuario }}</td>
+                                            <td>{{ $lote->usuario_creacion }}</td>
                                             <td>{{ $lote->observaciones }}</td>
                                             <td>{{ $lote->created_at }}</td>
                                         </tr>

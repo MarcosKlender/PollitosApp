@@ -6,6 +6,7 @@ use App\Lotes;
 use App\Egresos;
 use App\Basculas;
 use App\Registros;
+use App\EgresosPresas;
 use App\Configuracion;
 use App\GavetasVaciasEgresos;
 use Illuminate\Http\Request;
@@ -140,6 +141,8 @@ class EgresosController extends Controller
         $cant_gav_vac = GavetasVaciasEgresos::where('lotes_id', $id)->where('anulado', 0)->select('cant_gavetas_vacias')->sum('cant_gavetas_vacias');
         $peso_gav_vac = GavetasVaciasEgresos::where('lotes_id', $id)->where('anulado', 0)->select('peso_gavetas_vacias')->sum('peso_gavetas_vacias');
 
+        $egresos_presas = EgresosPresas::findOrFail($id);
+
         /* $cant_ahogados  = Egresos::where('lotes_id', $id)->where('anulado', 0)->select('cant_ahogados')->sum('cant_ahogados');
          $peso_ahogados  = Egresos::where('lotes_id', $id)->where('anulado', 0)->select('peso_ahogados')->sum('peso_ahogados');
          $cant_gvacia_ahogados  = Egresos::where('lotes_id', $id)->where('anulado', 0)->select('cant_gvacia_ahogados')->sum('cant_gvacia_ahogados');
@@ -154,7 +157,7 @@ class EgresosController extends Controller
          $cant_gvacia_mollejas  = Egresos::where('lotes_id', $id)->where('anulado', 0)->select('cant_gvacia_mollejas')->sum('cant_gvacia_mollejas'); */
 
 
-        return view('egresos.show', compact('lote', 'egresos', 'total_cantidad', 'total_bruto', 'total_gavetas', 'total_final', 'gavetas', 'cant_gav_vac', 'peso_gav_vac'));
+        return view('egresos.show', compact('lote', 'egresos_presas' ,'egresos', 'total_cantidad', 'total_bruto', 'total_gavetas', 'total_final', 'gavetas', 'cant_gav_vac', 'peso_gav_vac'));
     }
 
     public function edit($id)
@@ -204,7 +207,7 @@ class EgresosController extends Controller
             'peso_gavetas' => '',
             'peso_final' => '',
             'tipo_peso' => 'required|size:2',
-            'usuario' => 'required|max:191',
+            'usuario_creacion' => 'required|max:191',
             'liquidado' => 'required|size:1',
             'anulado' => 'required|size:1',
         ]);
@@ -269,13 +272,13 @@ class EgresosController extends Controller
         return back()->with('success', '¡El peso de las gavetas fue registrado exitosamente!');
     }
 
-    public function liquidar_lote(Request $request)
+   /* public function liquidar_lote(Request $request)
     {
        /* $updateLote = $request->validate([
             'egresos' => 'required|size:1',
         ]);*/
 
-        $updateLote = $request->validate([
+    /*    $updateLote = $request->validate([
             'egresos' => 'required|size:1',
             'liquidado' => 'required|size:1',
             'cant_ahogados_egresos' => 'required|numeric',
@@ -302,5 +305,5 @@ class EgresosController extends Controller
         } else {
             return redirect('/egresos')->with('error', '¡Revisar que lote de ingresos este liquidado!');
         }
-    }
+    } */
 }

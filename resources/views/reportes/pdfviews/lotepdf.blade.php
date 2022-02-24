@@ -54,7 +54,7 @@
                         <div style="margin-left:200pt;">
                          <div>   <strong>Placa:     </strong>         <label>{{ $lote->placa }}                  </label></div>
                          <div>   <strong>Conductor:  </strong>        <label>{{ $lote->conductor }}              </label></div>
-                         <div>   <strong>Usuario:       </strong>     <label>{{ $lote->usuario }}                </label></div>
+                         <div>   <strong>Usuario creación:       </strong>     <label>{{ $lote->usuario_creacion }}                </label></div>
                          <div>   <strong>Fecha Creacion:</strong>  <label>{{ $lote->created_at }}                </label></div>
                          <div>   <strong>Estado:</strong>  <label>{{ $liquidado}}                                </label></div>
                         </div>
@@ -83,8 +83,7 @@
                                         <td align="center">ID Lote</td>
                                         <td align="center">Cantidad de ahogados</td>
                                         <td align="center">Peso ahogados</td>
-                                        <!--td>Peso Final</td!-->
-                                        <td align="center">Usuario</td>
+                                        <td align="center">Usuario creación</td>
                                         <td align="center">Fecha de Registro</td>
                                     </tr>
                                 </thead>
@@ -95,23 +94,11 @@
                                             <td align="center">{{ $lote_ahogados->id }}</td>
                                             <td align="center">{{ $lote_ahogados->cant_ahogados }}</td>
                                             <td align="center">{{ $lote_ahogados->peso_ahogados }}</td>
-                                            <!--td> {{-- $gav_vacias->peso_final --}} </td!-->
-                                            <td align="center">{{ $lote_ahogados->usuario }}</td>
+                                            <td align="center">{{ $lote_ahogados->usuario_creacion }}</td>
                                             <td align="center">{{ $lote_ahogados->updated_at }}</td>
                                         </tr>
                                         @endif
                                     @endforeach
-                                    <!--tr>
-                                        <td colspan="1"><b>TOTAL</b></td>
-                                        @foreach($lotes_gavetas as $lote_gvacia)                                 
-                                        @if($lote->id == $lote_gvacia->id)
-                                            <td><b>{{ $lote_gvacia->total_cant_gavetas_vacias }}</b></td>
-                                            <td><b>{{ $lote_gvacia->total_peso_gavetas_vacias }}  </b></td>
-                                            <td><b>{{ $lote_gvacia->total_peso_gavetas }}</b></td!-->
-                                            <!--td><b>{{ $lote_gvacia->total_peso_final }}  </b></td>
-                                        @endif
-                                        @endforeach
-                                    </tr!-->
                                 </tbody>
                             </table>
                         </div>
@@ -127,36 +114,32 @@
                             <table border="1">
                                 <thead>
                                     <tr>
+                                        <td align="center">#</td>
                                         <td align="center">ID Lote</td>
                                         <td align="center">Cantidad de Gavetas</td>
                                         <td align="center">Peso Bruto</td>
-                                        <!--td>Peso Gavetas</td!-->
-                                        <!--td>Peso Final</td!-->
-                                        <td align="center">Usuario</td>
+                                        <td align="center">Usuario creación</td>
                                         <td align="center">Fecha de Registro</td>
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    {{ $count = 0}}
                                     @foreach ($registros as $reg)
                                     @if($lote->id==$reg->lotes_id)
                                         <tr>
-                                            
+                                            <td align="center">{{ $count = $count + 1  }}</td>
                                             <td align="center">{{ $reg->lotes_id }}</td>
                                             <td align="center">{{ $reg->cant_gavetas }}</td>
                                             <td align="center">{{ $reg->peso_bruto }}</td>
-                                            <!--td>{{ $reg->peso_gavetas }}</td!-->
-                                            <!--td>{{ $reg->peso_final }}</td!-->
-                                            <td align="center">{{ $reg->usuario }}</td>
+                                            <td align="center">{{ $reg->usuario_creacion }}</td>
                                             <td align="center">{{ $reg->updated_at }}</td>
                                         </tr>
                                         @endif
                                     @endforeach
                                     <tr>
-                                        <td colspan="1"><b>TOTAL</b></td>
+                                        <td colspan="2"><b>TOTAL</b></td>
                                         <td align="center"><b>{{ $lote->total_cant_gavetas }}</b></td>
                                         <td align="center"><b>{{ $lote->total_peso_bruto }}  </b></td>
-                                        <!--td><b>{{ $lote->total_peso_gavetas }}</b></td!-->
-                                        <!--td><b>{{ $lote->total_peso_final }}  </b></td!-->
                                     </tr>
                                 </tbody>
                             </table>
@@ -173,27 +156,30 @@
                             <table border="1">
                                 <thead>
                                     <tr>
+                                        <td align="center">#</td>
                                         <td align="center">ID Lote</td>
                                         <td align="center">Cantidad de Gavetas</td>
                                         <td align="center">Peso Gavetas</td>
-                                        <td align="center">Usuario</td>
+                                        <td align="center">Usuario creación</td>
                                         <td align="center">Fecha de Registro</td>
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    {{ $count = 0 }}
                                     @foreach ($gavetas_vacias as $gav_vacias)
                                     @if($lote->id==$gav_vacias->lotes_id)
                                         <tr>
+                                            <td align="center">{{ $count = $count + 1  }}</td>
                                             <td align="center">{{ $gav_vacias->lotes_id }}</td>
                                             <td align="center">{{ $gav_vacias->cant_gavetas_vacias }}</td>
                                             <td align="center">{{ $gav_vacias->peso_gavetas_vacias }}</td>
-                                            <td align="center">{{ $gav_vacias->usuario }}</td>
+                                            <td align="center">{{ $gav_vacias->usuario_creacion }}</td>
                                             <td align="center">{{ $gav_vacias->updated_at }}</td>
                                         </tr>
                                         @endif
                                     @endforeach
                                     <tr>
-                                        <td colspan="1"><b>TOTAL</b></td>
+                                        <td colspan="2"><b>TOTAL</b></td>
                                         @foreach($lotes_gavetas as $lote_gvacia)                                 
                                         @if($lote->id == $lote_gvacia->id)
                                             <td align="center"><b>{{ $lote_gvacia->total_cant_gavetas_vacias }}</b></td>
@@ -281,19 +267,19 @@
                                         <td align="center">Peso ahogados</td>
                                          <td align="center">Cantidad gaventas vacias</td>
                                         <!--td>Peso Final</td!-->
-                                        <td align="center">Usuario</td>
+                                        <td align="center">Usuario creación</td>
                                         <td align="center">Fecha de Registro</td>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($lotes as $lote_ahogados)
+                                    @foreach ($egresos_presas as $lote_ahogados)
                                     @if($lote->id==$lote_ahogados->id)
                                         <tr>
                                             <td align="center">{{ $lote_ahogados->id }}</td>
                                             <td align="center">{{ $lote_ahogados->cant_ahogados_egresos }}</td>
                                             <td align="center">{{ $lote_ahogados->peso_ahogados_egresos }}</td>
                                             <td align="center"> {{ $lote_ahogados->cant_gvacia_ahogados_egresos }} </td>
-                                            <td align="center">{{ $lote_ahogados->usuario }}</td>
+                                            <td align="center">{{ $lote_ahogados->usuario_creacion }}</td>
                                             <td align="center">{{ $lote_ahogados->updated_at }}</td>
                                         </tr>
                                         @endif
@@ -316,19 +302,19 @@
                                         <td align="center">Cantidad estropeados</td>
                                         <td align="center">Peso estropeados</td>
                                         <td align="center">Cantidad gaventas vacias</td>
-                                        <td align="center">Usuario</td>
+                                        <td align="center">Usuario creación</td>
                                         <td align="center">Fecha de Registro</td>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($lotes as $lote_estropeados)
+                                    @foreach ($egresos_presas as $lote_estropeados)
                                     @if($lote->id==$lote_estropeados->id)
                                         <tr>
                                             <td align="center">{{ $lote_estropeados->id }}</td>
                                             <td align="center">{{ $lote_estropeados->cant_estropeados_egresos }}</td>
                                             <td align="center">{{ $lote_estropeados->peso_estropeados_egresos }}</td>
                                             <td align="center"> {{ $lote_estropeados->cant_gvacia_estropeados_egresos }} </td>
-                                            <td align="center">{{ $lote_estropeados->usuario }}</td>
+                                            <td align="center">{{ $lote_estropeados->usuario_creacion }}</td>
                                             <td align="center">{{ $lote_estropeados->updated_at }}</td>
                                         </tr>
                                         @endif
@@ -352,19 +338,18 @@
                                         <!--td align="center">Cantidad mollejas</td!-->
                                         <td align="center">Peso mollejas</td>
                                         <td align="center">Cantidad gaventas vacias</td>
-                                        <td align="center">Usuario</td>
+                                        <td align="center">Usuario creación</td>
                                         <td align="center">Fecha de Registro</td>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($lotes as $lote_mollejas)
+                                    @foreach ($egresos_presas as $lote_mollejas)
                                     @if($lote->id==$lote_mollejas->id)
                                         <tr>
                                             <td align="center">{{ $lote_mollejas->id }}</td>
-                                            <!--td align="center">{{-- $lote_mollejas->cant_mollejas_egresos --}}</td!-->
                                             <td align="center">{{ $lote_mollejas->peso_mollejas_egresos }}</td>
                                             <td align="center"> {{ $lote_mollejas->cant_gvacia_mollejas_egresos }} </td>
-                                            <td align="center">{{ $lote_mollejas->usuario }}</td>
+                                            <td align="center">{{ $lote_mollejas->usuario_creacion }}</td>
                                             <td align="center">{{ $lote_mollejas->updated_at }}</td>
                                         </tr>
                                         @endif
@@ -393,35 +378,27 @@
                                         <td align="center">ID Lote</td>
                                         <td align="center">Cantidad de Gavetas</td>
                                         <td align="center">Peso Bruto</td>
-                                        <!--td>Peso Gavetas</td>
-                                        <td>Peso Final</td!-->
-                                        <td align="center">Usuario</td>
+                                        <td align="center">Usuario creación</td>
                                         <td align="center">Fecha de Registro</td>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @foreach ($egresos as $egreso)
                                         <tr>
-                                            <td align="center">{{ $egreso->id }}</td>
+                                            <td align="center">{{ $loop->iteration }}</td>
                                             <td align="center">{{ $egreso->lotes_id }}</td>
                                             <td align="center">{{ $egreso->cant_gavetas }}</td>
                                             <td align="center">{{ $egreso->peso_bruto }}</td>
-                                            <!--td>{{ $egreso->peso_gavetas }}</td>
-                                            <td>{{ $egreso->peso_final }}</td!-->
-                                            <td align="center">{{ $egreso->usuario }}</td>
+                                            <td align="center">{{ $egreso->usuario_creacion }}</td>
                                             <td align="center">{{ $egreso->updated_at }}</td>
                                         </tr>
                                         {{$sume_cg=$sume_cg+$egreso->cant_gavetas}}
                                         {{$sume_pb=$sume_pb+$egreso->peso_bruto}}
-                                        {{--$sume_pg=$sume_pg+$egreso->peso_gavetas--}}
-                                        {{--$sume_pf=$sume_pf+$egreso->peso_final--}}
                                     @endforeach
                                     <tr>
                                         <td colspan="2"><b>TOTAL</b></td>
                                         <td align="center"><b>{{ $sume_cg }}</b></td>
                                         <td align="center"><b>{{ $sume_pb }}</b></td>
-                                        <!--td><b>{{ $sume_pg }}</b></td>
-                                        <td><b>{{ $sume_pf }}</b></td!-->
                                     </tr>
                                 </tbody>
                             </table>
@@ -438,23 +415,24 @@
                             <table border="1">
                                 <thead>
                                     <tr>
+                                        <td align="center">#</td>
                                         <td align="center">ID Lote</td>
                                         <td align="center">Cantidad de Gavetas</td>
                                         <td align="center">Peso Gavetas</td>
-                                        <!--td>Peso Final</td!-->
-                                        <td align="center">Usuario</td>
+                                        <td align="center">Usuario creación</td>
                                         <td align="center">Fecha de Registro</td>
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    {{ $count = 0}}
                                     @foreach ($gavetas_vacias_egresos as $gav_vacias)
                                     @if($lote->id==$gav_vacias->lotes_id)
                                         <tr>
+                                            <td align="center">{{ $count = $count + 1 }}</td>
                                             <td align="center">{{ $gav_vacias->lotes_id }}</td>
                                             <td align="center">{{ $gav_vacias->cant_gavetas_vacias }}</td>
                                             <td align="center">{{ $gav_vacias->peso_gavetas_vacias }}</td>
-                                            <!--td>{{ $gav_vacias->peso_final }}</td!-->
-                                            <td align="center">{{ $gav_vacias->usuario }}</td>
+                                            <td align="center">{{ $gav_vacias->usuario_creacion }}</td>
                                             <td align="center">{{ $gav_vacias->updated_at }}</td>
                                         </tr>
                                         @endif
@@ -465,8 +443,6 @@
                                         @if($lote->id == $lote_gvacia->id)
                                             <td align="center"><b>{{ $lote_gvacia->total_cant_gavetas_vacias_egresos }}</b></td>
                                             <td align="center"><b>{{ $lote_gvacia->total_peso_gavetas_vacias_egresos }}  </b></td>
-                                            <!--td><b>{{ $lote_gvacia->total_peso_gavetas }}</b></td!-->
-                                            <!--td><b>{{ $lote_gvacia->total_peso_final }}  </b></td!-->
                                         @endif
                                         @endforeach
                                     </tr>

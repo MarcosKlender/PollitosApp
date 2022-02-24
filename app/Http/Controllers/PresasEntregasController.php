@@ -22,7 +22,7 @@ class PresasEntregasController extends Controller
             'cant_gavetas' => 'required|numeric|min:0',
             'tipo_peso' => 'required|size:2',
             'peso_bruto' => 'required|numeric|min:1',
-            'usuario' => 'required|max:191',
+            'usuario_creacion' => 'required|max:191',
             'anulado' => 'required|size:1',
         ]);
         

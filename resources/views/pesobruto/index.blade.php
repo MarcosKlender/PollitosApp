@@ -49,7 +49,7 @@
                             <table class="table table-striped table-bordered">
                                 <thead>
                                     <tr class="font-weight-bold">
-                                        <td>ID</td>
+                                        <td>Lote N°</td>
                                         <td>Tipo</td>
                                         <td>Cantidad Animales</td>
                                         <td>Proveedor</td>
@@ -78,7 +78,7 @@
                                             <td>{{ $lote->procedencia }}</td>
                                             <td>{{ $lote->placa }}</td>
                                             <td>{{ $lote->conductor }}</td>
-                                            <td>{{ $lote->usuario }}</td>
+                                            <td>{{ $lote->usuario_creacion }}</td>
                                             <td>{{ $lote->created_at }}</td>
                                             @if (Auth::user()->rol->key == 'admin')
                                                 <td>

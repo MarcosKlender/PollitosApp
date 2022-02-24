@@ -75,7 +75,7 @@
                                             <td>{{ $entrega->placa }}</td>
                                             <td>{{ $entrega->conductor }}</td>
                                             <td>{{ $entrega->destino }}</td>                                            
-                                            <td>{{ $entrega->usuario }}</td>
+                                            <td>{{ $entrega->usuario_creacion }}</td>
                                             <td>{{ $entrega->created_at }}</td>
                                             @if (Auth::user()->rol->key == 'admin')
                                                 <td>

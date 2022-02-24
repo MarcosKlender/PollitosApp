@@ -34,7 +34,7 @@
                                         <td>Peso Bruto</td>
                                         {{-- <td>Peso Gavetas</td> --}}
                                         {{-- <td>Peso Final</td> --}}
-                                        <td>Usuario</td>
+                                        <td>Usuario creción</td>
                                         <td>Observaciones</td>
                                         <td>Fecha de Anulación</td>
                                     </tr>
@@ -49,7 +49,7 @@
                                             <td>{{ $registro->peso_bruto }}</td>
                                             {{-- <td>{{ $registro->peso_gavetas }}</td> --}}
                                             {{-- <td>{{ $registro->peso_final }}</td> --}}
-                                            <td>{{ $registro->usuario }}</td>
+                                            <td>{{ $registro->usuario_creacion }}</td>
                                             <td>{{ $registro->observaciones }}</td>
                                             <td>{{ $registro->updated_at }}</td>
                                         </tr>

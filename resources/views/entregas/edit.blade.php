@@ -95,7 +95,7 @@
                                 </div>
                                 <input type="hidden" id="entregas_id" name="entregas_id" value="{{ $entregas->id }}"
                                     required />
-                                <input type="hidden" id="usuario" name="usuario" value="{{ Auth::user()->username }}"
+                                <input type="hidden" id="usuario_creacion" name="usuario_creacion" value="{{ Auth::user()->username }}"
                                     required />
                                 <input type="hidden" id="anulado" name="anulado" value="0" required />
                                 <div class="row justify-content-around mt-2">
@@ -114,7 +114,7 @@
                                                 <td class="text-center">Peso Bruto</td>
                                                 <td class="text-center">Tipo Peso</td>
                                                 @if (Auth::user()->rol->key == 'admin')
-                                                    <td class="text-center">Usuario</td>
+                                                    <td class="text-center">Usuario creación</td>
                                                 @endif
                                                 <td class="text-center">Acciones</td>
                                             </tr>
@@ -127,7 +127,7 @@
                                                     <td class="text-center">{{ $registro->peso_bruto }}</td>
                                                     <td class="text-center">{{ $registro->tipo_peso }}</td>
                                                     @if (Auth::user()->rol->key == 'admin')
-                                                        <td class="text-center">{{ $registro->usuario }}</td>
+                                                        <td class="text-center">{{ $registro->usuario_creacion }}</td>
                                                     @endif
                                                     <td class="text-center"><button type="button"
                                                             class="btn btn-sm btn-danger modal_anular" data-toggle="modal"
@@ -213,7 +213,7 @@
                                     </div>
                                 </div>
                                 <input type="hidden" id="entregas_id" name="entregas_id" value="{{ $entregas->id }}">
-                                <input type="hidden" id="usuario" name="usuario" value="{{ Auth::user()->username }}"
+                                <input type="hidden" id="usuario_creacion" name="usuario_creacion" value="{{ Auth::user()->username }}"
                                     required />
                                 <input type="hidden" id="anulado" name="anulado" value="0" required />
                                 <div class="row justify-content-around mt-2">
@@ -233,7 +233,7 @@
                                                 <td class="text-center">Peso Bruto</td>
                                                 <td class="text-center">Tipo Peso</td>
                                                 @if (Auth::user()->rol->key == 'admin')
-                                                    <td class="text-center">Usuario</td>
+                                                    <td class="text-center">Usuario creación</td>
                                                 @endif
                                                 <td class="text-center">Acciones</td>
                                             </tr>
@@ -247,7 +247,7 @@
                                                     <td class="text-center">{{ $presa->peso_bruto }}</td>
                                                     <td class="text-center">{{ $presa->tipo_peso }}</td>
                                                     @if (Auth::user()->rol->key == 'admin')
-                                                        <td class="text-center">{{ $presa->usuario }}</td>
+                                                        <td class="text-center">{{ $presa->usuario_creacion }}</td>
                                                     @endif
                                                     <td class="text-center"><button type="button"
                                                             class="btn btn-sm btn-danger modal_anular_gavetas"

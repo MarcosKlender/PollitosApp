@@ -14,7 +14,7 @@ class Entregas extends Model
 
     protected $fillable = [
         'id','tipo', 'ruc_ci', 'cliente', 'placa', 'conductor', 'destino',
-        'cant_animales', 'usuario', 'anulado', 'liquidado', 'observaciones'
+        'cant_animales', 'usuario_creacion','usuario_modificacion', 'anulado', 'liquidado', 'observaciones'
     ];
 
     public function scopeAll_index($query)

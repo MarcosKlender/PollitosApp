@@ -19,7 +19,8 @@ class CreateRegistrosEntregasTable extends Migration
             $table->integer('cant_gavetas');
             $table->string('tipo_peso', 2);
             $table->decimal('peso_bruto');
-            $table->string('usuario');
+            $table->string('usuario_creacion');
+            $table->string('usuario_modificacion')->nullable();;
             $table->string('anulado', 1);
             $table->string('observaciones')->nullable();
             $table->timestamps();

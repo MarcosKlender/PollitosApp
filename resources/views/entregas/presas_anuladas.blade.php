@@ -32,7 +32,7 @@
                                         <td>Cantidad Gavetas</td>
                                         <td>Tipo Peso</td>
                                         <td>Peso Bruto</td>
-                                        <td>Usuario</td>
+                                        <td>Usuario creación</td>
                                         <td>Observaciones</td>
                                         <td>Fecha de Anulación</td>
                                     </tr>
@@ -46,7 +46,7 @@
                                             <td>{{ $presa->cant_gavetas }}</td>
                                             <td>{{ $presa->tipo_peso }}</td>
                                             <td>{{ $presa->peso_bruto }}</td>
-                                            <td>{{ $presa->usuario }}</td>
+                                            <td>{{ $presa->usuario_creacion }}</td>
                                             <td>{{ $presa->observaciones }}</td>
                                             <td>{{ $presa->updated_at }}</td>
                                         </tr>

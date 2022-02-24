@@ -84,11 +84,15 @@ Route::get('/egresos/registros_anulados', 'EgresosController@registros_anulados'
 Route::get('/egresos/gavetas_anuladas', 'EgresosController@gavetas_anuladas')->name('egresos.gavetas_anuladas');
 Route::post('/egresos/anular_registro', 'EgresosController@anular_registro')->name('egresos.anular_registro');
 Route::post('/egresos/registrar_gavetas', 'EgresosController@registrar_gavetas')->name('egresos.registrar_gavetas');
-Route::post('/egresos/liquidar_lote', 'EgresosController@liquidar_lote')->name('egresos.liquidar_lote');
+//Route::post('/egresos/liquidar_lote', 'EgresosController@liquidar_lote')->name('egresos.liquidar_lote');
 Route::get('/egresos/peso_bascula_egreso','EgresosController@pesobascula')->name('pesobasculaegreso');
 Route::get('/egresos/seccion', 'EgresosController@index2')->name('seccion_egreso');
 Route::get('/egresos/seccion_gvacia', 'EgresosController@ws_gaveta_vacia')->name('seccion_gvacia_egreso');
 Route::resource('egresos', EgresosController::class);
+
+Route::post('/egresos/liquidar_lote_egresos', 'EgresosPresasController@liquidar_lote_egresos')->name('egresos.liquidar_lote_egresos');
+//Route::resource('egresos', EgresosPresasController::class);
+
 
 Route::get('/entregas/presas_anuladas', 'EntregasController@presas_anuladas')->name('entregas.presas_anuladas');
 Route::get('/entregas/registros_anulados', 'EntregasController@registros_anulados')->name('entregas.registros_anulados');

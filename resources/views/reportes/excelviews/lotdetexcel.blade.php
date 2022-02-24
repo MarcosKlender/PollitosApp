@@ -33,15 +33,15 @@
             <th width="20"><b>RUC/CI:</b></th>
             <td align="center">{{ $lote->ruc_ci }}</td>
 
-            <th><b>Usuario:</b></th>
-            <td align="center">{{ $lote->usuario }}</td>
+            <th><b>Usuario creación:</b></th>
+            <td align="center">{{ $lote->usuario_creacion }}</td>
         </tr>
 
         <tr>
             <th width="20"><b>Procedencia:</b></th>
             <td align="center">{{ $lote->procedencia }}</td>
 
-            <th width="30"><b>Fecha de Registro:</b></th>
+            <th width="30"><b>Fecha de creación:</b></th>
             <td align="center">{{ $lote->created_at }}</td>
         </tr>
                
@@ -57,8 +57,8 @@
     <tr>
         <td align="center" ><b>Cantidad ahogados</b></td>
         <td align="center" ><b>Peso ahogados</b></td>
-        <td align="center" ><b>Usuario</b></td>
-        <td align="center" ><b>Fecha de Registro</b></td>
+        <td align="center" ><b>Usuario creación</b></td>
+        <td align="center" ><b>Fecha creación</b></td>
     </tr>
     </thead>
     <tbody>
@@ -67,7 +67,7 @@
      <tr>         
          <td align="center">{{ $lote_ahogado->cant_ahogados }}</td>
          <td align="center">{{ $lote_ahogado->peso_ahogados }}</td>
-         <td align="center">{{ $lote_ahogado->usuario }}</td>
+         <td align="center">{{ $lote_ahogado->usuario_creacion }}</td>
          <td align="center">{{ $lote_ahogado->updated_at }}</td>         
      </tr>
      @endif
@@ -82,8 +82,8 @@
         <td align="center" ><b>N°</b></td>
         <td align="center" ><b>Cantidad de Gavetas</b></td>
         <td align="center" ><b>Peso Bruto</b></td>
-        <td align="center" ><b>Usuario</b></td>
-        <td align="center" ><b>Fecha de Registro</b></td>
+        <td align="center" ><b>Usuario creación</b></td>
+        <td align="center" ><b>Fecha creación</b></td>
     </tr>
     </thead>
     <tbody>
@@ -93,7 +93,7 @@
          <td align="center">{{ $loop->iteration }}</td> 
          <td align="center">{{ $reg->cant_gavetas }}</td>
          <td align="center">{{ $reg->peso_bruto }}</td>
-         <td align="center">{{ $reg->usuario }}</td>
+         <td align="center">{{ $reg->usuario_creacion }}</td>
          <td align="center">{{ $reg->updated_at }}</td>         
      </tr>
      @endif
@@ -113,8 +113,8 @@
         <td align="center" ><b>N°</b></td>
         <td align="center" ><b>Cantidad de Gavetas vacías</b></td>
         <td align="center" ><b>Peso gavetas vacías</b></td>
-        <td align="center" ><b>Usuario</b></td>
-        <td align="center" ><b>Fecha de Registro</b></td>
+        <td align="center" ><b>Usuario creación</b></td>
+        <td align="center" ><b>Fecha creación</b></td>
     </tr>
     </thead>
     <tbody>
@@ -124,7 +124,7 @@
          <td align="center">{{ $loop->iteration }}</td> 
          <td align="center">{{ $gav_vacias->cant_gavetas_vacias }}</td>
          <td align="center">{{ $gav_vacias->peso_gavetas_vacias }}</td>
-         <td align="center">{{ $gav_vacias->usuario }}</td>
+         <td align="center">{{ $gav_vacias->usuario_creacion }}</td>
          <td align="center">{{ $gav_vacias->updated_at }}</td>         
      </tr>
      @endif
@@ -146,18 +146,18 @@
         <td align="center" ><b>Cantidad ahogados</b></td>
         <td align="center" ><b>Peso ahogados</b></td>
         <td align="center" ><b>Cantidad gavetas vacias</b></td>
-        <td align="center" ><b>Usuario</b></td>
-        <td width="20" align="center" ><b>Fecha de Registro</b></td>
+        <td align="center" ><b>Usuario creación</b></td>
+        <td width="20" align="center" ><b>Fecha creación</b></td>
     </tr>
     </thead>
     <tbody>
-   @foreach ($lotes as $lote_ahogado_egreso)
-    @if( $lote_ahogado_egreso->anulado == 0)
+   @foreach ($egresos_presas as $lote_ahogado_egreso)
+    @if( $lote_ahogado_egreso->estado_egreso_presas == 1)
      <tr>         
          <td align="center">{{ $lote_ahogado_egreso->cant_ahogados_egresos }}</td>
          <td align="center">{{ $lote_ahogado_egreso->peso_ahogados_egresos }}</td>
          <td align="center">{{ $lote_ahogado_egreso->cant_gvacia_ahogados_egresos }}</td>
-         <td align="center">{{ $lote_ahogado_egreso->usuario }}</td>
+         <td align="center">{{ $lote_ahogado_egreso->usuario_creacion }}</td>
          <td align="center">{{ $lote_ahogado_egreso->updated_at }}</td>         
      </tr>
      @endif
@@ -172,18 +172,18 @@
         <td align="center" ><b>Cantidad estropeados</b></td>
         <td align="center" ><b>Peso estropeados</b></td>
         <td align="center" ><b>Cantidad gavetas vacias</b></td>
-        <td align="center" ><b>Usuario</b></td>
-        <td align="center" ><b>Fecha de Registro</b></td>
+        <td align="center" ><b>Usuario creación</b></td>
+        <td align="center" ><b>Fecha creación</b></td>
     </tr>
     </thead>
     <tbody>
-   @foreach ($lotes as $lote_estropeado_egreso)
-    @if( $lote_estropeado_egreso->anulado == 0)
+   @foreach ($egresos_presas as $lote_estropeado_egreso)
+    @if( $lote_estropeado_egreso->estado_egreso_presas == 1)
      <tr>         
          <td align="center">{{ $lote_estropeado_egreso->cant_estropeados_egresos }}</td>
          <td align="center">{{ $lote_estropeado_egreso->peso_estropeados_egresos }}</td>
          <td align="center">{{ $lote_estropeado_egreso->cant_gvacia_estropeados_egresos }}</td>
-         <td align="center">{{ $lote_estropeado_egreso->usuario }}</td>
+         <td align="center">{{ $lote_estropeado_egreso->usuario_creacion }}</td>
          <td align="center">{{ $lote_estropeado_egreso->updated_at }}</td>         
      </tr>
      @endif
@@ -197,17 +197,17 @@
     <tr>
         <td align="center" ><b>Peso mollejas</b></td>
         <td align="center" ><b>Cantidad gavetas vacias</b></td>
-        <td align="center" ><b>Usuario</b></td>
-        <td align="center" ><b>Fecha de Registro</b></td>
+        <td align="center" ><b>Usuario creación</b></td>
+        <td align="center" ><b>Fecha creación</b></td>
     </tr>
     </thead>
     <tbody>
-   @foreach ($lotes as $lote_molleja_egreso)
-    @if( $lote_molleja_egreso->anulado == 0)
+   @foreach ($egresos_presas as $lote_molleja_egreso)
+    @if( $lote_molleja_egreso->estado_egreso_presas == 1)
      <tr>         
          <td align="center">{{ $lote_molleja_egreso->peso_mollejas_egresos }}</td>
          <td align="center">{{ $lote_molleja_egreso->cant_gvacia_mollejas_egresos }}</td>
-         <td align="center">{{ $lote_molleja_egreso->usuario }}</td>
+         <td align="center">{{ $lote_molleja_egreso->usuario_creacion }}</td>
          <td align="center">{{ $lote_molleja_egreso->updated_at }}</td>         
      </tr>
      @endif
@@ -222,8 +222,8 @@
         <td align="center" ><b>N°</b></td>
         <td align="center" ><b>Cantidad Gavetas</b></td>
         <td align="center" ><b>Peso Bruto</b></td>
-        <td align="center" ><b>Usuario</b></td>
-        <td align="center" ><b>Fecha de Registro</b></td>
+        <td align="center" ><b>Usuario creación</b></td>
+        <td align="center" ><b>Fecha de creación</b></td>
     </tr>
     </thead>
     <tbody>
@@ -232,7 +232,7 @@
          <td align="center"> {{ $loop->iteration }} </td>
          <td align="center">{{ $egr->cant_gavetas }}</td>
          <td align="center">{{ $egr->peso_bruto }}</td>
-         <td align="center">{{ $egr->usuario }}</td>
+         <td align="center">{{ $egr->usuario_creacion }}</td>
          <td>{{ $egr->updated_at }}</td>
      </tr>
      @endforeach
@@ -251,8 +251,8 @@
         <td align="center" ><b>N°</b> </td>
         <td align="center" ><b>Cantidad Gavetas vacías</b></td>
         <td align="center" ><b>Peso gavetas vacías</b></td>
-        <td align="center" ><b>Usuario</b></td>
-        <td align="center" ><b>Fecha de Registro</b></td>
+        <td align="center" ><b>Usuario creación</b></td>
+        <td align="center" ><b>Fecha creación</b></td>
     </tr>
     </thead>
     <tbody>
@@ -262,7 +262,7 @@
          <td align="center">{{ $loop->iteration}}</td>
          <td align="center">{{ $gav_vacias->cant_gavetas_vacias }}</td>
          <td align="center">{{ $gav_vacias->peso_gavetas_vacias }}</td>
-         <td align="center">{{ $gav_vacias->usuario }}</td>
+         <td align="center">{{ $gav_vacias->usuario_creacion }}</td>
          <td align="center">{{ $gav_vacias->updated_at }}</td>         
      </tr>
      @endif

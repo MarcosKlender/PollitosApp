@@ -38,7 +38,7 @@
                             </div>
 
                             <input type="hidden" id="est_bascula" name="est_bascula" value="0" />
-                            <input type="hidden" id="usuario" name="usuario" value="{{ Auth::user()->username }}" required />
+                            <input type="hidden" id="usuario_creacion" name="usuario_creacion" value="{{ Auth::user()->username }}" required />
 
                             <button type="submit" class="btn btn-primary">Guardar</button>
                         </form>
@@ -71,7 +71,7 @@
                                     <th>Nombre</th>
                                     <th>Dirección IP</th>
                                     <th>Estado</th>
-                                    <th>Usuario</th>
+                                    <th>Usuario creación</th>
                                     <th>Fecha de Creación</th>
                                     <th>Acciones</th>
                                 </tr>
@@ -89,7 +89,7 @@
                                         @else
                                             <td>INACTIVO</td>
                                         @endif
-                                        <td>{{ $bascula->usuario }}</td>
+                                        <td>{{ $bascula->usuario_creacion }}</td>
                                         <td>{{ $bascula->created_at }}</td>
                                         <td>
                                             <a href="{{ route('basculaconfiguracion.edit', $bascula->id) }}"

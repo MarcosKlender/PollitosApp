@@ -11,7 +11,7 @@ class Egresos extends Model
     use HasFactory;
 
     protected $fillable = [
-        'lotes_id', 'cant_gavetas', 'peso_bruto', 'peso_gavetas', 'peso_final', 'tipo_peso', 'usuario', 'liquidado', 'anulado', 'observaciones','create_at'
+        'lotes_id', 'cant_gavetas', 'peso_bruto', 'peso_gavetas', 'peso_final', 'tipo_peso', 'usuario_creacion','usuario_modificacion', 'liquidado', 'anulado', 'observaciones','create_at'
     ];
 
     public function lote()

@@ -39,7 +39,7 @@
                                         <td>Conductor</td>
                                         <td>Destino</td>
                                         <td>Cantidad Animales</td>
-                                        <td>Usuario</td>
+                                        <td>Usuario creación</td>
                                         <td>Fecha de Anulación</td>
                                     </tr>
                                 </thead>
@@ -54,7 +54,7 @@
                                             <td>{{ $entrega->conductor }}</td>
                                             <td>{{ $entrega->destino }}</td>
                                             <td>{{ $entrega->cant_animales }}</td>
-                                            <td>{{ $entrega->usuario }}</td>
+                                            <td>{{ $entrega->usuario_creacion }}</td>
                                             <td>{{ $entrega->updated_at }}</td>
                                         </tr>
                                     @endforeach

@@ -93,7 +93,7 @@ class EntregasController extends Controller
             'placa' => 'nullable|regex:/^[\pL\pM\pN\s]+$/u|between:6,7',
             'conductor' => 'nullable|regex:/^[\pL\pM\pN\s]+$/u|max:191',
             'destino' => 'nullable|regex:/^[\pL\pM\pN\s]+$/u|max:191',
-            'usuario' => 'required|max:191',
+            'usuario_creacion' => 'required|max:191',
             'anulado' => 'required|size:1',
             'liquidado' => 'required|size:1',
         ]);
@@ -163,7 +163,7 @@ class EntregasController extends Controller
             'cant_gavetas' => 'required|numeric|min:1',
             'peso_bruto' => 'required|numeric|min:1',
             'tipo_peso' => 'required|size:2',
-            'usuario' => 'required|max:191',
+            'usuario_creacion' => 'required|max:191',
             'anulado' => 'required|size:1',
         ]);
 

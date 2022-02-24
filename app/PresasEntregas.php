@@ -12,7 +12,7 @@ class PresasEntregas extends Model
 
     protected $fillable = [
         'entregas_id', 'tipo_entrega', 'cant_gavetas', 'tipo_peso',
-        'peso_bruto', 'usuario', 'anulado', 'observaciones'
+        'peso_bruto', 'usuario_creacion','usuario_modificacion', 'anulado', 'observaciones'
     ];
 
     public function lote()

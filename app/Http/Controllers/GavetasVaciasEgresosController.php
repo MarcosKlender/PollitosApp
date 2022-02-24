@@ -21,7 +21,7 @@ class GavetasVaciasEgresosController extends Controller
             'cant_gavetas_vacias' => 'required|numeric|min:1',
             'peso_gavetas_vacias' => 'required|numeric|min:1',
             'tipo_peso' => 'required|size:2',
-            'usuario' => 'required|max:191',
+            'usuario_creacion' => 'required|max:191',
             'anulado' => 'required|size:1',
         ]);
         

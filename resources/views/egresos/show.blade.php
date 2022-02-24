@@ -6,7 +6,7 @@
         <div class="col-lg-9">
             <div class="card shadow mb-4">
                 <div class="card-header mt-2 text-center">
-                    <h4>LOTE {{ $lote->id }} - {{ $lote->tipo }} - EGRESOS</h4>
+                    <h4><b> EGRESOS | </b> LOTE {{ $lote->id }} | {{ $lote->tipo }} | {{ $lote->proveedor }} </h4>
                 </div>
 
                 <ul class="nav nav-tabs nav-fill" id="myTab" role="tablist">
@@ -46,7 +46,7 @@
                                                 {{-- <td>Peso Gavetas</td> --}}
                                                 {{-- <td>Peso Final</td> --}}
                                                 <td>Usuario creación</td>
-                                                <td>Fecha de Registro</td>
+                                                <td>Fecha de creación</td>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -56,9 +56,7 @@
                                                     <td>{{ $egreso->lotes_id }}</td>
                                                     <td>{{ $egreso->cant_gavetas }}</td>
                                                     <td>{{ $egreso->peso_bruto }}</td>
-                                                    {{-- <td>{{ $egreso->peso_gavetas }}</td> --}}
-                                                    {{-- <td>{{ $egreso->peso_final }}</td> --}}
-                                                    <td>{{ $egreso->usuario }}</td>
+                                                    <td>{{ $egreso->usuario_creacion }}</td>
                                                     <td>{{ $egreso->updated_at }}</td>
                                                 </tr>
                                             @endforeach
@@ -66,8 +64,6 @@
                                                 <td colspan="2"><b>TOTAL</b></td>
                                                 <td><b>{{ $total_cantidad }}</b></td>
                                                 <td><b>{{ $total_bruto }}</b></td>
-                                                {{-- <td><b>{{ $total_gavetas }}</b></td> --}}
-                                                {{-- <td><b>{{ $total_final }}</b></td> --}}
                                             </tr>
                                         </tbody>
                                     </table>
@@ -91,9 +87,8 @@
                                                 <td>ID Lote</td>
                                                 <td>Cantidad Gavetas Vacías</td>
                                                 <td>Peso Gavetas Vacías</td>
-                                                {{-- <td>Tipo Peso</td> --}}
                                                 <td>Usuario creacion</td>
-                                                <td>Fecha de Registro</td>
+                                                <td>Fecha de creación</td>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -103,8 +98,7 @@
                                                     <td>{{ $gaveta->lotes_id }}</td>
                                                     <td>{{ $gaveta->cant_gavetas_vacias }}</td>
                                                     <td>{{ $gaveta->peso_gavetas_vacias }}</td>
-                                                    {{-- <td>{{ $gaveta->tipo_peso }}</td> --}}
-                                                    <td>{{ $gaveta->usuario }}</td>
+                                                    <td>{{ $gaveta->usuario_creacion }}</td>
                                                     <td>{{ $gaveta->updated_at }}</td>
                                                 </tr>
                                             @endforeach
@@ -168,9 +162,9 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>{{ $lote->cant_ahogados_egresos }}</td>
-                                    <td>{{ $lote->peso_ahogados_egresos }}</td>
-                                    <td>{{ $lote->cant_gvacia_ahogados_egresos }}</td>
+                                    <td>{{ $egresos_presas->cant_ahogados_egresos }}</td>
+                                    <td>{{ $egresos_presas->peso_ahogados_egresos }}</td>
+                                    <td>{{ $egresos_presas->cant_gvacia_ahogados_egresos }}</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -189,9 +183,9 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>{{ $lote->cant_estropeados_egresos }}</td>
-                                    <td>{{ $lote->peso_estropeados_egresos }}</td>
-                                     <td>{{ $lote->cant_gvacia_estropeados_egresos }}</td>
+                                    <td>{{ $egresos_presas->cant_estropeados_egresos }}</td>
+                                    <td>{{ $egresos_presas->peso_estropeados_egresos }}</td>
+                                     <td>{{ $egresos_presas->cant_gvacia_estropeados_egresos }}</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -210,9 +204,8 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <!--td>{{-- $lote->cant_mollejas_egresos --}}</td!-->
-                                    <td>{{ $lote->peso_mollejas_egresos }}</td>
-                                    <td>{{ $lote->cant_gvacia_mollejas_egresos }}</td>
+                                    <td>{{ $egresos_presas->peso_mollejas_egresos }}</td>
+                                    <td>{{ $egresos_presas->cant_gvacia_mollejas_egresos }}</td>
                                 </tr>
                             </tbody>
                         </table>

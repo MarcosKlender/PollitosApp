@@ -1,7 +1,7 @@
 <?php
 namespace App\Exports;
 use App\Registros;
-//use App\Visceras;
+use App\EgresosPresas;
 use App\Egresos;
 use App\GavetasVacias;
 use App\GavetasVaciasEgresos;
@@ -63,6 +63,8 @@ class PostsExport implements FromView, WithTitle, WithColumnFormatting, WithEven
 
         $total_pes_gav_vacia_egreso = GavetasVaciasEgresos::where('lotes_id', $datoid)->where('anulado', 0)->select('peso_gavetas_vacias')->sum('peso_gavetas_vacias');
 
+        $EgresosPresas = EgresosPresas::where('lotes_id', $this->id)->get();
+
 
         $this->ingresos = Registros::where('lotes_id', $this->id)->where('anulado', 0)->get();
 
@@ -85,7 +87,7 @@ class PostsExport implements FromView, WithTitle, WithColumnFormatting, WithEven
             $est_liquidado = 'Anulado';
         }
 
-        return view('reportes.excelviews.lotdetexcel',[ 'lotes' => Lotes::where('id', $this->id)->get()],['registros' => Registros::where('lotes_id', $this->id)->get()])->with('id',$datoid)->with('total_cantidad',$total_cantidad)->with('total_bruto',$total_bruto)->with('total_gavetas',$total_gavetas)->with('total_final',$total_final)->with('totale_cantidad',$totale_cantidad)->with('totale_bruto',$totale_bruto)->with('totale_gavetas',$totale_gavetas)->with('totale_final',$totale_final)->with('gavetas_vacias',$this->gavetas_vacias)->with('gavetas_vacias_egresos',$this->gavetas_vacias_egresos)->with('total_can_gav_vacia',$total_can_gav_vacia)->with('total_pes_gav_vacia',$total_pes_gav_vacia)->with('total_can_gav_vacia_egreso',$total_can_gav_vacia_egreso)->with('total_pes_gav_vacia_egreso',$total_pes_gav_vacia_egreso)->with('egresos',$egresos)->with('liquidado',$est_liquidado);
+        return view('reportes.excelviews.lotdetexcel',[ 'lotes' => Lotes::where('id', $this->id)->get()],['registros' => Registros::where('lotes_id', $this->id)->get()])->with('id',$datoid)->with('total_cantidad',$total_cantidad)->with('total_bruto',$total_bruto)->with('total_gavetas',$total_gavetas)->with('total_final',$total_final)->with('totale_cantidad',$totale_cantidad)->with('totale_bruto',$totale_bruto)->with('totale_gavetas',$totale_gavetas)->with('totale_final',$totale_final)->with('gavetas_vacias',$this->gavetas_vacias)->with('gavetas_vacias_egresos',$this->gavetas_vacias_egresos)->with('total_can_gav_vacia',$total_can_gav_vacia)->with('total_pes_gav_vacia',$total_pes_gav_vacia)->with('total_can_gav_vacia_egreso',$total_can_gav_vacia_egreso)->with('total_pes_gav_vacia_egreso',$total_pes_gav_vacia_egreso)->with('egresos',$egresos)->with('egresos_presas', $EgresosPresas)->with('liquidado',$est_liquidado);
 
 
     }

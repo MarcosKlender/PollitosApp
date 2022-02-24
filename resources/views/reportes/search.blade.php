@@ -82,7 +82,7 @@
                                         <td>Tot. Peso Bruto</td>
                                         <td>Tot. Peso Gavetas</td>
                                         <td>Tot. Peso Final</td>
-                                        <td>Usuario</td>
+                                        <td>Usuario creación</td>
                                         <td>Fecha de Registro</td>
                                         <td>Anulado</td>
                                         <td>Liquidado</td>
@@ -103,7 +103,7 @@
                                             <td>{{ $search->total_peso_bruto }}</td>
                                             <td>{{ $search->total_peso_gavetas }}</td>
                                             <td>{{ $search->total_peso_final }}</td>
-                                            <td>{{ $search->usuario }}</td>
+                                            <td>{{ $search->usuario_creacion }}</td>
                                             <td>{{ $search->created_at }}</td>
                                             <td>
                                             @if ($search->anulado == '0')

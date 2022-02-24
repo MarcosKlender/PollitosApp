@@ -37,7 +37,7 @@
                                         <td>Peso Bruto</td>
                                         {{-- <td>Peso Gavetas</td> --}}
                                         {{-- <td>Peso Final</td> --}}
-                                        <td>Usuario</td>
+                                        <td>Usuario creación</td>
                                         <td>Observaciones</td>
                                         <td>Fecha de Anulación</td>
                                     </tr>
@@ -51,7 +51,7 @@
                                             <td>{{ $egreso->peso_bruto }}</td>
                                             {{-- <td>{{ $egreso->peso_gavetas }}</td> --}}
                                             {{-- <td>{{ $egreso->peso_final }}</td> --}}
-                                            <td>{{ $egreso->usuario }}</td>
+                                            <td>{{ $egreso->usuario_creacion }}</td>
                                             <td>{{ $egreso->observaciones }}</td>
                                             <td>{{ $egreso->updated_at }}</td>
                                         </tr>

@@ -61,7 +61,7 @@
                                 value="{{ old('destino') }}"  />
                         </div>
 
-                        <input type="hidden" id="usuario" name="usuario" value="{{ Auth::user()->username }}" required />
+                        <input type="hidden" id="usuario_creacion" name="usuario_creacion" value="{{ Auth::user()->username }}" required />
                         <input type="hidden" id="anulado" name="anulado" value="0" required />
                         <input type="hidden" id="liquidado" name="liquidado" value="0" required />
                         <div class="row justify-content-around">

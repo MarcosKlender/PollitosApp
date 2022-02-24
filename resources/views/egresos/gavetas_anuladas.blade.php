@@ -32,7 +32,7 @@
                                         <td>Cantidad Gavetas Vacías</td>
                                         <td>Peso Gavetas Vacías</td>
                                         <td>Tipo Peso</td>
-                                        <td>Usuario</td>
+                                        <td>Usuario creación</td>
                                         <td>Observaciones</td>
                                         <td>Fecha de Anulación</td>
                                     </tr>
@@ -45,7 +45,7 @@
                                             <td>{{ $gaveta->cant_gavetas_vacias }}</td>
                                             <td>{{ $gaveta->peso_gavetas_vacias }}</td>
                                             <td>{{ $gaveta->tipo_peso }}</td>
-                                            <td>{{ $gaveta->usuario }}</td>
+                                            <td>{{ $gaveta->usuario_creacion }}</td>
                                             <td>{{ $gaveta->observaciones }}</td>
                                             <td>{{ $gaveta->updated_at }}</td>
                                         </tr>

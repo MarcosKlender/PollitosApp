@@ -134,7 +134,7 @@
                                         <td align="center">Peso Animal Ahogado</td>
                                         <td align="center">Tot. Peso Bruto</td>
                                         <td align="center">Tot. Peso Gavetas Vacías</td>
-                                        <td align="center">Usuario</td>
+                                        <td align="center">Usuario creación</td>
                                         <td align="center">Fecha Registro</td>
                                         <td align="center">Anulado</td>
                                         <td align="center">Liquidado ingreso</td>
@@ -163,7 +163,7 @@
                                                     <td align="center" class="row_peso">{{ $gaveta_v->total_peso_gavetas_vacias }}</td>
                                                 @endif
                                             @endforeach   
-                                            <td align="center" class="row_peso">{{ $lote->usuario }}</td>
+                                            <td align="center" class="row_peso">{{ $lote->usuario_creacion }}</td>
                                             <td align="center" class="row_peso">{{ $lote->created_at }}</td>
                                             <td align="center" class="button">
                                                 @if ($lote->anulado == '0')
@@ -247,7 +247,7 @@
                                                 <td align="center" width="5">Tipo Peso</td>
                                                 <td align="center">Estado</td>
                                                 <td align="center">Observación</td>
-                                                <td align="center">Usuario</td>
+                                                <td align="center">Usuario creación</td>
                                                 <td align="center">Fecha de Registro</td>
                                             </tr>
                                         </thead>
@@ -279,7 +279,7 @@
                                                 <td align="center" width="5">Tipo Peso</td>
                                                 <td align="center">Estado</td>
                                                 <td align="center">Observación</td>
-                                                <td align="center">Usuario</td>
+                                                <td align="center">Usuario creación</td>
                                                 <td align="center">Fecha de Registro</td>
                                             </tr>
                                         </thead>
@@ -346,7 +346,7 @@
                                                     <td align="center">Tipo Peso</td>
                                                     <td align="center">Estado</td>
                                                     <td align="center">Observación</td>
-                                                    <td align="center">Usuario</td>
+                                                    <td align="center">Usuario creación</td>
                                                     <td align="center">Fecha de Registro</td>
                                                 </tr>
                                             </thead>
@@ -378,7 +378,7 @@
                                                 <td align="center" width="5">Tipo Peso</td>
                                                 <td align="center">Estado</td>
                                                 <td align="center">Observación</td>
-                                                <td align="center">Usuario</td>
+                                                <td align="center">Usuario creación</td>
                                                 <td align="center">Fecha de Registro</td>
                                             </tr>
                                         </thead>
@@ -490,7 +490,7 @@
                                     'Anulado') :
                                 $('<td align="center">').text(''),
                                 $('<td align="center">').text(value.observaciones),
-                                $('<td align="center">').text(value.usuario),
+                                $('<td align="center">').text(value.usuario_creacion),
                                 $('<td align="center">').text(fecha),
                                 $('</tr>'));
                             if (value.anulado === '0') {
@@ -547,7 +547,7 @@
                                     'Anulado') :
                                 $('<td align="center">').text(''),
                                 $('<td align="center">').text(value.observaciones),
-                                $('<td align="center">').text(value.usuario),
+                                $('<td align="center">').text(value.usuario_creacion),
                                 $('<td align="center">').text(fecha),
                                 $('</tr>'));
                             if (value.anulado === '0') {
@@ -658,7 +658,7 @@
                                     'Anulado') :
                                 $('<td align="center">').text(''),
                                 $('<td align="center">').text(value.observaciones),
-                                $('<td align="center">').text(value.usuario),
+                                $('<td align="center">').text(value.usuario_creacion),
                                 $('<td align="center">').text(fecha),
                                 $('</tr>'));
                             if (value.anulado === '0') {
@@ -715,7 +715,7 @@
                                     'Anulado') :
                                 $('<td align="center">').text(''),
                                 $('<td align="center">').text(value.observaciones),
-                                $('<td align="center">').text(value.usuario),
+                                $('<td align="center">').text(value.usuario_creacion),
                                 $('<td align="center">').text(fecha),
                                 $('</tr>'));
                             if (value.anulado === '0') {

@@ -6,6 +6,7 @@ use App\Egresos;
 use App\GavetasVacias;
 use App\GavetasVaciasEgresos;
 use App\Lotes;
+use App\EgresosPresas;
 use Illuminate\Contracts\View\View;
 use PhpOffice\PhpSpreadsheet\Style\NumberFormat;
 use PhpOffice\PhpSpreadsheet\Style\Fill;
@@ -69,27 +70,26 @@ class PostExportLoteConsolidado implements FromView, WithTitle, WithEvents, With
 
 	  	
 
-	  	$eCantidad_gvacia_mollejas = Lotes::where('id', $datoid)->where('anulado', 0)->select('cant_gvacia_mollejas_egresos')->sum('cant_gvacia_mollejas_egresos'); 
+	  	$eCantidad_gvacia_mollejas = EgresosPresas::where('lotes_id', $datoid)->select('cant_gvacia_mollejas_egresos')->sum('cant_gvacia_mollejas_egresos'); 
 
-	  	$ePeso_mollejas = Lotes::where('id', $datoid)->where('anulado', 0)->select('peso_mollejas_egresos')->sum('peso_mollejas_egresos'); 
+	  	$ePeso_mollejas = EgresosPresas::where('lotes_id', $datoid)->select('peso_mollejas_egresos')->sum('peso_mollejas_egresos'); 
 
 	  	//Total peso neto 
 	  	$eTPN = ($eTotal_Pbruto - $eTotal_Pgvacias ) + $ePeso_mollejas;
 
 	  	
-	  	$eTotal_Cgvacia_ahogados = Lotes::where('id', $datoid)->where('anulado', 0)->select('cant_gvacia_ahogados_egresos')->sum('cant_gvacia_ahogados_egresos');
+	  	$eTotal_Cgvacia_ahogados = EgresosPresas::where('lotes_id', $datoid)->select('cant_gvacia_ahogados_egresos')->sum('cant_gvacia_ahogados_egresos');
 
-	  	$eCantidad_ahogados = Lotes::where('id', $datoid)->where('anulado', 0)->select('cant_ahogados_egresos')->sum('cant_ahogados_egresos');
+	  	$eCantidad_ahogados = EgresosPresas::where('lotes_id', $datoid)->select('cant_ahogados_egresos')->sum('cant_ahogados_egresos');
 
-	  	$ePeso_ahogados = Lotes::where('id', $datoid)->where('anulado', 0)->select('peso_ahogados_egresos')->sum('peso_ahogados_egresos');
+	  	$ePeso_ahogados = EgresosPresas::where('lotes_id', $datoid)->select('peso_ahogados_egresos')->sum('peso_ahogados_egresos');
 
 
+	  	$eCantidad_gvacia_estropeados = EgresosPresas::where('lotes_id', $datoid)->select('cant_gvacia_estropeados_egresos')->sum('cant_gvacia_estropeados_egresos');
 
-	  	$eCantidad_gvacia_estropeados = Lotes::where('id', $datoid)->where('anulado', 0)->select('cant_gvacia_estropeados_egresos')->sum('cant_gvacia_estropeados_egresos');
+	  	$eCantidad_estropeados =   EgresosPresas::where('lotes_id', $datoid)->select('cant_estropeados_egresos')->sum('cant_estropeados_egresos');
 
-	  	$eCantidad_estropeados =   Lotes::where('id', $datoid)->where('anulado', 0)->select('cant_estropeados_egresos')->sum('cant_estropeados_egresos');
-
-	  	$ePeso_estropeados = Lotes::where('id', $datoid)->where('anulado', 0)->select('peso_estropeados_egresos')->sum('peso_estropeados_egresos');
+	  	$ePeso_estropeados = EgresosPresas::where('lotes_id', $datoid)->select('peso_estropeados_egresos')->sum('peso_estropeados_egresos');
 
 	  	//Total desperdicio 
 	  	$eTD = ($ePeso_ahogados + $ePeso_estropeados);

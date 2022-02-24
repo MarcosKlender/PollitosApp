@@ -101,7 +101,7 @@
                                 <input type="hidden" id="peso_gavetas_cero" name="peso_gavetas" value="0">
                                 <input type="hidden" id="peso_final_cero" name="peso_final" value="0">
                                 <input type="hidden" id="lotes_id" name="lotes_id" value="{{ $lote->id }}">
-                                <input type="hidden" id="usuario" name="usuario" value="{{ Auth::user()->username }}"
+                                <input type="hidden" id="usuario_creacion" name="usuario_creacion" value="{{ Auth::user()->username }}"
                                     required />
                                 <input type="hidden" id="anulado" name="anulado" value="0" required />
                                 <div class="row justify-content-around mt-2">
@@ -124,7 +124,7 @@
                                                 <!--td>Peso Final</td!-->
                                                 <td>Tipo Peso</td>
                                                 @if (Auth::user()->rol->key == 'admin')
-                                                    <td>Usuario</td>
+                                                    <td>Usuario creación</td>
                                                 @endif
                                                 <td colspan="2" class="text-center">Acciones</td>
                                             </tr>
@@ -143,7 +143,7 @@
                                                     <!--td>{{ $registro->peso_final }}</td!-->
                                                     <td>{{ $registro->tipo_peso }}</td>
                                                     @if (Auth::user()->rol->key == 'admin')
-                                                        <td>{{ $registro->usuario }}</td>
+                                                        <td>{{ $registro->usuario_creacion }}</td>
                                                     @endif
                                                     {{-- <td class="text-center"><button type="button"
                                                             class="btn btn-sm btn-primary modal_gavetas" data-toggle="modal"
@@ -231,7 +231,7 @@
                                     </div>
                                 </div>
                                 <input type="hidden" id="lotes_id" name="lotes_id" value="{{ $lote->id }}">
-                                <input type="hidden" id="usuario" name="usuario" value="{{ Auth::user()->username }}"
+                                <input type="hidden" id="usuario_creacion" name="usuario_creacion" value="{{ Auth::user()->username }}"
                                     required />
                                 <input type="hidden" id="anulado" name="anulado" value="0" required />
 
@@ -251,7 +251,7 @@
                                                 <td>Peso Gavetas Vacías</td>
                                                 <td>Tipo Peso</td>
                                                 @if (Auth::user()->rol->key == 'admin')
-                                                    <td>Usuario</td>
+                                                    <td>Usuario creación</td>
                                                 @endif
                                                 <td class="text-center">Acciones</td>
                                             </tr>
@@ -264,7 +264,7 @@
                                                     <td>{{ $gaveta->peso_gavetas_vacias }}</td>
                                                     <td>{{ $gaveta->tipo_peso }}</td>
                                                     @if (Auth::user()->rol->key == 'admin')
-                                                        <td>{{ $gaveta->usuario }}</td>
+                                                        <td>{{ $gaveta->usuario_creacion }}</td>
                                                     @endif
                                                     <td class="text-center"><button type="button"
                                                             class="btn btn-sm btn-danger modal_anular_gavetas"
@@ -365,8 +365,8 @@
                             </div>
                         @elseif($cant_gav > $cant_gav_vac)
                             <div class="alert alert-danger" role="alert">
-                                La cantidad de gavetas vacías ({{ $cant_gav }}) es mayor a la cantidad de gavetas
-                                registradas ({{ $cant_gav_vac }}), corrija esto antes de liquidar este lote.
+                                La cantidad de gavetas registradas  ({{ $cant_gav }}) es mayor a la cantidad de gavetas vacías
+                                ({{ $cant_gav_vac }}), corrija esto antes de liquidar este lote.
                             </div>
                         @else
                             Para liquidar el lote, agregue la siguiente información:<br><br>

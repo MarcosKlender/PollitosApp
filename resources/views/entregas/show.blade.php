@@ -43,7 +43,7 @@
                                                 <td>Cantidad de Gavetas</td>
                                                 <td>Peso Neto</td>
                                                 <td>Tipo Peso</td>
-                                                <td>Usuario</td>
+                                                <td>Usuario creación</td>
                                                 <td>Fecha de Registro</td>
                                             </tr>
                                         </thead>
@@ -54,7 +54,7 @@
                                                     <td>{{ $registro->cant_gavetas }}</td>                                                    
                                                     <td>{{ $registro->peso_bruto }}</td>
                                                     <td>{{ $registro->tipo_peso }}</td>
-                                                    <td>{{ $registro->usuario }}</td>
+                                                    <td>{{ $registro->usuario_creacion }}</td>
                                                     <td>{{ $registro->updated_at }}</td>
                                                 </tr>
                                             @endforeach
@@ -86,7 +86,7 @@
                                                 <td>Cantidad Gavetas</td>
                                                 <td>Peso Bruto</td>
                                                 <td>Tipo Peso</td>
-                                                <td>Usuario</td>
+                                                <td>Usuario creación</td>
                                                 <td>Fecha de Registro</td>
                                             </tr>
                                         </thead>
@@ -98,7 +98,7 @@
                                                     <td>{{ $presa->cant_gavetas }}</td>
                                                     <td>{{ $presa->peso_bruto }}</td>
                                                     <td>{{ $presa->tipo_peso }}</td>
-                                                    <td>{{ $presa->usuario }}</td>
+                                                    <td>{{ $presa->usuario_creacion }}</td>
                                                     <td>{{ $presa->updated_at }}</td>
                                                 </tr>
                                             @endforeach

@@ -6,7 +6,7 @@
         <div class="col-lg-9">
             <div class="card shadow mb-4">
                 <div class="card-header mt-2 text-center">
-                    <h4>LOTE {{ $lote->id }} - {{ $lote->tipo }} - EGRESOS</h4>
+                    <h4><b>EGRESOS</b> | LOTE {{ $lote->id }} | {{ $lote->tipo }} | {{ $lote->proveedor}}</h4>
                 </div>
 
                 <ul class="nav nav-tabs nav-fill" id="myTab1" role="tablist">
@@ -99,7 +99,7 @@
                                 <input type="hidden" id="peso_gavetas_cero" name="peso_gavetas" value="0">
                                 <input type="hidden" id="peso_final_cero" name="peso_final" value="0">
                                 <input type="hidden" id="lotes_id" name="lotes_id" value="{{ $lote->id }}" required />
-                                <input type="hidden" id="usuario" name="usuario" value="{{ Auth::user()->username }}"
+                                <input type="hidden" id="usuario_creacion" name="usuario_creacion" value="{{ Auth::user()->username }}"
                                     required />
                                 <input type="hidden" id="liquidado" name="liquidado" value="0" required />
                                 <input type="hidden" id="anulado" name="anulado" value="0" required />
@@ -118,11 +118,9 @@
                                                 {{-- <td>ID Lote</td> --}}
                                                 <td>Cantidad Gavetas</td>
                                                 <td>Peso Bruto</td>
-                                                {{-- <td>Peso Gavetas</td> --}}
-                                                {{-- <td>Peso Final</td> --}}
                                                 <td>Tipo Peso</td>
                                                 @if (Auth::user()->rol->key == 'admin')
-                                                    <td>Usuario</td>
+                                                    <td>Usuario creación</td>
                                                 @endif
                                                 <td colspan="2" class="text-center">Acciones</td>
                                             </tr>
@@ -134,11 +132,9 @@
                                                     {{-- <td>{{ $egreso->lotes_id }}</td> --}}
                                                     <td>{{ $egreso->cant_gavetas }}</td>
                                                     <td>{{ $egreso->peso_bruto }}</td>
-                                                    {{-- <td>{{ $egreso->peso_gavetas }}</td> --}}
-                                                    {{-- <td>{{ $egreso->peso_final }}</td> --}}
                                                     <td>{{ $egreso->tipo_peso }}</td>
                                                     @if (Auth::user()->rol->key == 'admin')
-                                                        <td>{{ $egreso->usuario }}</td>
+                                                        <td>{{ $egreso->usuario_creacion }}</td>
                                                     @endif
                                                     {{-- <td class="text-center"><button type="button"
                                                             class="btn btn-sm btn-primary modal_gavetas" data-toggle="modal"
@@ -231,7 +227,7 @@
                                     </div>
                                 </div>
                                 <input type="hidden" id="lotes_id" name="lotes_id" value="{{ $lote->id }}">
-                                <input type="hidden" id="usuario" name="usuario" value="{{ Auth::user()->username }}"
+                                <input type="hidden" id="usuario_creacion" name="usuario_creacion" value="{{ Auth::user()->username }}"
                                     required />
                                 <input type="hidden" id="anulado" name="anulado" value="0" required />
 
@@ -251,7 +247,7 @@
                                                 <td>Peso Gavetas Vacías</td>
                                                 <td>Tipo Peso</td>
                                                 @if (Auth::user()->rol->key == 'admin')
-                                                    <td>Usuario</td>
+                                                    <td>Usuario creación</td>
                                                 @endif
                                                 <td class="text-center">Acciones</td>
                                             </tr>
@@ -264,7 +260,7 @@
                                                     <td>{{ $gaveta->peso_gavetas_vacias }}</td>
                                                     <td>{{ $gaveta->tipo_peso }}</td>
                                                     @if (Auth::user()->rol->key == 'admin')
-                                                        <td>{{ $gaveta->usuario }}</td>
+                                                        <td>{{ $gaveta->usuario_creacion }}</td>
                                                     @endif
                                                     <td class="text-center"><button type="button"
                                                             class="btn btn-sm btn-danger modal_anular_gavetas"
@@ -356,7 +352,7 @@
                 <div class="modal-header">
                     <h5 class="modal-title" id="staticBackdropLabel3">¿Está seguro de liquidar el lote de egreso?</h5>
                 </div>
-                <form action="{{ route('egresos.liquidar_lote') }}" method="post">
+                <form action="{{ route('egresos.liquidar_lote_egresos') }}" method="post">
                     <div class="modal-body">
 
                         @if ($cant_gav < $cant_gav_vac)
@@ -407,19 +403,19 @@
                                 <div class="tab-pane fade show active" id="ahogados" role="tabpanel" aria-labelledby="ahogados">
                                     
                                     <div class="form-group">
-                                            <label for="cant_ahogados">Cantidad animales ahogados</label>
+                                            <label for="cant_ahogados">Cantidad animales (ahogados)</label>
                                             <input type="number" class="form-control" id="cant_ahogados_egresos" name="cant_ahogados_egresos"
                                                 value="{{ old('cant_ahogados_egresos') }}" required />
                                     </div>
 
                                     <div class="form-group">
-                                            <label for="peso_ahogados">Peso animales ahogados</label>
+                                            <label for="peso_ahogados">Peso animales (ahogados)</label>
                                             <input type="number" class="form-control" id="peso_ahogados_egresos" name="peso_ahogados_egresos"
                                                 value="{{ old('peso_ahogados_egresos') }}" step=".01" required />
                                     </div>
 
                                      <div class="form-group">
-                                            <label for="cant_gvacia_ahogados_egresos">Cantidad gavetas vacias ahogados</label>
+                                            <label for="cant_gvacia_ahogados_egresos">Cantidad gavetas vacias (ahogados)</label>
                                             <input type="number" class="form-control" id="cant_gvacia_ahogados_egresos" name="cant_gvacia_ahogados_egresos"
                                                 value="{{ old('cant_gvacia_ahogados_egresos') }}" step=".01" required />
                                     </div>
@@ -429,19 +425,19 @@
                                 <!-- animales Estropeados !-->
                                 <div class="tab-pane fade " id="estropeados" role="tabpanel" aria-labelledby="estropeados">
                                     <div class="form-group">
-                                            <label for="cant_estropeados">Cantidad animales estropeados</label>
+                                            <label for="cant_estropeados">Cantidad animales (estropeados)</label>
                                             <input type="number" class="form-control" id="cant_estropeados_egresos" name="cant_estropeados_egresos"
                                                 value="{{ old('cant_estropeados_egresos') }}" required />
                                     </div>
 
                                     <div class="form-group">
-                                            <label for="peso_estropeados">Peso animales estropeados</label>
+                                            <label for="peso_estropeados">Peso animales (estropeados)</label>
                                             <input type="number" class="form-control" id="peso_estropeados_egresos" name="peso_estropeados_egresos"
                                                 value="{{ old('peso_estropeados_egresos') }}" step=".01" required />
                                     </div>
 
                                      <div class="form-group">
-                                            <label for="cant_gvacia_estropeados">Cantidad gavetas vacias estropeados</label>
+                                            <label for="cant_gvacia_estropeados">Cantidad gavetas vacias (estropeados)</label>
                                             <input type="number" class="form-control" id="cant_gvacia_estropeados_egresos" name="cant_gvacia_estropeados_egresos"
                                                 value="{{ old('cant_gvacia_estropeados_egresos') }}" step=".01" required />
                                     </div>
@@ -457,13 +453,13 @@
                                     </div!-->
 
                                     <div class="form-group">
-                                            <label for="peso_mollejas">Peso Mollejas</label>
+                                            <label for="peso_mollejas">Peso (mollejas)</label>
                                             <input type="number" class="form-control" id="peso_mollejas_egresos" name="peso_mollejas_egresos"
                                                 value="{{ old('peso_mollejas_egresos') }}" step=".01" required />
                                     </div>
 
                                      <div class="form-group">
-                                            <label for="cant_gvacia_mollejas">Cantidad gavetas vacias mollejas</label>
+                                            <label for="cant_gvacia_mollejas">Cantidad gavetas vacias (mollejas)</label>
                                             <input type="number" class="form-control" id="cant_gvacia_mollejas_egresos" name="cant_gvacia_mollejas_egresos"
                                                 value="{{ old('cant_gvacia_mollejas_egresos') }}" step=".01" required />
                                     </div>
@@ -484,9 +480,11 @@
                         @csrf
                         @if($cant_gav == $cant_gav_vac && $estado_liquidado == 1 && $egreso_total_pbruto < $lote_total_pbruto )
                             
-                            <input type="hidden" id="id_liquidar" name="id_liquidar" value="{{ $lote->id }}">
-                            <input type="hidden" id="liquidado" name="liquidado" value="1">
-                            <input type="hidden" id="egresos" name="egresos" value="1">
+                            <input type="hidden" id="lotes_id" name="lotes_id" value="{{ $lote->id }}">
+                            <input type="hidden" id="usuario_creacion" name="usuario_creacion" value="{{ Auth::user()->username }}"
+                                    required />
+                            <input type="hidden" id="estado_egreso_presas" name="estado_egreso_presas" value="1">
+                            <input type="hidden" id="estado_egresos" name="estado_egresos" value="1">
                             <button type="button" class="btn btn-primary" data-dismiss="modal">Cancelar</button>
                             <button type="submit" class="btn btn-danger">Liquidar</button>
                         @else

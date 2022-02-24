@@ -6,7 +6,7 @@
         <div class="col-lg-9">
             <div class="card shadow mb-4">
                 <div class="card-header mt-2 text-center">
-                    <h4>LOTE {{ $lote->id }} - {{ $lote->tipo }} - {{ $lote->proveedor }}</h4>
+                    <h4><b>INGRESOS | </b>  LOTE {{ $lote->id }} | {{ $lote->tipo }} | {{ $lote->proveedor }}</h4>
                 </div>
 
                 <ul class="nav nav-tabs nav-fill" id="myTab" role="tablist">
@@ -45,7 +45,7 @@
                                                 <td>Peso Bruto</td>
                                                 {{-- <td>Peso Gavetas</td> --}}
                                                 {{-- <td>Peso Final</td> --}}
-                                                <td>Usuario</td>
+                                                <td>Usuario creación</td>
                                                 <td>Fecha de Registro</td>
                                             </tr>
                                         </thead>
@@ -58,7 +58,7 @@
                                                     <td>{{ $registro->peso_bruto }}</td>
                                                     {{-- <td>{{ $registro->peso_gavetas }}</td> --}}
                                                     {{-- <td>{{ $registro->peso_final }}</td> --}}
-                                                    <td>{{ $registro->usuario }}</td>
+                                                    <td>{{ $registro->usuario_creacion }}</td>
                                                     <td>{{ $registro->updated_at }}</td>
                                                 </tr>
                                             @endforeach
@@ -92,7 +92,7 @@
                                                 <td>Cantidad Gavetas Vacías</td>
                                                 <td>Peso Gavetas Vacías</td>
                                                 {{-- <td>Tipo Peso</td> --}}
-                                                <td>Usuario</td>
+                                                <td>Usuario creación</td>
                                                 <td>Fecha de Registro</td>
                                             </tr>
                                         </thead>
@@ -104,7 +104,7 @@
                                                     <td>{{ $gaveta->cant_gavetas_vacias }}</td>
                                                     <td>{{ $gaveta->peso_gavetas_vacias }}</td>
                                                     {{-- <td>{{ $gaveta->tipo_peso }}</td> --}}
-                                                    <td>{{ $gaveta->usuario }}</td>
+                                                    <td>{{ $gaveta->usuario_creacion }}</td>
                                                     <td>{{ $gaveta->updated_at }}</td>
                                                 </tr>
                                             @endforeach

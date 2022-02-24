@@ -33,7 +33,7 @@ class BasculaConfiguracionController extends Controller
             'nom_bascula' => $request->nom_bascula,
             'ipx_bascula' => $request->ipx_bascula,
             'est_bascula' => $request->est_bascula,
-            'usuario' => $request->usuario,
+            'usuario_creacion' => $request->usuario_creacion,
             ]);
 
         return redirect()->route('basculaconfiguracion.index')->with('success', '¡Báscula creada exitosamente!');

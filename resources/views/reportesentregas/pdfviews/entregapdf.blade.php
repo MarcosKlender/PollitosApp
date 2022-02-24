@@ -53,7 +53,7 @@
                         <div style="margin-left:200pt;">
                          <div>   <strong>Placa:     </strong>         <label>{{ $entrega->placa }}                  </label></div>
                          <div>   <strong>Conductor:  </strong>        <label>{{ $entrega->conductor }}              </label></div>
-                         <div>   <strong>Usuario:       </strong>     <label>{{ $entrega->usuario }}                </label></div>
+                         <div>   <strong>Usuario creación:       </strong>     <label>{{ $entrega->usuario_creacion }}                </label></div>
                          <div>   <strong>Fecha Creacion:</strong>  <label>{{ $entrega->created_at }}                </label></div>
                          <div>   <strong>Estado:</strong>  <label>{{ $liquidado}}                                </label></div>
                         </div>
@@ -83,7 +83,7 @@
                                         <td align="center">N°</td>
                                         <td align="center">Cantidad de Gavetas</td>
                                         <td align="center">Peso Neto</td>
-                                        <td align="center">Usuario</td>
+                                        <td align="center">Usuario creación</td>
                                         <td align="center">Fecha de Registro</td>
                                     </tr>
                                 </thead>
@@ -93,7 +93,7 @@
                                             <td align="center">{{ $loop->iteration }}</td>
                                             <td align="center">{{ $registros->cant_gavetas }}</td>
                                             <td align="center">{{ $registros->peso_bruto }}</td>
-                                            <td align="center">{{ $registros->usuario }}</td>
+                                            <td align="center">{{ $registros->usuario_creacion }}</td>
                                             <td align="center">{{ $registros->updated_at }}</td>
                                         </tr>
                                     @endforeach
@@ -121,7 +121,7 @@
                                         <td align="center"> Tipo presas</td>
                                         <td align="center">Cantidad de Gavetas</td>
                                         <td align="center">Peso Gavetas</td>
-                                        <td align="center">Usuario</td>
+                                        <td align="center">Usuario creación</td>
                                         <td align="center">Fecha de Registro</td>
                                     </tr>
                                 </thead>
@@ -132,7 +132,7 @@
                                             <td align="center">{{ $presas->tipo_entrega }}</td>
                                             <td align="center">{{ $presas->cant_gavetas }}</td>
                                             <td align="center">{{ $presas->peso_bruto }}</td>
-                                            <td align="center">{{ $presas->usuario }}</td>
+                                            <td align="center">{{ $presas->usuario_creacion }}</td>
                                             <td align="center">{{ $presas->updated_at }}</td>
                                         </tr>
                                     @endforeach

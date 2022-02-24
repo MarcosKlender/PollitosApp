@@ -15,5 +15,5 @@ class BasculaConfiguracion extends Model
 
     protected $primaryKey = 'id';
 
-    protected $fillable = ['id','cod_bascula', 'nom_bascula', 'ipx_bascula', 'est_bascula', 'usuario'];
+    protected $fillable = ['id','cod_bascula', 'nom_bascula', 'ipx_bascula', 'est_bascula', 'usuario_creacion'];
 }

@@ -45,7 +45,7 @@
                             <table class="table table-striped table-bordered">
                                 <thead>
                                     <tr class="font-weight-bold">
-                                        <td>ID</td>
+                                        <td>Lote N°</td>
                                         <td>Tipo</td>
                                         <td>Cantidad Animales</td>
                                         <td>Proveedor</td>
@@ -67,7 +67,7 @@
                                             <td>{{ $lote->cantidad }}</td>
                                             <td>{{ $lote->proveedor }}</td>
                                             <td>{{ $lote->ruc_ci }}</td>
-                                            <td>{{ $lote->usuario }}</td>
+                                            <td>{{ $lote->usuario_creacion }}</td>
                                             <td>{{ $lote->created_at }}</td>
                                             {{-- @if (Auth::user()->rol->key == 'admin') --}}
                                                 <!--td>
@@ -77,14 +77,14 @@
                                                 </td!-->
                                             {{-- @endif --}}
                                             <td>
-                                                @if ($lote->egresos == '0')
+                                                @if ($lote->estado_egresos == '0')
                                                     <button type="button" class="btn btn-sm btn-primary">NO</button>
                                                 @else
                                                     <button type="button" class="btn btn-sm btn-success">SI</button>
                                                 @endif
                                             </td>
                                             <td align="center">
-                                                @if ($lote->egresos == '0')
+                                                @if ($lote->estado_egresos == '0')
                                                     <a href="{{ route('egresos.edit', $lote->id) }}"
                                                         class="btn btn-sm btn-primary">Registrar Pesos</a>
                                                 @else

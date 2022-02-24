@@ -175,11 +175,11 @@ class PesoBrutoController extends Controller
             'procedencia' => 'required|regex:/^[\pL\pM\pN\s]+$/u|max:191',
             'placa' => 'required|regex:/^[\pL\pM\pN\s]+$/u|between:6,7',
             'conductor' => 'required|regex:/^[\pL\pM\pN\s]+$/u|max:191',
-            'usuario' => 'required|max:191',
+            'usuario_creacion' => 'required|max:191',
             'anulado' => 'required|size:1',
             'liquidado' => 'required|size:1',
             'visceras' => 'required|size:1',
-            'egresos' => 'required|size:1',
+            'estado_egresos' => 'required|size:1',
         ]);
 
         $lotes = Lotes::create($storeData);
@@ -267,7 +267,7 @@ class PesoBrutoController extends Controller
             //'peso_gavetas' => '',
             'peso_final' => '',
             'tipo_peso' => 'required|size:2',
-            'usuario' => 'required|max:191',
+            'usuario_creacion' => 'required|max:191',
             'anulado' => 'required|size:1',
         ]);
         

@@ -29,8 +29,8 @@
         <tr>
             <th align="left"><b>Conductor: </b></th>
             <td align="left">{{ $entrega->conductor }}</td>
-            <th align="left"><b>Usuario: </b></th>
-            <td align="left">{{ $entrega->usuario }}</td> 
+            <th align="left"><b>Usuario creación: </b></th>
+            <td align="left">{{ $entrega->usuario_creacion }}</td> 
 
         </tr>
         <tr>
@@ -51,7 +51,7 @@
         <td align="center" bgcolor="yellow"><b>N°</b></td>
         <td align="center" bgcolor="yellow"><b>Cantidad de Gavetas</b></td>
         <td align="center" bgcolor="yellow"><b>Peso Bruto</b></td>
-        <td align="center" bgcolor="yellow"><b>Usuario</b></td>
+        <td align="center" bgcolor="yellow"><b>Usuario creación</b></td>
         <td align="center" bgcolor="yellow"><b>Fecha de Registro</b></td>
     </tr>
     </thead>
@@ -62,7 +62,7 @@
          <td align="center">{{ $loop->iteration }}</td>
          <td align="center">{{ $reg->cant_gavetas }}</td>
          <td align="center">{{ $reg->peso_bruto }}</td>
-         <td align="center">{{ $reg->usuario }}</td>
+         <td align="center">{{ $reg->usuario_creacion }}</td>
          <td align="center">{{ $reg->updated_at }}</td>         
      </tr>
      @endif
@@ -83,7 +83,7 @@
         <td align="center" bgcolor="yellow"><b>Tipo entrega</b></td>
         <td align="center" bgcolor="yellow"><b>Cantidad de Gavetas</b></td>
         <td align="center" bgcolor="yellow"><b>Peso neto </b></td>
-        <td align="center" bgcolor="yellow"><b>Usuario</b></td>
+        <td align="center" bgcolor="yellow"><b>Usuario creación</b></td>
         <td align="center" bgcolor="yellow"><b>Fecha de Registro</b></td>
     </tr>
     </thead>
@@ -95,7 +95,7 @@
          <td align="center">{{ $presa->tipo_entrega}}</td>
          <td align="center">{{ $presa->cant_gavetas }}</td>
          <td align="center">{{ $presa->peso_bruto }}</td>
-         <td align="center">{{ $presa->usuario }}</td>
+         <td align="center">{{ $presa->usuario_creacion }}</td>
          <td align="center">{{ $presa->updated_at }}</td>         
      </tr>
      @endif

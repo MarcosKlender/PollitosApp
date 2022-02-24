@@ -22,7 +22,8 @@ class CreateEntregasTable extends Migration
             $table->string('conductor')->nullable();
             $table->string('destino')->nullable();
             $table->integer('cant_animales')->nullable();
-            $table->string('usuario');
+            $table->string('usuario_creacion');
+            $table->string('usuario_modificacion')->nullable();;
             $table->string('anulado', 1);
             $table->string('liquidado', 1);
             $table->string('observaciones')->nullable();

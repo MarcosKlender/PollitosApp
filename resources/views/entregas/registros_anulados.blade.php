@@ -30,7 +30,7 @@
                                         <td>ID Lote</td>
                                         <td>Cantidad Gavetas</td>
                                         <td>Peso Bruto</td>
-                                        <td>Usuario</td>
+                                        <td>Usuario creación</td>
                                         <td>Observaciones</td>
                                         <td>Fecha de Anulación</td>
                                     </tr>
@@ -42,7 +42,7 @@
                                             <td>{{ $registro->entregas_id }}</td>
                                             <td>{{ $registro->cant_gavetas }}</td>
                                             <td>{{ $registro->peso_bruto }}</td>
-                                            <td>{{ $registro->usuario }}</td>
+                                            <td>{{ $registro->usuario_creacion }}</td>
                                             <td>{{ $registro->observaciones }}</td>
                                             <td>{{ $registro->updated_at }}</td>
                                         </tr>
