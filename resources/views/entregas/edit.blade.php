@@ -6,7 +6,7 @@
         <div class="col-lg-9">
             <div class="card shadow mb-4">
                 <div class="card-header mt-2 text-center">
-                    <h4>ENTREGA {{ $entregas->id }} - {{ $entregas->tipo }}</h4>
+                    <h4> <b>ENTREGAS</b> | N° {{ $entregas->id }} | {{ $entregas->tipo }} | {{ $entregas->cliente}} </h4>
                 </div>
 
                 <ul class="nav nav-tabs nav-fill" id="myTab1" role="tablist">
