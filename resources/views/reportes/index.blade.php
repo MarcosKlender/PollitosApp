@@ -94,11 +94,11 @@
                                     <div class="col"></div>
 
                                      <div  id="excel-consolidado" class=" form-check-inline">
-                                        @foreach ($lotes as $lote)
-                                        <a href="{{ route('reportes.generar_excel_consolidado', $lote->id) }}"
+                                       {{-- @foreach ($lotes as $lote) --}}
+                                        {{-- <a href="{{ route('reportes.generar_excel_consolidado', $lote->id) }}"
                                                         target="_blank" class="btn btn-lg btn-info"><i
-                                                            class="far fa-file-excel "></i></a>
-                                        @endforeach                    
+                                                            class="far fa-file-excel "></i></a> --}}
+                                       {{-- @endforeach --}}                    
                                     </div>                                
 
                                 </div>
@@ -135,7 +135,7 @@
                                         <td align="center">Tot. Peso Bruto</td>
                                         <td align="center">Tot. Peso Gavetas Vacías</td>
                                         <td align="center">Usuario creación</td>
-                                        <td align="center">Fecha Registro</td>
+                                        <td align="center">Fecha creación</td>
                                         <td align="center">Anulado</td>
                                         <td align="center">Liquidado ingreso</td>
                                         <td align="center">Liquidado egreso</td>
