@@ -94,10 +94,10 @@
                                             <td align="center">
                                                 @if ($entrega->liquidado == '0')
                                                     <a href="{{ route('entregas.edit', $entrega->id) }}"
-                                                        class="btn btn-sm btn-primary">Registrar Pesos</a>
+                                                        class="btn btn-sm btn-primary"><i class="fas fa-plus-square"></i></a>
                                                 @else
                                                     <a href="{{ route('entregas.show', $entrega->id) }}"
-                                                        ><i class="fas fa-eye fa-2x"></i> </a>
+                                                        ><i class="text-success fas fa-eye fa-2x"></i> </a>
                                                 @endif
                                             </td>
                                         </tr>

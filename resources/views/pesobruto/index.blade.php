@@ -97,10 +97,10 @@
                                             <td align="center">
                                                 @if ($lote->liquidado == '0')
                                                     <a href="{{ route('pesobruto.edit', $lote->id) }}"
-                                                        class="btn btn-sm btn-primary">Registrar Pesos</a>
+                                                        class="btn btn-sm btn-primary"><i class="fas fa-plus-square"></i></a>
                                                 @else
                                                     <a href="{{ route('pesobruto.show', $lote->id) }}"
-                                                        ><i class="fas fa-eye fa-2x"></i> </a>
+                                                        ><i class="text-success fas fa-eye fa-2x"></i> </a>
                                                 @endif
                                             </td>
                                             <!--td class="button">
