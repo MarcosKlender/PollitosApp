@@ -15,7 +15,7 @@
                     <div class="row justify-content-around">
 
                         <div class="mb-3">
-                            <a href="{{ route('proveedores.index') }}" class="btn btn-primary">Volver Atrás</a>
+                            <a href="{{ route('proveedores.create') }}" class="btn btn-success">Crear Proveedor</a>
                         </div>
 
                         <div class="mb-3">
@@ -66,6 +66,7 @@
                                         <td>Teléfono</td>
                                         <td>Email</td>
                                         <td>Direccion</td>
+                                        <td>Acción</td>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -78,6 +79,10 @@
                                             <td>{{ $search->pro_telefonos }}</td>
                                             <td>{{ $search->pro_email }}</td>
                                             <td>{{ $search->pro_direccion }}</td>
+                                            <td class="text-center">
+                                            <a href="{{ route('proveedores.edit', $search->id) }}"
+                                                class="btn btn-primary"><i class="far fa-edit"></i></a>
+                                        </td>
                                         </tr>
                                     @endforeach
                                 </tbody>

@@ -15,7 +15,7 @@
                     <div class="row justify-content-around">
                         
                         <div class="mb-3">
-                            <a href="{{ route('clientes.index') }}" class="btn btn-primary">Volver Atrás</a>
+                             <a href="{{ route('clientes.create') }}" class="btn btn-success">Crear Cliente</a>
                         </div>
 
                         <div class="mb-3">
@@ -68,6 +68,7 @@
                                         <td>Provincia</td>
                                         <td>Ciudad</td>
                                         <td>Parroquia</td>
+                                        <td>Acciones</td>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -85,6 +86,10 @@
                                             <td>{{ $search->provincia }}</td>
                                             <td>{{ $search->ciudad }}</td>
                                             <td>{{ $search->parroquia }}</td>
+                                            <td class="text-center">
+                                            <a href="{{ route('clientes.edit', $search->id) }}"
+                                                class="btn btn-primary"><i class="far fa-edit"></i></a>
+                                        </td>
                                         </tr>
                                     @endforeach
                                 </tbody>
