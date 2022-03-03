@@ -111,7 +111,7 @@
                                         <td align="center">Tot. Cant. Gavetas</td>
                                         <td align="center">Tot. Peso Bruto</td>
                                         <td align="center">Usuario</td>
-                                        <td align="center">Fecha Registro</td>
+                                        <td align="center">Fecha creación</td>
                                         <td align="center">Anulado</td>
                                         <td align="center">Liquidado</td>
                                         <td align="center">Reporte pdf</td>
@@ -205,7 +205,7 @@
                                                 <td align="center">Estado</td>
                                                 <td align="center">Observación</td>
                                                 <td align="center">Usuario</td>
-                                                <td align="center">Fecha de Registro</td>
+                                                <td align="center">Fecha creación</td>
                                             </tr>
                                         </thead>
                                         <!--tbody!-->
@@ -237,7 +237,7 @@
                                                     <td align="center">Estado</td>
                                                     <td align="center">Observación</td>
                                                     <td align="center">Usuario</td>
-                                                    <td align="center">Fecha de Registro</td>
+                                                    <td align="center">Fecha creación</td>
                                                 </tr>
                                             </thead>
                                             <!--tbody!-->
