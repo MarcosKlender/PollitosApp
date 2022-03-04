@@ -133,7 +133,7 @@
                                         <td align="center">Cantidad Animal Ahogado</td>
                                         <td align="center">Peso Animal Ahogado</td>
                                         <td align="center">Tot. Peso Bruto</td>
-                                        <td align="center">Tot. Peso Gavetas Vacías</td>
+                                        {{-- <td align="center">Tot. Peso Gavetas Vacías</td> --}}
                                         <td align="center">Usuario creación</td>
                                         <td align="center">Fecha creación</td>
                                         <td align="center">Anulado</td>
@@ -158,11 +158,12 @@
                                             <td align="center" class="row_peso">{{ $lote->cant_ahogados }}</td>
                                             <td align="center" class="row_peso">{{ $lote->peso_ahogados }}</td>
                                             <td align="center" class="row_peso">{{ $lote->total_peso_bruto }}</td>
-                                            @foreach ($gavetas_vacias as $gaveta_v)                                               
-                                                @if( $lote->id == $gaveta_v->id )
-                                                    <td align="center" class="row_peso">{{ $gaveta_v->total_peso_gavetas_vacias }}</td>
-                                                @endif
-                                            @endforeach   
+                                            {{-- @foreach ($gavetas_vacias as $gaveta_v) --}}                         
+                                            {{--   @if( $lote->id == $gaveta_v->id ) --}}
+                                            {{-- <td align="center" class="row_peso">{{-- $gaveta_v->total_peso_gavetas_vacias --}}
+                                            </td> --}}                                            
+                                            {{-- @endif
+                                            @endforeach --}}   
                                             <td align="center" class="row_peso">{{ $lote->usuario_creacion }}</td>
                                             <td align="center" class="row_peso">{{ $lote->created_at }}</td>
                                             <td align="center" class="button">
