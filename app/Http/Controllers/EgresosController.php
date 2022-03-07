@@ -130,34 +130,26 @@ class EgresosController extends Controller
     public function show($id)
     {
         $lote = Lotes::findOrFail($id);
+        
         $egresos = Egresos::where('lotes_id', $id)->where('anulado', 0)->orderBy('id')->get();
 
         $total_cantidad = Egresos::where('lotes_id', $id)->where('anulado', 0)->select('cant_gavetas')->sum('cant_gavetas');
+        
         $total_bruto = Egresos::where('lotes_id', $id)->where('anulado', 0)->select('peso_bruto')->sum('peso_bruto');
+        
         $total_gavetas = Egresos::where('lotes_id', $id)->where('anulado', 0)->select('peso_gavetas')->sum('peso_gavetas');
-        $total_final = Egresos::where('lotes_id', $id)->where('anulado', 0)->select('peso_final')->sum('peso_final');
+        //$total_final = Egresos::where('lotes_id', $id)->where('anulado', 0)->select('peso_final')->sum('peso_final');
 
         $gavetas = GavetasVaciasEgresos::where('lotes_id', $id)->where('anulado', 0)->orderBy('id')->get();
+        
         $cant_gav_vac = GavetasVaciasEgresos::where('lotes_id', $id)->where('anulado', 0)->select('cant_gavetas_vacias')->sum('cant_gavetas_vacias');
+        
         $peso_gav_vac = GavetasVaciasEgresos::where('lotes_id', $id)->where('anulado', 0)->select('peso_gavetas_vacias')->sum('peso_gavetas_vacias');
 
-        $egresos_presas = EgresosPresas::findOrFail($id);
+        $egresos_presas = EgresosPresas::where('lotes_id', $id)->orderBy('id')->get();
+    
 
-        /* $cant_ahogados  = Egresos::where('lotes_id', $id)->where('anulado', 0)->select('cant_ahogados')->sum('cant_ahogados');
-         $peso_ahogados  = Egresos::where('lotes_id', $id)->where('anulado', 0)->select('peso_ahogados')->sum('peso_ahogados');
-         $cant_gvacia_ahogados  = Egresos::where('lotes_id', $id)->where('anulado', 0)->select('cant_gvacia_ahogados')->sum('cant_gvacia_ahogados');
-
-
-         $cant_estropeados  = Egresos::where('lotes_id', $id)->where('anulado', 0)->select('cant_estropeados')->sum('cant_estropeados');
-         $peso_estropeados  = Egresos::where('lotes_id', $id)->where('anulado', 0)->select('peso_estropeados')->sum('peso_estropeados');
-         $cant_gvacia_estropeados  = Egresos::where('lotes_id', $id)->where('anulado', 0)->select('cant_gvacia_estropeados')->sum('cant_gvacia_estropeados');
-
-         $cant_mollejas  = Egresos::where('lotes_id', $id)->where('anulado', 0)->select('cant_mollejas')->sum('cant_mollejas');
-         $peso_mollejas  = Egresos::where('lotes_id', $id)->where('anulado', 0)->select('peso_mollejas')->sum('peso_mollejas');
-         $cant_gvacia_mollejas  = Egresos::where('lotes_id', $id)->where('anulado', 0)->select('cant_gvacia_mollejas')->sum('cant_gvacia_mollejas'); */
-
-
-        return view('egresos.show', compact('lote', 'egresos_presas' ,'egresos', 'total_cantidad', 'total_bruto', 'total_gavetas', 'total_final', 'gavetas', 'cant_gav_vac', 'peso_gav_vac'));
+        return view('egresos.show', compact('lote', 'egresos', 'egresos_presas', 'total_cantidad', 'total_bruto', 'total_gavetas', 'gavetas', 'cant_gav_vac', 'peso_gav_vac'));
     }
 
     public function edit($id)

@@ -161,11 +161,13 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                @foreach($egresos_presas as $egresos_presa)
                                 <tr>
-                                    <td>{{ $egresos_presas->cant_ahogados_egresos }}</td>
-                                    <td>{{ $egresos_presas->peso_ahogados_egresos }}</td>
-                                    <td>{{ $egresos_presas->cant_gvacia_ahogados_egresos }}</td>
+                                    <td>{{ $egresos_presa->cant_ahogados_egresos }}</td>
+                                    <td>{{ $egresos_presa->peso_ahogados_egresos }}</td>
+                                    <td>{{ $egresos_presa->cant_gvacia_ahogados_egresos }}</td>
                                 </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
@@ -182,11 +184,13 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                 @foreach($egresos_presas as $egresos_presa)
                                 <tr>
-                                    <td>{{ $egresos_presas->cant_estropeados_egresos }}</td>
-                                    <td>{{ $egresos_presas->peso_estropeados_egresos }}</td>
-                                     <td>{{ $egresos_presas->cant_gvacia_estropeados_egresos }}</td>
+                                    <td>{{ $egresos_presa->cant_estropeados_egresos }}</td>
+                                    <td>{{ $egresos_presa->peso_estropeados_egresos }}</td>
+                                     <td>{{ $egresos_presa->cant_gvacia_estropeados_egresos }}</td>
                                 </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
@@ -203,10 +207,12 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                 @foreach($egresos_presas as $egresos_presa)
                                 <tr>
-                                    <td>{{ $egresos_presas->peso_mollejas_egresos }}</td>
-                                    <td>{{ $egresos_presas->cant_gvacia_mollejas_egresos }}</td>
+                                    <td>{{ $egresos_presa->peso_mollejas_egresos }}</td>
+                                    <td>{{ $egresos_presa->cant_gvacia_mollejas_egresos }}</td>
                                 </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>

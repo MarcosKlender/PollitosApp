@@ -184,7 +184,7 @@
                                             </td>
 
                                             <td align="center" class="button">
-                                                @if ($lote->egresos == '0')
+                                                @if ($lote->estado_egresos == '0')
                                                     <button type="button" class="btn btn-sm btn-danger">NO</button>
                                                 @else
                                                     <button type="button" class="btn btn-sm btn-warning">SI</button>

@@ -84,7 +84,7 @@
                                                 @endif
                                             </td>
                                             <td align="center">
-                                                @if ($lote->estado_egresos == '0')
+                                                @if($lote->estado_egresos == '0')
                                                     <a href="{{ route('egresos.edit', $lote->id) }}"
                                                         class="btn btn-sm btn-primary"><i class="fas fa-plus-square"></i></a>
                                                 @else

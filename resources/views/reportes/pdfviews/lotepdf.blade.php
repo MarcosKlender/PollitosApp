@@ -272,8 +272,8 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($egresos_presas as $lote_ahogados)
-                                    @if($lote->id==$lote_ahogados->id)
+                                    @foreach($egresos_presas as $lote_ahogados)
+                                    @if($lote->id==$lote_ahogados->lotes_id)
                                         <tr>
                                             <td align="center">{{ $lote_ahogados->id }}</td>
                                             <td align="center">{{ $lote_ahogados->cant_ahogados_egresos }}</td>
@@ -308,7 +308,7 @@
                                 </thead>
                                 <tbody>
                                     @foreach ($egresos_presas as $lote_estropeados)
-                                    @if($lote->id==$lote_estropeados->id)
+                                    @if($lote->id==$lote_estropeados->lotes_id)
                                         <tr>
                                             <td align="center">{{ $lote_estropeados->id }}</td>
                                             <td align="center">{{ $lote_estropeados->cant_estropeados_egresos }}</td>
@@ -344,7 +344,7 @@
                                 </thead>
                                 <tbody>
                                     @foreach ($egresos_presas as $lote_mollejas)
-                                    @if($lote->id==$lote_mollejas->id)
+                                    @if($lote->id==$lote_mollejas->lotes_id)
                                         <tr>
                                             <td align="center">{{ $lote_mollejas->id }}</td>
                                             <td align="center">{{ $lote_mollejas->peso_mollejas_egresos }}</td>
@@ -438,7 +438,7 @@
                                         @endif
                                     @endforeach
                                     <tr>
-                                        <td colspan="1"><b>TOTAL</b></td>
+                                        <td colspan="2"><b>TOTAL</b></td>
                                         @foreach($lotes_gavetas_egresos as $lote_gvacia)                                 
                                         @if($lote->id == $lote_gvacia->id)
                                             <td align="center"><b>{{ $lote_gvacia->total_cant_gavetas_vacias_egresos }}</b></td>
