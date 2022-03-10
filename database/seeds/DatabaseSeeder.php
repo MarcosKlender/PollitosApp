@@ -24,6 +24,30 @@ class DatabaseSeeder extends Seeder
             ['key' => 'egre_entr', 'name' => 'Egresos y Entregas', 'description' => 'Este rol tiene acceso a PROVEEDORES, CLIENTES, EGRESOS, ENTREGAS y REPORTES.', 'created_at' => Carbon::now()->toDateTimeString(), 'updated_at' => Carbon::now()->toDateTimeString()],
         ]);
 
+        //TABLA BASCULA CONFIGURACION
+        DB::table('bascula_configuracion')->truncate();
+
+        DB::table('bascula_configuracion')->insert([
+            'cod_bascula' => 'B00-1',
+            'nom_bascula' => 'BASCULA1',
+            'ipx_bascula' => '192.168.100.11',
+            'est_bascula' => '0',
+            'usuario_creacion' => 'dmorocho',   
+            'created_at' => Carbon::now()->toDateTimeString(),
+            'updated_at' => Carbon::now()->toDateTimeString(),         
+        ]);
+
+         DB::table('bascula_configuracion')->insert([
+            'cod_bascula' => 'B00-2',
+            'nom_bascula' => 'BASCULA2',
+            'ipx_bascula' => '192.168.100.7',
+            'est_bascula' => '0',
+            'usuario_creacion' => 'dmorocho',   
+            'created_at' => Carbon::now()->toDateTimeString(),
+            'updated_at' => Carbon::now()->toDateTimeString(),         
+        ]);
+
+
         //TABLA CONFIGURACION
         DB::table('configuracion')->truncate();
 

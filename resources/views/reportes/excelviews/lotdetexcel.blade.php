@@ -14,7 +14,7 @@
         </tr>
 
         <tr>
-            <th width="20"><b>Cantidad Animales:</b></th>
+            <th width="20"><b>Cantidad Animales(INGRESOS):</b></th>
             <td align="center">{{ $lote->cantidad }}</td>
 
             <th width="30"><b>Conductor:</b></th>

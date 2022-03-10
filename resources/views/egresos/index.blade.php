@@ -47,7 +47,8 @@
                                     <tr class="font-weight-bold">
                                         <td>Lote N°</td>
                                         <td>Tipo</td>
-                                        <td>Cantidad Animales</td>
+                                        <td>Cantidad animales</td>
+                                        <td>Cantidad animales faenados</td>
                                         <td>Proveedor</td>
                                         <td>RUC/CI</td>
                                         <td>Usuario creación</td>
@@ -65,6 +66,7 @@
                                             <td>{{ $lote->id }}</td>
                                             <td>{{ $lote->tipo }}</td>
                                             <td>{{ $lote->cantidad }}</td>
+                                            <td>{{ $lote->cant_animales_egresos }}</td>
                                             <td>{{ $lote->proveedor }}</td>
                                             <td>{{ $lote->ruc_ci }}</td>
                                             <td>{{ $lote->usuario_creacion }}</td>

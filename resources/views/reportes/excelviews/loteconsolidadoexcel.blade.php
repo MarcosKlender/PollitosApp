@@ -4,7 +4,7 @@
             <th align="left" width="35"> Lote N°  {{ $id }}  </th>
             <td width="30"></td>
             <td width="2"></td>
-            <td width="40"></td>
+            <td width="47"></td>
             <td width="25"></td>
             <td width="2"></td>
             <td width="23"></td>
@@ -31,8 +31,12 @@
                 <td align="right"> {{ $lote->ruc_ci }} </td>
             </tr>
             <tr>
-                <th align="left">Cantidad Animales: </th>
+                <th align="left">Cantidad Animales (INGRESOS): </th>
                 <td align="right"> {{ $lote->cantidad }} </td>
+            </tr>
+            <tr>
+                <th align="left">Cantidad Animales (EGRESOS): </th>
+                <td align="right"> {{ $lote->cant_animales_egresos }} </td>
             </tr>
             <tr>
                 <th align="left">Estado: </th>
@@ -114,7 +118,7 @@
                 <th align="center">Cantidad ahogados</th>
                 <th align="center">Peso ahogados (iPH)</th>  
                 <th></th>
-                <th align="center">Cantidad Gavetas vacías</th> 
+                <th align="center">Peso Gavetas vacías (ePGVM)</th> 
                 <th align="center" >Peso mollejas (ePM)</th>   
                 <th></th>
                 <th></th> 
@@ -125,7 +129,7 @@
                 <td align="center">{{ $iCantidad_ahogados}}</td>
                 <td align="center">{{ $iPH }}</td>
                 <td align="center"></td>
-                <td align="center">{{ $eCantidad_gvacia_mollejas }}</td>
+                <td align="center">{{ $ePeso_gvacia_mollejas }}</td>
                 <td align="center">{{ $ePM }} </td>
                 <td align="center"></td>
                 <td align="center"></td>
@@ -136,7 +140,7 @@
                 <th align="center">TOTAL PESO NETO | iTPN=(iPB-iPGV-iPH) </th>
                 <td align="center"> {{ $iTPN }} </td>  
                 <th></th>
-                <th align="center">TOTAL PESO NETO | eTPN=(ePB-ePGV)+ePM</th> 
+                <th align="center">TOTAL PESO NETO | eTPN=(ePB-ePGV-ePGVM)+ePM</th> 
                 <td align="center">{{ $eTPN }}</td> 
                 <th></th> 
                 <th align="center" colspan="2">TOTAL NETO ieTN = iTPN-(eTPN-eTD)  </th> 

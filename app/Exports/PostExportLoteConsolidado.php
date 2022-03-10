@@ -69,13 +69,14 @@ class PostExportLoteConsolidado implements FromView, WithTitle, WithEvents, With
 	  	$eTotal_Pgvacias = GavetasVaciasEgresos::where('lotes_id', $datoid)->where('anulado', 0)->select('peso_gavetas_vacias')->sum('peso_gavetas_vacias');
 
 	  	
-
-	  	$eCantidad_gvacia_mollejas = EgresosPresas::where('lotes_id', $datoid)->select('cant_gvacia_mollejas_egresos')->sum('cant_gvacia_mollejas_egresos'); 
+        
+        $ePeso_gvacia_mollejas = EgresosPresas::where('lotes_id', $datoid)->select('peso_gvacia_mollejas_egresos')->sum('peso_gvacia_mollejas_egresos');
+	  	//$eCantidad_gvacia_mollejas = EgresosPresas::where('lotes_id', $datoid)->select('cant_gvacia_mollejas_egresos')->sum('cant_gvacia_mollejas_egresos'); 
 
 	  	$ePeso_mollejas = EgresosPresas::where('lotes_id', $datoid)->select('peso_mollejas_egresos')->sum('peso_mollejas_egresos'); 
 
 	  	//Total peso neto 
-	  	$eTPN = ($eTotal_Pbruto - $eTotal_Pgvacias ) + $ePeso_mollejas;
+	  	$eTPN = ($eTotal_Pbruto - $eTotal_Pgvacias - $ePeso_gvacia_mollejas ) + $ePeso_mollejas;
 
 	  	
 	  	$eTotal_Cgvacia_ahogados = EgresosPresas::where('lotes_id', $datoid)->select('cant_gvacia_ahogados_egresos')->sum('cant_gvacia_ahogados_egresos');
@@ -112,7 +113,7 @@ class PostExportLoteConsolidado implements FromView, WithTitle, WithEvents, With
 
 
 
-	  	return view('reportes.excelviews.loteconsolidadoexcel', [ 'lotes'=> $lotes])->with('id',$this->id)->with('iCantidadga',$iCantidadga)->with('iPB',$iTotal_Pbruto)->with('iTotal_Cgvacia',$iTotal_Cgvacia)->with('iPGV',$iTotal_Pgvacia)->with('iCantidad_ahogados',$iCantidad_hogados)->with('iPH',$iPeso_hogados)->with('iTPN', $iTPN)->with('eCantidad_gavetas', $eCantidad_gavetas)->with('ePB', $eTotal_Pbruto)->with('eCantidad_gvacia_mollejas', $eCantidad_gvacia_mollejas)->with('ePM', $ePeso_mollejas)->with('eTotal_Cgvacia_ahogados',$eTotal_Cgvacia_ahogados)->with('eCantidad_ahogados', $eCantidad_ahogados)->with('ePeso_ahogados', $ePeso_ahogados)->with('eCantidad_gvacias', $eCantidad_gvacias)->with('ePGV', $eTotal_Pgvacias)->with('eTPN', $eTPN)->with('eCantidad_gvacia_estropeados', $eCantidad_gvacia_estropeados)->with('eCantidad_estropeados', $eCantidad_estropeados)->with('ePE', $ePeso_estropeados)->with('eTD', $eTD)->with('ieTN',$ieTN)->with('liquidado', $est_liquidado);
+	  	return view('reportes.excelviews.loteconsolidadoexcel', [ 'lotes'=> $lotes])->with('id',$this->id)->with('iCantidadga',$iCantidadga)->with('iPB',$iTotal_Pbruto)->with('iTotal_Cgvacia',$iTotal_Cgvacia)->with('iPGV',$iTotal_Pgvacia)->with('iCantidad_ahogados',$iCantidad_hogados)->with('iPH',$iPeso_hogados)->with('iTPN', $iTPN)->with('eCantidad_gavetas', $eCantidad_gavetas)->with('ePB', $eTotal_Pbruto)->with('ePeso_gvacia_mollejas', $ePeso_gvacia_mollejas)->with('ePM', $ePeso_mollejas)->with('eTotal_Cgvacia_ahogados',$eTotal_Cgvacia_ahogados)->with('eCantidad_ahogados', $eCantidad_ahogados)->with('ePeso_ahogados', $ePeso_ahogados)->with('eCantidad_gvacias', $eCantidad_gvacias)->with('ePGV', $eTotal_Pgvacias)->with('eTPN', $eTPN)->with('eCantidad_gvacia_estropeados', $eCantidad_gvacia_estropeados)->with('eCantidad_estropeados', $eCantidad_estropeados)->with('ePE', $ePeso_estropeados)->with('eTD', $eTD)->with('ieTN',$ieTN)->with('liquidado', $est_liquidado);
 	  	 
 
   	}
@@ -243,45 +244,45 @@ class PostExportLoteConsolidado implements FromView, WithTitle, WithEvents, With
             {
 
             	//Cabecera principal
-            	$event->sheet->getStyle('A1:A7')->ApplyFromArray($FuenteLetra);
+            	$event->sheet->getStyle('A1:A8')->ApplyFromArray($FuenteLetra);
 
             	// Color titulos - INGRESOS
-                $event->sheet->getStyle('A8:B8')->ApplyFromArray($iColorFondo);
+                $event->sheet->getStyle('A9:B9')->ApplyFromArray($iColorFondo);
 
                 // Color titulos - EGRESOS
-                $event->sheet->getStyle('D8:I8')->ApplyFromArray($iColorFondo);
+                $event->sheet->getStyle('D9:I9')->ApplyFromArray($iColorFondo);
 
                 //cuadricula - INGRESOS
-                $event->sheet->getStyle('A9:B18')->ApplyFromArray($borderMedium);
+                $event->sheet->getStyle('A10:B19')->ApplyFromArray($borderMedium);
 
                 //cuadricula - EGRESOS
-                $event->sheet->getStyle('D9:E18')->ApplyFromArray($borderMedium);
-                $event->sheet->getStyle('G9:I15')->ApplyFromArray($borderMedium);
+                $event->sheet->getStyle('D10:E19')->ApplyFromArray($borderMedium);
+                $event->sheet->getStyle('G10:I16')->ApplyFromArray($borderMedium);
 
                 //TITULOS SECUNDARIOS INGRESOS - EGRESOS
-                $event->sheet->getStyle('A9:I9')->ApplyFromArray($FuenteLetra);
-                $event->sheet->getStyle('A12:I12')->ApplyFromArray($FuenteLetra);
-                $event->sheet->getStyle('A15:I15')->ApplyFromArray($FuenteLetra);
+                $event->sheet->getStyle('A10:I10')->ApplyFromArray($FuenteLetra);
+                $event->sheet->getStyle('A13:I13')->ApplyFromArray($FuenteLetra);
+                $event->sheet->getStyle('A16:I16')->ApplyFromArray($FuenteLetra);
 
                 //SUBTITULOS INGRESOS - EGRESOS
-                $event->sheet->getStyle('A10:B10')->ApplyFromArray($iColorFondo2);
-                $event->sheet->getStyle('D10:E10')->ApplyFromArray($eColorFondo);
-                $event->sheet->getStyle('G10:I10')->ApplyFromArray($eColorFondo);
+                $event->sheet->getStyle('A11:B11')->ApplyFromArray($iColorFondo2);
+                $event->sheet->getStyle('D11:E11')->ApplyFromArray($eColorFondo);
+                $event->sheet->getStyle('G11:I11')->ApplyFromArray($eColorFondo);
 
-                $event->sheet->getStyle('A13:B13')->ApplyFromArray($iColorFondo2);
-                $event->sheet->getStyle('D13:E13')->ApplyFromArray($eColorFondo);
-                $event->sheet->getStyle('G13:I13')->ApplyFromArray($eColorFondo);
+                $event->sheet->getStyle('A14:B14')->ApplyFromArray($iColorFondo2);
+                $event->sheet->getStyle('D14:E14')->ApplyFromArray($eColorFondo);
+                $event->sheet->getStyle('G14:I14')->ApplyFromArray($eColorFondo);
 
-                $event->sheet->getStyle('A16:B16')->ApplyFromArray($iColorFondo2);
-                $event->sheet->getStyle('D16:E16')->ApplyFromArray($eColorFondo);
+                $event->sheet->getStyle('A17:B17')->ApplyFromArray($iColorFondo2);
+                $event->sheet->getStyle('D17:E17')->ApplyFromArray($eColorFondo);
 
 
 
-                $event->sheet->getStyle('G15:I15')->ApplyFromArray($TColorFondo);
-                $event->sheet->getStyle('A18:B18')->ApplyFromArray($TColorFondo);
-                $event->sheet->getStyle('D18:E18')->ApplyFromArray($TColorFondo);
+                $event->sheet->getStyle('G16:I16')->ApplyFromArray($TColorFondo);
+                $event->sheet->getStyle('A19:B19')->ApplyFromArray($TColorFondo);
+                $event->sheet->getStyle('D19:E19')->ApplyFromArray($TColorFondo);
 
-                $event->sheet->getStyle('G18:I18')->ApplyFromArray($TNColorFondo);
+                $event->sheet->getStyle('G19:I19')->ApplyFromArray($TNColorFondo);
 
 
             }

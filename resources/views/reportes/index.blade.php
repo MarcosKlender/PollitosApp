@@ -128,7 +128,8 @@
                                         <td align="center">Procedencia</td>
                                         <td align="center">Placa</td>
                                         <td align="center">Conductor</td>
-                                        <td align="center">Cantidad Total Animal</td>
+                                        <td align="center">Cantidad animales (Ingresos)</td>
+                                        <td align="center">Cantidad animales (Egresos)</td>
                                         <td align="center">Tot. Cant. Gavetas</td>
                                         <td align="center">Cantidad Animal Ahogado</td>
                                         <td align="center">Peso Animal Ahogado</td>
@@ -154,6 +155,7 @@
                                             <td align="center" class="row_peso">{{ $lote->placa }}</td>
                                             <td align="center" class="row_peso">{{ $lote->conductor }}</td>
                                             <td align="center" class="row_peso">{{ $lote->cantidad }}</td>
+                                            <td align="center" class="row_peso">{{ $lote->cant_animales_egresos }}</td>
                                             <td align="center" class="row_peso">{{ $lote->total_cant_gavetas }}</td>
                                             <td align="center" class="row_peso">{{ $lote->cant_ahogados }}</td>
                                             <td align="center" class="row_peso">{{ $lote->peso_ahogados }}</td>

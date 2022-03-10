@@ -28,17 +28,21 @@ class EgresosPresasController extends Controller
             'cant_gvacia_estropeados_egresos' => 'required|numeric',
 
             'peso_mollejas_egresos' => 'required|numeric',
-            'cant_gvacia_mollejas_egresos' => 'required|numeric',
+            //'cant_gvacia_mollejas_egresos' => 'required|numeric',
+            'peso_gvacia_mollejas_egresos' => 'required|numeric',
             'usuario_creacion' => 'required|max:191',
             'estado_egreso_presas' =>'required|size:1',
 
         ]);
 
+
         $estado_liquidado = Lotes::where('id', $request->lotes_id)->where('anulado', 0)->select('liquidado')->value('liquidado');
         
         if ($estado_liquidado === '1') {
             
-            Lotes::whereId($request->lotes_id)->update(['estado_egresos' => $request->estado_egresos ]);
+            Lotes::whereId($request->lotes_id)
+                ->update(['estado_egresos' => $request->estado_egresos ,
+                          'cant_animales_egresos'=> $request->cant_animales_egresos ] );
             
             EgresosPresas::create($storeEgresosPresas);
 
