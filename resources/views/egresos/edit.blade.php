@@ -440,7 +440,7 @@
                                      <div class="form-group">
                                             <label for="cant_gvacia_ahogados_egresos">Cantidad gavetas vacias (ahogados) *</label>
                                             <input type="number" class="form-control" id="cant_gvacia_ahogados_egresos" name="cant_gvacia_ahogados_egresos"
-                                                value="{{ old('cant_gvacia_ahogados_egresos') }}" step=".01" required />
+                                                value="{{ old('cant_gvacia_ahogados_egresos') }}" required />
                                     </div>
                                 </div>
 
@@ -463,7 +463,7 @@
                                      <div class="form-group">
                                             <label for="cant_gvacia_estropeados">Cantidad gavetas vacias (estropeados) *</label>
                                             <input type="number" class="form-control" id="cant_gvacia_estropeados_egresos" name="cant_gvacia_estropeados_egresos"
-                                                value="{{ old('cant_gvacia_estropeados_egresos') }}" step=".01" required />
+                                                value="{{ old('cant_gvacia_estropeados_egresos') }}" required />
                                     </div>
                                 </div>
 

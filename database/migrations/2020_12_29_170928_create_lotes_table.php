@@ -31,7 +31,7 @@ class CreateLotesTable extends Migration
             $table->string('estado_egresos', 1);
             $table->string('observaciones')->nullable();
             $table->integer('cant_ahogados')->nullable();
-            $table->integer('peso_ahogados')->nullable();
+            $table->decimal('peso_ahogados')->nullable();
             $table->timestamps();
         });
     }
