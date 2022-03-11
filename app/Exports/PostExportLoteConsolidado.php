@@ -100,6 +100,9 @@ class PostExportLoteConsolidado implements FromView, WithTitle, WithEvents, With
 
 	  	$ieTN = $iTPN-($eTPN - $eTD ); 
 
+        //Precio por unidad de animal
+        $eCantidad_animal = Lotes::where('id', $datoid)->select('cant_animales_egresos')->value('cant_animales_egresos');
+        $iePU = $ieTN / $eCantidad_animal; 
 
 	  		  	
 	  	$anulado = Lotes::where('id',$datoid)->select('anulado')->value('anulado');
@@ -113,7 +116,7 @@ class PostExportLoteConsolidado implements FromView, WithTitle, WithEvents, With
 
 
 
-	  	return view('reportes.excelviews.loteconsolidadoexcel', [ 'lotes'=> $lotes])->with('id',$this->id)->with('iCantidadga',$iCantidadga)->with('iPB',$iTotal_Pbruto)->with('iTotal_Cgvacia',$iTotal_Cgvacia)->with('iPGV',$iTotal_Pgvacia)->with('iCantidad_ahogados',$iCantidad_hogados)->with('iPH',$iPeso_hogados)->with('iTPN', $iTPN)->with('eCantidad_gavetas', $eCantidad_gavetas)->with('ePB', $eTotal_Pbruto)->with('ePeso_gvacia_mollejas', $ePeso_gvacia_mollejas)->with('ePM', $ePeso_mollejas)->with('eTotal_Cgvacia_ahogados',$eTotal_Cgvacia_ahogados)->with('eCantidad_ahogados', $eCantidad_ahogados)->with('ePeso_ahogados', $ePeso_ahogados)->with('eCantidad_gvacias', $eCantidad_gvacias)->with('ePGV', $eTotal_Pgvacias)->with('eTPN', $eTPN)->with('eCantidad_gvacia_estropeados', $eCantidad_gvacia_estropeados)->with('eCantidad_estropeados', $eCantidad_estropeados)->with('ePE', $ePeso_estropeados)->with('eTD', $eTD)->with('ieTN',$ieTN)->with('liquidado', $est_liquidado);
+	  	return view('reportes.excelviews.loteconsolidadoexcel', [ 'lotes'=> $lotes])->with('id',$this->id)->with('iCantidadga',$iCantidadga)->with('iPB',$iTotal_Pbruto)->with('iTotal_Cgvacia',$iTotal_Cgvacia)->with('iPGV',$iTotal_Pgvacia)->with('iCantidad_ahogados',$iCantidad_hogados)->with('iPH',$iPeso_hogados)->with('iTPN', $iTPN)->with('eCantidad_gavetas', $eCantidad_gavetas)->with('ePB', $eTotal_Pbruto)->with('ePeso_gvacia_mollejas', $ePeso_gvacia_mollejas)->with('ePM', $ePeso_mollejas)->with('eTotal_Cgvacia_ahogados',$eTotal_Cgvacia_ahogados)->with('eCantidad_ahogados', $eCantidad_ahogados)->with('ePeso_ahogados', $ePeso_ahogados)->with('eCantidad_gvacias', $eCantidad_gvacias)->with('ePGV', $eTotal_Pgvacias)->with('eTPN', $eTPN)->with('eCantidad_gvacia_estropeados', $eCantidad_gvacia_estropeados)->with('eCantidad_estropeados', $eCantidad_estropeados)->with('ePE', $ePeso_estropeados)->with('eTD', $eTD)->with('ieTN',$ieTN)->with('iePU', $iePU)->with('liquidado', $est_liquidado);
 	  	 
 
   	}

@@ -337,7 +337,7 @@
                                         <td align="center">ID Lote</td>
                                         <!--td align="center">Cantidad mollejas</td!-->
                                         <td align="center">Peso mollejas</td>
-                                        <td align="center">Cantidad gaventas vacias</td>
+                                        <td align="center">Peso gaventas vacias</td>
                                         <td align="center">Usuario creación</td>
                                         <td align="center">Fecha de Registro</td>
                                     </tr>
@@ -348,7 +348,7 @@
                                         <tr>
                                             <td align="center">{{ $lote_mollejas->id }}</td>
                                             <td align="center">{{ $lote_mollejas->peso_mollejas_egresos }}</td>
-                                            <td align="center"> {{ $lote_mollejas->cant_gvacia_mollejas_egresos }} </td>
+                                            <td align="center"> {{ $lote_mollejas->peso_gvacia_mollejas_egresos }} </td>
                                             <td align="center">{{ $lote_mollejas->usuario_creacion }}</td>
                                             <td align="center">{{ $lote_mollejas->updated_at }}</td>
                                         </tr>

@@ -146,6 +146,17 @@
                 <th align="center" colspan="2">TOTAL NETO ieTN = iTPN-(eTPN-eTD)  </th> 
                 <td align="center">{{ $ieTN }} </td> 
             </tr>
+            <tr></tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <th align="center" colspan="2">PRECIO POR UNIDAD </th>
+                <td align="center"> {{ $iePU }} </td>
+            </tr>
     </tbody>
 </table>
 

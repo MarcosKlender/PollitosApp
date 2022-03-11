@@ -196,7 +196,7 @@
         <tr align="center"><TH align="center" COLSPAN=4><strong> MOLLEJAS </strong></TH></tr>
     <tr>
         <td align="center" ><b>Peso mollejas</b></td>
-        <td align="center" ><b>Cantidad gavetas vacias</b></td>
+        <td align="center" ><b>Peso gavetas vacias</b></td>
         <td align="center" ><b>Usuario creación</b></td>
         <td align="center" ><b>Fecha creación</b></td>
     </tr>
@@ -206,7 +206,7 @@
     @if( $lote_molleja_egreso->estado_egreso_presas == 1)
      <tr>         
          <td align="center">{{ $lote_molleja_egreso->peso_mollejas_egresos }}</td>
-         <td align="center">{{ $lote_molleja_egreso->cant_gvacia_mollejas_egresos }}</td>
+         <td align="center">{{ $lote_molleja_egreso->peso_gvacia_mollejas_egresos }}</td>
          <td align="center">{{ $lote_molleja_egreso->usuario_creacion }}</td>
          <td align="center">{{ $lote_molleja_egreso->updated_at }}</td>         
      </tr>
