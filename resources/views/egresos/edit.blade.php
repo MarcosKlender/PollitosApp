@@ -442,6 +442,14 @@
                                             <input type="number" class="form-control" id="cant_gvacia_ahogados_egresos" name="cant_gvacia_ahogados_egresos"
                                                 value="{{ old('cant_gvacia_ahogados_egresos') }}" required />
                                     </div>
+
+
+                                    <div class="form-group">
+                                            <label for="peso_gvacia_ahogados_egresos">Peso gavetas vacias (ahogados) *</label>
+                                            <input type="number" class="form-control" id="peso_gvacia_ahogados_egresos" name="peso_gvacia_ahogados_egresos"
+                                                value="{{ old('peso_gvacia_ahogados_egresos') }}" step=".01" required />
+                                    </div>
+
                                 </div>
 
 
@@ -465,6 +473,13 @@
                                             <input type="number" class="form-control" id="cant_gvacia_estropeados_egresos" name="cant_gvacia_estropeados_egresos"
                                                 value="{{ old('cant_gvacia_estropeados_egresos') }}" required />
                                     </div>
+
+                                    <div class="form-group">
+                                            <label for="peso_gvacia_estropeados_egresos">Peso gavetas vacias (estropeados) *</label>
+                                            <input type="number" class="form-control" id="peso_gvacia_estropeados_egresos" name="peso_gvacia_estropeados_egresos"
+                                                value="{{ old('peso_gvacia_estropeados_egresos') }}" step= ".01" required />
+                                    </div>
+
                                 </div>
 
 

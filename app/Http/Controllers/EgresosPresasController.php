@@ -22,11 +22,11 @@ class EgresosPresasController extends Controller
             'cant_ahogados_egresos' => 'required|numeric',
             'peso_ahogados_egresos' => 'required|numeric',
             'cant_gvacia_ahogados_egresos' => 'required|numeric',
-
+            'peso_gvacia_ahogados_egresos' => 'required|numeric',
             'cant_estropeados_egresos' => 'required|numeric',
             'peso_estropeados_egresos' => 'required|numeric',
             'cant_gvacia_estropeados_egresos' => 'required|numeric',
-
+            'peso_gvacia_estropeados_egresos' => 'required|numeric',
             'peso_mollejas_egresos' => 'required|numeric',
             //'cant_gvacia_mollejas_egresos' => 'required|numeric',
             'peso_gvacia_mollejas_egresos' => 'required|numeric',
