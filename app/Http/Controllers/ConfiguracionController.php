@@ -12,7 +12,7 @@ class ConfiguracionController extends Controller
 {
     public function __construct()
     {
-        $this->middleware(['auth', 'rol']);
+        // $this->middleware(['auth', 'rol']);
     }
 
     public function index()
