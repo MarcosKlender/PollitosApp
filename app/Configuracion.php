@@ -18,7 +18,7 @@ class Configuracion extends Model
 
     public $timestamps = false;
 
-    protected $fillable = ['id', 'mod_conf', 'ele_conf', 'des_conf', 'val_conf', 'est_conf'];
+    protected $fillable = ['id', 'mod_conf', 'ele_conf','aut_conf','des_conf', 'val_conf','val2_conf', 'est_conf'];
 
     public function ScopeModulo($query, $modulo)
     {

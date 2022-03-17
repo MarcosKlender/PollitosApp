@@ -55,6 +55,7 @@
                                     <td align="center">ID</td>
                                     <td align="center">Módulo</td>
                                     <td align="center">Descripción</td>
+                                    <td align="center">Automatico</td>
                                     <td align="center">Elemento</td>
                                     <td align="center">Valor</td>
                                     <td align="center">Estado</td>
@@ -67,6 +68,25 @@
                                         <td align="center">{{ $configurar->id }}</td>
                                         <td align="center">{{ $configurar->mod_conf }}</td>
                                         <td align="center">{{ $configurar->des_conf }}</td>
+                                        <td align="center">
+                                       
+                                        @if($configurar->aut_conf == 0 )
+                                             <form method="post" action="{{ route('configuracion.update', $configurar->id) }}">
+                                                {{ csrf_field() }}
+                                                {{ method_field('PATCH') }}
+                                                <input type="hidden" id="aut_conf" name="aut_conf" value="1">
+                                                <button type="submit" class="btn btn-sm btn-info">NO</button>
+                                            </form>
+                                             @elseif($configurar->aut_conf == 1)
+                                            <form method="post" action="{{ route('configuracion.update', $configurar->id) }}">
+                                                {{ csrf_field() }}
+                                                {{ method_field('PATCH') }}
+                                                <input type="hidden" id="aut_conf" name="aut_conf" value="0">
+                                                <button type="submit" class="btn btn-sm btn-warning">SI</button>
+                                            </form>
+                                             @endif   
+                                            <!--td align="center">{{ $configurar->aut_conf}}</td!-->
+                                        </td>
                                         <td align="center">{{ $configurar->ele_conf }}</td>
                                         <td align="center">{{ $configurar->val_conf }}</td>
                                         @if ($configurar->est_conf == 0)

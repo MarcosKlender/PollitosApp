@@ -39,6 +39,12 @@
                         </div>
 
                         <div class="form-group">
+                            <label for="automatico">Autómatico</label>
+                            <input type="text" class="form-control" id="aut_conf" name="aut_conf"
+                                value="{{ old('aut_conf') }}" required/>
+                        </div>
+
+                        <div class="form-group">
                             <label for="valor">Elemento</label>
                             <input type="text" class="form-control" id="ele_conf" name="ele_conf"
                                 value="{{ old('ele_conf') }}" required />

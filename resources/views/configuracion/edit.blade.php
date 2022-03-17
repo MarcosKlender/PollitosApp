@@ -35,6 +35,12 @@
                         </div>
 
                         <div class="form-group">
+                            <label for="aut_conf">Autómatico</label>
+                            <input type="text" class="form-control" id="aut_conf" name="aut_conf"
+                                value="{{ $configuracion->aut_conf }}" required  /> 
+                        </div>
+
+                        <div class="form-group">
                             <label for="ele_conf">Elemento</label>
                             <input type="text" class="form-control" id="ele_conf" name="ele_conf"
                                 value="{{ $configuracion->ele_conf }}" required readonly />

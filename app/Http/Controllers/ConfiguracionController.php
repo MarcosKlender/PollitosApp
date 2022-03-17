@@ -34,6 +34,7 @@ class ConfiguracionController extends Controller
             [
                 'mod_conf' => ['required', Rule::unique('configuracion')->where('ele_conf', $request->ele_conf)],
                 'des_conf' => 'required|max:200',
+                'aut_conf' => 'max:1',
                 'ele_conf' => ['required', Rule::unique('configuracion')->where('mod_conf', $request->mod_conf)],
                 'val_conf' => 'required|max:10',
                 'est_conf' => 'required|max:1',
@@ -58,13 +59,23 @@ class ConfiguracionController extends Controller
 
     public function update(Request $request, $id)
     {
+
+        /* $updateData2 = $request->validate(
+            [
+                 'aut_conf' => 'nullable|size:1',
+            ]
+        );*/
+
+
         $updateData = $request->validate(
             [
-                'mod_conf' => ['required', Rule::unique('configuracion')->where('ele_conf', $request->ele_conf)->ignore($id)],
-                'des_conf' => 'required|max:200',
-                'ele_conf' => ['required', Rule::unique('configuracion')->where('mod_conf', $request->mod_conf)->ignore($id)],
-                'val_conf' => 'required|max:10',
-                'est_conf' => 'required|max:1',
+                'mod_conf' => ['nullable', Rule::unique('configuracion')->where('ele_conf', $request->ele_conf)->ignore($id)],
+                'des_conf' => 'nullable|max:200',
+                'aut_conf' => 'nullable|size:1',
+                'ele_conf' => ['nullable', Rule::unique('configuracion')->where('mod_conf', $request->mod_conf)->ignore($id)],
+                'val_conf' => 'nullable|max:10',
+                'val2_conf' => 'max:10',
+                'est_conf' => 'nullable|max:1',
             ],
             [
                 'mod_conf.unique' => 'El elemento ingresado ya existe en ese módulo.',
@@ -72,10 +83,14 @@ class ConfiguracionController extends Controller
             ]
         );
 
+
+
         Configuracion::whereId($id)->update($updateData);
 
         return redirect('/configuracion')->with('success', '¡Configuración actualizada exitosamente!');
     }
+
+   
 
     public function show(Request $request)
     {

@@ -51,7 +51,24 @@ class DatabaseSeeder extends Seeder
         //TABLA CONFIGURACION
         DB::table('configuracion')->truncate();
 
+
         DB::table('configuracion')->insert([
+            'mod_conf' => 'INGRESOS', 
+            'des_conf' => 'PARAMETRO PARA DEFINIR POR DEFAULT UN VALOR EN INPUT "CANTIDAD GAVENTAS LLENAS" - INGRESOS',
+            'ele_conf' => 'VALOR_CANT_GAVETAS_LLENAS',
+            'val_conf' => '7',
+            'est_conf' => 0,
+        ]);
+
+         DB::table('configuracion')->insert([
+            'mod_conf' => 'EGRESOS', 
+            'des_conf' => 'PARAMETRO PARA DEFINIR POR DEFAULT UN VALOR EN INPUT "CANTIDAD GAVENTAS LLENAS" - EGRESOS',
+            'ele_conf' => 'VALOR_CANT_GAVETAS_LLENAS',
+            'val_conf' => '5',
+            'est_conf' => 0,
+        ]);
+
+          DB::table('configuracion')->insert([
             'mod_conf' => 'ENTREGAS', 
             'des_conf' => 'PARAMETRO PARA DEFINIR POR DEFAULT UN VALOR - ENTREGAS',
             'ele_conf' => 'VALOR_CANT_GAVETAS',

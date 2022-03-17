@@ -15,10 +15,12 @@ class CreateConfiguracionTable extends Migration
     {
         Schema::create('configuracion', function (Blueprint $table) {
             $table->id();
-            $table->string("mod_conf");
-            $table->string("des_conf");
-            $table->string("ele_conf");
-            $table->string("val_conf");
+            $table->string("mod_conf")->nullable();
+            $table->string("des_conf")->nullable();
+            $table->string("aut_conf")->nullable();
+            $table->string("ele_conf")->nullable();
+            $table->string("val_conf")->nullable();
+            $table->string("val2_conf")->nullable();
             $table->string("est_conf", 1);
             $table->timestamps();
         });
