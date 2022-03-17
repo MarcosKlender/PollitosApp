@@ -60,7 +60,7 @@
                 </li>
             @endif
 
-            @if (Auth::user()->rol->key == 'admin' OR Auth::user()->rol->key == 'ingresos')
+            @if (Auth::user()->rol->key == 'admin' OR Auth::user()->rol->key == 'ingresos' OR Auth::user()->rol->key == 'egresos' OR Auth::user()->rol->key == 'egre_entr')
                 <!-- Nav Item - Profile -->
                 <li class="nav-item {{ request()->is('configuracion') ? 'active' : '' }}">
                     <a class="nav-link" href="{{ route('configuracion.index') }}">
