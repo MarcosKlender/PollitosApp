@@ -51,7 +51,6 @@
             </div>
 
             @if (Auth::user()->rol->key == 'admin')
-
                 <!-- Nav Item - Usuarios -->
                 <li class="nav-item {{ request()->is('admin') ? 'active' : '' }}">
                     <a class="nav-link" href="{{ route('admin.index') }}">
@@ -59,14 +58,18 @@
                         <span>{{ __('Usuarios') }}</span>
                     </a>
                 </li>
+            @endif
 
+            @if (Auth::user()->rol->key == 'admin' OR Auth::user()->rol->key == 'ingresos')
                 <!-- Nav Item - Profile -->
                 <li class="nav-item {{ request()->is('configuracion') ? 'active' : '' }}">
                     <a class="nav-link" href="{{ route('configuracion.index') }}">
                         <i class="fas fa-code"></i>
                         <span>{{ __('Configuracion') }}</span></a>
                 </li>
+            @endif
 
+            @if (Auth::user()->rol->key == 'admin')
                 <!-- Divider -->
                 <hr class="sidebar-divider">
 
@@ -93,7 +96,6 @@
 
                 <!-- Divider -->
                 <hr class="sidebar-divider">
-
             @endif
             
             @if (Auth::user()->rol->key == 'ingresos' OR Auth::user()->rol->key == 'egresos' OR Auth::user()->rol->key == 'admin' OR Auth::user()->rol->key == 'egre_entr')

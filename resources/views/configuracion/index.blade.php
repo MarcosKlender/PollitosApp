@@ -14,10 +14,12 @@
                 <div class="card-body">
                     <div class="row justify-content-around">
 
-                        <div class="mb-3">
-                            <a href="{{ route('configuracion.create') }}" class="btn btn-success">Crear Configuración</a>
-                        </div>
-
+                        @if (Auth::user()->rol->key == 'admin')
+                            <div class="mb-3">
+                                <a href="{{ route('configuracion.create') }}" class="btn btn-success">Crear Configuración</a>
+                            </div>
+                        @endif
+                        
                         <div class="mb-3">
                             <form method="get" action="{{ route('configuracion.show', 'search') }}">
 
