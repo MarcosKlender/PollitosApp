@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Auth;
 
 class ConfiguracionController extends Controller
 {
@@ -17,8 +18,23 @@ class ConfiguracionController extends Controller
 
     public function index()
     {
-        $configuracion = Configuracion::orderBy('id')->paginate(10);
-        $count = count(Configuracion::all());
+
+        if (Auth::user()->rol_id == 1) {
+            $configuracion = Configuracion::orderBy('id')->paginate(10);
+            $count = count(Configuracion::all());
+        } elseif(Auth::user()->rol_id == 2) {
+            $configuracion = Configuracion::orderBy('id')->where('mod_conf','INGRESOS')->paginate(10);
+            $count = count(Configuracion::all());
+        } elseif(Auth::user()->rol_id == 3) {
+            $configuracion = Configuracion::orderBy('id')->where('mod_conf','EGRESOS')->paginate(10);
+            $count = count(Configuracion::all());
+        } elseif(Auth::user()->rol_id == 4) {
+            $configuracion = Configuracion::orderBy('id')->where('mod_conf','ENTREGAS')->paginate(10);
+            $count = count(Configuracion::all());
+        } elseif(Auth::user()->rol_id == 5) {
+            $configuracion = Configuracion::orderBy('id')->whereIn('mod_conf',['EGRESOS','ENTREGAS'] )->paginate(10);
+            $count = count(Configuracion::all());
+        }
 
         return view('configuracion.index', compact('configuracion', 'count'));
     }

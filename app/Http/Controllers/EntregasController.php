@@ -130,7 +130,9 @@ class EntregasController extends Controller
     {
         $user=auth()->user()->username;
 
-        $valor_cant_gavetas = Configuracion::select('val_conf')->where('ele_conf',"VALOR_CANT_GAVETAS")->where('mod_conf', "ENTREGAS")->where('est_conf', 0)->value('val_conf');
+        $valor_cant_gavetas_llenas = Configuracion::select('val_conf')->where('ele_conf',"VALOR_CANT_GAVETAS_LLENAS")->where('mod_conf', "ENTREGAS")->where('est_conf', 0)->value('val_conf');
+
+        $automatico_valor_cgavetas_llenas = Configuracion::select('aut_conf')->where('ele_conf',"VALOR_CANT_GAVETAS_LLENAS")->where('mod_conf', "ENTREGAS")->where('est_conf', 0)->value('aut_conf');
 
 
         $e_automatico = Basculas::select("automatico")->where('nom_menu', '=', 'ENTREGAS')
@@ -153,7 +155,7 @@ class EntregasController extends Controller
         $registros = RegistrosEntregas::where('entregas_id', $id)->where('anulado', 0)->orderBy('id')->get();
         $presas = PresasEntregas::where('entregas_id', $id)->where('anulado', 0)->orderBy('id')->get();
      
-        return view('entregas.edit', compact('entregas', 'registros', 'presas', 'e_automatico', 'menu', 'tipo_peso', 'valor_cant_gavetas'));
+        return view('entregas.edit', compact('entregas', 'registros', 'presas', 'e_automatico', 'menu', 'tipo_peso', 'valor_cant_gavetas_llenas','automatico_valor_cgavetas_llenas'));
     }
 
     public function update(Request $request, $id)

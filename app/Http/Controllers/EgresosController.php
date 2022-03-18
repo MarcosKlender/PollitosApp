@@ -172,6 +172,10 @@ class EgresosController extends Controller
             ->where('nom_user', '=', "$user")
             ->value("nom_menu");
 
+        $valor_cant_gaveta_llenas = Configuracion::select('val_conf')->where('ele_conf',"VALOR_CANT_GAVETAS_LLENAS")->where('mod_conf', "EGRESOS")->where('est_conf', 0)->value('val_conf');
+
+         $automatico_valor_cgavetas_llenas = Configuracion::select('aut_conf')->where('ele_conf',"VALOR_CANT_GAVETAS_LLENAS")->where('mod_conf', "EGRESOS")->where('est_conf', 0)->value('aut_conf');
+
         $lote = Lotes::findOrFail($id);
         $egresos = Egresos::where('lotes_id', $id)->where('anulado', 0)->orderBy('id')->get();
 
@@ -187,7 +191,7 @@ class EgresosController extends Controller
 
         $estado_liquidado = Lotes::where('id', $id)->where('anulado', 0)->select('liquidado')->value('liquidado');
 
-        return view('egresos.edit', compact('lote', 'egresos', 'total_ingresos', 'total_egresos', 'e_automatico', 'id_bascula','menu', 'gavetas', 'tipo_peso', 'cant_gav', 'cant_gav_vac', 'lote_total_pbruto', 'egreso_total_pbruto', 'estado_liquidado'));
+        return view('egresos.edit', compact('lote', 'egresos', 'total_ingresos', 'total_egresos', 'e_automatico', 'id_bascula','menu', 'gavetas', 'tipo_peso', 'cant_gav', 'cant_gav_vac', 'lote_total_pbruto', 'egreso_total_pbruto', 'estado_liquidado', 'valor_cant_gaveta_llenas', 'automatico_valor_cgavetas_llenas'));
     }
 
     public function update(Request $request, $id)

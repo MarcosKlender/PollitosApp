@@ -50,11 +50,11 @@
                                 @method('PATCH')
                                 <div class="row">
                                     <div class="form-group col-lg-6">
-                                        <label for="cant_gavetas">Cantidad de Gavetas</label>
-                                        @if( $valor_cant_gavetas > "0"  )
+                                        <label for="cant_gavetas">Cantidad de Gavetas llenas</label>
+                                         @if( $valor_cant_gavetas_llenas > "0" and $automatico_valor_cgavetas_llenas == '1')
                                             <input type="number" class="form-control" id="cant_gavetas" name="cant_gavetas"
-                                                value="{{ $valor_cant_gavetas }}" required readonly />
-                                        @elseif( $valor_cant_gavetas == "0"  ||  $valor_cant_gavetas == null )
+                                                value="{{ $valor_cant_gavetas_llenas }}" required readonly />
+                                       @elseif(  $automatico_valor_cgavetas_llenas == "0" )
                                          <input type="number" class="form-control" id="cant_gavetas" name="cant_gavetas"
                                                 value="{{ old('cant_gavetas') }}" required autofocus />
                                         @endif

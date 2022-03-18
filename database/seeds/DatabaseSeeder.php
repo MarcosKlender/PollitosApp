@@ -55,40 +55,50 @@ class DatabaseSeeder extends Seeder
         DB::table('configuracion')->insert([
             'mod_conf' => 'INGRESOS', 
             'des_conf' => 'PARAMETRO PARA DEFINIR POR DEFAULT UN VALOR EN INPUT "CANTIDAD GAVENTAS LLENAS" - INGRESOS',
+            'aut_conf' => 0,
             'ele_conf' => 'VALOR_CANT_GAVETAS_LLENAS',
             'val_conf' => '7',
+            'val2_conf' => 0,
             'est_conf' => 0,
         ]);
 
          DB::table('configuracion')->insert([
             'mod_conf' => 'EGRESOS', 
             'des_conf' => 'PARAMETRO PARA DEFINIR POR DEFAULT UN VALOR EN INPUT "CANTIDAD GAVENTAS LLENAS" - EGRESOS',
+            'aut_conf' => 0,
             'ele_conf' => 'VALOR_CANT_GAVETAS_LLENAS',
             'val_conf' => '5',
+            'val2_conf' => 0,
             'est_conf' => 0,
         ]);
 
           DB::table('configuracion')->insert([
             'mod_conf' => 'ENTREGAS', 
             'des_conf' => 'PARAMETRO PARA DEFINIR POR DEFAULT UN VALOR - ENTREGAS',
-            'ele_conf' => 'VALOR_CANT_GAVETAS',
+            'aut_conf' => 0,
+            'ele_conf' => 'VALOR_CANT_GAVETAS_LLENAS',
             'val_conf' => '2',
+            'val2_conf' => 0,
             'est_conf' => 0,
         ]);
 
         DB::table('configuracion')->insert([
             'mod_conf' => 'INGRESOS', 
             'des_conf' => 'CANTIDAD DECIMALES PARA GAVETAS VACIAS - INGRESOS',
+            'aut_conf' => 0,
             'ele_conf' => 'CANT_DEC_GV',
-            'val_conf' => '0',
+            'val_conf' => 0,
+            'val2_conf' => 0,
             'est_conf' => 0,
         ]);
 
         DB::table('configuracion')->insert([
             'mod_conf' => 'EGRESOS', 
             'des_conf' => 'CANTIDAD DECIMALES PARA GAVETAS VACIAS - EGRESOS',
+            'aut_conf' => 0,
             'ele_conf' => 'CANT_DEC_GV',
             'val_conf' => '0',
+            'val2_conf' => 0,
             'est_conf' => 0,
         ]);
 
@@ -96,24 +106,30 @@ class DatabaseSeeder extends Seeder
         DB::table('configuracion')->insert([
             'mod_conf' => 'INGRESOS', 
             'des_conf' => 'CANTIDAD DECIMALES PARA PESO BRUTO - INGRESOS',
+            'aut_conf' => 0,
             'ele_conf' => 'CANT_DEC_PB',
-            'val_conf' => '0',
+            'val_conf' => 0,
+            'val2_conf' => 0, 
             'est_conf' => 0,
         ]);
 
         DB::table('configuracion')->insert([
             'mod_conf' => 'EGRESOS', 
             'des_conf' => 'CANTIDAD DECIMALES PARA PESO NETO - INGRESOS',
+            'aut_conf' => 0,
             'ele_conf' => 'CANT_DEC_PB',
-            'val_conf' => '0',
+            'val_conf' => 0,
+            'val2_conf' => 0,
             'est_conf' => 0,
         ]);
 
         DB::table('configuracion')->insert([
             'mod_conf' => 'ENTREGAS', 
             'des_conf' => 'CANTIDAD DECIMALES PARA PESO  BRUTO - ENTREGAS',
+            'aut_conf' => 0,
             'ele_conf' => 'CANT_DEC_PB',
-            'val_conf' => '0',
+            'val_conf' => 0,
+            'val2_conf' => 0,
             'est_conf' => 0,
         ]);
 

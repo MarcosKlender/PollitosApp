@@ -50,9 +50,14 @@
                                 @method('PATCH')
                                 <div class="row">
                                     <div class="form-group col-lg-6">
-                                        <label for="cant_gavetas">Cantidad de Gavetas</label>
+                                        <label for="cant_gavetas">Cantidad de Gavetas llenas</label>
+                                        @if( $valor_cant_gaveta_llenas > "0" and $automatico_valor_cgavetas_llenas == '1')
+                                            <input type="number" class="form-control" id="cant_gavetas" name="cant_gavetas"
+                                                value="{{ $valor_cant_gaveta_llenas }}" required readonly />
+                                        @elseif(  $automatico_valor_cgavetas_llenas == "0" )
                                         <input type="number" class="form-control" id="cant_gavetas" name="cant_gavetas"
                                             value="{{ old('cant_gavetas') }}" required autofocus />
+                                         @endif   
                                     </div>
 
                                     <div class="form-group col-lg-6">
@@ -62,7 +67,7 @@
                                             <span  class="help-inline text-success">Báscula peso automático</span>
                                         @elseif($e_automatico == '0' and $menu == 'EGRESOS')
                                             <input type="number" class="form-control" id="peso_bruto" name="peso_bruto"
-                                                value="{{ old('peso_bruto') }}" step=".01" required />
+                                                value="{{ old('peso_bruto') }}" step=".01" required autofocus/>
                                             <span  class="help-inline text-success">Registro de peso manual</span>
                                         @elseif($e_automatico == null)
                                             <input type="number" class="form-control" id="peso_bruto" name="peso_bruto"
