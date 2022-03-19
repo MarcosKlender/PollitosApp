@@ -136,6 +136,10 @@
                                                     </td>
                                                 </tr>
                                             @endforeach
+                                            <tr>
+                                                <th align="center">Total</th>
+                                                <td align="center"> {{ $total_gavetas }} </td>
+                                            </tr>
                                         </tbody>
                                     </table>
                                 </div>

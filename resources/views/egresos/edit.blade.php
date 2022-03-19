@@ -154,6 +154,10 @@
                                                     </td>
                                                 </tr>
                                             @endforeach
+                                            <tr>
+                                                <th>Total</th>
+                                                <td>{{ $cant_gav }}</td>
+                                            </tr>
                                         </tbody>
                                     </table>
                                 </div>
@@ -274,6 +278,10 @@
                                                     </td>
                                                 </tr>
                                             @endforeach
+                                              <tr>
+                                                <th>Total</th>
+                                                <td>{{ $cant_gav_vac }}</td>
+                                            </tr>
                                         </tbody>
                                     </table>
                                 </div>

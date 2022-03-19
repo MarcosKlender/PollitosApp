@@ -165,6 +165,10 @@
                                                     </td>
                                                 </tr>
                                             @endforeach
+                                                 <tr>
+                                                    <th> Total</th>
+                                                    <td> {{ $cant_gav}} </td>
+                                                </tr>
                                         </tbody>
                                     </table>
                                 </div>
@@ -280,6 +284,10 @@
                                                     </td>
                                                 </tr>
                                             @endforeach
+                                            <tr>
+                                                <th> Total</th>
+                                                <td> {{ $cant_gav_vac}} </td>
+                                            </tr>
                                         </tbody>
                                     </table>
                                 </div>
@@ -287,7 +295,6 @@
                         </div>
 
                     </div>
-
                     <div class="text-center mb-4">
                         <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#staticBackdrop3"
                             id="liquidar" name="liquidar">Liquidar Lote</button>

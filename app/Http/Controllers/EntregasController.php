@@ -154,8 +154,11 @@ class EntregasController extends Controller
         $entregas = Entregas::findOrFail($id);
         $registros = RegistrosEntregas::where('entregas_id', $id)->where('anulado', 0)->orderBy('id')->get();
         $presas = PresasEntregas::where('entregas_id', $id)->where('anulado', 0)->orderBy('id')->get();
+        $total_gavetas = RegistrosEntregas::where('entregas_id',$id)->where('anulado', 0)->select('cant_gavetas')->sum('cant_gavetas');
+
+
      
-        return view('entregas.edit', compact('entregas', 'registros', 'presas', 'e_automatico', 'menu', 'tipo_peso', 'valor_cant_gavetas_llenas','automatico_valor_cgavetas_llenas'));
+        return view('entregas.edit', compact('entregas', 'registros', 'presas', 'e_automatico', 'menu', 'tipo_peso','total_gavetas' , 'valor_cant_gavetas_llenas','automatico_valor_cgavetas_llenas'));
     }
 
     public function update(Request $request, $id)
