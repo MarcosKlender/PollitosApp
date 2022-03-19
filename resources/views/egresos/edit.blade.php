@@ -111,6 +111,7 @@
                                 <div class="row justify-content-around mt-2">
                                     <a href="{{ route('egresos.index') }}" class="btn btn-primary"><i class="fa fa-arrow-circle-left" aria-hidden="true"> Regresar</i></a>
                                     <button type="submit" class="btn btn-success">Registrar Peso</button>
+                                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#staticBackdrop3" id="modal-desechos" name="modal-desechos">Registrar Desecho</button>
                                 </div>
                             </form>
 
@@ -290,12 +291,78 @@
 
                     </div>
 
+
                     <div class="text-center mb-4">
-                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#staticBackdrop3"
-                            id="liquidar" name="liquidar">Liquidar Lote</button>
+                        <button type="button" class="btn btn-danger modal_liquidar" data-toggle="modal" data-target="#staticBackdrop5"
+                            id="modal_liquidar" name="modal_liquidar">Liquidar Lote</button>
+
+                            <!--button type="button" class="btn btn-sm btn-danger modal_anular" data-toggle="modal"
+                                                            data-target="#staticBackdrop2"
+                                                            data-id="{{ $egreso->id }}"><i class="far fa-trash-alt fa-lg"></i></button!-->
                     </div>
 
                 </div>
+            </div>
+        </div>
+    </div>
+
+     <!-- Modal para LIQUIDAR -->
+    <div class="modal fade" id="staticBackdrop5" data-backdrop="static" data-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel5" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel5">¿Está seguro de liquidar el lote de egreso?</h5>
+                </div>
+                <form action="{{ route('egresos.liquidar_lote_egresos') }}" method="post">
+                    <div class="modal-body">
+
+                        @if ($cant_gav < $cant_gav_vac)
+                            <div class="alert alert-danger" role="alert">
+                                La cantidad de gavetas vacías ({{ $cant_gav_vac }}) es mayor a la cantidad de gavetas
+                                registradas ({{ $cant_gav }}), corrija esto antes de liquidar este lote de egreso.
+                            </div>
+                        @elseif($cant_gav > $cant_gav_vac)
+                            <div class="alert alert-danger" role="alert">
+                                La cantidad de gavetas vacías ({{ $cant_gav }}) es mayor a la cantidad de gavetas
+                                registradas ({{ $cant_gav_vac }}), corrija esto antes de liquidar este lote de egreso.
+                            </div>
+                        @elseif( $lote_total_pbruto <= $egreso_total_pbruto)
+                            <div class="alert alert-danger" role="alert">
+                                El peso neto ({{ $egreso_total_pbruto }}) del Lote de EGRESO no puede ser superior y tampoco igual al peso bruto ({{ $lote_total_pbruto }}) del Lote de INGRESO, revise y corrija.
+                            </div>
+
+                        @elseif( $cant_gav = $cant_gav_vac)
+                        
+                            @if($estado_liquidado == 1) 
+                                <div class="alert alert-warning" role="alert">
+                                    Una vez liquidado el EGRESO no podrá registrar más pesos.
+                                </div> 
+                            @else
+                                <div class="alert alert-danger" role="alert">
+                                    Revisar que lote N° {{ $lote->id }} de INGRESOS este liquidado!
+                                </div>
+                            @endif
+                  
+                        @endif
+                    </div>
+                    <div class="modal-footer">
+                        @csrf
+                        @if($cant_gav == $cant_gav_vac && $estado_liquidado == 1 && $egreso_total_pbruto < $lote_total_pbruto )
+                            
+                            <input type="hidden" id="lotes_id" name="lotes_id" value="{{ $lote->id }}">
+                            <input type="hidden" id="usuario_creacion" name="usuario_creacion" value="{{ Auth::user()->username }}"
+                                    required />
+                            <input type="hidden" id="estado_egreso_presas" name="estado_egreso_presas" value="1">
+                            <input type="hidden" id="estado_egresos" name="estado_egresos" value="1">
+                            <button type="button" class="btn btn-primary" data-dismiss="modal">Cancelar</button>
+                            <button type="submit" class="btn btn-danger">Liquidar</button>
+                        @else
+
+                            <button type="button" class="btn btn-primary" data-dismiss="modal">Cancelar</button>
+                        @endif
+                    </div>
+                </form>
             </div>
         </div>
     </div>
@@ -357,39 +424,17 @@
         </div>
     </div>
 
-    <!-- Modal para LIQUIDAR -->
+    <!-- Modal para DESECHOS -->
     <div class="modal fade" id="staticBackdrop3" data-backdrop="static" data-keyboard="false" tabindex="-1"
         aria-labelledby="staticBackdropLabel3" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel3">¿Está seguro de liquidar el lote de egreso?</h5>
+                    <h5 class="modal-title" id="staticBackdropLabel3">Registro de Desechos</h5>
                 </div>
-                <form action="{{ route('egresos.liquidar_lote_egresos') }}" method="post">
+                <form action="{{ route('egresos.desechos_lote_egresos') }}" method="post">
                     <div class="modal-body">
-
-                        @if ($cant_gav < $cant_gav_vac)
-                            <div class="alert alert-danger" role="alert">
-                                La cantidad de gavetas vacías ({{ $cant_gav_vac }}) es mayor a la cantidad de gavetas
-                                registradas ({{ $cant_gav }}), corrija esto antes de liquidar este lote de egreso.
-                            </div>
-                        @elseif($cant_gav > $cant_gav_vac)
-                            <div class="alert alert-danger" role="alert">
-                                La cantidad de gavetas vacías ({{ $cant_gav }}) es mayor a la cantidad de gavetas
-                                registradas ({{ $cant_gav_vac }}), corrija esto antes de liquidar este lote de egreso.
-                            </div>
-                        @elseif( $lote_total_pbruto <= $egreso_total_pbruto)
-                            <div class="alert alert-danger" role="alert">
-                                El peso neto ({{ $egreso_total_pbruto }}) del Lote de EGRESO no puede ser superior y tampoco igual al peso bruto ({{ $lote_total_pbruto }}) del Lote de INGRESO, revise y corrija.
-                            </div>
-
-                        @elseif( $cant_gav = $cant_gav_vac)
-
-                         
-
-                           @if($estado_liquidado == 1) 
-                             <div class="alert alert-warning" role="alert">
-                            Una vez liquidado el EGRESO no podrá registrar más pesos. </div><br><br>
+                       
                                 <ul class="nav nav-tabs nav-fill" id="myTab" role="tablist">
 
                                      <li class="nav-item">
@@ -499,11 +544,7 @@
                                   <!-- animales Mollejas !-->
                                 <div class="tab-pane fade " id="mollejas" role="tabpanel" aria-labelledby="mollejas">
                                     <br>
-                                    <!--div class="form-group">
-                                            <label for="cant_mollejas">Cantidad Mollejas</label>
-                                            <input type="number" class="form-control" id="cant_mollejas_egresos" name="cant_mollejas_egresos"
-                                                value="{{ old('cant_mollejas_egresos') }}" required />
-                                    </div!-->
+
 
                                     <div class="form-group">
                                             <label for="peso_mollejas">Peso bruto (mollejas) *</label>
@@ -511,11 +552,7 @@
                                                 value="{{ old('peso_mollejas_egresos') }}" step=".01" required />
                                     </div>
 
-                                     <!--div class="form-group">
-                                            <label for="cant_gvacia_mollejas">Cantidad gavetas vacias (mollejas) *</label>
-                                            <input type="number" class="form-control" id="cant_gvacia_mollejas_egresos" name="cant_gvacia_mollejas_egresos"
-                                                value="{{ old('cant_gvacia_mollejas_egresos') }}" step=".01" required />
-                                    </div!-->
+
 
                                     <div class="form-group">
                                             <label for="peso_gvacia_mollejas">Peso gavetas vacias (mollejas) *</label>
@@ -530,37 +567,25 @@
 
                                </div>
                                    
-                            @else
-                                 <div class="alert alert-danger" role="alert">
-                                    Revisar que lote N° {{ $lote->id }} de INGRESOS este liquidado!
-                                 </div>
-                            @endif
-
-                  
-                        @endif
                     </div>
                     <div class="modal-footer">
-                        @csrf
-                        @if($cant_gav == $cant_gav_vac && $estado_liquidado == 1 && $egreso_total_pbruto < $lote_total_pbruto )
-                            
+                        @csrf                            
                             <input type="hidden" id="lotes_id" name="lotes_id" value="{{ $lote->id }}">
                             <input type="hidden" id="usuario_creacion" name="usuario_creacion" value="{{ Auth::user()->username }}"
                                     required />
-                            <input type="hidden" id="estado_egreso_presas" name="estado_egreso_presas" value="1">
-                            <input type="hidden" id="estado_egresos" name="estado_egresos" value="1">
+                            <input type="hidden" id="estado_egresos" name="estado_egresos" value="0">
+                             <input type="hidden" id="estado_egreso_presas" name="estado_egreso_presas" value="0">
                             <button type="button" class="btn btn-primary" data-dismiss="modal">Cancelar</button>
-                            <button type="submit" class="btn btn-danger">Liquidar</button>
-                        @else
-
-                            <button type="button" class="btn btn-primary" data-dismiss="modal">Cancelar</button>
-                        @endif
+                            <button type="submit" class="btn btn-danger">Grabar</button>
                     </div>
                 </form>
             </div>
         </div>
     </div>
 
-    <!-- Modal para GAVETAS VACÍAS -->
+
+
+    <!-- Modal para ANULAR GAVETAS VACÍAS -->
     <div class="modal fade" id="staticBackdrop4" data-backdrop="static" data-keyboard="false" tabindex="-1"
         aria-labelledby="staticBackdropLabel4" aria-hidden="true">
         <div class="modal-dialog">
@@ -588,6 +613,8 @@
             </div>
         </div>
     </div>
+
+   
 
     <script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>
     <script src="//code.jquery.com/jquery-1.12.4.js"></script>
@@ -643,7 +670,7 @@
                 $("#liquidar").prop('disabled', true);
             }*/
 
-            $("#liquidar").click(function() {
+            $("#modal_liquidar").click(function() {
                 $(".modal-title").html('¿Está seguro de liquidar el lote de egreso?');
             });
 

@@ -91,6 +91,7 @@ Route::get('/egresos/seccion_gvacia', 'EgresosController@ws_gaveta_vacia')->name
 Route::resource('egresos', EgresosController::class);
 
 Route::post('/egresos/liquidar_lote_egresos', 'EgresosPresasController@liquidar_lote_egresos')->name('egresos.liquidar_lote_egresos');
+Route::post('/egresos/desechos_lote_egresos', 'EgresosPresasController@desechos_lote_egresos')->name('egresos.desechos_lote_egresos');
 //Route::resource('egresos', EgresosPresasController::class);
 
 
