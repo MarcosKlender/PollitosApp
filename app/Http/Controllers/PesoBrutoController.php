@@ -374,7 +374,7 @@ class PesoBrutoController extends Controller
         return back()->with('success', '¡El peso de las gavetas fue registrado exitosamente!');
     }
 
-    public function liquidar_lote(Request $request)
+    public function grabar_ahogados_lote(Request $request)
     {
         $updateData = $request->validate([
             'liquidado' => 'required|size:1',
@@ -384,6 +384,31 @@ class PesoBrutoController extends Controller
         
         Lotes::whereId($request->id_liquidar)->update($updateData);
 
+        return back()->with('success', '¡Registros de ahogados grabados exitosamente!');
+    }
+
+    public function detalle_ahogados()
+    {
+
+        $id=Request()->id;
+        $registros = Lotes::where('id', $id)->orderBy('id')->get();
+       //dd($registros);
+   
+        
+        return $registros;
+    }
+
+
+     public function liquidar_lote(Request $request)
+    {
+        $updateData = $request->validate([
+            'liquidado' => 'required|size:1',
+        ]);
+        
+        Lotes::whereId($request->id_liquidar)->update($updateData);
+
         return redirect('/pesobruto')->with('success', '¡Lote liquidado exitosamente!');
     }
+
+
 }

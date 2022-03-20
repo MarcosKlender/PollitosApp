@@ -107,15 +107,23 @@
                                 </div>
                                 <input type="hidden" id="peso_gavetas_cero" name="peso_gavetas" value="0">
                                 <input type="hidden" id="peso_final_cero" name="peso_final" value="0">
-                                <input type="hidden" id="lotes_id" name="lotes_id" value="{{ $lote->id }}">
+                                <input type="hidden" id="lotes_id" class="lotes_id" name="lotes_id" value="{{ $lote->id }}">
                                 <input type="hidden" id="usuario_creacion" name="usuario_creacion" value="{{ Auth::user()->username }}"
                                     required />
                                 <input type="hidden" id="anulado" name="anulado" value="0" required />
+                                
                                 <div class="row justify-content-around mt-2">
                                     <a href="{{ route('pesobruto.index') }}" class="btn btn-primary"><i class="fa fa-arrow-circle-left" aria-hidden="true"> Regresar</i></a>
                                     <button type="submit" class="btn btn-success">Registrar Peso</button>
                                 </div>
+
                             </form>
+
+                            <!-- button para llamar a modal de animales ahogados -->
+                             <div class="row col-md-11 col-md-offset-2">
+                                     <button type="button" class="btn btn-sm ml-auto btn-warning" data-toggle="modal" data-target="#static_modal_ahogados" id="modal-ahogados" name="modal-ahogados"> <i class="fa fa-plus" aria-hidden="true"> </i>
+                                     </button>
+                            </div>
 
                             @if (count($registros) != 0)
                                 <div class="table-responsive mt-4">
@@ -362,13 +370,48 @@
         </div>
     </div>
 
-    <!-- Modal para LIQUIDAR -->
-    <div class="modal fade" id="staticBackdrop3" data-backdrop="static" data-keyboard="false" tabindex="-1"
-        aria-labelledby="staticBackdropLabel3" aria-hidden="true">
+    <!-- Modal para ingresar ahogados -->
+    <div class="modal fade" id="static_modal_ahogados" data-backdrop="static" data-keyboard="false" tabindex="-1"
+        aria-labelledby="static_modal_ahogados_label" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel3">¿Está seguro de liquidar el lote?</h5>
+                    <h5 class="modal-title" id="static_modal_ahogados_label">Registro de ahogados</h5>
+                </div>
+                <form action="{{ route('pesobruto.grabar_ahogados_lote') }}" method="post">
+                    <div class="modal-body">
+                            <div class="form-group">
+                                <label for="cant_ahogados">Cantidad animales ahogados</label>
+                                <input type="number" class="form-control" id="cant_ahogados" name="cant_ahogados"
+                                    value="{{ old('cant_ahogados') }}" required />
+                            </div>
+                            <div class="form-group">
+                                <label for="peso_ahogados">Peso animales ahogados</label>
+                                <input type="number" class="form-control" id="peso_ahogados" name="peso_ahogados"
+                                    value="{{ old('peso_ahogados') }}" step=".01" required />
+                            </div>
+                    </div>
+                    <div class="modal-footer">
+                        @csrf
+                        <input type="hidden" id="id_liquidar" name="id_liquidar" value="{{ $lote->id }}">
+                        <input type="hidden" id="liquidado" name="liquidado" value="0">
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">Cancelar</button>
+                        <button type="submit" class="btn btn-danger">Grabar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- Modal para liquidar LOTE -->
+    <div class="modal fade" id="staticBackdrop3" data-backdrop="static" data-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdroplabel3" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdroplabel3">¿Está seguro de liquidar el lote?</h5>
                 </div>
                 <form action="{{ route('pesobruto.liquidar_lote') }}" method="post">
                     <div class="modal-body">
@@ -383,17 +426,6 @@
                                 ({{ $cant_gav_vac }}), corrija esto antes de liquidar este lote.
                             </div>
                         @else
-                            Para liquidar el lote, agregue la siguiente información:<br><br>
-                            <div class="form-group">
-                                <label for="cant_ahogados">Cantidad animales ahogados</label>
-                                <input type="number" class="form-control" id="cant_ahogados" name="cant_ahogados"
-                                    value="{{ old('cant_ahogados') }}" required />
-                            </div>
-                            <div class="form-group">
-                                <label for="peso_ahogados">Peso animales ahogados</label>
-                                <input type="number" class="form-control" id="peso_ahogados" name="peso_ahogados"
-                                    value="{{ old('peso_ahogados') }}" step=".01" required />
-                            </div>
                             Una vez liquidado el lote no podrá registrar más pesos.
                         @endif
                     </div>
@@ -412,6 +444,9 @@
             </div>
         </div>
     </div>
+
+
+
 
     <!-- Modal para GAVETAS VACÍAS -->
     <div class="modal fade" id="staticBackdrop4" data-backdrop="static" data-keyboard="false" tabindex="-1"
@@ -465,7 +500,7 @@
                 return $(this).text();
             }).get();*/
 
-            console.log($("#cant_gavetas").val());
+            //console.log($("#cant_gavetas").val());
 
             var tbl_peso_bruto = $("#tabla_pesobruto").length;
             var tbl_gabeta_vacia = $("#tabla_pesobruto_gavetas").length;
@@ -525,6 +560,35 @@
             });
 
         });
+
+        $(document).ready(function(){
+
+            var id=$("#lotes_id").val();
+
+             $("#modal-ahogados").click(function(e){
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': jQuery('meta[name="csrf-token"]').attr('content')
+                    }
+                });
+                e.preventDefault();
+
+                 $.ajax({
+                    data: {
+                        id: id
+                    },
+                    url: '/pesobruto/detalle_ahogados',
+                    type: 'post',
+                    success: function(response){
+                        $.each(response, function(index, value) {
+                            $(".modal-title , #cant_ahogados").val(value.cant_ahogados);
+                            $(".modal-title , #peso_ahogados").val(value.peso_ahogados);
+                         })
+                    },
+                });
+             });
+        });
+
 
         $(document).ready(function() {
             setInterval(function() {

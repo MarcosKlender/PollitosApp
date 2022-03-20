@@ -295,10 +295,6 @@
                     <div class="text-center mb-4">
                         <button type="button" class="btn btn-danger modal_liquidar" data-toggle="modal" data-target="#staticBackdrop5"
                             id="modal_liquidar" name="modal_liquidar">Liquidar Lote</button>
-
-                            <!--button type="button" class="btn btn-sm btn-danger modal_anular" data-toggle="modal"
-                                                            data-target="#staticBackdrop2"
-                                                            data-id="{{ $egreso->id }}"><i class="far fa-trash-alt fa-lg"></i></button!-->
                     </div>
 
                 </div>

@@ -56,6 +56,9 @@ Route::get('/pesobruto/gavetas_anuladas', 'PesoBrutoController@gavetas_anuladas'
 Route::post('/pesobruto/anular_registro', 'PesoBrutoController@anular_registro')->name('pesobruto.anular_registro');
 Route::post('/pesobruto/registrar_gavetas', 'PesoBrutoController@registrar_gavetas')->name('pesobruto.registrar_gavetas');
 Route::post('/pesobruto/liquidar_lote', 'PesoBrutoController@liquidar_lote')->name('pesobruto.liquidar_lote');
+Route::post('/pesobruto/grabar_ahogados_lote', 'PesoBrutoController@grabar_ahogados_lote')->name('pesobruto.grabar_ahogados_lote');
+Route::post('/pesobruto/detalle_ahogados', 'PesoBrutoController@detalle_ahogados')->name('pesobruto.detalle_ahogados');
+
 Route::get('/reportes/generar_pdf/{id}', 'ReportesController@generar_pdf')->name('reportes.generar_pdf');
 Route::get('/reportesentregas/generar_pdf/{id}', 'ReporteEntregaController@generar_pdf')->name('reportesentregas.generar_pdf');
 
