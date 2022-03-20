@@ -111,7 +111,7 @@
                                 <div class="row justify-content-around mt-2">
                                     <a href="{{ route('egresos.index') }}" class="btn btn-primary"><i class="fa fa-arrow-circle-left" aria-hidden="true"> Regresar</i></a>
                                     <button type="submit" class="btn btn-success">Registrar Peso</button>
-                                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#staticBackdrop3" id="modal-desechos" name="modal-desechos">Registrar Desecho</button>
+                                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#staticBackdrop3" id="modal-desechos" name="modal-desechos"><i class="fa fa-plus"></i></button>
                                 </div>
                             </form>
 
@@ -290,7 +290,6 @@
                         </div>
 
                     </div>
-
 
                     <div class="text-center mb-4">
                         <button type="button" class="btn btn-danger modal_liquidar" data-toggle="modal" data-target="#staticBackdrop5"
@@ -472,7 +471,7 @@
                                     <div class="form-group">
                                             <label for="cant_animales">Cantidad total {{ $lote->tipo }} faenados *</label>
                                             <input type="number" class="form-control" id="cant_animales_egresos" name="cant_animales_egresos"
-                                                value="{{ old('cant_animales_egresos') }}" required />
+                                                value="{{ $lote->cant_animales_egresos }}" required />
                                     </div>
                                 </div>
 
@@ -536,32 +535,24 @@
 
                                 </div>
 
-
-                                  <!-- animales Mollejas !-->
+                                <!-- animales Mollejas !-->
                                 <div class="tab-pane fade " id="mollejas" role="tabpanel" aria-labelledby="mollejas">
                                     <br>
 
-
                                     <div class="form-group">
-                                            <label for="peso_mollejas">Peso bruto (mollejas) *</label>
-                                            <input type="number" class="form-control" id="peso_mollejas_egresos" name="peso_mollejas_egresos"
+                                        <label for="peso_mollejas">Peso bruto (mollejas) *</label>
+                                        <input type="number" class="form-control" id="peso_mollejas_egresos" name="peso_mollejas_egresos"
                                                 value="{{ old('peso_mollejas_egresos') }}" step=".01" required />
                                     </div>
 
-
-
                                     <div class="form-group">
-                                            <label for="peso_gvacia_mollejas">Peso gavetas vacias (mollejas) *</label>
-                                            <input type="number" class="form-control" id="peso_gvacia_mollejas_egresos" name="peso_gvacia_mollejas_egresos"
+                                        <label for="peso_gvacia_mollejas">Peso gavetas vacias (mollejas) *</label>
+                                        <input type="number" class="form-control" id="peso_gvacia_mollejas_egresos" name="peso_gvacia_mollejas_egresos"
                                                 value="{{ old('peso_gvacia_mollejas_egresos') }}" step=".01" required />
                                     </div>
 
-
-
-
                                 </div>
-
-                               </div>
+                            </div>
                                    
                     </div>
                     <div class="modal-footer">
@@ -578,8 +569,6 @@
             </div>
         </div>
     </div>
-
-
 
     <!-- Modal para ANULAR GAVETAS VACÍAS -->
     <div class="modal fade" id="staticBackdrop4" data-backdrop="static" data-keyboard="false" tabindex="-1"
@@ -610,11 +599,9 @@
         </div>
     </div>
 
-   
-
     <script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>
     <script src="//code.jquery.com/jquery-1.12.4.js"></script>
-     <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
     <script>
         $(document).ready(function() {
@@ -631,7 +618,7 @@
                 $("#cant_gavetas_vacias").focus();
             }
 
-          /* $(".nav-tabs").on("click",function (e){
+            /* $(".nav-tabs").on("click",function (e){
                 e.preventDefault();
 
                var n = $("#nav-tabs").tabs("option","active");
@@ -644,8 +631,6 @@
                 $($(this).attr("href")).addClass("show");
 
                // console.log(0);
-
-
             });*/
 
             var ac_cant_gaveta = 0,
@@ -655,7 +640,7 @@
             var tbl_egresos_vacia = $("#tabla_egresos_gavetas").length;
 
             if (tbl_egresos === 0 || tbl_egresos_vacia === 0) {
-                 $("#liquidar").prop('disabled', true);
+                 $("#modal_liquidar").prop('disabled', true);
              }
 
             /*var columna = $("#tabla_egresos td:nth-child(6)").map(function() {
@@ -711,6 +696,46 @@
                     $("#observaciones").val("");
                 });
             });
+        });
+
+        $(document).ready(function(){
+             $("#modal-desechos").click(function(e){
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': jQuery('meta[name="csrf-token"]').attr('content')
+                    }
+                });
+                e.preventDefault();
+
+                id = "";
+                $(this).parents("tr").find(".lotes_id").each(function() {
+                    id += $(this).html() + "\n";
+                });
+
+                 $.ajax({
+                    data: {
+                        id: 1
+                    },
+                    url: '/egresos/detalle_desechos',
+                    type: 'post',
+                    success: function(response){
+                        $.each(response, function(index, value) {
+                            $(".modal-title , #cant_ahogados_egresos").val(value.cant_ahogados_egresos);
+                            $(".modal-title , #peso_ahogados_egresos").val(value.peso_ahogados_egresos);
+                            $(".modal-title , #cant_gvacia_ahogados_egresos").val(value.cant_gvacia_ahogados_egresos);
+                            $(".modal-title , #peso_gvacia_ahogados_egresos").val(value.peso_gvacia_ahogados_egresos);
+
+                            $(".modal-title , #cant_estropeados_egresos").val(value.cant_estropeados_egresos);
+                            $(".modal-title , #peso_estropeados_egresos").val(value.peso_estropeados_egresos);
+                            $(".modal-title , #cant_gvacia_estropeados_egresos").val(value.cant_gvacia_estropeados_egresos);
+                            $(".modal-title , #peso_gvacia_estropeados_egresos").val(value.peso_gvacia_estropeados_egresos);
+
+                            $(".modal-title , #peso_mollejas_egresos").val(value.peso_mollejas_egresos);
+                            $(".modal-title , #peso_gvacia_mollejas_egresos").val(value.peso_gvacia_mollejas_egresos);
+                         })
+                    },
+                });
+             });
         });
 
         $(document).ready(function() {

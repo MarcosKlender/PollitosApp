@@ -63,7 +63,11 @@ class EgresosPresasController extends Controller
             return back()->with('success', '¡Desechos registrados exitosamente!');
     }
 
+    public function detalle_desechos()
+    {
+        $id = Request()->id;
+        $egresos_presas = EgresosPresas::where('lotes_id', $id)->orderBy('id')->get();
+        return $egresos_presas;
+    }
 
-
-   
 }

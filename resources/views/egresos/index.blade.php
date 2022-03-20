@@ -88,7 +88,7 @@
                                             <td align="center">
                                                 @if($lote->estado_egresos == '0')
                                                     <a href="{{ route('egresos.edit', $lote->id) }}"
-                                                        class="btn btn-sm btn-primary"><i class="fas fa-plus-square"></i></a>
+                                                        class="btn btn-sm btn-primary"><i class="fas fa-plus"></i></a>
                                                 @else
                                                     <a href="{{ route('egresos.show', $lote->id) }}"
                                                        ><i class="text-success fas fa-eye fa-2x"></i></a>

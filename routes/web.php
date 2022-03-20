@@ -95,6 +95,7 @@ Route::resource('egresos', EgresosController::class);
 
 Route::post('/egresos/liquidar_lote_egresos', 'EgresosPresasController@liquidar_lote_egresos')->name('egresos.liquidar_lote_egresos');
 Route::post('/egresos/desechos_lote_egresos', 'EgresosPresasController@desechos_lote_egresos')->name('egresos.desechos_lote_egresos');
+Route::post('/egresos/detalle_desechos', 'EgresosPresasController@detalle_desechos')->name('egresos.detalle_desechos');
 //Route::resource('egresos', EgresosPresasController::class);
 
 
