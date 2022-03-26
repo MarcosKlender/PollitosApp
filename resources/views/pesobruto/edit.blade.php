@@ -115,15 +115,11 @@
                                 <div class="row justify-content-around mt-2">
                                     <a href="{{ route('pesobruto.index') }}" class="btn btn-primary"><i class="fa fa-arrow-circle-left" aria-hidden="true"> Regresar</i></a>
                                     <button type="submit" class="btn btn-success">Registrar Peso</button>
-                                </div>
-
-                            </form>
-
-                            <!-- button para llamar a modal de animales ahogados -->
-                             <div class="row col-md-11 col-md-offset-2">
-                                     <button type="button" class="btn btn-sm ml-auto btn-warning" data-toggle="modal" data-target="#static_modal_ahogados" id="modal-ahogados" name="modal-ahogados"> <i class="fa fa-plus" aria-hidden="true"> </i>
+                                    
+                                    <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#static_modal_ahogados" id="modal-ahogados" name="modal-ahogados"> <i class="fa fa-plus" aria-hidden="true"> </i>
                                      </button>
-                            </div>
+                                </div>
+                            </form>
 
                             @if (count($registros) != 0)
                                 <div class="table-responsive mt-4">

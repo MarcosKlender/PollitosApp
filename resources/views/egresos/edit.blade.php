@@ -108,10 +108,12 @@
                                     required />
                                 <input type="hidden" id="liquidado" name="liquidado" value="0" required />
                                 <input type="hidden" id="anulado" name="anulado" value="0" required />
+                                
                                 <div class="row justify-content-around mt-2">
                                     <a href="{{ route('egresos.index') }}" class="btn btn-primary"><i class="fa fa-arrow-circle-left" aria-hidden="true"> Regresar</i></a>
                                     <button type="submit" class="btn btn-success">Registrar Peso</button>
-                                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#staticBackdrop3" id="modal-desechos" name="modal-desechos"><i class="fa fa-plus"></i></button>
+                                    
+                                    <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#staticBackdrop3" id="modal-desechos" name="modal-desechos"><i class="fa fa-plus"></i></button>
                                 </div>
                             </form>
 
@@ -326,7 +328,16 @@
                             <div class="alert alert-danger" role="alert">
                                 El peso neto ({{ $egreso_total_pbruto }}) del Lote de EGRESO no puede ser superior y tampoco igual al peso bruto ({{ $lote_total_pbruto }}) del Lote de INGRESO, revise y corrija.
                             </div>
-
+                        @elseif( empty($lote->cant_animales_egresos) )
+                             <div class="alert alert-danger" role="alert">
+                                Cantidad total de {{ $lote->tipo }} faenados no puede ser nulo o cero
+                             </div>
+                        @elseif( $peso_mollejas_egresos <= 0 || $peso_gvacia_mollejas_egresos <= 0)
+                            
+                            <div class="alert alert-danger" role="alert">
+                                Revisar que esten registrados peso y cantidad de gavetas vacias de MOLLEJAS
+                             </div>
+                        
                         @elseif( $cant_gav = $cant_gav_vac)
                         
                             @if($estado_liquidado == 1) 
@@ -337,13 +348,12 @@
                                 <div class="alert alert-danger" role="alert">
                                     Revisar que lote N° {{ $lote->id }} de INGRESOS este liquidado!
                                 </div>
-                            @endif
-                  
-                        @endif
+                            @endif                       
+                       @endif
                     </div>
                     <div class="modal-footer">
                         @csrf
-                        @if($cant_gav == $cant_gav_vac && $estado_liquidado == 1 && $egreso_total_pbruto < $lote_total_pbruto )
+                        @if($cant_gav == $cant_gav_vac && $estado_liquidado == 1 && $egreso_total_pbruto < $lote_total_pbruto && !empty($lote->cant_animales_egresos) && $peso_mollejas_egresos > 0 && $peso_gvacia_mollejas_egresos > 0 )
                             
                             <input type="hidden" id="lotes_id" name="lotes_id" value="{{ $lote->id }}">
                             <input type="hidden" id="usuario_creacion" name="usuario_creacion" value="{{ Auth::user()->username }}"
@@ -699,6 +709,9 @@
         });
 
         $(document).ready(function(){
+
+            var id=$("#lotes_id").val();
+
              $("#modal-desechos").click(function(e){
                 $.ajaxSetup({
                     headers: {
@@ -707,14 +720,12 @@
                 });
                 e.preventDefault();
 
-                id = "";
-                $(this).parents("tr").find(".lotes_id").each(function() {
-                    id += $(this).html() + "\n";
-                });
+
+                 console.log(id);
 
                  $.ajax({
                     data: {
-                        id: 1
+                        id: id
                     },
                     url: '/egresos/detalle_desechos',
                     type: 'post',

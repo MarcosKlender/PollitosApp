@@ -189,9 +189,14 @@ class EgresosController extends Controller
         $lote_total_pbruto = Registros::where('lotes_id', $id)->where('anulado', 0)->select('peso_bruto')->sum('peso_bruto');
         $egreso_total_pbruto = Egresos::where('lotes_id', $id)->where('anulado', 0)->select('peso_bruto')->sum('peso_bruto');
 
+        $peso_mollejas_egresos = EgresosPresas::where('lotes_id', $id)->select('peso_mollejas_egresos')->value('peso_mollejas_egresos');
+
+        $peso_gvacia_mollejas_egresos = EgresosPresas::where('lotes_id', $id)->select('peso_gvacia_mollejas_egresos')->value('peso_gvacia_mollejas_egresos');
+
+
         $estado_liquidado = Lotes::where('id', $id)->where('anulado', 0)->select('liquidado')->value('liquidado');
 
-        return view('egresos.edit', compact('lote', 'egresos', 'total_ingresos', 'total_egresos', 'e_automatico', 'id_bascula','menu', 'gavetas', 'tipo_peso', 'cant_gav', 'cant_gav_vac', 'lote_total_pbruto', 'egreso_total_pbruto', 'estado_liquidado', 'valor_cant_gaveta_llenas', 'automatico_valor_cgavetas_llenas'));
+        return view('egresos.edit', compact('lote', 'egresos', 'total_ingresos', 'total_egresos', 'e_automatico', 'id_bascula','menu', 'gavetas', 'tipo_peso', 'cant_gav', 'cant_gav_vac', 'lote_total_pbruto', 'egreso_total_pbruto', 'estado_liquidado', 'valor_cant_gaveta_llenas', 'automatico_valor_cgavetas_llenas', 'peso_mollejas_egresos', 'peso_gvacia_mollejas_egresos'));
     }
 
     public function update(Request $request, $id)

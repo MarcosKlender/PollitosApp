@@ -51,16 +51,28 @@ class EgresosPresasController extends Controller
         ]);
 
 
-       // $estado_liquidado = Lotes::where('id', $request->lotes_id)->where('anulado', 0)->select('liquidado')->value('liquidado');
         
+            $existe_egresos_presas = EgresosPresas::where('lotes_id', $request->lotes_id)->get();
 
-            Lotes::whereId($request->lotes_id)
-                ->update(['estado_egresos' => $request->estado_egresos ,
-                          'cant_animales_egresos'=> $request->cant_animales_egresos ] );
-            
-            EgresosPresas::create($storeEgresosPresas);
+            $count_egresos = count($existe_egresos_presas);
 
-            return back()->with('success', '¡Desechos registrados exitosamente!');
+            if($count_egresos === 1){
+                Lotes::whereId($request->lotes_id)
+                    ->update(['estado_egresos' => $request->estado_egresos ,
+                              'cant_animales_egresos'=> $request->cant_animales_egresos ] );
+
+                EgresosPresas::where('lotes_id', $request->lotes_id)
+                    ->update($storeEgresosPresas);
+
+                return back()->with('success', '¡Desechos registrados exitosamente!');
+
+
+            }elseif($count_egresos === 0){ 
+
+                EgresosPresas::create($storeEgresosPresas);
+                return back()->with('success', '¡Desechos registrados exitosamente!');
+
+            }
     }
 
     public function detalle_desechos()
