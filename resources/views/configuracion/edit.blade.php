@@ -31,13 +31,13 @@
                         <div class="form-group">
                             <label for="des_conf">Descripción</label>
                             <textarea class="form-control" id="des_conf" name="des_conf"
-                                required rows="3" />{{ $configuracion->des_conf }} </textarea>
+                                required rows="3" readonly />{{ $configuracion->des_conf }} </textarea>
                         </div>
 
                         <div class="form-group">
                             <label for="aut_conf">Autómatico</label>
                             <input type="text" class="form-control" id="aut_conf" name="aut_conf"
-                                value="{{ $configuracion->aut_conf }}" required  /> 
+                                value="{{ $configuracion->aut_conf }}" required  readonly /> 
                         </div>
 
                         <div class="form-group">
@@ -54,7 +54,7 @@
                         
                         <div class="form-group">
                             <label for="valor">Estado</label>
-                            <select class="custom-select" id="est_conf" name="est_conf" required>
+                            <select class="custom-select" id="est_conf" name="est_conf" required disabled="true">
                                 <option value="0">ACTIVO</option>
                                 <option value="1">INACTIVO</option>
                             </select>

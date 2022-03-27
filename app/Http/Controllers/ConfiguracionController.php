@@ -23,16 +23,16 @@ class ConfiguracionController extends Controller
             $configuracion = Configuracion::orderBy('id')->paginate(10);
             $count = count(Configuracion::all());
         } elseif(Auth::user()->rol_id == 2) {
-            $configuracion = Configuracion::orderBy('id')->where('mod_conf','INGRESOS')->paginate(10);
+            $configuracion = Configuracion::orderBy('id')->where('mod_conf','INGRESOS')->whereIn('ele_conf',['VALOR_CANT_GAVETAS_LLENAS','VALOR_CANT_GAVETAS_VACIAS'])->paginate(10);
             $count = count(Configuracion::all());
         } elseif(Auth::user()->rol_id == 3) {
-            $configuracion = Configuracion::orderBy('id')->where('mod_conf','EGRESOS')->paginate(10);
+            $configuracion = Configuracion::orderBy('id')->where('mod_conf','EGRESOS')->whereIn('ele_conf',['VALOR_CANT_GAVETAS_LLENAS','VALOR_CANT_GAVETAS_VACIAS'])->paginate(10);
             $count = count(Configuracion::all());
         } elseif(Auth::user()->rol_id == 4) {
-            $configuracion = Configuracion::orderBy('id')->where('mod_conf','ENTREGAS')->paginate(10);
+            $configuracion = Configuracion::orderBy('id')->where('mod_conf','ENTREGAS')->whereIn('ele_conf',['VALOR_CANT_GAVETAS_LLENAS','VALOR_CANT_GAVETAS_VACIAS'])->paginate(10);
             $count = count(Configuracion::all());
         } elseif(Auth::user()->rol_id == 5) {
-            $configuracion = Configuracion::orderBy('id')->whereIn('mod_conf',['EGRESOS','ENTREGAS'] )->paginate(10);
+            $configuracion = Configuracion::orderBy('id')->whereIn('mod_conf',['EGRESOS','ENTREGAS'])->whereIn('ele_conf',['VALOR_CANT_GAVETAS_LLENAS','VALOR_CANT_GAVETAS_VACIAS'])->paginate(10);
             $count = count(Configuracion::all());
         }
 

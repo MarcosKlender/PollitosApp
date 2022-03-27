@@ -246,7 +246,11 @@ class PesoBrutoController extends Controller
 
          $valor_cant_gaveta_llenas = Configuracion::select('val_conf')->where('ele_conf',"VALOR_CANT_GAVETAS_LLENAS")->where('mod_conf', "INGRESOS")->where('est_conf', 0)->value('val_conf');
 
+          $valor_cant_gaveta_vacias = Configuracion::select('val_conf')->where('ele_conf',"VALOR_CANT_GAVETAS_VACIAS")->where('mod_conf', "INGRESOS")->where('est_conf', 0)->value('val_conf');
+
          $automatico_valor_cgavetas_llenas = Configuracion::select('aut_conf')->where('ele_conf',"VALOR_CANT_GAVETAS_LLENAS")->where('mod_conf', "INGRESOS")->where('est_conf', 0)->value('aut_conf');
+
+         $automatico_valor_cgavetas_vacias = Configuracion::select('aut_conf')->where('ele_conf',"VALOR_CANT_GAVETAS_VACIAS")->where('mod_conf', "INGRESOS")->where('est_conf', 0)->value('aut_conf');
 
         $lote = Lotes::findOrFail($id);
         
@@ -258,7 +262,7 @@ class PesoBrutoController extends Controller
         
         $cant_gav_vac = GavetasVacias::where('lotes_id', $id)->where('anulado', 0)->select('cant_gavetas_vacias')->sum('cant_gavetas_vacias');
 
-        return view('pesobruto.edit', compact('lote', 'registros', 'gavetas', 'tipo_peso', 'e_automatico', 'id_bascula', 'menu','cant_gav', 'cant_gav_vac', 'valor_cant_gaveta_llenas', 'automatico_valor_cgavetas_llenas'));
+        return view('pesobruto.edit', compact('lote', 'registros', 'gavetas', 'tipo_peso', 'e_automatico', 'id_bascula', 'menu','cant_gav', 'cant_gav_vac', 'valor_cant_gaveta_llenas', 'automatico_valor_cgavetas_llenas', 'valor_cant_gaveta_vacias', 'automatico_valor_cgavetas_vacias'));
     }
 
     public function update(Request $request, $id)
