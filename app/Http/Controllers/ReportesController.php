@@ -33,7 +33,7 @@ class ReportesController extends Controller
     {
 
 
-        $lotes = Lotes::all_index()->orderBy('lotes.id', 'DESC')->paginate(4);
+        $lotes = Lotes::all_index()->orderBy('lotes.id', 'DESC')->paginate(10);
         $gavetas_vacias = Lotes::Gavetas_vacias()->orderBy('id')->get();
          //$gavetas_vacias = GavetasVacias::where('lotes_id',$request->id)->orderBy('lotes_id','desc')->where('anulado', 0)->select('peso_gavetas_vacias')->sum('peso_gavetas_vacias');
          //dd($gavetas_vacias);

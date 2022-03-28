@@ -23,7 +23,7 @@ class ReporteEntregaController extends Controller
 
     public function index(Request $request)
     {
-        $entregas = Entregas::all_index()->orderBy('entregas.id', 'DESC')->paginate(4);
+        $entregas = Entregas::all_index()->orderBy('entregas.id', 'DESC')->paginate(10);
         $count = count($entregas);
         return view('reportesentregas.index', compact('entregas', 'count'));
     }
