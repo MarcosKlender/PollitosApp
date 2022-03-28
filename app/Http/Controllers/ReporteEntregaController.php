@@ -54,7 +54,7 @@ class ReporteEntregaController extends Controller
             ->liquidado($criterio_liquidado)
             ->fecha($criterio_fecha_ini, $criterio_fecha_fin)
             ->orderBy('entregas.id', 'DESC')
-            ->paginate(5);
+            ->paginate(10);
 
         $count = count($entregas);
 
