@@ -152,7 +152,6 @@
     </thead>
     <tbody>
    @foreach ($egresos_presas as $lote_ahogado_egreso)
-    @if( $lote_ahogado_egreso->estado_egreso_presas == 1)
      <tr>         
          <td align="center">{{ $lote_ahogado_egreso->cant_ahogados_egresos }}</td>
          <td align="center">{{ $lote_ahogado_egreso->peso_ahogados_egresos }}</td>
@@ -160,7 +159,6 @@
          <td align="center">{{ $lote_ahogado_egreso->usuario_creacion }}</td>
          <td align="center">{{ $lote_ahogado_egreso->updated_at }}</td>         
      </tr>
-     @endif
      @endforeach
     </tbody>
 </table>
@@ -178,7 +176,6 @@
     </thead>
     <tbody>
    @foreach ($egresos_presas as $lote_estropeado_egreso)
-    @if( $lote_estropeado_egreso->estado_egreso_presas == 1)
      <tr>         
          <td align="center">{{ $lote_estropeado_egreso->cant_estropeados_egresos }}</td>
          <td align="center">{{ $lote_estropeado_egreso->peso_estropeados_egresos }}</td>
@@ -186,7 +183,6 @@
          <td align="center">{{ $lote_estropeado_egreso->usuario_creacion }}</td>
          <td align="center">{{ $lote_estropeado_egreso->updated_at }}</td>         
      </tr>
-     @endif
      @endforeach
     </tbody>
 </table>
@@ -203,14 +199,12 @@
     </thead>
     <tbody>
    @foreach ($egresos_presas as $lote_molleja_egreso)
-    @if( $lote_molleja_egreso->estado_egreso_presas == 1)
      <tr>         
          <td align="center">{{ $lote_molleja_egreso->peso_mollejas_egresos }}</td>
          <td align="center">{{ $lote_molleja_egreso->peso_gvacia_mollejas_egresos }}</td>
          <td align="center">{{ $lote_molleja_egreso->usuario_creacion }}</td>
          <td align="center">{{ $lote_molleja_egreso->updated_at }}</td>         
      </tr>
-     @endif
      @endforeach
     </tbody>
 </table>
