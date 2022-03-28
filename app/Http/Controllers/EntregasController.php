@@ -86,6 +86,7 @@ class EntregasController extends Controller
 
     public function store(Request $request)
     {
+        //dd($request->all());
         $storeData = $request->validate([
             'tipo' => 'required|max:15',
             'ruc_ci' => 'required|digits_between:10,13',
@@ -96,6 +97,7 @@ class EntregasController extends Controller
             'usuario_creacion' => 'required|max:191',
             'anulado' => 'required|size:1',
             'liquidado' => 'required|size:1',
+            'tipo_entrega' => 'size:1'
         ]);
 
         $entregas = Entregas::create($storeData);

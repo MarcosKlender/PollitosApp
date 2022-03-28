@@ -55,10 +55,19 @@
                             <input type="text" class="form-control" id="conductor" name="conductor"
                                 value="{{ old('conductor') }}"  />
                         </div>
+
                         <div class="form-group">
                             <label for="destino">Destino</label>
                             <input type="text" class="form-control" id="destino" name="destino"
                                 value="{{ old('destino') }}"  />
+                        </div>
+
+                        <div class="form-group">
+                            <div class="form-check"> 
+                                <input type="checkbox" class="form-check-label" value="1" name="tipo_entrega" id="tipo_entrega">
+                                <label class="form-check-label" for="tipo_entrega">Para Local</label>
+                                
+                            </div>
                         </div>
 
                         <input type="hidden" id="usuario_creacion" name="usuario_creacion" value="{{ Auth::user()->username }}" required />

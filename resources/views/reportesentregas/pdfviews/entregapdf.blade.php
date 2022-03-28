@@ -48,7 +48,8 @@
                          <div>   <strong>Cantidad Animales: </strong>            <label>{{ $entrega->cant_animales }}            </label></div>
                          <div>   <strong>Cliente:</strong>         <label>{{ $entrega->cliente }}              </label></div>
                          <div>   <strong>RUC / C.I:</strong>         <label>{{ $entrega->ruc_ci }}                 </label></div>   
-                         <div>   <strong>Destino: </strong>       <label>{{ $entrega->destino }}           </label></div>                       
+                         <div>   <strong>Destino: </strong>       <label>{{ $entrega->destino }}           </label></div>
+
                         </div>
                         <div style="margin-left:200pt;">
                          <div>   <strong>Placa:     </strong>         <label>{{ $entrega->placa }}                  </label></div>
@@ -56,6 +57,7 @@
                          <div>   <strong>Usuario creación:       </strong>     <label>{{ $entrega->usuario_creacion }}                </label></div>
                          <div>   <strong>Fecha Creacion:</strong>  <label>{{ $entrega->created_at }}                </label></div>
                          <div>   <strong>Estado:</strong>  <label>{{ $liquidado}}                                </label></div>
+                          <div>   <strong>Para local:</strong>  <label>@if( $entrega->tipo_entrega == 1 ) Si @else No  @endif                               </label></div>
                         </div>
                         </div>
                        <div>

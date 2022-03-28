@@ -110,7 +110,8 @@
                                         <td align="center">Cantidad Total Animal</td>
                                         <td align="center">Tot. Cant. Gavetas</td>
                                         <td align="center">Tot. Peso Bruto</td>
-                                        <td align="center">Usuario</td>
+                                        <td align="center">Para local</td>
+                                        <td align="center">Usuario creación</td>
                                         <td align="center">Fecha creación</td>
                                         <td align="center">Anulado</td>
                                         <td align="center">Liquidado</td>
@@ -127,11 +128,18 @@
                                             <td align="center" class="row_peso">{{ $entrega->cliente }}</td>
                                             <td align="center" class="row_peso">{{ $entrega->placa }}</td>
                                             <td align="center" class="row_peso">{{ $entrega->conductor }}</td>
-                                            <td align="center" class="row_peso">{{ $entrega->destino }}</td>                                            
+                                            <td align="center" class="row_peso">{{ $entrega->destino }}</td>
                                             <td align="center" class="row_peso">{{ $entrega->cant_animales }}</td>
                                             <td align="center" class="row_peso">{{ $entrega->total_cant_gavetas }}</td>
                                             <td align="center" class="row_peso">{{ $entrega->total_peso_bruto }}</td>
-                                            <td align="center" class="row_peso">{{ $entrega->usuario }}</td>
+                                            <td align="center" class="row_peso">
+                                                @if( $entrega->tipo_entrega == 1)
+                                                    SI
+                                                @else
+                                                    NO
+                                                @endif    
+                                            </td>
+                                            <td align="center" class="row_peso">{{ $entrega->usuario_creacion }}</td>
                                             <td align="center" class="row_peso">{{ $entrega->created_at }}</td>
                                             <td align="center" class="button">
                                                 @if ($entrega->anulado == '0')

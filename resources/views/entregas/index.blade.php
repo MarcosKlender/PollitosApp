@@ -54,7 +54,8 @@
                                         <td>Cantidad Animales</td>
                                         <td>Placa</td>
                                         <td>Conductor</td>
-                                        <td>Destino</td>                                        
+                                        <td>Destino</td> 
+                                        <td>Para local</td>                                      
                                         <td>Usuario creación</td>
                                         <td>Fecha creación</td>
                                         @if (Auth::user()->rol->key == 'admin')
@@ -74,7 +75,14 @@
                                             <td>{{ $entrega->cant_animales }}</td>
                                             <td>{{ $entrega->placa }}</td>
                                             <td>{{ $entrega->conductor }}</td>
-                                            <td>{{ $entrega->destino }}</td>                                            
+                                            <td>{{ $entrega->destino }}</td>
+                                            <td>
+                                                @if ($entrega->tipo_entrega == '1')
+                                                    SI
+                                                @else
+                                                    NO
+                                                @endif
+                                            </td>                    
                                             <td>{{ $entrega->usuario_creacion }}</td>
                                             <td>{{ $entrega->created_at }}</td>
                                             @if (Auth::user()->rol->key == 'admin')

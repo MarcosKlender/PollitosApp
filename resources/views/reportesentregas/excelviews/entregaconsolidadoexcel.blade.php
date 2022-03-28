@@ -35,6 +35,16 @@
                     <th align="left"><b>Estado:</b></th>
                     <td align="right"> {{ $liquidado }} </td>
                 </tr>
+                <tr>
+                    <th align="left"><b>Para Local</b></th>
+                    <td align="right">
+                        @if( $entrega->tipo_entrega == 1 ) 
+                            Si 
+                        @else 
+                            No
+                          @endif 
+                    </td>
+                </tr>  
             @endforeach
                 <tr></tr>
                 <tr>
