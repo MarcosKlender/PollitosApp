@@ -19,8 +19,7 @@ class EgresosPresasController extends Controller
         if ($estado_liquidado === '1') {
             
             Lotes::whereId($request->lotes_id)
-                ->update(['estado_egresos' => $request->estado_egresos ,
-                          'cant_animales_egresos'=> $request->cant_animales_egresos ] );
+                ->update(['estado_egresos' => $request->estado_egresos] );
             
             return redirect('/egresos')->with('success', '¡Lote liquidado exitosamente!');
         } else {
