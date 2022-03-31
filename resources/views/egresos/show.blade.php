@@ -42,6 +42,7 @@
                                                 <td>#</td>
                                                 <td>ID Lote</td>
                                                 <td>Cantidad de Gavetas</td>
+                                                <td>Cantidad animales</td>
                                                 <td>Peso Bruto</td>
                                                 {{-- <td>Peso Gavetas</td> --}}
                                                 {{-- <td>Peso Final</td> --}}
@@ -55,6 +56,7 @@
                                                     <td>{{ $egreso->id }}</td>
                                                     <td>{{ $egreso->lotes_id }}</td>
                                                     <td>{{ $egreso->cant_gavetas }}</td>
+                                                    <td>{{ $egreso->cant_animales }}</td>
                                                     <td>{{ $egreso->peso_bruto }}</td>
                                                     <td>{{ $egreso->usuario_creacion }}</td>
                                                     <td>{{ $egreso->updated_at }}</td>
@@ -63,6 +65,7 @@
                                             <tr>
                                                 <td colspan="2"><b>TOTAL</b></td>
                                                 <td><b>{{ $total_cantidad }}</b></td>
+                                                <td><b>{{ $total_cant_animales }}</b></td>
                                                 <td><b>{{ $total_bruto }}</b></td>
                                             </tr>
                                         </tbody>

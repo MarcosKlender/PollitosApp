@@ -143,13 +143,15 @@ class EgresosController extends Controller
         $gavetas = GavetasVaciasEgresos::where('lotes_id', $id)->where('anulado', 0)->orderBy('id')->get();
         
         $cant_gav_vac = GavetasVaciasEgresos::where('lotes_id', $id)->where('anulado', 0)->select('cant_gavetas_vacias')->sum('cant_gavetas_vacias');
+
+        $total_cant_animales =  Egresos::where('lotes_id', $id)->where('anulado', 0)->select('cant_animales')->sum('cant_animales');
         
         $peso_gav_vac = GavetasVaciasEgresos::where('lotes_id', $id)->where('anulado', 0)->select('peso_gavetas_vacias')->sum('peso_gavetas_vacias');
 
         $egresos_presas = EgresosPresas::where('lotes_id', $id)->orderBy('id')->get();
     
 
-        return view('egresos.show', compact('lote', 'egresos', 'egresos_presas', 'total_cantidad', 'total_bruto', 'total_gavetas', 'gavetas', 'cant_gav_vac', 'peso_gav_vac'));
+        return view('egresos.show', compact('lote', 'egresos', 'egresos_presas', 'total_cantidad', 'total_cant_animales' , 'total_bruto', 'total_gavetas', 'gavetas', 'cant_gav_vac', 'peso_gav_vac'));
     }
 
     public function edit($id)
