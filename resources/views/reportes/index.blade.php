@@ -95,9 +95,7 @@
 
                                      <div  id="excel-consolidado" class=" form-check-inline">
                                        {{-- @foreach ($lotes as $lote) --}}
-                                        {{-- <a href="{{ route('reportes.generar_excel_consolidado', $lote->id) }}"
-                                                        target="_blank" class="btn btn-lg btn-info"><i
-                                                            class="far fa-file-excel "></i></a> --}}
+                                        {{-- <a href="{{ route('reportes.generar_excel_consolidado', $lote->id) }}" target="_blank" class="btn btn-lg btn-info"><i class="far fa-file-excel "></i></a> --}}
                                        {{-- @endforeach --}}                    
                                     </div>                                
 
@@ -162,10 +160,11 @@
                                             <td align="center" class="row_peso">{{ $lote->total_peso_bruto }}</td>
                                             {{-- @foreach ($gavetas_vacias as $gaveta_v) --}}                         
                                             {{--   @if( $lote->id == $gaveta_v->id ) --}}
-                                            {{-- <td align="center" class="row_peso">{{-- $gaveta_v->total_peso_gavetas_vacias --}}
-                                            </td> --}}                                            
-                                            {{-- @endif
-                                            @endforeach --}}   
+                                            {{-- <td align="center" class="row_peso"> --}}
+                                                {{-- $gaveta_v->total_peso_gavetas_vacias --}}
+                                            {{-- </td> --}}                                            
+                                            {{-- @endif --}}
+                                            {{-- @endforeach --}}   
                                             <td align="center" class="row_peso">{{ $lote->usuario_creacion }}</td>
                                             <td align="center" class="row_peso">{{ $lote->created_at }}</td>
                                             <td align="center" class="button">

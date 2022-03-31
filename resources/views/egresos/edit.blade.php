@@ -49,7 +49,7 @@
                                 @csrf
                                 @method('PATCH')
                                 <div class="row">
-                                    <div class="form-group col-lg-6">
+                                    <div class="form-group col-lg-4">
                                         <label for="cant_gavetas">Cantidad de Gavetas llenas</label>
                                         @if( $valor_cant_gaveta_llenas > "0" and $automatico_valor_cgavetas_llenas == '1')
                                             <input type="number" class="form-control" id="cant_gavetas" name="cant_gavetas"
@@ -58,6 +58,22 @@
                                         <input type="number" class="form-control" id="cant_gavetas" name="cant_gavetas"
                                             value="{{ old('cant_gavetas') }}" required autofocus />
                                          @endif   
+                                    </div>
+
+                                    <!-- Valor cantidad animales egresos !-->
+                                    <div class="form-group col-lg-2">
+                                        <label for="cant_animales_pesos">Cantidad animales</label>
+                                        @if( $valor_cant_animales > '0' and  $automatico_valor_cantidad_animales == '1')
+                                            <input type="number" class="bg-warning form-control" id="cant_animales_pesos" name="cant_animales_pesos"
+                                                value="{{ $valor_cant_animales }}" required readonly />
+                                        @elseif( $automatico_valor_cantidad_animales == '0' )
+                                            <input type="number" class="bg-warning p-2 text-dark bg-opacity-10 form-control" id="cant_animales_pesos" name="cant_animales_pesos"
+                                                value="{{ old('cant_animales') }}" required autofocus />
+                                        @endif
+
+                                          <!-- input hidden para calculo -->  
+                                        <input type="hidden" class="form-control" id="total_cant_animales" name="cant_animales"
+                                            value="{{ old('cant_animales') }}" />
                                     </div>
 
                                     <div class="form-group col-lg-6">
@@ -101,8 +117,8 @@
                                     </div>
 
                                 </div>
-                                <input type="hidden" id="peso_gavetas_cero" name="peso_gavetas" value="0">
-                                <input type="hidden" id="peso_final_cero" name="peso_final" value="0">
+                                <input type="hidden" id="peso_gavetas_cero" name="peso_gavetas" value="0" />
+                                <input type="hidden" id="peso_final_cero" name="peso_final" value="0" />
                                 <input type="hidden" id="lotes_id" name="lotes_id" value="{{ $lote->id }}" required />
                                 <input type="hidden" id="usuario_creacion" name="usuario_creacion" value="{{ Auth::user()->username }}"
                                     required />
@@ -111,7 +127,7 @@
                                 
                                 <div class="row justify-content-around mt-2">
                                     <a href="{{ route('egresos.index') }}" class="btn btn-primary"><i class="fa fa-arrow-circle-left" aria-hidden="true"> Regresar</i></a>
-                                    <button type="submit" class="btn btn-success">Registrar Peso</button>
+                                    <button type="submit" class="btn btn-success" id="registrar_peso">Registrar Peso</button>
                                     
                                     <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#staticBackdrop3" id="modal-desechos" name="modal-desechos"><i class="fa fa-plus"></i></button>
                                 </div>
@@ -125,6 +141,7 @@
                                                 <td>N°</td>
                                                 {{-- <td>ID Lote</td> --}}
                                                 <td>Cantidad Gavetas</td>
+                                                <td>Cantidad Animales</td>
                                                 <td>Peso Bruto</td>
                                                 <td>Tipo Peso</td>
                                                 @if (Auth::user()->rol->key == 'admin')
@@ -139,6 +156,7 @@
                                                     <td>{{ $loop->iteration }}</td>
                                                     {{-- <td>{{ $egreso->lotes_id }}</td> --}}
                                                     <td>{{ $egreso->cant_gavetas }}</td>
+                                                    <td>{{ $egreso->cant_animales }}</td>
                                                     <td>{{ $egreso->peso_bruto }}</td>
                                                     <td>{{ $egreso->tipo_peso }}</td>
                                                     @if (Auth::user()->rol->key == 'admin')
@@ -159,7 +177,8 @@
                                             @endforeach
                                             <tr>
                                                 <th>Total</th>
-                                                <td>{{ $cant_gav }}</td>
+                                                <td><b>{{ $cant_gav }}</b></td>
+                                                <td><b>{{ $cant_animales }}</b></td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -199,9 +218,19 @@
                                 <div class="row">
                                     <div class="form-group col-lg-6">
                                         <label for="cant_gavetas_vacias">Cantidad de Gavetas Vacías</label>
-                                        <input type="number" class="form-control" id="cant_gavetas_vacias"
+                                        @if( $valor_cant_gaveta_vacias > "0" and $automatico_valor_gavetas_vacias == "1")
+                                        
+                                            <input type="number" class="form-control" id="cant_gavetas_vacias"
+                                            name="cant_gavetas_vacias" value="{{ $valor_cant_gaveta_vacias }}"
+                                            required readonly />
+                                            
+                                        @elseif(  $automatico_valor_gavetas_vacias == "0" )
+
+                                             <input type="number" class="form-control" id="cant_gavetas_vacias"
                                             name="cant_gavetas_vacias" value="{{ old('cant_gavetas_vacias') }}"
-                                            required />
+                                            required autofocus />
+
+                                        @endif
                                     </div>
 
                                     <div class="form-group col-lg-6">
@@ -660,6 +689,18 @@
             if (jQuery.inArray('0.00', columna) != -1 || $("table").length == 0) {
                 $("#liquidar").prop('disabled', true);
             }*/
+
+                            
+            //cálculo de cantidad de gavetas x cantidad animales
+            $('#registrar_peso').click(function(){
+                var cant_gavetas = $('#cant_gavetas').val(); 
+                var cant_animales = $('#cant_animales_pesos').val();
+                var total_cant_animales = cant_gavetas * cant_animales; 
+                $('#total_cant_animales').val(total_cant_animales);
+               
+            });
+            
+            
 
             $("#modal_liquidar").click(function() {
                 $(".modal-title").html('¿Está seguro de liquidar el lote de egreso?');

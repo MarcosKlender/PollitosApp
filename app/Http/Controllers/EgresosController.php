@@ -17,16 +17,16 @@ class EgresosController extends Controller
 {
     public function index()
     {
-        if (Auth::user()->rol_id == 1) {
+        /*if (Auth::user()->rol_id == 1) {
             $lotes = Lotes::orderBy('id', 'desc')->where('anulado', 0)->paginate(8);
-        } else {
+        } else { */
             //$lotes = Lotes::orderBy('id', 'desc')->where('anulado', 0)->where('usuario', Auth::user()->username)->paginate(8);
             $lotes = Lotes::orderBy('id', 'desc')->where('anulado', 0)->paginate(8);
-        }
+       // }
 
-        $count = count($lotes);
+            $count = count($lotes);
         
-        return view('egresos.index', compact('lotes', 'count'));
+         return view('egresos.index', compact('lotes', 'count'));
     }
 
     public function index2()
@@ -174,8 +174,20 @@ class EgresosController extends Controller
 
         $valor_cant_gaveta_llenas = Configuracion::select('val_conf')->where('ele_conf',"VALOR_CANT_GAVETAS_LLENAS")->where('mod_conf', "EGRESOS")->where('est_conf', 0)->value('val_conf');
 
-         $automatico_valor_cgavetas_llenas = Configuracion::select('aut_conf')->where('ele_conf',"VALOR_CANT_GAVETAS_LLENAS")->where('mod_conf', "EGRESOS")->where('est_conf', 0)->value('aut_conf');
+        $valor_cant_gaveta_vacias = Configuracion::select('val_conf')->where('ele_conf',"VALOR_CANT_GAVETAS_VACIAS")->where('mod_conf', "EGRESOS")->where('est_conf', 0)->value('val_conf');
 
+        $valor_cant_animales = Configuracion::select('val_conf')->where('ele_conf',"VALOR_CANT_ANIMALES")->where('mod_conf', "EGRESOS")->where('est_conf', 0)->value('val_conf');
+
+
+        $automatico_valor_cgavetas_llenas = Configuracion::select('aut_conf')->where('ele_conf',"VALOR_CANT_GAVETAS_LLENAS")->where('mod_conf', "EGRESOS")->where('est_conf', 0)->value('aut_conf');
+
+        $automatico_valor_gavetas_vacias = Configuracion::select('aut_conf')->where('ele_conf',"VALOR_CANT_GAVETAS_VACIAS")->where('mod_conf', "EGRESOS")->where('est_conf', 0)->value('aut_conf');
+
+        $automatico_valor_cantidad_animales = Configuracion::select('aut_conf')->where('ele_conf',"VALOR_CANT_ANIMALES")->where('mod_conf', "EGRESOS")->where('est_conf', 0)->value('aut_conf');
+
+        $automatico_valor_gavetas_vacias = Configuracion::select('aut_conf')->where('ele_conf',"VALOR_CANT_GAVETAS_VACIAS")->where('mod_conf', "EGRESOS")->where('est_conf', 0)->value('aut_conf');
+
+        
         $lote = Lotes::findOrFail($id);
         $egresos = Egresos::where('lotes_id', $id)->where('anulado', 0)->orderBy('id')->get();
 
@@ -184,6 +196,7 @@ class EgresosController extends Controller
 
         $gavetas = GavetasVaciasEgresos::where('lotes_id', $id)->where('anulado', 0)->orderBy('id')->get();
         $cant_gav = Egresos::where('lotes_id', $id)->where('anulado', 0)->select('cant_gavetas')->sum('cant_gavetas');
+        $cant_animales =  Egresos::where('lotes_id', $id)->where('anulado', 0)->select('cant_animales')->sum('cant_animales');
         $cant_gav_vac = GavetasVaciasEgresos::where('lotes_id', $id)->where('anulado', 0)->select('cant_gavetas_vacias')->sum('cant_gavetas_vacias');
 
         $lote_total_pbruto = Registros::where('lotes_id', $id)->where('anulado', 0)->select('peso_bruto')->sum('peso_bruto');
@@ -196,14 +209,18 @@ class EgresosController extends Controller
 
         $estado_liquidado = Lotes::where('id', $id)->where('anulado', 0)->select('liquidado')->value('liquidado');
 
-        return view('egresos.edit', compact('lote', 'egresos', 'total_ingresos', 'total_egresos', 'e_automatico', 'id_bascula','menu', 'gavetas', 'tipo_peso', 'cant_gav', 'cant_gav_vac', 'lote_total_pbruto', 'egreso_total_pbruto', 'estado_liquidado', 'valor_cant_gaveta_llenas', 'automatico_valor_cgavetas_llenas', 'peso_mollejas_egresos', 'peso_gvacia_mollejas_egresos'));
+        return view('egresos.edit', compact('lote', 'egresos', 'total_ingresos', 'total_egresos', 'e_automatico', 'id_bascula','menu', 'gavetas', 'tipo_peso', 'cant_gav', 'cant_animales', 'cant_gav_vac', 'lote_total_pbruto', 'egreso_total_pbruto', 'estado_liquidado', 'valor_cant_gaveta_llenas', 'valor_cant_gaveta_vacias' , 'automatico_valor_cgavetas_llenas','valor_cant_animales', 'automatico_valor_cantidad_animales', 'automatico_valor_gavetas_vacias' ,'peso_mollejas_egresos', 'peso_gvacia_mollejas_egresos'));
     }
 
     public function update(Request $request, $id)
     {
+
+        //dd($request->all());
+
         $updateData = $request->validate([
             'lotes_id' => 'required|numeric',
             'cant_gavetas' => 'required|numeric|min:1',
+            'cant_animales' => 'numeric',
             'peso_bruto' => 'required|numeric|min:1',
             'peso_gavetas' => '',
             'peso_final' => '',

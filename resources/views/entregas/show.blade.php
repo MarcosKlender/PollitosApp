@@ -41,7 +41,7 @@
                                             <tr class="font-weight-bold">
                                                 <td>N°</td>
                                                 <td>Cantidad de Gavetas</td>
-                                                <td>Peso Neto</td>
+                                                <td>Peso Bruto</td>
                                                 <td>Tipo Peso</td>
                                                 <td>Usuario creación</td>
                                                 <td>Fecha de Registro</td>
