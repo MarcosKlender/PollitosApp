@@ -81,13 +81,13 @@
                                             <td>{{ $lote->usuario_creacion }}</td>
                                             <td>{{ $lote->created_at }}</td>
                                             @if (Auth::user()->rol->key == 'admin')
-                                                <td>
+                                                <td align="center">
                                                     <button type="button" class="btn btn-sm btn-primary modal_anular"
                                                         data-toggle="modal" data-id="{{ $lote->id }}"
                                                         data-target="#staticBackdrop1">NO</button>
                                                 </td>
                                             @endif
-                                            <td>
+                                            <td align="center">
                                                 @if ($lote->liquidado == '0')
                                                     <button type="button" class="btn btn-sm btn-primary">NO</button>
                                                 @else
@@ -95,6 +95,10 @@
                                                 @endif
                                             </td>
                                             <td align="center">
+                                                @if ($lote->liquidado == '0')
+                                                    <a href="{{ route('pesobruto.edit_header', $lote->id) }}"
+                                                        class="btn btn-sm btn-primary"><i class="fas fa-pen-square"></i></a>
+                                                @endif
                                                 @if ($lote->liquidado == '0')
                                                     <a href="{{ route('pesobruto.edit', $lote->id) }}"
                                                         class="btn btn-sm btn-primary"><i class="fas fa-plus-square"></i></a>

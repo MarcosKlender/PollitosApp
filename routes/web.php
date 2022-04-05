@@ -58,6 +58,8 @@ Route::post('/pesobruto/registrar_gavetas', 'PesoBrutoController@registrar_gavet
 Route::post('/pesobruto/liquidar_lote', 'PesoBrutoController@liquidar_lote')->name('pesobruto.liquidar_lote');
 Route::post('/pesobruto/grabar_ahogados_lote', 'PesoBrutoController@grabar_ahogados_lote')->name('pesobruto.grabar_ahogados_lote');
 Route::post('/pesobruto/detalle_ahogados', 'PesoBrutoController@detalle_ahogados')->name('pesobruto.detalle_ahogados');
+Route::get('/pesobruto/edit_header/{id}', 'PesoBrutoController@edit_header')->name('pesobruto.edit_header');
+Route::post('/pesobruto/update_header', 'PesoBrutoController@update_header')->name('pesobruto.update_header');
 
 Route::get('/reportes/generar_pdf/{id}', 'ReportesController@generar_pdf')->name('reportes.generar_pdf');
 Route::get('/reportesentregas/generar_pdf/{id}', 'ReporteEntregaController@generar_pdf')->name('reportesentregas.generar_pdf');
@@ -97,7 +99,6 @@ Route::post('/egresos/liquidar_lote_egresos', 'EgresosPresasController@liquidar_
 Route::post('/egresos/desechos_lote_egresos', 'EgresosPresasController@desechos_lote_egresos')->name('egresos.desechos_lote_egresos');
 Route::post('/egresos/detalle_desechos', 'EgresosPresasController@detalle_desechos')->name('egresos.detalle_desechos');
 //Route::resource('egresos', EgresosPresasController::class);
-
 
 Route::get('/entregas/presas_anuladas', 'EntregasController@presas_anuladas')->name('entregas.presas_anuladas');
 Route::get('/entregas/registros_anulados', 'EntregasController@registros_anulados')->name('entregas.registros_anulados');
