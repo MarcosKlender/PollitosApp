@@ -62,7 +62,7 @@
                        <div>
                         <br/>
                         <br/>
-                        <?php $sumv_pb=0; $sumv_pg=0; $sumv_pf=0; $sume_cg=0; $sume_pb=0; $sume_pg=0; $sume_pf=0 ; ?>
+                        <?php $sumv_pb=0; $sumv_pg=0; $sumv_pf=0; $sume_cg=0; $sume_pb=0; $sume_pg=0; $sume_pf=0; $sume_ca=0; ?>
                          <div class="card-header mt-2">
                                 <div class="text-center">
                               <h4>INGRESOS LOTE N° {{ $lote->id }} </h4>
@@ -378,6 +378,7 @@
                                         <td align="center">ID Lote</td>
                                         <td align="center">Cantidad de Gavetas</td>
                                         <td align="center">Peso Bruto</td>
+                                        <td align="center">Cantidad Animales</td>
                                         <td align="center">Usuario creación</td>
                                         <td align="center">Fecha de Registro</td>
                                     </tr>
@@ -389,16 +390,19 @@
                                             <td align="center">{{ $egreso->lotes_id }}</td>
                                             <td align="center">{{ $egreso->cant_gavetas }}</td>
                                             <td align="center">{{ $egreso->peso_bruto }}</td>
+                                            <td align="center">{{ $egreso->cant_animales }}</td>
                                             <td align="center">{{ $egreso->usuario_creacion }}</td>
                                             <td align="center">{{ $egreso->updated_at }}</td>
                                         </tr>
                                         {{$sume_cg=$sume_cg+$egreso->cant_gavetas}}
                                         {{$sume_pb=$sume_pb+$egreso->peso_bruto}}
+                                        {{$sume_ca=$sume_ca+$egreso->cant_animales}}
                                     @endforeach
                                     <tr>
                                         <td colspan="2"><b>TOTAL</b></td>
                                         <td align="center"><b>{{ $sume_cg }}</b></td>
                                         <td align="center"><b>{{ $sume_pb }}</b></td>
+                                        <td align="center"><b>{{ $sume_ca }}</b></td>
                                     </tr>
                                 </tbody>
                             </table>

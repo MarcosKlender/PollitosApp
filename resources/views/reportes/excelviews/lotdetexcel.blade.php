@@ -216,8 +216,9 @@
         <td align="center" ><b>N°</b></td>
         <td align="center" ><b>Cantidad Gavetas</b></td>
         <td align="center" ><b>Peso Bruto</b></td>
+        <td align="center" ><b>Cantidad Animales</b></td>
         <td align="center" ><b>Usuario creación</b></td>
-        <td align="center" ><b>Fecha de creación</b></td>
+        <td width="20" align="center" ><b>Fecha de creación</b></td>
     </tr>
     </thead>
     <tbody>
@@ -226,6 +227,7 @@
          <td align="center"> {{ $loop->iteration }} </td>
          <td align="center">{{ $egr->cant_gavetas }}</td>
          <td align="center">{{ $egr->peso_bruto }}</td>
+         <td align="center">{{ $egr->cant_animales }}</td>
          <td align="center">{{ $egr->usuario_creacion }}</td>
          <td>{{ $egr->updated_at }}</td>
      </tr>
@@ -234,6 +236,7 @@
          <td align="center" colspan="1"><b>TOTAL</b></td>
          <td align="center"><b>{{ $totale_cantidad }}</b></td>
          <td align="center"><b>{{ $totale_bruto }}</b></td>
+         <td align="center"><b>{{ $totale_can_animales }}</b></td>
      </tr>
     </tbody>
 </table> 

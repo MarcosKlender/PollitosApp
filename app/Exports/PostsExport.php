@@ -51,6 +51,8 @@ class PostsExport implements FromView, WithTitle, WithColumnFormatting, WithEven
 
         $totale_bruto =    Egresos::where('lotes_id', $datoid)->where('anulado', 0)->select('peso_bruto')->sum('peso_bruto');
         
+        $totale_can_animales =    Egresos::where('lotes_id', $datoid)->where('anulado', 0)->select('cant_animales')->sum('cant_animales');
+
         $totale_gavetas =  Egresos::where('lotes_id', $datoid)->where('anulado', 0)->select('peso_gavetas')->sum('peso_gavetas');
 
         $totale_final =    Egresos::where('lotes_id', $datoid)->where('anulado', 0)->select('peso_final')->sum('peso_final');
@@ -87,7 +89,7 @@ class PostsExport implements FromView, WithTitle, WithColumnFormatting, WithEven
             $est_liquidado = 'Anulado';
         }
 
-        return view('reportes.excelviews.lotdetexcel',[ 'lotes' => Lotes::where('id', $this->id)->get()],['registros' => Registros::where('lotes_id', $this->id)->get()])->with('id',$datoid)->with('total_cantidad',$total_cantidad)->with('total_bruto',$total_bruto)->with('total_gavetas',$total_gavetas)->with('total_final',$total_final)->with('totale_cantidad',$totale_cantidad)->with('totale_bruto',$totale_bruto)->with('totale_gavetas',$totale_gavetas)->with('totale_final',$totale_final)->with('gavetas_vacias',$this->gavetas_vacias)->with('gavetas_vacias_egresos',$this->gavetas_vacias_egresos)->with('total_can_gav_vacia',$total_can_gav_vacia)->with('total_pes_gav_vacia',$total_pes_gav_vacia)->with('total_can_gav_vacia_egreso',$total_can_gav_vacia_egreso)->with('total_pes_gav_vacia_egreso',$total_pes_gav_vacia_egreso)->with('egresos',$egresos)->with('egresos_presas', $EgresosPresas)->with('liquidado',$est_liquidado);
+        return view('reportes.excelviews.lotdetexcel',[ 'lotes' => Lotes::where('id', $this->id)->get()],['registros' => Registros::where('lotes_id', $this->id)->get()])->with('id',$datoid)->with('total_cantidad',$total_cantidad)->with('total_bruto',$total_bruto)->with('total_gavetas',$total_gavetas)->with('total_final',$total_final)->with('totale_cantidad',$totale_cantidad)->with('totale_bruto',$totale_bruto)->with('totale_can_animales', $totale_can_animales)->with('totale_gavetas',$totale_gavetas)->with('totale_final',$totale_final)->with('gavetas_vacias',$this->gavetas_vacias)->with('gavetas_vacias_egresos',$this->gavetas_vacias_egresos)->with('total_can_gav_vacia',$total_can_gav_vacia)->with('total_pes_gav_vacia',$total_pes_gav_vacia)->with('total_can_gav_vacia_egreso',$total_can_gav_vacia_egreso)->with('total_pes_gav_vacia_egreso',$total_pes_gav_vacia_egreso)->with('egresos',$egresos)->with('egresos_presas', $EgresosPresas)->with('liquidado',$est_liquidado);
 
 
     }
@@ -227,7 +229,7 @@ class PostsExport implements FromView, WithTitle, WithColumnFormatting, WithEven
 
                     foreach( $this->registro_faenados as $registro_faenado)
                     {
-                        $eCedldaAnimalesFaenados = $event->sheet->getCellByColumnAndRow(5, $f+3)->getParent()->getCurrentCoordinate();
+                        $eCedldaAnimalesFaenados = $event->sheet->getCellByColumnAndRow(6, $f+3)->getParent()->getCurrentCoordinate();
                         $f++;
                         $contador_fa = $f;
                     }
