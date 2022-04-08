@@ -84,7 +84,8 @@
                                     <tr>
                                         <td align="center">N°</td>
                                         <td align="center">Cantidad de Gavetas</td>
-                                        <td align="center">Peso Neto</td>
+                                        <td align="center">Peso Bruto</td>
+                                        <td align="center">Categoria animal</td>
                                         <td align="center">Usuario creación</td>
                                         <td align="center">Fecha de Registro</td>
                                     </tr>
@@ -95,6 +96,7 @@
                                             <td align="center">{{ $loop->iteration }}</td>
                                             <td align="center">{{ $registros->cant_gavetas }}</td>
                                             <td align="center">{{ $registros->peso_bruto }}</td>
+                                            <td align="center">{{ $registros->categoria_animales }}</td>
                                             <td align="center">{{ $registros->usuario_creacion }}</td>
                                             <td align="center">{{ $registros->updated_at }}</td>
                                         </tr>

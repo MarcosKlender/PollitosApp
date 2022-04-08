@@ -57,6 +57,7 @@
         <td align="center" bgcolor="yellow"><b>N°</b></td>
         <td align="center" bgcolor="yellow"><b>Cantidad de Gavetas</b></td>
         <td align="center" bgcolor="yellow"><b>Peso Bruto</b></td>
+        <td align="center" bgcolor="yellow"><b>Categoria animal</b></td>
         <td align="center" bgcolor="yellow"><b>Usuario creación</b></td>
         <td align="center" bgcolor="yellow"><b>Fecha de Registro</b></td>
     </tr>
@@ -68,6 +69,7 @@
          <td align="center">{{ $loop->iteration }}</td>
          <td align="center">{{ $reg->cant_gavetas }}</td>
          <td align="center">{{ $reg->peso_bruto }}</td>
+         <td align="center">{{ $reg->categoria_animales }}</td>
          <td align="center">{{ $reg->usuario_creacion }}</td>
          <td align="center">{{ $reg->updated_at }}</td>         
      </tr>

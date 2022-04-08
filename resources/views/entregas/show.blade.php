@@ -42,6 +42,7 @@
                                                 <td>N°</td>
                                                 <td>Cantidad de Gavetas</td>
                                                 <td>Peso Bruto</td>
+                                                <td>Categoria Animal</td>
                                                 <td>Tipo Peso</td>
                                                 <td>Usuario creación</td>
                                                 <td>Fecha de Registro</td>
@@ -51,8 +52,9 @@
                                             @foreach ($registros as $registro)
                                                 <tr>
                                                     <td>{{ $loop->iteration }}</td>
-                                                    <td>{{ $registro->cant_gavetas }}</td>                                                    
+                                                    <td>{{ $registro->cant_gavetas }}</td>                        
                                                     <td>{{ $registro->peso_bruto }}</td>
+                                                    <td>{{ $registro->categoria_animales}}</td> 
                                                     <td>{{ $registro->tipo_peso }}</td>
                                                     <td>{{ $registro->usuario_creacion }}</td>
                                                     <td>{{ $registro->updated_at }}</td>

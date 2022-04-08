@@ -60,7 +60,7 @@
                                         @endif
                                     </div>
 
-                                    <div class="form-group col-lg-6">
+                                    <div class="form-group col-lg-4">
                                         <label for="peso_bruto">Peso Bruto</label>
                                          @if($e_automatico == '1' and $menu == 'ENTREGAS')
                                             <div id="recargar" name="recargar"></div>
@@ -75,6 +75,20 @@
                                               <span  class="help-inline btn-danger">Báscula no asignada</span>     
                                         @endif
                                     </div>
+
+
+
+                                     <div class="form-group col-lg-2">
+                                         <label for="categoria_animales">Categoria animal</label>
+                                         <select class="custom-select" id="categoria_animales" name="categoria_animales" required>
+                                         
+                                            <option value="PEN">ENTERO</option>
+                                            <option value="PAM">A MANO</option>
+                                            <option value="PSM">SIN MENUDENCIA</option>
+                                        </select>
+
+                                    </div>
+
 
                                     <div class="form-group col-lg-12 text-center">
                                         <label for="tipo_peso" class="mr-5">Tipo de Peso:</label>
@@ -112,6 +126,7 @@
                                                 <td class="text-center">N°</td>
                                                 <td class="text-center">Cantidad Gavetas</td>
                                                 <td class="text-center">Peso Bruto</td>
+                                                <td class="text-center">Categoria Animal</td>
                                                 <td class="text-center">Tipo Peso</td>
                                                 @if (Auth::user()->rol->key == 'admin')
                                                     <td class="text-center">Usuario creación</td>
@@ -125,6 +140,7 @@
                                                     <td class="text-center">{{ $loop->iteration }}</td>
                                                     <td class="text-center">{{ $registro->cant_gavetas }}</td>
                                                     <td class="text-center">{{ $registro->peso_bruto }}</td>
+                                                    <td class="text-center">{{ $registro->categoria_animales }}</td>
                                                     <td class="text-center">{{ $registro->tipo_peso }}</td>
                                                     @if (Auth::user()->rol->key == 'admin')
                                                         <td class="text-center">{{ $registro->usuario_creacion }}</td>

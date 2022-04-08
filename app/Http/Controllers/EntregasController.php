@@ -169,6 +169,7 @@ class EntregasController extends Controller
             'entregas_id' => 'required|numeric',
             'cant_gavetas' => 'required|numeric|min:1',
             'peso_bruto' => 'required|numeric|min:1',
+            'categoria_animales' => 'required',
             'tipo_peso' => 'required|size:2',
             'usuario_creacion' => 'required|max:191',
             'anulado' => 'required|size:1',
