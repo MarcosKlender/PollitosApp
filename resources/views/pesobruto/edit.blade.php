@@ -60,7 +60,6 @@
                                         @endif
                                     </div>
 
-
                                     {{-- <div class="form-group col-lg-6">
                                         <div class="custom-control custom-switch mb-2">
                                             <input type="checkbox" class="custom-control-input" id="check_pollos"
@@ -71,7 +70,6 @@
                                         <input type="number" class="form-control" id="cant_pollos" name="cant_pollos"
                                             value="{{ old('cant_pollos') }}" disabled />
                                     </div> --}}
-
 
                                     <div class="form-group col-lg-6">
                                         <!-- input automatico para recepción de peso de bascula!-->
@@ -118,7 +116,7 @@
                                     <a href="{{ route('pesobruto.index') }}" class="btn btn-primary"><i class="fa fa-arrow-circle-left" aria-hidden="true"> Regresar</i></a>
                                     <button type="submit" class="btn btn-success">Registrar Peso</button>
                                     
-                                    <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#static_modal_ahogados" id="modal-ahogados" name="modal-ahogados"> <i class="fa fa-plus" aria-hidden="true"> </i>
+                                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#static_modal_ahogados" id="modal-ahogados" name="modal-ahogados"> <i class="fa fa-plus" aria-hidden="true"> </i>
                                      </button>
                                 </div>
                             </form>
