@@ -7,7 +7,7 @@
         <div class="col-lg-4">
             <div class="card shadow mb-4">
                 <div class="card-header mt-2 text-center">
-                    <h4>EDITAR REGISTRO - PESO EN BRUTO</h4>
+                    <h4>EDITAR REGISTRO - PESO EN BRUTO - LOTE N° {{$lote->id}}</h4>
                 </div>
                 <div class="card-body">
                     @if ($errors->any())
@@ -25,20 +25,26 @@
 
                         <div class="form-group">
                             <label for="tipo">Tipo de Animal</label>
-                            <input type="text" class="form-control" id="tipo" name="tipo"
-                                    value="{{ $lote->tipo }}" required readonly/>
+                            <select class="custom-select" id="tipo" name="tipo" required>
+                                <option value="POLLOS">POLLOS</option>
+                                <option value="CERDOS">CERDOS</option>
+                            </select>
                         </div>
     
                         <div class="form-group">
-                            <label for="cantidad">Cantidad</label>
+                            <label for="cantidad">Cantidad Animales</label>
                             <input type="number" class="form-control" id="cantidad" name="cantidad"
                                     value="{{ $lote->cantidad }}" required />
                         </div>
     
                         <div class="form-group">
                             <label for="proveedor">Proveedor</label>
-                            <input type="text" class="form-control" id="proveedor" name="proveedor"
-                                    value="{{ $lote->proveedor }}" required readonly/>
+                            <select class="form-control" id="proveedor_nombre" name="proveedor_nombre" required>      
+                            </select>
+                        
+                            <!--  muestra ruc/ci de proveedores !-->
+                            <input name="proveedor" id="proveedor" type="hidden" >
+                            <input name="ruc_ci" id="ruc_ci" type="hidden" >
                         </div>
     
                         <div class="form-group">
@@ -77,8 +83,13 @@
     </div>
 
     <script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
     <script>
         $(document).ready(function() {
+
+            $('#tipo').val("{{ $lote->tipo }}");
+
             $('#proveedor').keyup(function() {
                 $(this).val($(this).val().toUpperCase());
             });
@@ -96,11 +107,44 @@
             });
         });
 
+
+        $("#proveedor").val("{{ $lote->proveedor }}");
+        $("#ruc_ci").val("{{ $lote->ruc_ci }}");
+
+        $("#proveedor_nombre").append('<option value={{ $lote->proveedor }}> {{ $lote->proveedor }} </option>');
+
+        $('#proveedor_nombre').select2({
+            placeholder: 'Seleccione proveedor',
+            allowClear: true,
+            minimumInputLenght: 1,
+            ajax: {
+                url: '/ajax-autocomplete-search',
+                dataType: 'json',
+                delay: 5,
+                processResults: function(data) {                    
+                    return {
+                        results: $.map(data, function(item) {                            
+                            return {
+                                text: item.pro_nombre,
+                                id: item.pro_ruc,
+                                value: item.pro_nombre
+                            }
+                        })
+                    };
+                },
+                cache: true
+            }
+        });
+
+
+       $('#proveedor_nombre').on('select2:select',function(e){
+             $('#proveedor').val(e.params.data.text);
+             $('#ruc_ci').val(e.params.data.id);
+             //console.log(e.params.data.text, e.params.data.id);
+        }) 
+
+
     </script>
 
-    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
-    <script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>
-    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
-    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
 
 @endsection

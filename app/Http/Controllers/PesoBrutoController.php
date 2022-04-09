@@ -255,8 +255,7 @@ class PesoBrutoController extends Controller
     public function edit_header($id)
     {
         $lote = Lotes::findOrFail($id);
-        //dd($lote);
-        
+       
         return view('pesobruto.edit_header', compact('lote'));
     }
 
