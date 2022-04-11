@@ -27,13 +27,18 @@
                                 <option value="CERDOS">CERDOS</option>
                             </select>
                         </div>
-                        <div class="form-group">
+
+
+                         <div class="form-group">
                             <label for="cliente">Cliente</label>
-                            <input type="text" class="form-control" id="cliente" name="cliente"
-                                value="{{ $entregas->cliente }}"/>
-                            <input name="cliente" id="cliente" type="hidden" value="{{ $entregas->cliente }}">
-                            <input name="ruc_ci" id="ruc_ci" type="hidden" value="{{ $entregas->ruc_ci }}">
+                            <select class="form-control" id="cliente_nombre" name="cliente_nombre" required>      
+                            </select>
+                        
+                             <!--  muestra ruc/ci de clientes !-->
+                            <input name="cliente" id="cliente" type="hidden">
+                            <input name="ruc_ci" id="ruc_ci" type="hidden">
                         </div>
+
                         <div class="form-group">
                             <label for="placa">Placa del Vehículo</label>
                             <input type="text" class="form-control" id="placa" name="placa" value="{{ $entregas->placa }}"
@@ -104,6 +109,11 @@
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
 
     <script type="text/javascript">
+
+        $("#cliente").val("{{ $entregas->cliente }}");
+        $("#ruc_ci").val("{{ $entregas->ruc_ci }}");
+
+        $("#cliente_nombre").append('<option value={{ $entregas->cliente }}> {{ $entregas->cliente }} </option>');
         $('#cliente_nombre').select2({
             ajax: {
                 url: '/ajax-autocomplete-search3',

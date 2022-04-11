@@ -82,9 +82,9 @@
                                          <label for="categoria_animales">Categoria animal</label>
                                          <select class="custom-select" id="categoria_animales" name="categoria_animales" required>
                                          
-                                            <option value="PEN">ENTERO</option>
-                                            <option value="PAM">A MANO</option>
-                                            <option value="PSM">SIN MENUDENCIA</option>
+                                            <option value="P/E">ENTERO</option>
+                                            <option value="P/M">A MANO</option>
+                                            <option value="P/SM">SIN MENUDENCIA</option>
                                         </select>
 
                                     </div>
