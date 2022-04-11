@@ -128,6 +128,14 @@ class EntregasController extends Controller
         return view('entregas.show', compact('entregas', 'registros','total_gavetas','total_pneto','total_presa_gavetas','total_presa_pneto' ,'presas'));
     }
 
+    public function edit_header($id)
+    {
+        $entregas = Entregas::findOrFail($id);
+        //dd($entregas);
+       
+        return view('entregas.edit_header', compact('entregas'));
+    }
+
     public function edit($id)
     {
         $user=auth()->user()->username;
@@ -161,6 +169,33 @@ class EntregasController extends Controller
 
      
         return view('entregas.edit', compact('entregas', 'registros', 'presas', 'e_automatico', 'menu', 'tipo_peso','total_gavetas' , 'valor_cant_gavetas_llenas','automatico_valor_cgavetas_llenas'));
+    }
+
+    public function update_header(Request $request)
+    {
+        //dd($request);
+        $updateData = $request->validate([
+            'tipo' => 'required|max:15',
+            'ruc_ci' => 'required|digits_between:10,13',
+            'cliente' => 'required|max:191',
+            'placa' => 'nullable|regex:/^[\pL\pM\pN\s]+$/u|between:6,7',
+            'conductor' => 'nullable|regex:/^[\pL\pM\pN\s]+$/u|max:191',
+            'destino' => 'nullable|regex:/^[\pL\pM\pN\s]+$/u|max:191',
+            'usuario_creacion' => 'required|max:191',
+            'anulado' => 'required|size:1',
+            'liquidado' => 'required|size:1',
+            'tipo_entrega' => 'size:1'
+        ]);
+
+        Entregas::whereId($request->entregas_id)->update($updateData);
+
+        // Mantener datos del formulario
+        $request->old('proveedor');
+        $request->old('procedencia');
+        $request->old('placa');
+        $request->old('conductor');
+
+        return redirect('/entregas')->with('success', '¡Entrega editada exitosamente!');
     }
 
     public function update(Request $request, $id)

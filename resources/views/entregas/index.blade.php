@@ -62,7 +62,8 @@
                                             <td>Anulado</td>
                                         @endif
                                         <td>Liquidado</td>
-                                        <td>Acciones</td>
+                                        <td>Editar</td>
+                                        <td>Pesos</td>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -86,13 +87,13 @@
                                             <td>{{ $entrega->usuario_creacion }}</td>
                                             <td>{{ $entrega->created_at }}</td>
                                             @if (Auth::user()->rol->key == 'admin')
-                                                <td>
+                                                <td align="center">
                                                     <button type="button" class="btn btn-sm btn-primary modal_anular"
                                                         data-toggle="modal" data-id="{{ $entrega->id }}"
                                                         data-target="#staticBackdrop1">NO</button>
                                                 </td>
                                             @endif
-                                            <td>
+                                            <td align="center">
                                                 @if ($entrega->liquidado == '0')
                                                     <button type="button" class="btn btn-sm btn-primary">NO</button>
                                                 @else
@@ -101,8 +102,16 @@
                                             </td>
                                             <td align="center">
                                                 @if ($entrega->liquidado == '0')
+                                                    <a href="{{ route('entregas.edit_header', $entrega->id) }}"
+                                                        class="btn btn-sm btn-primary"><i class="fas fa-edit"></i></a>
+                                                @else
+                                                    <i class="fa-regular fa-pen-slash"></i>
+                                                @endif
+                                            </td>
+                                            <td align="center">
+                                                @if ($entrega->liquidado == '0')
                                                     <a href="{{ route('entregas.edit', $entrega->id) }}"
-                                                        class="btn btn-sm btn-primary"><i class="fas fa-plus-square"></i></a>
+                                                        class="btn btn-sm btn-primary"><i class="fas fa-plus"></i></a>
                                                 @else
                                                     <a href="{{ route('entregas.show', $entrega->id) }}"
                                                         ><i class="text-success fas fa-eye fa-2x"></i> </a>

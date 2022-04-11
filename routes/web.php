@@ -107,6 +107,8 @@ Route::post('/entregas/anular_entrega', 'EntregasController@anular_entrega')->na
 Route::post('/entregas/anular_registro', 'EntregasController@anular_registro')->name('entregas.anular_registro');
 Route::post('/entregas/liquidar_lote', 'EntregasController@liquidar_lote')->name('entregas.liquidar_lote');
 Route::get('/entregas/seccion_entregas', 'EntregasController@index2')->name('seccion_entregas');
+Route::get('/entregas/edit_header/{id}', 'EntregasController@edit_header')->name('entregas.edit_header');
+Route::post('/entregas/update_header', 'EntregasController@update_header')->name('entregas.update_header');
 Route::resource('entregas', EntregasController::class);
 
 Route::resource('reportes', ReportesController::class);

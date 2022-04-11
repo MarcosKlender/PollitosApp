@@ -57,7 +57,7 @@
                                             <!--td>Anulado</td!-->
                                         {{-- @endif --}}
                                         <td>Liquidado</td>
-                                        <td>Acciones</td>
+                                        <td>Pesos</td>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -78,7 +78,7 @@
                                                         data-target="#staticBackdrop1">NO</button>
                                                 </td!-->
                                             {{-- @endif --}}
-                                            <td>
+                                            <td align="center">
                                                 @if ($lote->estado_egresos == '0')
                                                     <button type="button" class="btn btn-sm btn-primary">NO</button>
                                                 @else

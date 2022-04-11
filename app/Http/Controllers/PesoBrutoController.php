@@ -218,7 +218,7 @@ class PesoBrutoController extends Controller
         $request->old('placa');
         $request->old('conductor');
 
-        return redirect('/pesobruto')->with('success', '¡Lote creado exitosamente!');
+        return redirect('/pesobruto')->with('success', '¡Lote editado exitosamente!');
     }
     
     public function selectSearch(Request $request)

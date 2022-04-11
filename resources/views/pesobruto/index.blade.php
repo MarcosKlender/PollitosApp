@@ -64,7 +64,7 @@
                                             <td>Anular</td>
                                         @endif
                                         <td>Editar</td>
-                                        <td>Añadir</td>
+                                        <td>Pesos</td>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -102,10 +102,10 @@
                                                     <i class="fa-regular fa-pen-slash"></i>
                                                 @endif
                                             </td>
-                                            <td>
+                                            <td align="center">
                                                 @if ($lote->liquidado == '0')
                                                     <a href="{{ route('pesobruto.edit', $lote->id) }}"
-                                                        class="btn btn-sm btn-primary"><i class="fas fa-plus-square"></i></a>
+                                                        class="btn btn-sm btn-primary"><i class="fas fa-plus"></i></a>
                                                 @else
                                                     <a href="{{ route('pesobruto.show', $lote->id) }}"
                                                         ><i class="text-success fas fa-eye fa-2x"></i> </a>
