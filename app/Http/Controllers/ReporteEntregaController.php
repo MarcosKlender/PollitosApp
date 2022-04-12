@@ -23,7 +23,7 @@ class ReporteEntregaController extends Controller
 
     public function index(Request $request)
     {
-        $entregas = Entregas::all_index()->orderBy('entregas.id', 'DESC')->paginate(10);
+        $entregas = Entregas::all_index()->orderBy('entregas.id', 'DESC')->paginate(15);
         $count = count($entregas);
         return view('reportesentregas.index', compact('entregas', 'count'));
     }
@@ -54,7 +54,7 @@ class ReporteEntregaController extends Controller
             ->liquidado($criterio_liquidado)
             ->fecha($criterio_fecha_ini, $criterio_fecha_fin)
             ->orderBy('entregas.id', 'DESC')
-            ->paginate(10);
+            ->paginate(15);
 
         $count = count($entregas);
 
