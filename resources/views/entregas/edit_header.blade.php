@@ -6,7 +6,7 @@
         <div class="col-lg-4">
             <div class="card shadow mb-4">
                 <div class="card-header mt-2 text-center">
-                    <h4>NUEVA ENTREGA</h4>
+                    <h4>EDITAR ENTREGA {{ $entregas->id }}</h4>
                 </div>
                 <div class="card-body">
                     @if ($errors->any())
@@ -18,72 +18,63 @@
                             </ul>
                         </div>
                     @endif
-                    <form method="post" action="{{ route('entregas.store') }}">
+                    <form method="post" action="{{ route('entregas.update_header') }}">
                         @csrf
                         <div class="form-group">
                             <label for="tipo">Tipo de Animal</label>
                             <select class="custom-select" id="tipo" name="tipo" required>
-                                <option value="" selected disabled>Elija un tipo de animal</option>
                                 <option value="POLLOS">POLLOS</option>
                                 <option value="CERDOS">CERDOS</option>
                             </select>
                         </div>
-                        <div class="form-group">
+
+
+                         <div class="form-group">
                             <label for="cliente">Cliente</label>
-                            <select class="form-control" id="cliente_nombre" name="cliente_nombre" required>
-                                <option value="" selected disabled>Elija un cliente</option>
-                                @foreach ($clientes as $cliente)
-                                    <option>
-                                        {{ $cliente->nombres }}
-                                    </option>
-                                @endforeach
+                            <select class="form-control" id="cliente_nombre" name="cliente_nombre" required>      
                             </select>
-                            <!--  muestra ruc/ci de clientes !-->
+                        
+                             <!--  muestra ruc/ci de clientes !-->
                             <input name="cliente" id="cliente" type="hidden">
                             <input name="ruc_ci" id="ruc_ci" type="hidden">
-
-                            {{-- <input type="text" class="form-control" id="cliente" name="cliente"
-                                value="{{ old('cliente') }}" required /> --}}
                         </div>
+
                         <div class="form-group">
                             <label for="placa">Placa del Vehículo</label>
-                            <input type="text" class="form-control" id="placa" name="placa" value="{{ old('placa') }}"
+                            <input type="text" class="form-control" id="placa" name="placa" value="{{ $entregas->placa }}"
                                 maxlength="7"  />
                         </div>
                         <div class="form-group">
                             <label for="conductor">Conductor del Vehículo</label>
                             <input type="text" class="form-control" id="conductor" name="conductor"
-                                value="{{ old('conductor') }}"  />
+                                value="{{ $entregas->conductor }}"  />
                         </div>
 
                         <div class="form-group">
                             <label for="destino">Destino</label>
                             <input type="text" class="form-control" id="destino" name="destino"
-                                value="{{ old('destino') }}"  />
+                                value="{{ $entregas->destino }}"  />
                         </div>
 
-                        {{-- <div class="form-group">
-                            <label for="tipo_entrega">Para Local</label>
-                            <select class="custom-select" id="tipo_entrega" name="tipo_entrega" required>
-                                <option value="" selected disabled>Elija una opción</option>
-                                <option value="1">SI</option>
-                                <option value="0">NO</option>
-                            </select>
-                        </div> --}}
-
                         <div class="form-group text-center">
-                            <div class="form-check"> 
-                                <input type="checkbox" class="form-check-label" value="1" name="tipo_entrega" id="tipo_entrega">
+                            <div class="form-check">
+                                <input type="hidden" class="form-check-label" value="0" name="tipo_entrega" id="tipo_entrega">
+                                @if ($entregas->tipo_entrega == 1)
+                                    <input type="checkbox" class="form-check-label" value="1" name="tipo_entrega" id="tipo_entrega" checked>    
+                                @else
+                                    <input type="checkbox" class="form-check-label" value="1" name="tipo_entrega" id="tipo_entrega">
+                                @endif
                                 <label class="form-check-label" for="tipo_entrega">Para Local</label>
                             </div>
                         </div>
-
+                        
+                        <input type="hidden" id="entregas_id" class="entregas_id" name="entregas_id" value="{{ $entregas->id }}">
                         <input type="hidden" id="usuario_creacion" name="usuario_creacion" value="{{ Auth::user()->username }}" required />
                         <input type="hidden" id="anulado" name="anulado" value="0" required />
                         <input type="hidden" id="liquidado" name="liquidado" value="0" required />
                         <div class="row justify-content-around">
                             <a href="{{ route('entregas.index') }}" class="btn btn-danger">Cancelar</a>
-                            <button type="submit" class="btn btn-success">Crear</button>
+                            <button type="submit" class="btn btn-success">Editar</button>
                         </div>
                     </form>
                 </div>
@@ -95,6 +86,8 @@
 
     <script>
         $(document).ready(function() {
+            $('#tipo').val("{{ $entregas->tipo }}");
+
             $('#cliente').keyup(function() {
                 $(this).val($(this).val().toUpperCase());
             });
@@ -119,6 +112,11 @@
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
 
     <script type="text/javascript">
+
+        $("#cliente").val("{{ $entregas->cliente }}");
+        $("#ruc_ci").val("{{ $entregas->ruc_ci }}");
+
+        $("#cliente_nombre").append('<option value={{ $entregas->cliente }}> {{ $entregas->cliente }} </option>');
         $('#cliente_nombre').select2({
             ajax: {
                 url: '/ajax-autocomplete-search3',
@@ -146,10 +144,6 @@
             console.log(e.params.data.text, e.params.data.id);
         })
 
-        /* function prueba() {
-             var p = document.getElementById("proveedor");
-             document.getElementById("ruc").value = p.value;
-         } */
     </script>
 
 @endsection

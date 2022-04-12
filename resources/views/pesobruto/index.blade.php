@@ -58,13 +58,13 @@
                                         <td>Placa</td>
                                         <td>Conductor</td>
                                         <td>Usuario creación</td>
-                                        <td>Fecha creación</td>
-                                        @if (Auth::user()->rol->key == 'admin')
-                                            <td>Anulado</td>
-                                        @endif
+                                        <td>Fecha creación</td>                                       
                                         <td>Liquidado</td>
-                                        <td>Acciones</td>
-                                        <!--td>PDF</td!-->
+                                         @if (Auth::user()->rol->key == 'admin')
+                                            <td>Anular</td>
+                                        @endif
+                                        <td>Editar</td>
+                                        <td>Pesos</td>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -79,25 +79,33 @@
                                             <td>{{ $lote->placa }}</td>
                                             <td>{{ $lote->conductor }}</td>
                                             <td>{{ $lote->usuario_creacion }}</td>
-                                            <td>{{ $lote->created_at }}</td>
-                                            @if (Auth::user()->rol->key == 'admin')
-                                                <td>
-                                                    <button type="button" class="btn btn-sm btn-primary modal_anular"
-                                                        data-toggle="modal" data-id="{{ $lote->id }}"
-                                                        data-target="#staticBackdrop1">NO</button>
-                                                </td>
-                                            @endif
-                                            <td>
+                                            <td>{{ $lote->created_at }}</td>              
+                                            <td align="center">
                                                 @if ($lote->liquidado == '0')
                                                     <button type="button" class="btn btn-sm btn-primary">NO</button>
                                                 @else
                                                     <button type="button" class="btn btn-sm btn-success">SI</button>
                                                 @endif
                                             </td>
+                                            @if (Auth::user()->rol->key == 'admin')
+                                                <td align="center">
+                                                    <button type="button" class="btn btn-sm btn-primary modal_anular"
+                                                        data-toggle="modal" data-id="{{ $lote->id }}"
+                                                        data-target="#staticBackdrop1">NO</button>
+                                                </td>
+                                            @endif
+                                            <td align="center">
+                                                @if ($lote->liquidado == '0')
+                                                    <a href="{{ route('pesobruto.edit_header', $lote->id) }}"
+                                                        class="btn btn-sm btn-primary"><i class="fas fa-edit"></i></a>
+                                                @else
+                                                    <button type="button" class="btn btn-primary btn-sm" disabled><i class="fas fa-edit"></i></button>
+                                                @endif
+                                            </td>
                                             <td align="center">
                                                 @if ($lote->liquidado == '0')
                                                     <a href="{{ route('pesobruto.edit', $lote->id) }}"
-                                                        class="btn btn-sm btn-primary"><i class="fas fa-plus-square"></i></a>
+                                                        class="btn btn-sm btn-primary"><i class="fas fa-plus"></i></a>
                                                 @else
                                                     <a href="{{ route('pesobruto.show', $lote->id) }}"
                                                         ><i class="text-success fas fa-eye fa-2x"></i> </a>

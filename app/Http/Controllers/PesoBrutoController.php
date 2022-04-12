@@ -164,8 +164,6 @@ class PesoBrutoController extends Controller
 
     public function store(Request $request)
     {
-        //dd($request);
-
         $storeData = $request->validate([
             'tipo' => 'required|max:191',
             'cantidad' => 'required|numeric|min:1',
@@ -191,6 +189,36 @@ class PesoBrutoController extends Controller
         $request->old('conductor');
 
         return redirect('/pesobruto')->with('success', '¡Lote creado exitosamente!');
+    }
+
+    public function update_header(Request $request)
+    {
+        //dd($request);
+        $updateData = $request->validate([
+            'tipo' => 'required|max:191',
+            'cantidad' => 'required|numeric|min:1',
+            'proveedor' => 'required|max:191',
+            /*'ruc_ci' => 'required|digits_between:10,13|unique:lotes,pro_ruc'.$id, */
+            'ruc_ci' => 'required|digits_between:10,13',
+            'procedencia' => 'required|regex:/^[\pL\pM\pN\s]+$/u|max:191',
+            'placa' => 'required|regex:/^[\pL\pM\pN\s]+$/u|between:6,7',
+            'conductor' => 'required|regex:/^[\pL\pM\pN\s]+$/u|max:191',
+            'usuario_creacion' => 'required|max:191',
+            'anulado' => 'required|size:1',
+            'liquidado' => 'required|size:1',
+            'visceras' => 'required|size:1',
+            'estado_egresos' => 'required|size:1',
+        ]);
+
+        Lotes::whereId($request->lotes_id)->update($updateData);
+
+        // Mantener datos del formulario
+        $request->old('proveedor');
+        $request->old('procedencia');
+        $request->old('placa');
+        $request->old('conductor');
+
+        return redirect('/pesobruto')->with('success', '¡Lote editado exitosamente!');
     }
     
     public function selectSearch(Request $request)
@@ -224,6 +252,13 @@ class PesoBrutoController extends Controller
         return view('pesobruto.show', compact('lote', 'registros', 'total_cantidad', 'total_bruto', 'total_gavetas', 'total_final', 'gavetas', 'cant_gav_vac', 'peso_gav_vac'));
     }
 
+    public function edit_header($id)
+    {
+        $lote = Lotes::findOrFail($id);
+       
+        return view('pesobruto.edit_header', compact('lote'));
+    }
+
     public function edit($id)
     {
         $user=auth()->user()->username;
@@ -244,13 +279,13 @@ class PesoBrutoController extends Controller
             ->where('nom_user', '=', "$user")
             ->value("nom_menu");
 
-         $valor_cant_gaveta_llenas = Configuracion::select('val_conf')->where('ele_conf',"VALOR_CANT_GAVETAS_LLENAS")->where('mod_conf', "INGRESOS")->where('est_conf', 0)->value('val_conf');
+        $valor_cant_gaveta_llenas = Configuracion::select('val_conf')->where('ele_conf',"VALOR_CANT_GAVETAS_LLENAS")->where('mod_conf', "INGRESOS")->where('est_conf', 0)->value('val_conf');
 
-          $valor_cant_gaveta_vacias = Configuracion::select('val_conf')->where('ele_conf',"VALOR_CANT_GAVETAS_VACIAS")->where('mod_conf', "INGRESOS")->where('est_conf', 0)->value('val_conf');
+        $valor_cant_gaveta_vacias = Configuracion::select('val_conf')->where('ele_conf',"VALOR_CANT_GAVETAS_VACIAS")->where('mod_conf', "INGRESOS")->where('est_conf', 0)->value('val_conf');
 
-         $automatico_valor_cgavetas_llenas = Configuracion::select('aut_conf')->where('ele_conf',"VALOR_CANT_GAVETAS_LLENAS")->where('mod_conf', "INGRESOS")->where('est_conf', 0)->value('aut_conf');
+        $automatico_valor_cgavetas_llenas = Configuracion::select('aut_conf')->where('ele_conf',"VALOR_CANT_GAVETAS_LLENAS")->where('mod_conf', "INGRESOS")->where('est_conf', 0)->value('aut_conf');
 
-         $automatico_valor_cgavetas_vacias = Configuracion::select('aut_conf')->where('ele_conf',"VALOR_CANT_GAVETAS_VACIAS")->where('mod_conf', "INGRESOS")->where('est_conf', 0)->value('aut_conf');
+        $automatico_valor_cgavetas_vacias = Configuracion::select('aut_conf')->where('ele_conf',"VALOR_CANT_GAVETAS_VACIAS")->where('mod_conf', "INGRESOS")->where('est_conf', 0)->value('aut_conf');
 
         $lote = Lotes::findOrFail($id);
         
@@ -312,7 +347,6 @@ class PesoBrutoController extends Controller
 
         $registros = Registros::where('lotes_id', $request->id_anular)->where('anulado', 0)->get();
         $gavetas_vacias = GavetasVacias::where('lotes_id', $request->id_anular)->where('anulado', 0)->get();
-
         
         if( count($registros) === 0 && count($gavetas_vacias) === 0 ){
 
@@ -325,9 +359,6 @@ class PesoBrutoController extends Controller
             return back()->with('error_anular', '¡No se puede anular Lote, revisar que no tenga registros !');
 
         }
-        
-
-       
     }
 
     public function registros_anulados()

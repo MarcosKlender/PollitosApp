@@ -129,7 +129,7 @@
                                     <a href="{{ route('egresos.index') }}" class="btn btn-primary"><i class="fa fa-arrow-circle-left" aria-hidden="true"> Regresar</i></a>
                                     <button type="submit" class="btn btn-success" id="registrar_peso">Registrar Peso</button>
                                     
-                                    <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#staticBackdrop3" id="modal-desechos" name="modal-desechos"><i class="fa fa-plus"></i></button>
+                                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#staticBackdrop3" id="modal-desechos" name="modal-desechos"><i class="fa fa-plus"></i></button>
                                 </div>
                             </form>
 

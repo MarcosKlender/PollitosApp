@@ -20,6 +20,7 @@ use Maatwebsite\Excel\Facades\Excel;
 Route::get('/reportes/generar_excel/{lotes}', 'ReportesController@generar_excel')->name('reportes.generar_excel');
 Route::get('/reportes/generar_excel_consolidado/{lotes}', 'ReporteLoteGeneralController@generar_excel_consolidado')->name('reportes.generar_excel_consolidado');
 Route::get('/reportesentregas/generar_excel_entrega/{entregas}', 'ReporteEntregaController@generar_excel_entrega')->name('reportesentregas.generar_excel_entrega');
+Route::get('/reportesentregas/generar_excel_entrega_general/{entregas}', 'ReporteEntregaController@generar_excel_entrega_general')->name('reportesentregas.generar_excel_entrega_general');
 
 Route::get('/', function () {
     return view('welcome');
@@ -58,6 +59,8 @@ Route::post('/pesobruto/registrar_gavetas', 'PesoBrutoController@registrar_gavet
 Route::post('/pesobruto/liquidar_lote', 'PesoBrutoController@liquidar_lote')->name('pesobruto.liquidar_lote');
 Route::post('/pesobruto/grabar_ahogados_lote', 'PesoBrutoController@grabar_ahogados_lote')->name('pesobruto.grabar_ahogados_lote');
 Route::post('/pesobruto/detalle_ahogados', 'PesoBrutoController@detalle_ahogados')->name('pesobruto.detalle_ahogados');
+Route::get('/pesobruto/edit_header/{id}', 'PesoBrutoController@edit_header')->name('pesobruto.edit_header');
+Route::post('/pesobruto/update_header', 'PesoBrutoController@update_header')->name('pesobruto.update_header');
 
 Route::get('/reportes/generar_pdf/{id}', 'ReportesController@generar_pdf')->name('reportes.generar_pdf');
 Route::get('/reportesentregas/generar_pdf/{id}', 'ReporteEntregaController@generar_pdf')->name('reportesentregas.generar_pdf');
@@ -98,7 +101,6 @@ Route::post('/egresos/desechos_lote_egresos', 'EgresosPresasController@desechos_
 Route::post('/egresos/detalle_desechos', 'EgresosPresasController@detalle_desechos')->name('egresos.detalle_desechos');
 //Route::resource('egresos', EgresosPresasController::class);
 
-
 Route::get('/entregas/presas_anuladas', 'EntregasController@presas_anuladas')->name('entregas.presas_anuladas');
 Route::get('/entregas/registros_anulados', 'EntregasController@registros_anulados')->name('entregas.registros_anulados');
 Route::get('/entregas/entregas_anuladas', 'EntregasController@entregas_anuladas')->name('entregas.entregas_anuladas');
@@ -106,6 +108,8 @@ Route::post('/entregas/anular_entrega', 'EntregasController@anular_entrega')->na
 Route::post('/entregas/anular_registro', 'EntregasController@anular_registro')->name('entregas.anular_registro');
 Route::post('/entregas/liquidar_lote', 'EntregasController@liquidar_lote')->name('entregas.liquidar_lote');
 Route::get('/entregas/seccion_entregas', 'EntregasController@index2')->name('seccion_entregas');
+Route::get('/entregas/edit_header/{id}', 'EntregasController@edit_header')->name('entregas.edit_header');
+Route::post('/entregas/update_header', 'EntregasController@update_header')->name('entregas.update_header');
 Route::resource('entregas', EntregasController::class);
 
 Route::resource('reportes', ReportesController::class);

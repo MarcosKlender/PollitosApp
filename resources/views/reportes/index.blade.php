@@ -303,34 +303,7 @@
 
                         </div>
 
-                        <!--div class="tab-pane fade" id="visceras" role="tabpanel" aria-labelledby="visceras">
-                            <div class="table-responsive">
-                                <table class="table table-striped table-bordered">
-                                    <thead>
-                                        <tr class="font-weight-bold">
-                                            <td>ID Lote</td>
-                                            <td>Tipo</td>
-                                            <td>Peso Bruto</td>
-                                            <td>Peso Gavetas</td>
-                                            <td>Peso Final</td>
-                                            <td>Tipo Peso</td>
-                                            <td>Usuario</td>
-                                            <td>Fecha de Registro</td>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                    <tbody id="cuerpo_visceras">
-                                    </tbody>
-                                    <tr class="font-weight-bold">
-                                        <td colspan="1"><b>TOTAL</b></td>
-                                        <td></td>
-                                        <td id="total_brutov"><b></b></td>
-                                        <td id="total_gavetasv"><b></b></td>
-                                        <td id="total_finalv"><b></b></td>
-                                    </tr>
-                                </table>
-                            </div>
-                        </div!-->
+                      
 
                         <div class="tab-pane fade" id="egresos" role="tabpanel" aria-labelledby="egresos">
                         <div class="row">  
@@ -343,8 +316,7 @@
                                                     <td align="center">ID Lote</td>
                                                     <td align="center" width="20">Cantidad Gavetas</td>
                                                     <td align="center">Peso Bruto</td>
-                                                    <!--td>Peso Gavetas</td>
-                                                    <td>Peso Final</td!-->
+                                                    <td align="center">Cantidad Animales</td>
                                                     <td align="center">Tipo Peso</td>
                                                     <td align="center">Estado</td>
                                                     <td align="center">Observación</td>
@@ -359,8 +331,7 @@
                                                 <td align="center" colspan="1"><b>TOTAL</b></td>
                                                 <td align="center" id="total_cantidade"><b></b></td>
                                                 <td align="center" id="total_brutoe"><b></b></td>
-                                                <!--td id="total_gavetase"><b></b></td>
-                                                <td id="total_finale"><b></b></td!-->
+                                                <td align="center" id="total_cant_animal_e"><b></b></td>
                                             </tr>
                                         </table>
                                     </div>
@@ -451,6 +422,7 @@
                 var tce = 0;
                 var tbe = 0;
                 var tge = 0;
+                var tcanimales = 0;
                 var tfe = 0;
                 var tcgv = 0;
                 var tpgv = 0;
@@ -585,56 +557,6 @@
                 });
 
 
-
-                /*$.ajax({
-                    data: {
-                        id: id
-                    },
-                    url: '/reportes/detalle_visceras',
-                    type: 'post',
-                    //dataType:'json',
-                    success: function(response) {
-                        $("#cuerpo_visceras").html("");
-                        //var obj = Object.values(response);
-                        $.each(response, function(index, value) {
-                            var fech = new Date(value.created_at);
-                            var fecha = fech.toLocaleString();
-                            $("#cuerpo_visceras").append(
-                                $('<tr>'),
-                                $('<td>').text(value.lotes_id),
-                                $('<td>').text(value.tipo),
-                                $('<td>').text(value.peso_bruto),
-                                $('<td>').text(value.peso_gavetas),
-                                $('<td>').text(value.peso_final),
-                                $('<td>').text(value.tipo_peso),
-                                $('<td>').text(value.usuario),
-                                $('<td>').text(fecha),
-                                $('</tr>'));
-                            tcv = tcv + parseFloat(value.cant_gavetas);
-                            tbv = tbv + parseFloat(value.peso_bruto);
-                            tgv = tgv + parseFloat(value.peso_gavetas);
-                            tfv = tfv + parseFloat(value.peso_final);
-                        })
-
-                        document.querySelector('#total_brutov').innerText = tbv;
-                        document.querySelector('#total_gavetasv').innerText = tgv;
-                        document.querySelector('#total_finalv').innerText = tfv;
-                        //  console.log(typeof(obj));
-                        //  console.log(response);
-                        //   alert(response);
-
-                    },
-
-                    statusCode: {
-                        404: function() {
-                            alert('web no encontrada');
-                        }
-                    },
-                    error: function(response) {
-                        alert(response);
-                    }
-                }); */
-
                 $.ajax({
                     data: {
                         id: id
@@ -650,12 +572,10 @@
                             var fecha = fech.toLocaleString();
                             $("#cuerpo_egresos").append(
                                 $('<tr>'),
-                               //$('<td>').text(value.lotes_id),
                                $('<td align="center">').text(id_acume=id_acume+1),
                                 $('<td align="center">').text(value.cant_gavetas),
                                 $('<td align="center">').text(value.peso_bruto),
-                               /* $('<td>').text(value.peso_gavetas),
-                                $('<td>').text(value.peso_final),*/
+                                $('<td align="center">').text(value.cant_animales),
                                 $('<td align="center">').text(value.tipo_peso),
                                 (value.anulado === '1') ? $('<td>').text(
                                     'Anulado') :
@@ -667,18 +587,18 @@
                             if (value.anulado === '0') {
                                 tce = tce + parseFloat(value.cant_gavetas);
                                 tbe = tbe + parseFloat(value.peso_bruto);
+                                tcanimales = tcanimales + parseFloat(value.cant_animales);
                                 tge = tge + parseFloat(value.peso_gavetas);
                                 tfe = tfe + parseFloat(value.peso_final);
+
                             }
                         })
 
                         $('#total_cantidade').text(tce);
                         $('#total_brutoe').text(tbe);
+                        $('#total_cant_animal_e').text(tcanimales);
                         $('#total_gavetase').text(tge);
                         $('#total_finale').text(tfe);
-                        //  console.log(typeof(obj));
-                        //  console.log(response);
-                        //   alert(response);
 
                     },
 
