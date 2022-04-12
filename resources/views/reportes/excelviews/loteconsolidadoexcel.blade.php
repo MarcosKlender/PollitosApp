@@ -1,7 +1,7 @@
 <table >
     <thead>
         <tr> 
-            <th align="left" width="36"> Lote N°  {{ $id }}  </th>
+            <th align="left" width="44"> Lote N°  {{ $id }}  </th>
             <td width="30"></td>
             <td width="2"></td>
             <td width="47"></td>
@@ -29,7 +29,7 @@
             </tr>
             <tr>
                 <th align="left">Ruc: </th>
-                <td align="right"> {{ $lote->ruc_ci }} </td>
+                <td style="mso-number-format:'0%';" align="right"> {{ $lote->ruc_ci }} </td>
             </tr>
             <tr>
                 <th align="left">Cantidad Animales (INGRESOS): </th>
@@ -148,19 +148,19 @@
                 <th align="center">TOTAL PESO NETO | eTPN=(ePB-ePGV-ePGVM)+ePM</th> 
                 <td align="center">{{ $eTPN }}</td> 
                 <th></th> 
-                <th align="center" colspan="3">TOTAL NETO ieTN = iTPN-(eTPN-eTD)  </th> 
-                <td align="center">{{ $ieTN }} </td> 
+                <th></th> 
+                <th></th> 
             </tr>
             <tr></tr>
             <tr>
+                <th align="center">MERMA POR ANIMAL | ieMA = (iTPN - eTPN) / eCA</th>
+                <td align="center">{{ $ieMA }}</td>
                 <td></td>
                 <td></td>
                 <td></td>
                 <td></td>
                 <td></td>
                 <td></td>
-                <th align="center" colspan="2">PRECIO POR UNIDAD </th>
-                <td align="center"> {{ $iePU }} </td>
             </tr>
     </tbody>
 </table>

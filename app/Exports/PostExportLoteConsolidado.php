@@ -105,13 +105,18 @@ class PostExportLoteConsolidado implements FromView, WithTitle, WithEvents, With
 
 	  	$ieTN = $iTPN-($eTPN - $eTD ); 
 
+
         //Precio por unidad de animal
         $eCantidad_animal = Lotes::where('id', $datoid)->select('cant_animales_egresos')->value('cant_animales_egresos');
+        
 
         if ($eCantidad_animal >0  ){
-            $iePU = $ieTN / $eCantidad_animal;             
+            $iePU = $ieTN / $eCantidad_animal;  
+            //
+            $ieMA = ( $iTPN - $eTPN ) / $eCantidad_animal;   
         }else {
             $iePU = null; 
+            $ieMA = null;
         }
 
 
@@ -128,7 +133,7 @@ class PostExportLoteConsolidado implements FromView, WithTitle, WithEvents, With
 
 
 
-	  	return view('reportes.excelviews.loteconsolidadoexcel', [ 'lotes'=> $lotes])->with('id',$this->id)->with('iCantidadga',$iCantidadga)->with('iPB',$iTotal_Pbruto)->with('iTotal_Cgvacia',$iTotal_Cgvacia)->with('iPGV',$iTotal_Pgvacia)->with('iCantidad_ahogados',$iCantidad_hogados)->with('iPH',$iPeso_hogados)->with('iTPN', $iTPN)->with('eCantidad_gavetas', $eCantidad_gavetas)->with('ePB', $eTotal_Pbruto)->with('ePeso_gvacia_mollejas', $ePeso_gvacia_mollejas)->with('ePM', $ePeso_mollejas)->with('eTotal_Cgvacia_ahogados',$eTotal_Cgvacia_ahogados)->with('ePeso_gvacia_ahogados_egresos',$ePeso_gvacia_ahogados_egresos)->with('eCantidad_ahogados', $eCantidad_ahogados)->with('ePeso_ahogados', $ePeso_ahogados)->with('eCantidad_gvacias', $eCantidad_gvacias)->with('ePGV', $eTotal_Pgvacias)->with('eTPN', $eTPN)->with('eCantidad_gvacia_estropeados', $eCantidad_gvacia_estropeados)->with('ePeso_gvacia_estropeados', $ePeso_gvacia_estropeados)->with('eCantidad_estropeados', $eCantidad_estropeados)->with('ePE', $ePeso_estropeados)->with('eTD', $eTD)->with('ieTN',$ieTN)->with('iePU', $iePU)->with('liquidado', $est_liquidado);
+	  	return view('reportes.excelviews.loteconsolidadoexcel', [ 'lotes'=> $lotes])->with('id',$this->id)->with('iCantidadga',$iCantidadga)->with('iPB',$iTotal_Pbruto)->with('iTotal_Cgvacia',$iTotal_Cgvacia)->with('iPGV',$iTotal_Pgvacia)->with('iCantidad_ahogados',$iCantidad_hogados)->with('iPH',$iPeso_hogados)->with('iTPN', $iTPN)->with('eCantidad_gavetas', $eCantidad_gavetas)->with('ePB', $eTotal_Pbruto)->with('ePeso_gvacia_mollejas', $ePeso_gvacia_mollejas)->with('ePM', $ePeso_mollejas)->with('eTotal_Cgvacia_ahogados',$eTotal_Cgvacia_ahogados)->with('ePeso_gvacia_ahogados_egresos',$ePeso_gvacia_ahogados_egresos)->with('eCantidad_ahogados', $eCantidad_ahogados)->with('ePeso_ahogados', $ePeso_ahogados)->with('eCantidad_gvacias', $eCantidad_gvacias)->with('ePGV', $eTotal_Pgvacias)->with('eTPN', $eTPN)->with('eCantidad_gvacia_estropeados', $eCantidad_gvacia_estropeados)->with('ePeso_gvacia_estropeados', $ePeso_gvacia_estropeados)->with('eCantidad_estropeados', $eCantidad_estropeados)->with('ePE', $ePeso_estropeados)->with('eTD', $eTD)->with('ieTN',$ieTN)->with('iePU', $iePU)->with('ieMA', $ieMA)->with('liquidado', $est_liquidado);
 	  	 
 
   	}
@@ -297,7 +302,7 @@ class PostExportLoteConsolidado implements FromView, WithTitle, WithEvents, With
                 $event->sheet->getStyle('A19:B19')->ApplyFromArray($TColorFondo);
                 $event->sheet->getStyle('D19:E19')->ApplyFromArray($TColorFondo);
 
-                $event->sheet->getStyle('G19:J19')->ApplyFromArray($TNColorFondo);
+                $event->sheet->getStyle('A21:B21')->ApplyFromArray($TNColorFondo);
 
 
             }
@@ -309,7 +314,7 @@ class PostExportLoteConsolidado implements FromView, WithTitle, WithEvents, With
      public function columnFormats(): array {
 
         return [
-                'B'=>NumberFormat::FORMAT_NUMBER,
+                'A'=>NumberFormat::FORMAT_NUMBER,
             ];
 
     }
