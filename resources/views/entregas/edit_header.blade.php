@@ -56,12 +56,16 @@
                                 value="{{ $entregas->destino }}"  />
                         </div>
 
-                        <div class="form-group">
-                            <label for="tipo_entrega">Para Local</label>
-                            <select class="custom-select" id="tipo_entrega" name="tipo_entrega" required>
-                                <option value="1">SI</option>
-                                <option value="0">NO</option>
-                            </select>
+                        <div class="form-group text-center">
+                            <div class="form-check">
+                                <input type="hidden" class="form-check-label" value="0" name="tipo_entrega" id="tipo_entrega">
+                                @if ($entregas->tipo_entrega == 1)
+                                    <input type="checkbox" class="form-check-label" value="1" name="tipo_entrega" id="tipo_entrega" checked>    
+                                @else
+                                    <input type="checkbox" class="form-check-label" value="1" name="tipo_entrega" id="tipo_entrega">
+                                @endif
+                                <label class="form-check-label" for="tipo_entrega">Para Local</label>
+                            </div>
                         </div>
                         
                         <input type="hidden" id="entregas_id" class="entregas_id" name="entregas_id" value="{{ $entregas->id }}">
@@ -83,7 +87,6 @@
     <script>
         $(document).ready(function() {
             $('#tipo').val("{{ $entregas->tipo }}");
-            $('#tipo_entrega').val("{{ $entregas->tipo_entrega }}");
 
             $('#cliente').keyup(function() {
                 $(this).val($(this).val().toUpperCase());

@@ -189,12 +189,6 @@ class EntregasController extends Controller
 
         Entregas::whereId($request->entregas_id)->update($updateData);
 
-        // Mantener datos del formulario
-        $request->old('proveedor');
-        $request->old('procedencia');
-        $request->old('placa');
-        $request->old('conductor');
-
         return redirect('/entregas')->with('success', '¡Entrega editada exitosamente!');
     }
 

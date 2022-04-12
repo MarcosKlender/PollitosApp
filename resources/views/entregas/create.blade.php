@@ -62,21 +62,21 @@
                                 value="{{ old('destino') }}"  />
                         </div>
 
-                        <div class="form-group">
+                        {{-- <div class="form-group">
                             <label for="tipo_entrega">Para Local</label>
                             <select class="custom-select" id="tipo_entrega" name="tipo_entrega" required>
                                 <option value="" selected disabled>Elija una opción</option>
                                 <option value="1">SI</option>
                                 <option value="0">NO</option>
                             </select>
-                        </div>
+                        </div> --}}
 
-                        {{-- <div class="form-group text-center">
+                        <div class="form-group text-center">
                             <div class="form-check"> 
                                 <input type="checkbox" class="form-check-label" value="1" name="tipo_entrega" id="tipo_entrega">
                                 <label class="form-check-label" for="tipo_entrega">Para Local</label>
                             </div>
-                        </div> --}}
+                        </div>
 
                         <input type="hidden" id="usuario_creacion" name="usuario_creacion" value="{{ Auth::user()->username }}" required />
                         <input type="hidden" id="anulado" name="anulado" value="0" required />

@@ -99,7 +99,7 @@
                                                     <a href="{{ route('pesobruto.edit_header', $lote->id) }}"
                                                         class="btn btn-sm btn-primary"><i class="fas fa-edit"></i></a>
                                                 @else
-                                                    <i class="fa-regular fa-pen-slash"></i>
+                                                    <button type="button" class="btn btn-primary btn-sm" disabled><i class="fas fa-edit"></i></button>
                                                 @endif
                                             </td>
                                             <td align="center">
