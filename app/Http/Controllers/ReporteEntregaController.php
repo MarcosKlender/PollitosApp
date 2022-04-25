@@ -11,6 +11,7 @@ use Illuminate\Contracts\View\View;
 use Maatwebsite\Excel\Concerns\FromView;
 use Maatwebsite\Excel\Concerns\Exportable;
 use App\Exports\PostsExportEntrega;
+use App\Exports\PostExportEntregaConsolidadoGeneral;
 
 
 class ReporteEntregaController extends Controller
@@ -110,6 +111,17 @@ class ReporteEntregaController extends Controller
     public function generar_excel_entrega($id)
     {
         return (new PostsExportEntrega($id))->download('entregas.xlsx');
+    }
+
+     public function generar_excel_entrega_general()
+    {
+
+
+        $fechaini = Request()->fecha_desde;
+        $fechafin = Request()->fecha_hasta;
+
+       return (new PostExportEntregaConsolidadoGeneral($fechaini, $fechafin))->download('entregas_consolidado_general.xlsx');
+   
     }
 
 }

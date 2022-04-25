@@ -20,7 +20,11 @@ use Maatwebsite\Excel\Facades\Excel;
 Route::get('/reportes/generar_excel/{lotes}', 'ReportesController@generar_excel')->name('reportes.generar_excel');
 Route::get('/reportes/generar_excel_consolidado/{lotes}', 'ReporteLoteGeneralController@generar_excel_consolidado')->name('reportes.generar_excel_consolidado');
 Route::get('/reportesentregas/generar_excel_entrega/{entregas}', 'ReporteEntregaController@generar_excel_entrega')->name('reportesentregas.generar_excel_entrega');
-Route::get('/reportesentregas/generar_excel_entrega_general/{entregas}', 'ReporteEntregaController@generar_excel_entrega_general')->name('reportesentregas.generar_excel_entrega_general');
+//Route::get('/reportesentregas/generar_excel_entrega_general/{entregas}', 'ReporteEntregaController@generar_excel_entrega_general')->name('reportesentregas.generar_excel_entrega_general');
+
+//Route::get('/reportesentregas/generar_excel_entrega_general/{fechaini}/{fechafin}', 'ReporteEntregaController@generar_excel_entrega_general')->name('reportesentregas.generar_excel_entrega_general');
+
+Route::get('/reportesentregas/generar_excel_entrega_general', 'ReporteEntregaController@generar_excel_entrega_general')->name('reportesentregas.generar_excel_entrega_general');
 
 Route::get('/', function () {
     return view('welcome');

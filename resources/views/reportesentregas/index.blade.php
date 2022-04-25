@@ -55,12 +55,12 @@
 
                                     <div class="input-group-append col-auto input-group-append">
                                         <label for="fecha_ini" class="col-auto col-form-label"> Desde: </label>
-                                        <input type="date" class="form-control" name="criterio_fecha_ini">
+                                        <input type="date" class="form-control" id="criterio_fecha_ini" name="criterio_fecha_ini">
                                     </div>
 
                                     <div class="input-group-append col-auto input-group-append">
                                         <label for="fecha_fin" class="col-auto col-form-label"> Hasta: </label>
-                                        <input type="date" class="form-control" name="criterio_fecha_fin">
+                                        <input type="date" class="form-control" id='criterio_fecha_fin' name="criterio_fecha_fin">
                                     </div>
 
                                     <div class="form-check form-check-inline">
@@ -80,6 +80,18 @@
                                             <i class="fas fa-search"></i>
                                         </button>
                                     </div>
+
+                                     <!--td align="center" class="button">
+                                                <a href="{{-- route('reportesentregas.generar_excel_entrega_general', ['fechaini' =>'2022-04-12', 'fechafin' =>'2022-04-13' ]) --}}" id='btn-excel'
+                                                    target="_blank" class="btn btn-lg btn-primary"><i
+                                                        class="far fa-file-excel"></i></a>
+                                    </td!-->
+
+                                    <td align="center" class="button">
+                                                <a href="#" id='btn-excel'
+                                                    target="_blank" class="btn btn-lg btn-primary"><i
+                                                        class="far fa-file-excel"></i></a>
+                                    </td>
 
                                 </div>
                             </form>
@@ -272,6 +284,28 @@
     <script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>
     <script type="text/javascript">
         $(document).ready(function() {
+
+
+            //Genera reporte general de Entregas
+            $('#btn-excel').on('click', function(e){
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': jQuery('meta[name="csrf-token"]').attr('content')
+                    }
+                });
+                e.preventDefault();
+
+                 var datos = {
+                    fecha_desde: $('#criterio_fecha_ini').val(), 
+                    fecha_hasta: $('#criterio_fecha_fin').val()
+                 }
+ 
+                 window.location="{{route('reportesentregas.generar_excel_entrega_general') }}?" + $.param(datos);
+
+            }); 
+
+
+
 
             $(".row_peso").on('click', function(e) {
                 // $("#reportes_peso tbody tr").click(function(e){
