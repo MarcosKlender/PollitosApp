@@ -157,6 +157,14 @@
                 </li>
             @endif
 
+            @if (Auth::user()->rol->key == 'admin')
+                <li class="nav-item {{ request()->is('liquidados') ? 'active' : '' }}">
+                    <a class="nav-link" href="{{ route('liquidados.index') }}">
+                        <i class="fas fa-check-circle"></i>
+                        <span>{{ __('Liquidados') }}</span></a>
+                </li>
+            @endif
+
             @if (Auth::user()->rol->key == 'egresos' OR Auth::user()->rol->key == 'entregas' OR Auth::user()->rol->key == 'admin' OR Auth::user()->rol->key == 'egre_entr')
             <!-- Divider -->
             <hr class="sidebar-divider">

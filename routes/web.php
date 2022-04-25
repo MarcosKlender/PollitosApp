@@ -116,6 +116,10 @@ Route::get('/entregas/edit_header/{id}', 'EntregasController@edit_header')->name
 Route::post('/entregas/update_header', 'EntregasController@update_header')->name('entregas.update_header');
 Route::resource('entregas', EntregasController::class);
 
+Route::resource('liquidados', LiquidadosController::class);
+Route::patch('/liquidados2/{id}', 'LiquidadosController@update2')->name('liquidados.update2');
+Route::patch('/liquidados3/{id}', 'LiquidadosController@update3')->name('liquidados.update3');
+
 Route::resource('reportes', ReportesController::class);
 Route::resource('reportesentregas', ReporteEntregaController::class);
 Route::resource('basculas', BasculasController::class, ['except' => ['show']]);
