@@ -1,6 +1,12 @@
 @extends('layouts.admin')
 
 @section('main-content')
+    <style>
+        .nav > .nav-item > .active {
+            background-color: #4e73df;
+            color: #ffffff;
+        }
+    </style>
     <!-- Page Heading -->
     <div class="row justify-content-center">
         <div class="col-lg-9">

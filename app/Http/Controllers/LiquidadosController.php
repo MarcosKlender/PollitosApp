@@ -27,7 +27,7 @@ class LiquidadosController extends Controller
 
         Lotes::whereId($id)->update($updateData);
 
-        return back()->with('success', '¡Lote actualizado exitosamente!');
+        return back()->with('success', '¡Ingreso reversado exitosamente!');
     }
 
     public function update2(Request $request, $id)
@@ -38,7 +38,7 @@ class LiquidadosController extends Controller
 
         Lotes::whereId($id)->update($updateData);
 
-        return back()->with('success', '¡Lote actualizado exitosamente!')->with('usedTab', 'nav-profile');
+        return back()->with('success', '¡Egreso reversado exitosamente!')->with('usedTab', 'nav-profile');
     }
 
     public function update3(Request $request, $id)
@@ -49,6 +49,6 @@ class LiquidadosController extends Controller
 
         Entregas::whereId($id)->update($updateData);
 
-        return back()->with('success', '¡Lote actualizado exitosamente!')->with('usedTab', 'nav-contact');
+        return back()->with('success', '¡Entrega reversada exitosamente!')->with('usedTab', 'nav-contact');
     }
 }

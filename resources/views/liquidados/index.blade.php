@@ -7,7 +7,7 @@
         <div class="card shadow mb-4">
             <div class="card-header mt-2">
                 <div class="text-center">
-                    <h4>LOTES LIQUIDADOS</h4>
+                    <h4>REVERSO DE LOTES LIQUIDADOS</h4>
                 </div>
             </div>
 
@@ -75,14 +75,16 @@
                                         <td>{{ $lote->created_at }}</td>
                                         <td align="center">
                                             @if ($lote->liquidado == '0')
-                                            <form method="post" action="{{ route('liquidados.update', $lote->id) }}">
+                                            <form method="post" action="{{ route('liquidados.update', $lote->id) }}"
+                                                onclick="return confirm('¿Está seguro de reversar el estado del lote #' + {{ $lote->id }} + '?')">
                                                 {{ csrf_field() }}
                                                 {{ method_field('PATCH') }}
                                                 <input type="hidden" id="liquidado" name="liquidado" value="1">
                                                 <button type="submit" class="btn btn-sm btn-primary">NO</button>
                                             </form>
                                             @else
-                                            <form method="post" action="{{ route('liquidados.update', $lote->id) }}">
+                                            <form method="post" action="{{ route('liquidados.update', $lote->id) }}"
+                                                onclick="return confirm('¿Está seguro de reversar el estado del lote #' + {{ $lote->id }} + '?')">
                                                 {{ csrf_field() }}
                                                 {{ method_field('PATCH') }}
                                                 <input type="hidden" id="liquidado" name="liquidado" value="0">
@@ -137,7 +139,8 @@
                                         <td>{{ $lote->created_at }}</td>
                                         <td align="center">
                                             @if ($lote->estado_egresos == '0')
-                                            <form method="post" action="{{ route('liquidados.update2', $lote->id) }}">
+                                            <form method="post" action="{{ route('liquidados.update2', $lote->id) }}"
+                                                onclick="return confirm('¿Está seguro de reversar el estado del lote #' + {{ $lote->id }} + '?')">
                                                 {{ csrf_field() }}
                                                 {{ method_field('PATCH') }}
                                                 <input type="hidden" id="estado_egresos" name="estado_egresos"
@@ -145,7 +148,8 @@
                                                 <button type="submit" class="btn btn-sm btn-primary">NO</button>
                                             </form>
                                             @else
-                                            <form method="post" action="{{ route('liquidados.update2', $lote->id) }}">
+                                            <form method="post" action="{{ route('liquidados.update2', $lote->id) }}"
+                                                onclick="return confirm('¿Está seguro de reversar el estado del lote #' + {{ $lote->id }} + '?')">
                                                 {{ csrf_field() }}
                                                 {{ method_field('PATCH') }}
                                                 <input type="hidden" id="estado_egresos" name="estado_egresos"
@@ -214,16 +218,16 @@
                                         <td>{{ $entrega->created_at }}</td>
                                         <td align="center">
                                             @if ($entrega->liquidado == '0')
-                                            <form method="post"
-                                                action="{{ route('liquidados.update3', $entrega->id) }}">
+                                            <form method="post" action="{{ route('liquidados.update3', $entrega->id) }}"
+                                                onclick="return confirm('¿Está seguro de reversar el estado del lote #' + {{ $entrega->id }} + '?')">
                                                 {{ csrf_field() }}
                                                 {{ method_field('PATCH') }}
                                                 <input type="hidden" id="liquidado" name="liquidado" value="1">
                                                 <button type="submit" class="btn btn-sm btn-primary">NO</button>
                                             </form>
                                             @else
-                                            <form method="post"
-                                                action="{{ route('liquidados.update3', $entrega->id) }}">
+                                            <form method="post" action="{{ route('liquidados.update3', $entrega->id) }}"
+                                                onclick="return confirm('¿Está seguro de reversar el estado del lote #' + {{ $entrega->id }} + '?')">
                                                 {{ csrf_field() }}
                                                 {{ method_field('PATCH') }}
                                                 <input type="hidden" id="liquidado" name="liquidado" value="0">
