@@ -21,10 +21,16 @@ class PostExportEntregaConsolidadoGeneral implements FromView, WithTitle, WithEv
 
     protected $id;
 
-    public function __construct($fechaini = null, $fechafin = null, $grupo_presas = null)
+    public function __construct($fechaini = null, $fechafin = null, $entregas = null ,$eCantidad_gavetas = null, $ePeso_bruto = null, $Total_cgaveta_presas = null, $Total_pbruto_presas = null, $categoria_animal = null ,  $grupo_presas = null)
     {
         $this->fechaini = $fechaini;
         $this->fechafin = $fechafin;
+        $this->entregas = $entregas;
+        $this->eCantidad_gavetas = $eCantidad_gavetas;
+        $this->ePeso_bruto = $ePeso_bruto;
+        $this->Total_cgaveta_presas = $Total_cgaveta_presas;
+        $this->Total_pbruto_presas = $Total_pbruto_presas;
+        $this->categoria_animal = $categoria_animal;
         $this->Grupo_presas = $grupo_presas;
     }
 
@@ -37,27 +43,27 @@ class PostExportEntregaConsolidadoGeneral implements FromView, WithTitle, WithEv
 
        $datoid = Entregas::whereDate('created_at', '>=', [$fechaini])->whereDate('created_at','<=', [$fechafin])->orderBy('id','desc')->select('id')->value('id');
 
-       $entregas = Entregas::whereDate('created_at', '>=', [$fechaini])->whereDate('created_at','<=', [$fechafin])->orderBy('id', 'desc')->get();
+       $this->entregas = Entregas::whereDate('created_at', '>=', [$fechaini])->whereDate('created_at','<=', [$fechafin])->orderBy('id', 'desc')->get();
 
 
-        $registros = RegistrosEntregas::where('entregas_id', $datoid)->orderBy('entregas_id', 'desc')->get();
+        //$registros = RegistrosEntregas::where('entregas_id', $datoid)->orderBy('entregas_id', 'desc')->get();
 
 
-        $eCantidad_gavetas = RegistrosEntregas::where('anulado', 0)->selectRaw('entregas_id, SUM(cant_gavetas) as cant_gavetas')->orderBy('entregas_id', 'desc')->groupBy('entregas_id')->get();
+        $this->eCantidad_gavetas = RegistrosEntregas::where('anulado', 0)->selectRaw('entregas_id, SUM(cant_gavetas) as cant_gavetas')->orderBy('entregas_id', 'desc')->groupBy('entregas_id')->get();
 
 
-        $ePeso_bruto = RegistrosEntregas::where('anulado', 0)->selectRaw('entregas_id, SUM(peso_bruto) as peso_bruto')->orderBy('entregas_id', 'desc')->groupBy('entregas_id')->get();
+        $this->ePeso_bruto = RegistrosEntregas::where('anulado', 0)->selectRaw('entregas_id, SUM(peso_bruto) as peso_bruto')->orderBy('entregas_id', 'desc')->groupBy('entregas_id')->get();
 
 
-        $Total_cgaveta_presas = PresasEntregas::where('anulado',0)->selectRaw('entregas_id, SUM(cant_gavetas) as cant_gavetas, SUM(peso_bruto) as peso_bruto')->orderBy('entregas_id','desc')->groupBy('entregas_id')->get();
+        $this->Total_cgaveta_presas = PresasEntregas::where('anulado',0)->selectRaw('entregas_id, SUM(cant_gavetas) as cant_gavetas, SUM(peso_bruto) as peso_bruto')->orderBy('entregas_id','desc')->groupBy('entregas_id')->get();
 
 
-        $Total_pbruto_presas = PresasEntregas::where('anulado',0)->selectRaw('entregas_id, SUM(peso_bruto) as peso_bruto')->orderBy('entregas_id','desc')->groupBy('entregas_id')->get();
+        $this->Total_pbruto_presas = PresasEntregas::where('anulado',0)->selectRaw('entregas_id, SUM(peso_bruto) as peso_bruto')->orderBy('entregas_id','desc')->groupBy('entregas_id')->get();
 
 
        $this->Grupo_presas = PresasEntregas::where('anulado',0)->selectRaw('entregas_id, tipo_entrega, SUM(cant_gavetas) as cant_gavetas, SUM(peso_bruto) as peso_bruto')->orderBy('entregas_id','desc')->groupBy('entregas_id','tipo_entrega')->get();
 
-        $categoria_animal = RegistrosEntregas::where('anulado', 0)->selectRaw('entregas_id, categoria_animales, SUM(cant_gavetas) as cant_gavetas')->orderBy('entregas_id','desc')->groupBy('entregas_id', 'categoria_animales')->get();
+        $this->categoria_animal = RegistrosEntregas::where('anulado', 0)->selectRaw('entregas_id, categoria_animales, SUM(cant_gavetas) as cant_gavetas')->orderBy('entregas_id','desc')->groupBy('entregas_id', 'categoria_animales')->get();
 
     
        //$TPN = $ePeso_bruto + $Total_pbruto_presas;
@@ -73,7 +79,7 @@ class PostExportEntregaConsolidadoGeneral implements FromView, WithTitle, WithEv
             $est_liquidado = 'Anulado';
         }
 
-        return view('reportesentregas.excelviews.entregaconsolidadogeneralexcel',['entregas',$entregas],['registros',$registros])->with('entregas', $entregas)->with('id', $datoid)->with('eCantidad_gavetas', $eCantidad_gavetas)->with('PB',$ePeso_bruto)->with('PP', $Total_pbruto_presas)->with('Total_cgaveta_presas', $Total_cgaveta_presas)->with('grupo_presas', $this->Grupo_presas)->with('categoria_animal', $categoria_animal)->with('liquidado', $est_liquidado);
+        return view('reportesentregas.excelviews.entregaconsolidadogeneralexcel',['entregas',$this->entregas])->with('entregas', $this->entregas)->with('id', $datoid)->with('eCantidad_gavetas', $this->eCantidad_gavetas)->with('PB',$this->ePeso_bruto)->with('PP', $this->Total_pbruto_presas)->with('Total_cgaveta_presas', $this->Total_cgaveta_presas)->with('grupo_presas', $this->Grupo_presas)->with('categoria_animal', $this->categoria_animal)->with('liquidado', $est_liquidado);
 
     }
 
@@ -160,11 +166,44 @@ class PostExportEntregaConsolidadoGeneral implements FromView, WithTitle, WithEv
             AfterSheet::class => function(AfterSheet $event) use ($borderMedium, $FuenteLetra, $iColorFondo, $iColorFondo2, $iColorFondo3)
             {
                 $CeldaPresas = null;
-                $fila_inicial = 15; 
+                //$fila_inicial = 15; 
                 $cantidad_filas = count($this->Grupo_presas);
 
+
+                
+                $Celda_hasta = null;
+                $fila_inicial = 10;
+                $letra_columna = 3; //columna "C"
+                $numero_fila = 10; // fila "9"
+                $acumulador = 0;
+
+                // Captura de la celda inicial 
+                 $Celda_hasta = $event->sheet->getCellByColumnAndRow($letra_columna, $numero_fila)->getParent()->getCurrentCoordinate();
+
+
+                foreach($this->entregas as $entrega){
+
+                    foreach( $this->eCantidad_gavetas as $eCantidad_gaveta ){
+
+                        if( $eCantidad_gaveta->entregas_id == $entrega->id ){                       
+
+                                //Cuadriculas
+                                $event->sheet->getStyle('A'.$fila_inicial.':'.$Celda_hasta)->ApplyFromArray($borderMedium);
+
+                                $acumulador = $acumulador + 1;
+
+
+                       }
+                    }           
+
+                }
+
+
+
+
+
                 //Cuadriculas
-                $event->sheet->getStyle('A10:C12')->ApplyFromArray($borderMedium);
+                /*$event->sheet->getStyle('A10:C12')->ApplyFromArray($borderMedium);
 
                 //Color celdas
                 $event->sheet->getStyle('A10:A12')->ApplyFromArray($iColorFondo2);
@@ -184,7 +223,7 @@ class PostExportEntregaConsolidadoGeneral implements FromView, WithTitle, WithEv
                 //TOTAL - FILA FINAL
                 $posicion_fila = ($fila_inicial + $cantidad_filas) + 2; 
                 $event->sheet->getStyle('A'.$posicion_fila.':C'.$posicion_fila)->ApplyFromArray($borderMedium);
-                $event->sheet->getStyle('A'.$posicion_fila.':C'.$posicion_fila)->ApplyFromArray($iColorFondo3);
+                $event->sheet->getStyle('A'.$posicion_fila.':C'.$posicion_fila)->ApplyFromArray($iColorFondo3);*/
 
 
 
